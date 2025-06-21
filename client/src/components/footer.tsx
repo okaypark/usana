@@ -104,7 +104,7 @@ export default function Footer() {
                 <span className="text-sm">{contactInfo.kakao}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-sm">평일 9:00-18:00</span>
+                <span className="text-sm">24시까지 언제든지 (휴일없음)</span>
               </div>
             </div>
           </div>

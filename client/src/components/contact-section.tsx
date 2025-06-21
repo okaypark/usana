@@ -69,9 +69,9 @@ export default function ContactSection() {
   };
 
   const operatingHours = [
-    { day: "평일 (월-금)", time: "09:00 - 18:00" },
-    { day: "토요일", time: "10:00 - 16:00" },
-    { day: "일요일/공휴일", time: "카카오톡 상담만" }
+    { day: "평일 (월-금)", time: "24시까지 언제든지" },
+    { day: "토요일", time: "24시까지 언제든지" },
+    { day: "일요일/공휴일", time: "24시까지 언제든지" }
   ];
 
   return (
@@ -214,7 +214,7 @@ export default function ContactSection() {
                     <div>
                       <p className="text-gray-600">전화 상담</p>
                       <p className="text-xl font-semibold text-gray-900">{contactInfo.phone}</p>
-                      <p className="text-sm text-gray-500">평일 9:00 - 18:00</p>
+                      <p className="text-sm text-gray-500">24시까지 언제든지</p>
                     </div>
                   </div>
                   
