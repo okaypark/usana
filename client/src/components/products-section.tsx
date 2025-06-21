@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Pill, Sparkles, Dumbbell, Check } from "lucide-react";
+import nutritionImage from "@assets/4198d663-2e1d-4ab0-8e3e-60d479e4bd5c.resize-1200x1200_1750520167008.webp";
+import celaviveImage from "@assets/Celavive-Full-Line-80-percent-1_1750520337102.jpg";
+import activeImage from "@assets/350d86bc4ae64c54a9cb9e65538ef700_raw_1750520755126.jpg";
 
 export default function ProductsSection() {
   const products = [
     {
-      title: "건강기능식품",
+      title: "뉴트리션 영양제",
       description: "셀센셜, 비타맥스, 프로파넬 등 프리미엄 영양소 보충제로 최적의 건강 관리",
-      image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+      image: nutritionImage,
       icon: Pill,
       iconColor: "text-usana-green-500",
       iconBg: "bg-usana-green-500",
@@ -19,9 +22,9 @@ export default function ProductsSection() {
       ]
     },
     {
-      title: "센스 스킨케어",
+      title: "셀라비브 스킨케어",
       description: "혁신적인 안티에이징 기술로 젊고 건강한 피부를 위한 프리미엄 화장품",
-      image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+      image: celaviveImage,
       icon: Sparkles,
       iconColor: "text-pink-500",
       iconBg: "bg-pink-500",
@@ -35,7 +38,7 @@ export default function ProductsSection() {
     {
       title: "다이어트 & 웰니스",
       description: "건강한 체중 관리와 활력 넘치는 라이프스타일을 위한 맞춤형 솔루션",
-      image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+      image: activeImage,
       icon: Dumbbell,
       iconColor: "text-usana-orange-500",
       iconBg: "bg-usana-orange-500",
