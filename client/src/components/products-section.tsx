@@ -77,7 +77,7 @@ export default function ProductsSection() {
                     <img 
                       src={dietProductImage}
                       alt="다이어트 제품"
-                      className="absolute bottom-4 right-4 w-32 h-32 object-contain"
+                      className="absolute bottom-2 right-2 w-40 h-40 object-contain"
                     />
                   )}
                 </div>
