@@ -75,7 +75,7 @@ export default function FreeSubscriptionSection() {
                       <img
                         src={usanaProductImage}
                         alt="USANA 제품"
-                        className="absolute bottom-2 right-2 w-20 h-16 object-contain drop-shadow-lg"
+                        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-28 h-22 object-contain drop-shadow-lg"
                         style={{
                           filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
                         }}
