@@ -102,6 +102,10 @@ export default function ProductsSection() {
                     onClick={() => {
                       if (index === 0) {
                         window.open('https://hyunjin.usana.com/s/vhlME3', '_blank');
+                      } else if (index === 1) {
+                        window.open('https://hyunjin.usana.com/s/1wUH21', '_blank');
+                      } else if (index === 2) {
+                        window.open('https://hyunjin.usana.com/s/Yr7NY', '_blank');
                       }
                     }}
                   >
