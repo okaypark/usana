@@ -76,7 +76,7 @@ export default function AboutSection() {
                 <img
                   src={profileImage}
                   alt="박현진 대표 프로필"
-                  className="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg object-cover object-top"
+                  className="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg object-cover object-top"
                 />
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{profile.name}</h3>
                 <p className="text-usana-blue-600 font-semibold">{profile.title}</p>
