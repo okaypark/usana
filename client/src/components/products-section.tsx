@@ -71,7 +71,7 @@ export default function ProductsSection() {
                   <img 
                     src={product.image} 
                     alt={product.title}
-                    className={`w-full h-full object-cover ${index === 0 ? 'object-top scale-125' : ''}`}
+                    className={`w-full h-full object-cover ${index === 0 ? 'object-bottom scale-150' : ''}`}
                   />
                   {index === 2 && (
                     <img 
