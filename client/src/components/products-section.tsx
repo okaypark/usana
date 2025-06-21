@@ -97,7 +97,14 @@ export default function ProductsSection() {
                       </li>
                     ))}
                   </ul>
-                  <Button className={`w-full ${product.buttonColor} text-white font-semibold`}>
+                  <Button 
+                    className={`w-full ${product.buttonColor} text-white font-semibold`}
+                    onClick={() => {
+                      if (index === 0) {
+                        window.open('https://hyunjin.usana.com/s/vhlME3', '_blank');
+                      }
+                    }}
+                  >
                     자세히 보기
                   </Button>
                 </CardContent>
