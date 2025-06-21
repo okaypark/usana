@@ -13,7 +13,7 @@ export default function FreeSubscriptionSection() {
       description: "전문 상담을 통해 개인에게 맞는 건강구독을 신청해보세요.",
       icon: UserPlus,
       color: "bg-blue-600",
-      image: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
     },
     {
       number: 2,
@@ -29,7 +29,7 @@ export default function FreeSubscriptionSection() {
       description: "좋은 경험을 바탕으로 친구 2명에게 건강구독을 안내해주세요.",
       icon: Users,
       color: "bg-purple-600",
-      image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
     },
     {
       number: 4,
@@ -75,7 +75,7 @@ export default function FreeSubscriptionSection() {
                       <img
                         src={usanaProductImage}
                         alt="USANA 제품"
-                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-28 h-22 object-contain drop-shadow-lg"
+                        className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-28 h-22 object-contain drop-shadow-lg"
                         style={{
                           filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
                         }}
