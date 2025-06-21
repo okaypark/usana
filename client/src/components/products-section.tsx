@@ -4,6 +4,7 @@ import { Pill, Sparkles, Dumbbell, Check } from "lucide-react";
 import nutritionImage from "@assets/4198d663-2e1d-4ab0-8e3e-60d479e4bd5c.resize-1200x1200_1750520167008.webp";
 import celaviveImage from "@assets/Celavive-Full-Line-80-percent-1_1750520337102.jpg";
 import activeImage from "@assets/350d86bc4ae64c54a9cb9e65538ef700_raw_1750520755126.jpg";
+import dietProductImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522103001.png";
 
 export default function ProductsSection() {
   const products = [
@@ -66,11 +67,20 @@ export default function ProductsSection() {
             const Icon = product.icon;
             return (
               <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <img 
-                  src={product.image} 
-                  alt={product.title}
-                  className="w-full h-64 object-cover"
-                />
+                <div className="relative w-full h-64 overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.title}
+                    className={`w-full h-full object-cover ${index === 0 ? 'object-center scale-110' : ''}`}
+                  />
+                  {index === 2 && (
+                    <img 
+                      src={dietProductImage}
+                      alt="다이어트 제품"
+                      className="absolute bottom-4 right-4 w-20 h-20 object-contain"
+                    />
+                  )}
+                </div>
                 <CardContent className="p-8">
                   <div className="flex items-center mb-4">
                     <div className={`${product.iconBg} p-2 rounded-lg mr-3`}>
