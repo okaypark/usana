@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { UserPlus, Share2, Users, Trophy } from "lucide-react";
 import { openKakaoChat } from "@/lib/utils";
+import kitchenImage from "@assets/image_fx_1750525351905.jpg";
 
 export default function FreeSubscriptionSection() {
   const steps = [
@@ -15,11 +16,11 @@ export default function FreeSubscriptionSection() {
     },
     {
       number: 2,
-      title: "제품체험 & 지인에게 건강해진 경험공유",
+      title: "건강한 제품체험 (건강구독)",
       description: "직접 경험한 건강한 변화를 지인들에게 자연스럽게 공유해보세요.",
       icon: Share2,
       color: "bg-green-600",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+      image: kitchenImage
     },
     {
       number: 3,
