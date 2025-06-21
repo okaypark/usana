@@ -9,11 +9,11 @@ export default function FreeSubscriptionSection() {
   const steps = [
     {
       number: 1,
-      title: "회원가입 & 건강구독 신청",
-      description: "USANA 회원가입과 건강구독을 신청하여 좋은 제품을 경험해보세요.",
+      title: "건강상담 & 구독신청",
+      description: "전문 상담을 통해 개인에게 맞는 건강구독을 신청해보세요.",
       icon: UserPlus,
       color: "bg-blue-600",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+      image: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
     },
     {
       number: 2,
@@ -29,7 +29,7 @@ export default function FreeSubscriptionSection() {
       description: "좋은 경험을 바탕으로 친구 2명에게 건강구독을 안내해주세요.",
       icon: Users,
       color: "bg-purple-600",
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+      image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
     },
     {
       number: 4,
@@ -75,7 +75,7 @@ export default function FreeSubscriptionSection() {
                       <img
                         src={usanaProductImage}
                         alt="USANA 제품"
-                        className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-28 h-22 object-contain drop-shadow-lg"
+                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-28 h-22 object-contain drop-shadow-lg"
                         style={{
                           filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
                         }}
