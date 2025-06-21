@@ -38,8 +38,8 @@ export default function HeroSection() {
           </div>
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              alt="USANA 건강기능식품"
+              src="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+              alt="건강과 성공을 함께 - USANA 기회"
               className="rounded-2xl shadow-2xl w-full h-auto"
             />
             <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">

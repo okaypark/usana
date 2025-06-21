@@ -6,27 +6,27 @@ export default function SubscriptionSection() {
   const benefits = [
     {
       icon: Percent,
-      title: "최대 30% 할인",
-      description: "정기 구독 시 일반 구매 대비 최대 30% 할인된 가격으로 제공",
-      color: "bg-usana-green-500"
+      title: "10% 할인",
+      description: "정기 구독 시 일반 구매 대비 10% 할인된 가격으로 제공",
+      color: "bg-blue-600"
     },
     {
       icon: Truck,
-      title: "무료 배송",
-      description: "매월 정기 배송 시 배송비 무료, 원하는 날짜에 정확한 배송",
-      color: "bg-usana-blue-500"
+      title: "소개자 캐쉬백",
+      description: "2명 건강구독 소개 시 소개자 소비금액의 10%를 달러로 캐쉬백",
+      color: "bg-green-600"
     },
     {
       icon: Calendar,
-      title: "맞춤형 스케줄",
-      description: "개인별 건강 상태와 필요에 따라 맞춤형 배송 스케줄 설정 가능",
-      color: "bg-usana-orange-500"
+      title: "포인트 적립",
+      description: "소비자들의 소비포인트가 나에게 적립되어 캐쉬백으로 지급",
+      color: "bg-indigo-600"
     },
     {
       icon: UserCheck,
-      title: "전문가 상담",
-      description: "영양 전문가의 1:1 맞춤 상담 및 건강 관리 가이드 제공",
-      color: "bg-purple-500"
+      title: "다단계 수당",
+      description: "직접 소개한 사람의 지인 소개 시 그의 수당의 10% 추가 지급",
+      color: "bg-teal-600"
     }
   ];
 
@@ -68,16 +68,17 @@ export default function SubscriptionSection() {
               })}
             </div>
 
-            <Card className="gradient-usana-income text-white">
+            <Card className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
               <CardContent className="p-6">
-                <h4 className="text-2xl font-bold mb-2">🎉 특별 혜택</h4>
+                <h4 className="text-2xl font-bold mb-2">💰 추가 수당 혜택</h4>
                 <p className="text-lg mb-4">
-                  지금 구독 신청하시면 <strong>첫 달 50% 할인</strong> + <strong>웰컴 키트 무료 증정</strong>
+                  <strong>다양한 수당 지급 시스템</strong>으로 지속적인 수익 창출이 가능하며, 
+                  새로운 혜택이 계속 업데이트됩니다.
                 </p>
                 <Button 
-                  className="bg-white text-usana-blue-600 hover:bg-gray-100 font-semibold"
+                  className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
                 >
-                  무료 체험 신청하기
+                  수당 시스템 자세히 보기
                 </Button>
               </CardContent>
             </Card>

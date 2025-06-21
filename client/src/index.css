@@ -24,16 +24,16 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
   
-  /* USANA Brand Colors */
-  --usana-blue-500: hsl(214, 88%, 61%);
-  --usana-blue-600: hsl(217, 78%, 56%);
-  --usana-blue-700: hsl(221, 83%, 53%);
-  --usana-blue-800: hsl(224, 76%, 48%);
-  --usana-green-500: hsl(158, 64%, 52%);
-  --usana-green-600: hsl(158, 84%, 42%);
-  --usana-green-700: hsl(158, 100%, 37%);
-  --usana-orange-500: hsl(24, 95%, 53%);
-  --usana-orange-600: hsl(20, 91%, 48%);
+  /* Professional Trust Colors */
+  --usana-blue-500: hsl(210, 70%, 55%);
+  --usana-blue-600: hsl(210, 75%, 50%);
+  --usana-blue-700: hsl(210, 80%, 45%);
+  --usana-blue-800: hsl(210, 85%, 40%);
+  --usana-green-500: hsl(150, 60%, 45%);
+  --usana-green-600: hsl(150, 65%, 40%);
+  --usana-green-700: hsl(150, 70%, 35%);
+  --usana-orange-500: hsl(25, 85%, 55%);
+  --usana-orange-600: hsl(25, 80%, 50%);
 }
 
 .dark {
@@ -105,7 +105,7 @@
 }
 
 .gradient-usana-income {
-  background: linear-gradient(135deg, var(--usana-green-500), var(--usana-blue-600));
+  background: linear-gradient(135deg, var(--usana-green-600), var(--usana-blue-600));
 }
 
 .gradient-usana-cta {

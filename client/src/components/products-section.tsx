@@ -35,7 +35,7 @@ export default function ProductsSection() {
     {
       title: "다이어트 & 웰니스",
       description: "건강한 체중 관리와 활력 넘치는 라이프스타일을 위한 맞춤형 솔루션",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+      image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
       icon: Dumbbell,
       iconColor: "text-usana-orange-500",
       iconBg: "bg-usana-orange-500",
