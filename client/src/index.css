@@ -24,16 +24,16 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
   
-  /* Professional Trust Colors */
-  --usana-blue-500: hsl(210, 70%, 55%);
-  --usana-blue-600: hsl(210, 75%, 50%);
-  --usana-blue-700: hsl(210, 80%, 45%);
-  --usana-blue-800: hsl(210, 85%, 40%);
-  --usana-green-500: hsl(150, 60%, 45%);
-  --usana-green-600: hsl(150, 65%, 40%);
-  --usana-green-700: hsl(150, 70%, 35%);
-  --usana-orange-500: hsl(25, 85%, 55%);
-  --usana-orange-600: hsl(25, 80%, 50%);
+  /* Fresh & Vibrant Colors */
+  --usana-blue-500: hsl(200, 85%, 60%);
+  --usana-blue-600: hsl(200, 80%, 55%);
+  --usana-blue-700: hsl(200, 75%, 50%);
+  --usana-blue-800: hsl(200, 70%, 45%);
+  --usana-green-500: hsl(145, 70%, 55%);
+  --usana-green-600: hsl(145, 75%, 50%);
+  --usana-green-700: hsl(145, 80%, 45%);
+  --usana-orange-500: hsl(35, 90%, 60%);
+  --usana-orange-600: hsl(35, 85%, 55%);
 }
 
 .dark {
@@ -101,15 +101,15 @@
 
 /* Custom gradient utilities */
 .gradient-usana-blue {
-  background: linear-gradient(135deg, var(--usana-blue-800), var(--usana-blue-700), var(--usana-green-700));
+  background: linear-gradient(135deg, var(--usana-blue-600), var(--usana-green-600), hsl(180, 70%, 50%));
 }
 
 .gradient-usana-income {
-  background: linear-gradient(135deg, var(--usana-green-600), var(--usana-blue-600));
+  background: linear-gradient(135deg, var(--usana-green-500), var(--usana-blue-500));
 }
 
 .gradient-usana-cta {
-  background: linear-gradient(135deg, var(--usana-blue-600), var(--usana-green-600));
+  background: linear-gradient(135deg, var(--usana-blue-500), var(--usana-green-500));
 }
 
 /* Smooth scrolling */
