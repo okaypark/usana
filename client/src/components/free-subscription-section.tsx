@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { UserPlus, Share2, Users, Trophy } from "lucide-react";
 import { openKakaoChat } from "@/lib/utils";
 import kitchenImage from "@assets/image_fx_1750525351905.jpg";
+import usanaProductImage from "@assets/유사나 뉴트리션_1750525611258.png";
 
 export default function FreeSubscriptionSection() {
   const steps = [
@@ -70,6 +71,16 @@ export default function FreeSubscriptionSection() {
                       alt={step.title}
                       className="w-full h-48 object-cover rounded-t-lg"
                     />
+                    {index === 1 && (
+                      <img
+                        src={usanaProductImage}
+                        alt="USANA 제품"
+                        className="absolute bottom-2 right-2 w-20 h-16 object-contain drop-shadow-lg"
+                        style={{
+                          filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))'
+                        }}
+                      />
+                    )}
                     <div className={`absolute top-4 left-4 ${step.color} text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg`}>
                       {step.number}
                     </div>
