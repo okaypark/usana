@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* USANA Brand Colors */
+  --usana-blue-500: hsl(214, 88%, 61%);
+  --usana-blue-600: hsl(217, 78%, 56%);
+  --usana-blue-700: hsl(221, 83%, 53%);
+  --usana-blue-800: hsl(224, 76%, 48%);
+  --usana-green-500: hsl(158, 64%, 52%);
+  --usana-green-600: hsl(158, 84%, 42%);
+  --usana-green-700: hsl(158, 100%, 37%);
+  --usana-orange-500: hsl(24, 95%, 53%);
+  --usana-orange-600: hsl(20, 91%, 48%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom utility classes for USANA colors */
+.text-usana-blue-500 { color: var(--usana-blue-500); }
+.text-usana-blue-600 { color: var(--usana-blue-600); }
+.text-usana-blue-700 { color: var(--usana-blue-700); }
+.text-usana-blue-800 { color: var(--usana-blue-800); }
+.text-usana-green-500 { color: var(--usana-green-500); }
+.text-usana-green-600 { color: var(--usana-green-600); }
+.text-usana-green-700 { color: var(--usana-green-700); }
+.text-usana-orange-500 { color: var(--usana-orange-500); }
+.text-usana-orange-600 { color: var(--usana-orange-600); }
+
+.bg-usana-blue-500 { background-color: var(--usana-blue-500); }
+.bg-usana-blue-600 { background-color: var(--usana-blue-600); }
+.bg-usana-blue-700 { background-color: var(--usana-blue-700); }
+.bg-usana-blue-800 { background-color: var(--usana-blue-800); }
+.bg-usana-green-500 { background-color: var(--usana-green-500); }
+.bg-usana-green-600 { background-color: var(--usana-green-600); }
+.bg-usana-green-700 { background-color: var(--usana-green-700); }
+.bg-usana-orange-500 { background-color: var(--usana-orange-500); }
+.bg-usana-orange-600 { background-color: var(--usana-orange-600); }
+
+.hover\:bg-usana-blue-500:hover { background-color: var(--usana-blue-500); }
+.hover\:bg-usana-blue-600:hover { background-color: var(--usana-blue-600); }
+.hover\:bg-usana-blue-700:hover { background-color: var(--usana-blue-700); }
+.hover\:bg-usana-green-500:hover { background-color: var(--usana-green-500); }
+.hover\:bg-usana-green-600:hover { background-color: var(--usana-green-600); }
+.hover\:bg-usana-green-700:hover { background-color: var(--usana-green-700); }
+.hover\:bg-usana-orange-500:hover { background-color: var(--usana-orange-500); }
+.hover\:bg-usana-orange-600:hover { background-color: var(--usana-orange-600); }
+
+/* Custom gradient utilities */
+.gradient-usana-blue {
+  background: linear-gradient(135deg, var(--usana-blue-800), var(--usana-blue-700), var(--usana-green-700));
+}
+
+.gradient-usana-income {
+  background: linear-gradient(135deg, var(--usana-green-500), var(--usana-blue-600));
+}
+
+.gradient-usana-cta {
+  background: linear-gradient(135deg, var(--usana-blue-600), var(--usana-green-600));
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}

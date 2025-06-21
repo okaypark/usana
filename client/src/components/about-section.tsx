@@ -1,0 +1,177 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Building, CheckCircle, Medal, Microscope, Globe, Users, Phone, Mail, MessageSquare } from "lucide-react";
+
+export default function AboutSection() {
+  const profile = {
+    name: "김건강",
+    title: "USANA 골드 파트너 · 건강 라이프 코치",
+    story: "3년 전 건강 악화로 고민하던 중 USANA 제품을 만나게 되었고, 놀라운 변화를 경험한 후 더 많은 분들과 함께 건강한 삶을 나누고 싶어 이 사업을 시작했습니다. 현재 500여 명의 고객분들과 함께 건강한 여정을 걸어가고 있습니다.",
+    phone: "010-1234-5678",
+    email: "healthy@usana.com",
+    kakao: "건강파트너"
+  };
+
+  const expertise = [
+    "영양 상담", "체중 관리", "사업 멘토링", "라이프 코칭"
+  ];
+
+  const companyStrengths = [
+    {
+      icon: Medal,
+      title: "품질 인증",
+      description: "FDA 승인 시설, NSF 인증, 비교 가이드 1위 등급",
+      color: "text-usana-green-500"
+    },
+    {
+      icon: Microscope,
+      title: "과학적 검증",
+      description: "자체 연구소 운영, 100편 이상의 학술 논문",
+      color: "text-usana-blue-500"
+    },
+    {
+      icon: Globe,
+      title: "글로벌 네트워크",
+      description: "24개국 진출, 연매출 1조원 달성",
+      color: "text-usana-orange-500"
+    },
+    {
+      icon: Users,
+      title: "파트너 지원",
+      description: "체계적인 교육 시스템, 전문가 멘토링",
+      color: "text-purple-500"
+    }
+  ];
+
+  const awards = [
+    {
+      title: "비교 가이드 건강기능식품 부문 1위 (15년 연속)",
+      color: "bg-yellow-50 text-yellow-600"
+    },
+    {
+      title: "포브스 선정 '아메리카 최고의 중소기업'",
+      color: "bg-blue-50 text-blue-600"
+    },
+    {
+      title: "NSF 국제인증 취득 (세계 최초)",
+      color: "bg-green-50 text-green-600"
+    }
+  ];
+
+  return (
+    <section id="about" className="bg-slate-50 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">소개</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            건강한 라이프스타일과 성공적인 비즈니스를 함께 만들어가는 파트너가 되겠습니다.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+          {/* Personal Introduction */}
+          <Card className="bg-white shadow-lg">
+            <CardContent className="p-8 lg:p-12">
+              <div className="text-center mb-8">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80"
+                  alt="대표 프로필"
+                  className="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg object-cover"
+                />
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{profile.name}</h3>
+                <p className="text-usana-blue-600 font-semibold">{profile.title}</p>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">나의 USANA 스토리</h4>
+                  <p className="text-gray-700 leading-relaxed">{profile.story}</p>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">전문 분야</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    {expertise.map((skill, index) => (
+                      <div key={index} className="flex items-center text-gray-700">
+                        <CheckCircle className="text-usana-green-500 mr-2 h-4 w-4" />
+                        <span className="text-sm">{skill}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">연락처</h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center text-gray-700">
+                      <Phone className="text-usana-blue-500 mr-3 h-4 w-4" />
+                      <span className="text-sm">{profile.phone}</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <Mail className="text-usana-blue-500 mr-3 h-4 w-4" />
+                      <span className="text-sm">{profile.email}</span>
+                    </div>
+                    <div className="flex items-center text-gray-700">
+                      <MessageSquare className="text-usana-blue-500 mr-3 h-4 w-4" />
+                      <span className="text-sm">{profile.kakao}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Company Introduction */}
+          <Card className="bg-white shadow-lg">
+            <CardContent className="p-8 lg:p-12">
+              <div className="text-center mb-8">
+                <div className="bg-usana-blue-500 text-white rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
+                  <Building className="h-10 w-10" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">USANA Health Sciences</h3>
+                <p className="text-usana-blue-600 font-semibold">글로벌 1위 건강기능식품 기업</p>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">회사 개요</h4>
+                  <p className="text-gray-700 leading-relaxed">
+                    1992년 설립된 USANA는 미국 유타주에 본사를 둔 글로벌 건강기능식품 기업으로, 
+                    현재 24개국에 진출하여 과학적으로 검증된 최고 품질의 제품을 제공하고 있습니다.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">핵심 강점</h4>
+                  <div className="space-y-3">
+                    {companyStrengths.map((strength, index) => {
+                      const Icon = strength.icon;
+                      return (
+                        <div key={index} className="flex items-start text-gray-700">
+                          <Icon className={`${strength.color} mr-3 mt-1 h-5 w-5`} />
+                          <div>
+                            <strong>{strength.title}:</strong> {strength.description}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">수상 내역</h4>
+                  <div className="space-y-2">
+                    {awards.map((award, index) => (
+                      <div key={index} className={`${award.color} p-3 rounded-lg`}>
+                        <span className="text-sm font-medium">{award.title}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+}

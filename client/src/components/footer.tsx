@@ -1,0 +1,135 @@
+import { Leaf, Facebook, Instagram, Youtube, MessageSquare } from "lucide-react";
+
+export default function Footer() {
+  const quickLinks = [
+    { label: "제품소개", href: "products" },
+    { label: "건강구독", href: "subscription" },
+    { label: "사업기회", href: "business" },
+    { label: "소개", href: "about" },
+    { label: "Q&A", href: "qna" }
+  ];
+
+  const productCategories = [
+    "건강기능식품",
+    "센스 스킨케어",
+    "다이어트 제품",
+    "스포츠 영양",
+    "전체 제품"
+  ];
+
+  const contactInfo = {
+    phone: "010-1234-5678",
+    email: "healthy@usana.com",
+    kakao: "@건강파트너"
+  };
+
+  const handleSectionClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <footer className="bg-gray-900 text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div>
+            <div className="text-2xl font-bold mb-4 flex items-center">
+              <Leaf className="text-usana-green-500 mr-2 h-8 w-8" />
+              USANA 건강 파트너
+            </div>
+            <p className="text-gray-300 mb-4">
+              건강한 라이프스타일과 경제적 자유를 함께 실현하는 파트너
+            </p>
+            <div className="flex space-x-4">
+              <button className="text-gray-400 hover:text-white transition-colors">
+                <Facebook className="h-6 w-6" />
+              </button>
+              <button className="text-gray-400 hover:text-white transition-colors">
+                <Instagram className="h-6 w-6" />
+              </button>
+              <button className="text-gray-400 hover:text-white transition-colors">
+                <Youtube className="h-6 w-6" />
+              </button>
+              <button className="text-gray-400 hover:text-white transition-colors">
+                <MessageSquare className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">빠른 링크</h4>
+            <ul className="space-y-2">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => handleSectionClick(link.href)}
+                    className="text-gray-300 hover:text-white transition-colors text-left"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">제품 카테고리</h4>
+            <ul className="space-y-2">
+              {productCategories.map((category, index) => (
+                <li key={index}>
+                  <button className="text-gray-300 hover:text-white transition-colors text-left">
+                    {category}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4">연락처</h4>
+            <div className="space-y-2 text-gray-300">
+              <div className="flex items-center">
+                <span className="text-sm">{contactInfo.phone}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm">{contactInfo.email}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm">{contactInfo.kakao}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm">평일 9:00-18:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div className="text-gray-400 text-sm">
+              <p>&copy; 2024 USANA 건강 파트너. All rights reserved.</p>
+              <p className="mt-1">USANA Health Sciences는 미국 유타주에 본사를 둔 글로벌 건강기능식품 기업입니다.</p>
+            </div>
+            <div className="text-gray-400 text-sm md:text-right">
+              <div className="flex flex-col md:items-end space-y-1">
+                <p>공정거래위원회 신고번호: 제2023-서울-0123호</p>
+                <div className="flex space-x-4">
+                  <button className="hover:text-white transition-colors">개인정보처리방침</button>
+                  <button className="hover:text-white transition-colors">이용약관</button>
+                  <button className="hover:text-white transition-colors">사업자정보확인</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
