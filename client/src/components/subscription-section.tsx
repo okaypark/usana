@@ -4,7 +4,7 @@ import { Percent, Truck, Calendar, UserCheck } from "lucide-react";
 import healthSubscriptionImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522576482.png";
 
 export default function SubscriptionSection() {
-  const benefits = [
+  const benefits1 = [
     {
       icon: Percent,
       title: "10% 할인",
@@ -28,6 +28,48 @@ export default function SubscriptionSection() {
       title: "다단계 수당",
       description: "직접 소개한 사람의 지인 소개 시 그의 수당의 10% 추가 지급",
       color: "bg-teal-600"
+    }
+  ];
+
+  const benefits2 = [
+    {
+      icon: "✈️",
+      title: "해외 연수 여행",
+      description: "매년 성과에 따른 해외 연수 여행 기회 제공",
+      color: "bg-purple-600"
+    },
+    {
+      icon: "🏆",
+      title: "인센티브 여행",
+      description: "목표 달성 시 가족과 함께하는 프리미엄 여행 패키지",
+      color: "bg-orange-600"
+    },
+    {
+      icon: "🌍",
+      title: "글로벌 컨벤션",
+      description: "전 세계 파트너들과의 네트워킹 및 교육 기회",
+      color: "bg-rose-600"
+    }
+  ];
+
+  const benefits3 = [
+    {
+      icon: "💰",
+      title: "무한단계 수당",
+      description: "소개인과 지인들의 매출에 따른 무한단계 포인트 적립",
+      color: "bg-emerald-600"
+    },
+    {
+      icon: "📈",
+      title: "지속적 캐쉬백",
+      description: "하부 조직의 소비 인프라에서 발생하는 지속적인 캐쉬백 수익",
+      color: "bg-cyan-600"
+    },
+    {
+      icon: "🔄",
+      title: "자동 수익 구조",
+      description: "한 번 구축된 네트워크를 통한 자동화된 수익 창출 시스템",
+      color: "bg-violet-600"
     }
   ];
 
@@ -57,24 +99,66 @@ export default function SubscriptionSection() {
               </div>
             </div>
           </div>
-          <div className="space-y-8">
-            <h3 className="text-3xl font-bold text-gray-900">구독 혜택</h3>
-            
-            <div className="space-y-6">
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className={`${benefit.color} p-2 rounded-lg flex-shrink-0`}>
-                      <Icon className="text-white h-5 w-5" />
+          <div className="space-y-12">
+            {/* 구독 혜택 1 */}
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 1</h3>
+              <div className="space-y-6">
+                {benefits1.map((benefit, index) => {
+                  const Icon = benefit.icon;
+                  return (
+                    <div key={index} className="flex items-start space-x-4">
+                      <div className={`${benefit.color} p-2 rounded-lg flex-shrink-0`}>
+                        <Icon className="text-white h-5 w-5" />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                        <p className="text-gray-600">{benefit.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                      <p className="text-gray-600">{benefit.description}</p>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 구독 혜택 2 - 여행 */}
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 2 - 여행</h3>
+              <div className="space-y-6">
+                {benefits2.map((benefit, index) => {
+                  return (
+                    <div key={index} className="flex items-start space-x-4">
+                      <div className={`${benefit.color} p-2 rounded-lg flex-shrink-0 text-white text-xl`}>
+                        {benefit.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                        <p className="text-gray-600">{benefit.description}</p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 구독 혜택 3 - 소개수당 */}
+            <div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 3 - 소개수당</h3>
+              <div className="space-y-6">
+                {benefits3.map((benefit, index) => {
+                  return (
+                    <div key={index} className="flex items-start space-x-4">
+                      <div className={`${benefit.color} p-2 rounded-lg flex-shrink-0 text-white text-xl`}>
+                        {benefit.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                        <p className="text-gray-600">{benefit.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
             <Card className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
