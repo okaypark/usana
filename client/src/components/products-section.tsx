@@ -56,7 +56,7 @@ export default function ProductsSection() {
     <section id="products" className="bg-slate-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">USANA 프리미엄 제품라인</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">유사나 프리미엄 제품라인</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             과학적으로 검증된 최고 품질의 건강기능식품, 영양제, 화장품으로 건강한 라이프스타일을 지원합니다.
           </p>
@@ -71,13 +71,13 @@ export default function ProductsSection() {
                   <img 
                     src={product.image} 
                     alt={product.title}
-                    className={`w-full h-full object-cover ${index === 0 ? 'object-center scale-110' : ''}`}
+                    className={`w-full h-full object-cover ${index === 0 ? 'object-top scale-125' : ''}`}
                   />
                   {index === 2 && (
                     <img 
                       src={dietProductImage}
                       alt="다이어트 제품"
-                      className="absolute bottom-4 right-4 w-20 h-20 object-contain"
+                      className="absolute bottom-4 right-4 w-32 h-32 object-contain"
                     />
                   )}
                 </div>

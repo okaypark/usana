@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Percent, Truck, Calendar, UserCheck } from "lucide-react";
+import healthSubscriptionImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522576482.png";
 
 export default function SubscriptionSection() {
   const benefits = [
@@ -36,17 +37,25 @@ export default function SubscriptionSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">건강 구독 서비스</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            매월 정기적으로 필요한 건강기능식품을 받아보세요. 더 저렴하고 편리하게!
+            건강한 삶을 배달해주고 캐쉬백도 받는 건강구독서비스
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              alt="건강 구독 서비스"
-              className="rounded-2xl shadow-xl w-full"
-            />
+          <div className="relative">
+            <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-8 shadow-xl">
+              <img
+                src={healthSubscriptionImage}
+                alt="건강 구독 서비스 제품"
+                className="w-full h-auto object-contain"
+              />
+              <div className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                <span className="text-sm font-semibold text-green-600">💝 매월 배송</span>
+              </div>
+              <div className="absolute top-4 right-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                <span className="text-sm font-semibold text-blue-600">💰 캐쉬백</span>
+              </div>
+            </div>
           </div>
           <div className="space-y-8">
             <h3 className="text-3xl font-bold text-gray-900">구독 혜택</h3>
