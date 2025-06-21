@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Pill, Sparkles, Dumbbell, Check } from "lucide-react";
-import nutritionImage from "@assets/4198d663-2e1d-4ab0-8e3e-60d479e4bd5c.resize-1200x1200_1750520167008.webp";
+import nutritionImage from "@assets/스크린샷 2025-06-22 012157_1750522931098.png";
 import celaviveImage from "@assets/Celavive-Full-Line-80-percent-1_1750520337102.jpg";
 import activeImage from "@assets/350d86bc4ae64c54a9cb9e65538ef700_raw_1750520755126.jpg";
 import dietProductImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522103001.png";
@@ -71,7 +71,7 @@ export default function ProductsSection() {
                   <img 
                     src={product.image} 
                     alt={product.title}
-                    className={`w-full h-full object-cover ${index === 0 ? 'object-bottom scale-150' : ''}`}
+                    className={`w-full h-full object-cover ${index === 0 ? 'object-center' : ''}`}
                   />
                   {index === 2 && (
                     <img 
