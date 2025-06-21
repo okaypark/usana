@@ -83,24 +83,24 @@ export default function SubscriptionSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative">
-            <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-8 shadow-xl">
-              <img
-                src={healthSubscriptionImage}
-                alt="건강 구독 서비스 제품"
-                className="w-full h-auto object-contain"
-              />
-              <div className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 shadow-md">
-                <span className="text-sm font-semibold text-green-600">💝 매월 배송</span>
-              </div>
-              <div className="absolute top-4 right-4 bg-white rounded-lg px-3 py-2 shadow-md">
-                <span className="text-sm font-semibold text-blue-600">💰 캐쉬백</span>
+        <div className="space-y-16">
+          {/* 혜택 1 - 이미지 + 텍스트 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="bg-gradient-to-br from-blue-100 to-green-100 rounded-2xl p-8 shadow-xl">
+                <img
+                  src={healthSubscriptionImage}
+                  alt="건강 구독 서비스 제품"
+                  className="w-full h-auto object-contain"
+                />
+                <div className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                  <span className="text-sm font-semibold text-green-600">💝 매월 배송</span>
+                </div>
+                <div className="absolute top-4 right-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                  <span className="text-sm font-semibold text-blue-600">💰 캐쉬백</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="space-y-12">
-            {/* 구독 혜택 1 */}
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 1</h3>
               <div className="space-y-6">
@@ -120,8 +120,10 @@ export default function SubscriptionSection() {
                 })}
               </div>
             </div>
+          </div>
 
-            {/* 구독 혜택 2 - 여행 */}
+          {/* 혜택 2 - 텍스트 + 이미지 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 2 - 여행</h3>
               <div className="space-y-6">
@@ -140,8 +142,40 @@ export default function SubscriptionSection() {
                 })}
               </div>
             </div>
+            <div className="relative">
+              <div className="bg-gradient-to-br from-purple-100 to-orange-100 rounded-2xl p-8 shadow-xl">
+                <img
+                  src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                  alt="여행 혜택"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+                <div className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                  <span className="text-sm font-semibold text-purple-600">✈️ 해외 여행</span>
+                </div>
+                <div className="absolute top-4 right-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                  <span className="text-sm font-semibold text-orange-600">🏆 인센티브</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            {/* 구독 혜택 3 - 소개수당 */}
+          {/* 혜택 3 - 이미지 + 텍스트 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="bg-gradient-to-br from-emerald-100 to-cyan-100 rounded-2xl p-8 shadow-xl">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+                  alt="수익 창출"
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+                <div className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                  <span className="text-sm font-semibold text-emerald-600">💰 무한수당</span>
+                </div>
+                <div className="absolute top-4 right-4 bg-white rounded-lg px-3 py-2 shadow-md">
+                  <span className="text-sm font-semibold text-cyan-600">📈 자동수익</span>
+                </div>
+              </div>
+            </div>
             <div>
               <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 3 - 소개수당</h3>
               <div className="space-y-6">
@@ -160,22 +194,22 @@ export default function SubscriptionSection() {
                 })}
               </div>
             </div>
-
-            <Card className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
-              <CardContent className="p-6">
-                <h4 className="text-2xl font-bold mb-2">💰 추가 수당 혜택</h4>
-                <p className="text-lg mb-4">
-                  <strong>다양한 수당 지급 시스템</strong>으로 지속적인 수익 창출이 가능하며, 
-                  새로운 혜택이 계속 업데이트됩니다.
-                </p>
-                <Button 
-                  className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
-                >
-                  수당 시스템 자세히 보기
-                </Button>
-              </CardContent>
-            </Card>
           </div>
+
+          <Card className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
+            <CardContent className="p-6">
+              <h4 className="text-2xl font-bold mb-2">💰 추가 수당 혜택</h4>
+              <p className="text-lg mb-4">
+                <strong>다양한 수당 지급 시스템</strong>으로 지속적인 수익 창출이 가능하며, 
+                새로운 혜택이 계속 업데이트됩니다.
+              </p>
+              <Button 
+                className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
+              >
+                수당 시스템 자세히 보기
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
