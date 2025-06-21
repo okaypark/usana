@@ -1,14 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Building, CheckCircle, Medal, Microscope, Globe, Users, Phone, Mail, MessageSquare } from "lucide-react";
+import profileImage from "@assets/241118g2_9590-1_1750521634701.jpg";
 
 export default function AboutSection() {
   const profile = {
-    name: "김건강",
-    title: "USANA 골드 파트너 · 건강 라이프 코치",
-    story: "3년 전 건강 악화로 고민하던 중 USANA 제품을 만나게 되었고, 놀라운 변화를 경험한 후 더 많은 분들과 함께 건강한 삶을 나누고 싶어 이 사업을 시작했습니다. 현재 500여 명의 고객분들과 함께 건강한 여정을 걸어가고 있습니다.",
-    phone: "010-1234-5678",
-    email: "healthy@usana.com",
-    kakao: "건강파트너"
+    name: "박현진",
+    title: "USANA 에메랄드 디렉터 · 건강 라이프 코치",
+    story: "10년 넘게 서버 프로그래머로 살며 건강을 잃고 삶의 방향도 잃었습니다. 그때 만난 유사나는 단순한 건강기능식품이 아니라 삶을 바꾸는 기회였습니다. 제품을 체험하고, 블로그를 시작으로 사람들과 건강을 나누다 보니 지금은 유사나 에메랄드 디렉터가 되었고, 건강과 시간의 자유, 경제적 여유를 함께 누리고 있습니다. 이제는 저처럼 삶의 전환점을 찾는 분들에게 변화의 계기와 방향을 제안하는 일을 하고 있습니다. 건강, 레버리지, 부업이란 키워드에 관심 있다면 이 길을 함께 걸어볼 수 있습니다.",
+    phone: "010-4259-5311",
+    email: "okaypark7@gmail.com",
+    kakao: "holicotu"
   };
 
   const expertise = [
@@ -73,8 +74,8 @@ export default function AboutSection() {
             <CardContent className="p-8 lg:p-12">
               <div className="text-center mb-8">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80"
-                  alt="대표 프로필"
+                  src={profileImage}
+                  alt="박현진 대표 프로필"
                   className="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg object-cover"
                 />
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{profile.name}</h3>

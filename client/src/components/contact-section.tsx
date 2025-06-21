@@ -63,9 +63,9 @@ export default function ContactSection() {
   };
 
   const contactInfo = {
-    phone: "010-1234-5678",
-    email: "healthy@usana.com",
-    kakao: "@건강파트너"
+    phone: "010-4259-5311",
+    email: "okaypark7@gmail.com",
+    kakao: "holicotu"
   };
 
   const operatingHours = [

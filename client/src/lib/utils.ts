@@ -22,8 +22,7 @@ export function formatPhoneNumber(phone: string): string {
 }
 
 export function openKakaoChat() {
-  // In a real implementation, this would open the actual KakaoTalk chat
-  window.open('https://open.kakao.com/o/건강파트너', '_blank');
+  window.open('https://open.kakao.com/o/sJeNT3fg', '_blank');
 }
 
 export function callPhone(phoneNumber: string) {

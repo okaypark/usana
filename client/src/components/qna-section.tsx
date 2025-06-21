@@ -89,7 +89,7 @@ export default function QnaSection() {
                 카카오톡 상담
               </Button>
               <Button
-                onClick={() => callPhone("010-1234-5678")}
+                onClick={() => callPhone("010-4259-5311")}
                 className="bg-white text-usana-blue-600 hover:bg-gray-100 font-semibold"
               >
                 <Phone className="mr-2 h-4 w-4" />
