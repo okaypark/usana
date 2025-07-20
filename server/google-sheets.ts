@@ -1,7 +1,7 @@
 import type { InsertContact } from '@shared/schema';
 
 // Google Apps Script 웹앱 URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwUuCHWz2Nmo5iv762WBTSRdb2qRi-QJ0Cac_2PttY14ottX3GZhaTsagvUUQRUDp1/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnI80h4_BndzBrTwx9XNcepzH-I6lRduAa4RQJDl2_VF-gCevSUbzoOtVhg0AyOVc9/exec';
 
 interface GoogleSheetsService {
   addContactToSheet: (contact: InsertContact) => Promise<void>;
@@ -48,7 +48,7 @@ class GoogleSheetsServiceImpl implements GoogleSheetsService {
       // HTML 응답인 경우 (리다이렉트 후 최종 응답)
       if (responseText.includes('<!DOCTYPE html>') || responseText.includes('<html')) {
         console.log('HTML 응답 받음 - Apps Script 정상 실행으로 간주');
-        return { success: true, message: '상담신청이 접수되었습니다.' };
+        return;
       }
 
       // JSON 응답 시도
@@ -57,7 +57,7 @@ class GoogleSheetsServiceImpl implements GoogleSheetsService {
         result = JSON.parse(responseText);
       } catch (parseError) {
         console.log('JSON 파싱 실패, HTML 응답으로 간주:', parseError);
-        return { success: true, message: '상담신청이 접수되었습니다.' };
+        return;
       }
       
       if (result.status !== 'success') {
