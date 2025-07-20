@@ -6,7 +6,7 @@ import usanaMarketingBg from "@assets/강구독마케팅-네트워크마케팅 �
 export default function HeroSection() {
   return (
     <section 
-      className="relative text-white bg-cover bg-center bg-no-repeat min-h-screen w-full"
+      className="relative text-white bg-cover bg-center bg-no-repeat min-h-screen w-full hero-background"
       style={{ 
         backgroundImage: `url(${usanaMarketingBg})`,
         backgroundSize: 'cover',

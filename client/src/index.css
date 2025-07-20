@@ -123,6 +123,29 @@
   background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-700));
 }
 
+/* Hero Background - Responsive Images */
+.hero-background {
+  /* Desktop background by default */
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Mobile background optimization */
+@media (max-width: 768px) {
+  .hero-background {
+    background-position: center top !important;
+    background-size: cover !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-background {
+    background-position: 20% center !important;
+    background-size: 200% auto !important;
+  }
+}
+
 .gradient-usana-luxury {
   background: linear-gradient(135deg, var(--usana-blue-800), var(--usana-silver-600));
 }
