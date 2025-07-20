@@ -50,7 +50,7 @@ export default function FreeSubscriptionSection() {
             <span className="text-usana-blue-700 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 프로세스</span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
-            <span className="font-light">건강구독 수익</span><br />
+            <span className="font-light">건강구독</span><br />
             <span className="text-usana-blue-600">시작 방법</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
