@@ -22,8 +22,8 @@ export default function HeroSection() {
         <div className="w-full max-w-7xl mx-auto">
           <div className="space-y-8 sm:space-y-10 lg:space-y-12 animate-fade-in-up">
             <div className="space-y-4">
-              <div className="inline-block px-4 py-2 bg-usana-blue-500/20 border border-usana-blue-400/30 rounded-full">
-                <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
+              <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full shadow-lg shadow-usana-blue-500/20">
+                <span className="text-usana-blue-300 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight tracking-tighter">
                 <span className="text-white">프리미엄 영양제 구독하고</span><br />
