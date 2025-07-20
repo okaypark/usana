@@ -29,12 +29,14 @@ export default function HeroSection() {
                 <span className="text-white">프리미엄 영양제 구독하고</span><br />
                 <span className="text-usana-blue-400 font-light">2명에게 구독소개하면</span><br />
                 <span className="text-white">당신도 </span><span className="text-usana-blue-400 font-bold">매주 주급받는</span><br />
-                <span className="text-white">스마트한 소비자</span>
+                <span className="text-white">스마트한 브랜드 파트너</span>
               </h1>
             </div>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light max-w-5xl">
-              유사나 프리미엄 영양제 구독으로 건강해지면서<br />
-              <span className="text-usana-blue-400 font-semibold">매주 주급 50만원</span>을 받는 스마트한 소비자가 되세요<br />
+              유사나 프리미엄 영양제 구독으로<br />
+              건강해지면서 소비자에서<br />
+              <span className="text-usana-blue-400 font-semibold">매주 주급 10만~ 50만원</span>을 받는 스마트한<br />
+              브랜드 파트너가 되세요<br />
               <br />
               전세계 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 브랜드 파트너로<br />
               <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
