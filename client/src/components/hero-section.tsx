@@ -21,8 +21,10 @@ export default function HeroSection() {
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed font-light">
-              건강관리 하시면서 주변 2명에게만 추천하세요.<br />
-              그럼 <span className="text-usana-blue-400 font-semibold">매주 75만원씩</span> 정기적으로 들어오는 새로운 라이프스타일이 시작됩니다.
+              유사나 프리미엄 영양제 구독으로 건강해지면서<br />
+              <span className="text-usana-blue-400 font-semibold">매주 주급 50만원</span>을 받는 스마트한 소비자가 되세요<br />
+              전세계 약 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 소비자들이 돈을 벌어가며<br />
+              건강구독하고 있습니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
               <Button
