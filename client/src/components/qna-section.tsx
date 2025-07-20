@@ -89,6 +89,30 @@ export default function QnaSection() {
               <div className="grid md:grid-cols-2 gap-6 mt-8">
                 <div className="text-center space-y-4">
                   <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
+                    {/* KakaoTalk Character Illustration */}
+                    <div className="mb-4 flex justify-center">
+                      <svg width="80" height="80" viewBox="0 0 80 80" className="drop-shadow-lg">
+                        {/* Phone */}
+                        <rect x="25" y="15" width="30" height="50" rx="8" fill="#2D3748" stroke="#4A5568" strokeWidth="2"/>
+                        <rect x="27" y="20" width="26" height="35" rx="2" fill="#68D391"/>
+                        <circle cx="40" cy="62" r="3" fill="#4A5568"/>
+                        
+                        {/* Person holding phone */}
+                        <circle cx="40" cy="8" r="6" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5"/>
+                        <ellipse cx="37" cy="6" rx="1" ry="1.5" fill="#2D3748"/>
+                        <ellipse cx="43" cy="6" rx="1" ry="1.5" fill="#2D3748"/>
+                        <path d="M 37 9 Q 40 11 43 9" stroke="#2D3748" strokeWidth="1.5" fill="none"/>
+                        
+                        {/* Hand */}
+                        <ellipse cx="20" cy="35" rx="4" ry="6" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1"/>
+                        <ellipse cx="60" cy="35" rx="4" ry="6" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1"/>
+                        
+                        {/* Chat bubbles on screen */}
+                        <ellipse cx="33" cy="28" rx="4" ry="2" fill="#FECA57"/>
+                        <ellipse cx="47" cy="33" rx="4" ry="2" fill="#FFFFFF"/>
+                        <ellipse cx="35" cy="40" rx="3" ry="2" fill="#FECA57"/>
+                      </svg>
+                    </div>
                     <h4 className="text-xl font-semibold mb-3">💬 즉시 상담 가능</h4>
                     <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
                     <Button
@@ -103,6 +127,40 @@ export default function QnaSection() {
                 
                 <div className="text-center space-y-4">
                   <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
+                    {/* Phone Call Character Illustration */}
+                    <div className="mb-4 flex justify-center">
+                      <svg width="80" height="80" viewBox="0 0 80 80" className="drop-shadow-lg">
+                        {/* Person's head */}
+                        <circle cx="40" cy="25" r="12" fill="#F7FAFC" stroke="#2D3748" strokeWidth="2"/>
+                        <ellipse cx="35" cy="22" rx="1.5" ry="2" fill="#2D3748"/>
+                        <ellipse cx="45" cy="22" rx="1.5" ry="2" fill="#2D3748"/>
+                        <path d="M 35 28 Q 40 32 45 28" stroke="#2D3748" strokeWidth="2" fill="none"/>
+                        
+                        {/* Hair */}
+                        <path d="M 28 18 Q 40 10 52 18" stroke="#2D3748" strokeWidth="3" fill="none"/>
+                        
+                        {/* Phone handset */}
+                        <rect x="15" y="15" width="20" height="6" rx="3" fill="#4A5568"/>
+                        <rect x="16" y="16" width="4" height="4" rx="2" fill="#68D391"/>
+                        <rect x="29" y="16" width="4" height="4" rx="2" fill="#68D391"/>
+                        
+                        {/* Arm holding phone */}
+                        <ellipse cx="25" cy="35" rx="3" ry="8" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5" transform="rotate(-20 25 35)"/>
+                        
+                        {/* Sound waves */}
+                        <path d="M 10 18 Q 8 18 10 18" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.7"/>
+                        <path d="M 8 18 Q 5 18 8 18" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.5"/>
+                        <path d="M 6 18 Q 2 18 6 18" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.3"/>
+                        
+                        {/* Body */}
+                        <rect x="35" y="37" width="10" height="25" rx="5" fill="#EDF2F7" stroke="#2D3748" strokeWidth="1.5"/>
+                        
+                        {/* Happy expression indicators */}
+                        <circle cx="50" cy="30" r="2" fill="#10B981" opacity="0.6"/>
+                        <circle cx="55" cy="25" r="1.5" fill="#10B981" opacity="0.4"/>
+                        <circle cx="58" cy="32" r="1" fill="#10B981" opacity="0.3"/>
+                      </svg>
+                    </div>
                     <h4 className="text-xl font-semibold mb-3">📞 직통 전화 상담</h4>
                     <p className="text-sm mb-4 opacity-90">밤 12시까지, 휴일없음</p>
                     <Button
