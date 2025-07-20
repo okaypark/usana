@@ -40,8 +40,8 @@ export default function HeroSection() {
               <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 건강구독 중입니다.
             </p>
             
-            {/* Success Box - positioned below text */}
-            <div className="mt-8 sm:mt-10 flex justify-center">
+            {/* Success Box - positioned below text, left aligned */}
+            <div className="mt-8 sm:mt-10 flex justify-start">
               <div className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm">
                 <div className="flex items-center space-x-2 sm:space-x-2 lg:space-x-3">
                   <div className="bg-usana-blue-500 p-1 sm:p-1.5 lg:p-2 rounded-md lg:rounded-lg">
