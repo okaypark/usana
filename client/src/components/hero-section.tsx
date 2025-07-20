@@ -25,11 +25,11 @@ export default function HeroSection() {
               <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full shadow-lg shadow-usana-blue-500/20">
                 <span className="text-usana-blue-300 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-relaxed tracking-tighter">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-loose tracking-tighter">
                 <span className="text-white">프리미엄 영양제 구독하고</span><br />
-                <span className="text-usana-blue-400 font-light">2명에게 구독소개하면</span><br />
+                <span className="text-usana-blue-400 font-light">2명에게 구독소개하면</span><br /><br />
                 <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급</span><span className="text-white font-bold">받는</span><br />
-                <span className="text-white">스마트한 브랜드 파트너</span>
+                <span className="text-white">스마트한 </span><span className="text-usana-blue-400 font-bold">브랜드 파트너</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-usana-blue-400 font-bold mt-12 mb-2">
                 "프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!"
