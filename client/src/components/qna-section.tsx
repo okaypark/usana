@@ -77,46 +77,19 @@ export default function QnaSection() {
         </div>
 
         {/* Enhanced Contact Section */}
-        <div className="mt-16 space-y-6">
+        <div className="mt-8 space-y-6">
           {/* Main Contact Card */}
           <Card className="gradient-usana-cta text-white overflow-hidden">
-            <CardContent className="p-8">
+            <CardContent className="p-6">
               <div className="text-center mb-4">
                 <h3 className="text-2xl font-bold mb-3">개인맞춤 건강구독 상담</h3>
                 <p className="text-lg mb-2">유사나 브랜드 파트너 박현진</p>
                 <p className="text-sm opacity-90">개인맞춤영양 상담 | 무료건강구독 상담 | 부업·사업 멘토링</p>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-4 mt-6">
+              <div className="grid md:grid-cols-2 gap-4 mt-4">
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="mb-4 flex justify-center">
-                      <svg width="80" height="80" viewBox="0 0 100 100" className="drop-shadow-lg">
-                        {/* Person's head */}
-                        <circle cx="50" cy="25" r="12" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5"/>
-                        <ellipse cx="46" cy="22" rx="1.5" ry="1.5" fill="#2D3748"/>
-                        <ellipse cx="54" cy="22" rx="1.5" ry="1.5" fill="#2D3748"/>
-                        <path d="M 46 28 Q 50 31 54 28" stroke="#2D3748" strokeWidth="1.5" fill="none"/>
-                        
-                        {/* Hair */}
-                        <path d="M 38 18 Q 50 12 62 18 Q 58 15 50 13 Q 42 15 38 18" fill="#2D3748"/>
-                        
-                        {/* Body */}
-                        <ellipse cx="50" cy="55" rx="15" ry="20" fill="#EDF2F7" stroke="#2D3748" strokeWidth="1.5"/>
-                        
-                        {/* Phone in hand */}
-                        <rect x="30" y="35" width="12" height="20" rx="2" fill="#4A5568"/>
-                        <rect x="32" y="37" width="8" height="12" rx="1" fill="#68D391"/>
-                        
-                        {/* Arm holding phone */}
-                        <ellipse cx="40" cy="45" rx="6" ry="12" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5" transform="rotate(-15 40 45)"/>
-                        
-                        {/* Chat bubbles */}
-                        <ellipse cx="70" cy="30" rx="8" ry="5" fill="#FECA57" opacity="0.8"/>
-                        <ellipse cx="75" cy="20" rx="6" ry="4" fill="#FECA57" opacity="0.6"/>
-                        <path d="M 62 32 L 67 35" stroke="#FECA57" strokeWidth="2"/>
-                      </svg>
-                    </div>
                     <h4 className="text-xl font-semibold mb-3">즉시 상담 가능</h4>
                     <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
                     <Button
@@ -131,34 +104,6 @@ export default function QnaSection() {
                 
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="mb-4 flex justify-center">
-                      <svg width="80" height="80" viewBox="0 0 100 100" className="drop-shadow-lg">
-                        {/* Person's head */}
-                        <circle cx="50" cy="25" r="12" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5"/>
-                        <ellipse cx="46" cy="22" rx="1.5" ry="1.5" fill="#2D3748"/>
-                        <ellipse cx="54" cy="22" rx="1.5" ry="1.5" fill="#2D3748"/>
-                        <path d="M 46 28 Q 50 31 54 28" stroke="#2D3748" strokeWidth="1.5" fill="none"/>
-                        
-                        {/* Hair */}
-                        <path d="M 38 18 Q 50 12 62 18 Q 58 15 50 13 Q 42 15 38 18" fill="#2D3748"/>
-                        
-                        {/* Body */}
-                        <ellipse cx="50" cy="55" rx="15" ry="20" fill="#EDF2F7" stroke="#2D3748" strokeWidth="1.5"/>
-                        
-                        {/* Phone handset */}
-                        <rect x="28" y="18" width="18" height="6" rx="3" fill="#4A5568"/>
-                        <rect x="30" y="20" width="4" height="2" rx="1" fill="#68D391"/>
-                        <rect x="42" y="20" width="4" height="2" rx="1" fill="#68D391"/>
-                        
-                        {/* Arm holding phone */}
-                        <ellipse cx="38" cy="40" rx="6" ry="12" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5" transform="rotate(-20 38 40)"/>
-                        
-                        {/* Sound waves */}
-                        <path d="M 18 21 Q 15 21 18 21" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.8"/>
-                        <path d="M 15 21 Q 10 21 15 21" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.6"/>
-                        <path d="M 12 21 Q 5 21 12 21" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.4"/>
-                      </svg>
-                    </div>
                     <h4 className="text-xl font-semibold mb-3">직통 전화 상담</h4>
                     <p className="text-sm mb-4 opacity-90">밤 12시까지, 휴일없음</p>
                     <Button
