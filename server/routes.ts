@@ -14,10 +14,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // 로컬 저장소에 저장
       const contact = await storage.createContact(contactData);
       
-      // Google Sheets에 저장 및 이메일 알림 발송
+      // Google Sheets에 저장 및 이메일 알림 발송 (임시 비활성화)
       try {
-        await googleSheetsService.addContactToSheet(contactData);
-        console.log('✅ 상담신청이 Google Sheets에 저장되고 이메일 알림이 발송되었습니다.');
+        console.log('📝 Google Sheets 연동 임시 비활성화됨 - Apps Script 문제 해결 중');
+        // await googleSheetsService.addContactToSheet(contactData);
+        console.log('✅ 상담신청이 로컬에 저장되었습니다.');
       } catch (sheetsError) {
         console.error('⚠️ Google Sheets 연동 실패:', sheetsError);
         // Google Sheets 실패해도 상담신청 자체는 성공으로 처리
