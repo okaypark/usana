@@ -36,7 +36,7 @@ export default function HeroSection() {
               유사나 프리미엄 영양제 구독으로 건강해지면서<br />
               <span className="text-usana-blue-400 font-semibold">매주 주급 50만원</span>을 받는 스마트한 소비자가 되세요<br />
               <br />
-              전세계 약 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 소비자들이<br />
+              전세계 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 유사나 소비자들이<br />
               <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 건강구독 중입니다.
             </p>
             
