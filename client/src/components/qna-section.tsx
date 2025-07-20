@@ -91,7 +91,6 @@ export default function QnaSection() {
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
                     <h4 className="text-xl font-semibold mb-3">즉시 상담 가능</h4>
-                    <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
                     <Button
                       onClick={openKakaoChat}
                       className="bg-yellow-400 text-black hover:bg-yellow-500 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
