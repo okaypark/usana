@@ -11,12 +11,13 @@ export default function HeroSection() {
           <div className="space-y-10 animate-fade-in-up">
             <div className="space-y-4">
               <div className="inline-block px-4 py-2 bg-usana-blue-500/20 border border-usana-blue-400/30 rounded-full">
-                <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">Smart Health Subscription</span>
+                <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight tracking-tight">
-                <span className="text-white">영양제 드시나요?</span><br />
-                <span className="text-usana-blue-400 font-light">건강구독으로 건강해지면서</span><br />
-                <span className="text-white">매월 </span><span className="text-usana-blue-400 font-bold">300만원 구독수익</span>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
+                <span className="text-white">영양제 매월 드시나요?</span><br />
+                <span className="text-usana-blue-400 font-light">이제는 프리미엄 유사나 영양제 구독으로</span><br />
+                <span className="text-white">매월 </span><span className="text-usana-blue-400 font-bold">200~300만원 구독소개 수익받으며</span><br />
+                <span className="text-white">건강챙기세요!!</span>
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed font-light">

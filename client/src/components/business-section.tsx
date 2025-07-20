@@ -62,11 +62,11 @@ export default function BusinessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
-            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Smart Consumer Revolution</span>
+            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 혁신</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
-            <span className="text-usana-blue-600">매월 300~500만원</span><br />
-            <span className="font-light">건강구독 수익</span>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
+            <span className="text-usana-blue-600">매월 200~300만원</span><br />
+            <span className="font-light">구독소개 수익</span>
           </h2>
           <p className="text-xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
             건강을 위해 영양제를 구독하는 똑똑한 소비자들에게<br />
@@ -92,8 +92,8 @@ export default function BusinessSection() {
                   ))}
                   <div className="border-t border-usana-blue-400/30 pt-6 mt-8">
                     <div className="flex justify-between items-center bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6">
-                      <span className="text-xl font-bold tracking-wide">월 총 구독수익</span>
-                      <span className="text-4xl font-bold text-usana-blue-400">300~500만원</span>
+                      <span className="text-xl font-bold tracking-wide">월 총 구독소개수익</span>
+                      <span className="text-4xl font-bold text-usana-blue-400">200~300만원</span>
                     </div>
                   </div>
                 </div>
