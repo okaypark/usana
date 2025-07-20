@@ -46,25 +46,25 @@ export default function FreeSubscriptionSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
-            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Premium Partnership Process</span>
+            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Smart Health Subscription Process</span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
-            <span className="font-light">프리미엄 파트너십</span><br />
-            <span className="text-usana-blue-600">시작 프로세스</span>
+            <span className="font-light">건강구독 수익</span><br />
+            <span className="text-usana-blue-600">시작 방법</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
-            전문적이고 체계적인 4단계 프로세스로 USANA 비즈니스를 시작하세요
+            간단한 4단계로 건강 소비자에서 수익 창출 소비자로 업그레이드하세요
           </p>
           
           <div className="gradient-usana-luxury text-white rounded-2xl p-10 max-w-5xl mx-auto mb-16 shadow-2xl border border-usana-blue-400/20">
             <div className="flex items-center mb-6">
               <div className="w-1 h-16 bg-usana-blue-400 mr-6"></div>
-              <h3 className="text-3xl font-bold tracking-tight">Executive Cashback System</h3>
+              <h3 className="text-3xl font-bold tracking-tight">스마트 구독 혜택 시스템</h3>
             </div>
             <p className="text-xl leading-relaxed font-light">
-              <span className="font-semibold">네트워크 2~3단계 확장 시</span> 50% 할인에서 
-              <span className="text-usana-blue-400 font-bold"> 100% 캐시백</span>까지 
-              프리미엄 리워드 시스템을 경험하세요
+              <span className="font-semibold">건강구독 2~3단계 확장 시</span> 구독료 50% 할인에서 
+              <span className="text-usana-blue-400 font-bold"> 100% 무료구독</span>까지 
+              똑똑한 소비자 혜택을 경험하세요
             </p>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function FreeSubscriptionSection() {
 
         <div className="text-center">
           <div className="bg-white rounded-xl p-8 shadow-lg max-w-2xl mx-auto mb-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">🎯 자세한 무료구독 방법</h3>
+            <h3 className="text-2xl font-bold text-usana-blue-900 mb-4">🎯 건강구독 수익 받는 방법</h3>
             <p className="text-gray-600 mb-6">
               개인별 맞춤 상담을 통해 가장 효율적인 무료구독 방법을 안내해드립니다.
             </p>

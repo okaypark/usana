@@ -62,15 +62,15 @@ export default function BusinessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
-            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Executive Income Opportunity</span>
+            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Smart Consumer Revolution</span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
-            <span className="text-usana-blue-600">월 200~300만원</span><br />
-            <span className="font-light">프리미엄 비즈니스</span>
+            <span className="text-usana-blue-600">매월 300~500만원</span><br />
+            <span className="font-light">건강구독 수익</span>
           </h2>
           <p className="text-xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
-            글로벌 USANA 네트워크와 함께하는 전문 비즈니스 기회.<br />
-            투명하고 지속 가능한 수익 구조로 <span className="text-usana-blue-600 font-semibold">권리소득</span>을 창출하세요.
+            건강을 위해 영양제를 구독하는 똑똑한 소비자들에게<br />
+            <span className="text-usana-blue-600 font-semibold">구독할수록 돈이 되는 특별한 혜택</span>을 제공합니다.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export default function BusinessSection() {
               <div>
                 <div className="flex items-center mb-8">
                   <div className="w-1 h-12 bg-usana-blue-400 mr-4"></div>
-                  <h3 className="text-4xl font-bold tracking-tight">Professional Revenue Structure</h3>
+                  <h3 className="text-4xl font-bold tracking-tight">건강구독 수익 구조</h3>
                 </div>
                 <div className="space-y-5">
                   {incomeStructure.map((item, index) => (
@@ -92,8 +92,8 @@ export default function BusinessSection() {
                   ))}
                   <div className="border-t border-usana-blue-400/30 pt-6 mt-8">
                     <div className="flex justify-between items-center bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6">
-                      <span className="text-xl font-bold tracking-wide">Executive Total Revenue</span>
-                      <span className="text-4xl font-bold text-usana-blue-400">200~330만원</span>
+                      <span className="text-xl font-bold tracking-wide">월 총 구독수익</span>
+                      <span className="text-4xl font-bold text-usana-blue-400">300~500만원</span>
                     </div>
                   </div>
                 </div>

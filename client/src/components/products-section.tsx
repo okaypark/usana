@@ -61,11 +61,11 @@ export default function ProductsSection() {
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
             <span className="text-usana-blue-600">USANA</span><br />
-            <span className="font-light">Executive Collection</span>
+            <span className="font-light">건강구독 제품</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto leading-relaxed font-light">
-            과학적으로 검증된 글로벌 프리미엄 제품으로<br />
-            <span className="text-usana-blue-600 font-semibold">건강과 성공</span>을 동시에 실현하세요
+            매달 구독하면서 건강도 챙기고<br />
+            <span className="text-usana-blue-600 font-semibold">구독수익도 받는</span> 똑똑한 소비 방법
           </p>
         </div>
 

@@ -11,17 +11,17 @@ export default function HeroSection() {
           <div className="space-y-10 animate-fade-in-up">
             <div className="space-y-4">
               <div className="inline-block px-4 py-2 bg-usana-blue-500/20 border border-usana-blue-400/30 rounded-full">
-                <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">Premium Business Opportunity</span>
+                <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">Smart Health Subscription</span>
               </div>
-              <h1 className="text-5xl lg:text-7xl font-bold leading-tight tracking-tight">
-                <span className="text-white">건강과 성공을</span><br />
-                <span className="text-usana-blue-400 font-light">함께 실현하는</span><br />
-                <span className="text-white">전문 비즈니스</span>
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight tracking-tight">
+                <span className="text-white">영양제 드시나요?</span><br />
+                <span className="text-usana-blue-400 font-light">건강구독으로 건강해지면서</span><br />
+                <span className="text-white">매월 </span><span className="text-usana-blue-400 font-bold">300만원 구독수익</span>
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed font-light">
-              USANA 글로벌 네트워크와 함께하는<br />
-              <span className="text-usana-blue-400 font-medium">월 200~300만원</span> 프리미엄 비즈니스 기회
+              매달 영양제 구독하는 건강 소비자에서<br />
+              <span className="text-usana-blue-400 font-bold">수익 창출하는 스마트 소비자</span>로 업그레이드하세요
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
               <Button
@@ -29,7 +29,7 @@ export default function HeroSection() {
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-5 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
               >
                 <MessageCircle className="mr-3 h-5 w-5" />
-                전문 상담 신청
+                건강구독 시작하기
               </Button>
               <Button
                 onClick={() => scrollToSection("products")}
@@ -37,7 +37,7 @@ export default function HeroSection() {
                 className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-10 py-5 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 transition-all duration-300 tracking-wide"
               >
                 <Play className="mr-3 h-5 w-5" />
-                프리미엄 제품 보기
+                건강구독 제품보기
               </Button>
             </div>
           </div>

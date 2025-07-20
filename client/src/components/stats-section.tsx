@@ -18,8 +18,8 @@ export default function StatsSection() {
     },
     {
       icon: DollarSign,
-      value: "200~300만원",
-      label: "Monthly Revenue",
+      value: "300~500만원",
+      label: "Monthly Subscription",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },

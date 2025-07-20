@@ -49,7 +49,7 @@ export default function Navigation() {
                 onClick={() => handleNavClick("contact")}
                 className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white px-6 py-3 rounded-sm text-sm font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                전문 상담
+                건강구독 상담
               </Button>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function Navigation() {
                     onClick={() => handleNavClick("contact")}
                     className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white mt-6 font-semibold tracking-wide"
                   >
-                    전문 상담
+                    건강구독 상담
                   </Button>
                 </div>
               </SheetContent>
