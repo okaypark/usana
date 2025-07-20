@@ -28,7 +28,7 @@ export default function HeroSection() {
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight tracking-tighter">
                 <span className="text-white">프리미엄 영양제 구독하고</span><br />
                 <span className="text-usana-blue-400 font-light">2명에게 구독소개하면</span><br />
-                <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급받는</span><br />
+                <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급</span><span className="text-white font-bold">받는</span><br />
                 <span className="text-white">스마트한 브랜드 파트너</span>
               </h1>
             </div>
