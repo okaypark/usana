@@ -11,15 +11,15 @@ export default function StatsSection() {
     },
     {
       icon: Award,
-      value: "USA 1위",
+      value: "USA 북미 1위",
       label: "USA Premium Products",
       color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
     },
     {
       icon: CircleDollarSign,
-      value: "주급 50만",
-      label: "월 무료 건강구독",
+      value: "소비자가 수익자",
+      label: "건강구독의 새로운 패러다임",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },
