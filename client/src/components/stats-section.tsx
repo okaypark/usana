@@ -5,7 +5,7 @@ export default function StatsSection() {
     {
       icon: Users,
       value: "450,000+",
-      label: "Global Partners",
+      label: "Global Brand Partners",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },
