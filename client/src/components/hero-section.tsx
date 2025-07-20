@@ -56,10 +56,10 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-8 sm:mt-10 lg:mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-16 sm:mt-18 lg:mt-20">
               <Button
                 onClick={() => scrollToSection("contact")}
-                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-5 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
+                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-4 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
               >
                 <MessageCircle className="mr-3 h-5 w-5" />
                 건강구독 시작하기
@@ -67,7 +67,7 @@ export default function HeroSection() {
               <Button
                 onClick={() => scrollToSection("products")}
                 variant="outline"
-                className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-10 py-5 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 transition-all duration-300 tracking-wide"
+                className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-10 py-4 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 transition-all duration-300 tracking-wide"
               >
                 <Play className="mr-3 h-5 w-5" />
                 건강구독 제품보기
