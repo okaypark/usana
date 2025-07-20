@@ -48,14 +48,14 @@ export default function HeroSection() {
               alt="건강과 성공을 함께 - USANA 기회"
               className="rounded-2xl shadow-2xl w-full h-auto"
             />
-            <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-usana-platinum-200">
-              <div className="flex items-center space-x-5">
-                <div className="bg-usana-blue-500 p-4 rounded-xl">
-                  <Heart className="text-white h-7 w-7" />
+            <div className="absolute -bottom-6 -right-6 lg:-bottom-6 lg:-right-6 sm:-bottom-4 sm:-right-4 -bottom-2 -right-2 bg-white/95 backdrop-blur-md p-4 sm:p-6 rounded-2xl shadow-2xl border border-usana-platinum-200 scale-75 sm:scale-90 lg:scale-100">
+              <div className="flex items-center space-x-3 sm:space-x-5">
+                <div className="bg-usana-blue-500 p-2 sm:p-3 lg:p-4 rounded-xl">
+                  <Heart className="text-white h-4 w-4 sm:h-6 sm:w-6 lg:h-7 lg:w-7" />
                 </div>
                 <div>
-                  <p className="text-usana-blue-600 text-sm font-semibold tracking-wide uppercase">Premium Success</p>
-                  <p className="text-3xl font-bold text-usana-blue-900">10,000+</p>
+                  <p className="text-usana-blue-600 text-xs sm:text-sm font-semibold tracking-wide uppercase">Premium Success</p>
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-usana-blue-900">10,000+</p>
                   <p className="text-xs text-usana-blue-600 font-medium">Global Partners</p>
                 </div>
               </div>
