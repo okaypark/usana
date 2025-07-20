@@ -56,17 +56,17 @@ export default function HeroSection() {
               </Button>
             </div>
             
-            {/* Success Box - dynamically positioned */}
-            <div className="mt-8 sm:mt-12 lg:mt-16 flex justify-center sm:justify-end">
-              <div className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-6 xl:p-8 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl border border-usana-platinum-200 w-full max-w-xs sm:max-w-sm lg:max-w-md">
-                <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 xl:space-x-5">
-                  <div className="bg-usana-blue-500 p-1.5 sm:p-2 lg:p-3 xl:p-4 rounded-lg lg:rounded-xl">
-                    <Heart className="text-white h-3 w-3 sm:h-4 sm:w-4 lg:h-6 lg:w-6 xl:h-7 xl:w-7" />
+            {/* Success Box - positioned below buttons on PC, centered on mobile */}
+            <div className="mt-8 sm:mt-12 lg:mt-20 flex justify-center lg:justify-start lg:ml-12">
+              <div className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-5 xl:p-6 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl border border-usana-platinum-200 w-full max-w-xs sm:max-w-sm lg:max-w-sm xl:max-w-md">
+                <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
+                  <div className="bg-usana-blue-500 p-1.5 sm:p-2 lg:p-3 rounded-lg lg:rounded-xl">
+                    <Heart className="text-white h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 xl:h-6 xl:w-6" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-sm font-semibold tracking-wide uppercase">USANA SUCCESS</p>
-                    <p className="text-sm sm:text-base lg:text-2xl xl:text-3xl font-bold text-usana-blue-900">450,000+</p>
-                    <p className="text-[9px] sm:text-xs lg:text-sm text-usana-blue-600 font-medium">Global Brand Partners</p>
+                    <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-xs xl:text-sm font-semibold tracking-wide uppercase">USANA SUCCESS</p>
+                    <p className="text-sm sm:text-base lg:text-xl xl:text-2xl font-bold text-usana-blue-900">450,000+</p>
+                    <p className="text-[9px] sm:text-xs lg:text-xs xl:text-sm text-usana-blue-600 font-medium">Global Brand Partners</p>
                   </div>
                 </div>
               </div>
