@@ -1,8 +1,8 @@
-import { Youtube } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 import blogIcon from "@assets/스크린샷 2025-07-20 175217_1753001646225.png";
 import talkIcon from "@assets/스크린샷 2025-07-20 175222_1753001694463.png";
 import instaIcon from "@assets/스크린샷 2025-07-20 175627_1753001814175.png";
+import youtubeIcon from "@assets/스크린샷 2025-07-20 175615_1753001849693.png";
 
 export default function Footer() {
   const quickLinks = [
@@ -95,9 +95,13 @@ export default function Footer() {
                 href="https://www.youtube.com/@TV-ey3gi" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="hover:scale-110 transition-transform"
               >
-                <Youtube className="h-6 w-6" />
+                <img 
+                  src={youtubeIcon} 
+                  alt="Youtube" 
+                  className="h-8 w-8 object-contain" 
+                />
               </a>
             </div>
           </div>
