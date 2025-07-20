@@ -131,18 +131,12 @@
   background-repeat: no-repeat !important;
 }
 
-/* Mobile background optimization */
+/* Mobile background with separate image */
 @media (max-width: 768px) {
   .hero-background {
-    background-position: center top !important;
+    background-image: var(--mobile-bg) !important;
     background-size: cover !important;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero-background {
-    background-position: 20% center !important;
-    background-size: 200% auto !important;
+    background-position: center center !important;
   }
 }
 

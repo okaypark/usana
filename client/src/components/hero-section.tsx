@@ -2,17 +2,20 @@ import { Button } from "@/components/ui/button";
 import { Play, MessageCircle, Heart } from "lucide-react";
 import { scrollToSection } from "@/lib/utils";
 import usanaMarketingBg from "@assets/강구독마케팅-네트워크마케팅 유사나 박현진2_1752988831788.png";
+import usanaMarketingMobileBg from "@assets/건강구독마케팅-네트워크마케팅 유사나 박현진2_1752989287291.png";
 
 export default function HeroSection() {
   return (
     <section 
       className="relative text-white bg-cover bg-center bg-no-repeat min-h-screen w-full hero-background"
       style={{ 
-        backgroundImage: `url(${usanaMarketingBg})`,
+        '--desktop-bg': `url(${usanaMarketingBg})`,
+        '--mobile-bg': `url(${usanaMarketingMobileBg})`,
+        backgroundImage: `var(--desktop-bg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundAttachment: 'scroll'
-      }}
+      } as React.CSSProperties & { '--desktop-bg': string; '--mobile-bg': string }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
       <div className="relative w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
