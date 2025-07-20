@@ -1,6 +1,6 @@
 import { Instagram, Youtube, MessageSquare } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
-import blogIcon from "@assets/스크린샷 2025-07-20 175217_1753001577098.png";
+import blogIcon from "@assets/스크린샷 2025-07-20 175217_1753001646225.png";
 
 export default function Footer() {
   const quickLinks = [
@@ -62,7 +62,7 @@ export default function Footer() {
                 <img 
                   src={blogIcon} 
                   alt="Blog" 
-                  className="h-8 w-8 object-contain filter brightness-0 invert" 
+                  className="h-8 w-8 object-contain" 
                 />
               </a>
               <a 
