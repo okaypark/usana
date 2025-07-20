@@ -33,7 +33,8 @@ class GoogleSheetsServiceImpl implements GoogleSheetsService {
             interest: contact.interest,
             message: contact.message,
           }
-        })
+        }),
+        redirect: 'follow'
       });
 
       if (!response.ok) {

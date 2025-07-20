@@ -31,11 +31,16 @@ const NOTIFICATION_EMAIL = 'okaypark7@gmail.com';
 
 function doPost(e) {
   try {
+    console.log('doPost 요청 받음:', e.postData.contents);
     const data = JSON.parse(e.postData.contents);
     
     if (data.action === 'addContact') {
+      console.log('addContact 실행 시작');
       addContactToSheet(data.data);
+      console.log('스프레드시트 추가 완료');
+      
       sendNotificationEmail(data.data);
+      console.log('이메일 발송 완료');
       
       return ContentService
         .createTextOutput(JSON.stringify({
@@ -53,7 +58,7 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
-    console.error('Error:', error);
+    console.error('doPost 오류:', error);
     return ContentService
       .createTextOutput(JSON.stringify({
         status: 'error',
