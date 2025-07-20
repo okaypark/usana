@@ -48,7 +48,8 @@ export default function Footer() {
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
               당신의 건강과 경제적 자유를 실현할 수 있도록 성심성의껏 함께 하겠습니다.<br />
-              <span className="text-usana-blue-400 font-semibold">유사나 브랜드 파트너 박현진</span>
+              <span className="text-usana-blue-400 font-semibold">유사나 브랜드 파트너</span><br />
+              <span className="text-usana-blue-400 font-semibold">박현진</span> 📞 010-4259-5311
             </p>
             <div className="flex space-x-4">
               <button className="text-gray-400 hover:text-white transition-colors">
