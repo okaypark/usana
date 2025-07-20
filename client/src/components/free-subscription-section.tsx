@@ -118,7 +118,7 @@ export default function FreeSubscriptionSection() {
             </p>
             <Button 
               onClick={openKakaoChat}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 text-lg font-semibold h-auto hover:opacity-90 rounded-lg flex items-center"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 text-lg font-semibold h-auto hover:opacity-90 rounded-lg flex items-center justify-center mx-auto"
             >
               <img 
                 src={talkIcon} 
