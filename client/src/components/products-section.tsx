@@ -70,7 +70,7 @@ export default function ProductsSection() {
             USANA의 프리미엄 제품 라인업<br />
             <span className="text-usana-blue-600 font-bold text-3xl">100%<br />
               <span className="inline-flex items-center gap-2">
-                <img src={usaFlag} alt="USA Flag" className="w-8 h-6 object-cover" />
+                <img src={usaFlag} alt="USA Flag" className="w-12 h-16 object-cover" />
                 Made in USA
               </span>
             </span>
