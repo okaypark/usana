@@ -1,4 +1,5 @@
-import { Leaf, Facebook, Instagram, Youtube, MessageSquare } from "lucide-react";
+import { Facebook, Instagram, Youtube, MessageSquare } from "lucide-react";
+import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 
 export default function Footer() {
   const quickLinks = [
@@ -37,7 +38,11 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <div className="text-2xl font-bold mb-6 flex items-center">
-              <Leaf className="text-usana-blue-500 mr-3 h-8 w-8" />
+              <img 
+                src={usanaLogo} 
+                alt="USANA Logo" 
+                className="mr-3 h-10 w-10 object-contain filter brightness-0 invert opacity-80" 
+              />
               <span className="tracking-tight">유사나</span>
               <span className="text-usana-blue-500 ml-2 font-light tracking-wide">건강구독 마케팅</span>
             </div>

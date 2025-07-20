@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Leaf } from "lucide-react";
+import { Menu } from "lucide-react";
+import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 import { scrollToSection } from "@/lib/utils";
 
 export default function Navigation() {
@@ -26,7 +27,12 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
             <div className="text-2xl font-bold text-usana-blue-900 flex items-center">
-              <Leaf className="text-usana-blue-500 mr-3 h-8 w-8" />
+              <img 
+                src={usanaLogo} 
+                alt="USANA Logo" 
+                className="mr-3 h-12 w-12 object-contain filter brightness-0 saturate-100" 
+                style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
+              />
               <span className="tracking-tight">유사나</span>
               <span className="text-usana-blue-600 ml-2 font-light tracking-wide">건강구독 마케팅</span>
             </div>
