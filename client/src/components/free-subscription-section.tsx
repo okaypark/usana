@@ -4,6 +4,7 @@ import { UserPlus, Share2, Users, Trophy } from "lucide-react";
 import { openKakaoChat } from "@/lib/utils";
 import kitchenImage from "@assets/image_fx_1750525351905.jpg";
 import usanaProductImage from "@assets/유사나 뉴트리션_1750525611258.png";
+import talkIcon from "@assets/image_1753027266756.png";
 
 export default function FreeSubscriptionSection() {
   const steps = [
@@ -117,9 +118,14 @@ export default function FreeSubscriptionSection() {
             </p>
             <Button 
               onClick={openKakaoChat}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 text-lg font-semibold h-auto hover:opacity-90 rounded-lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 text-lg font-semibold h-auto hover:opacity-90 rounded-lg flex items-center"
             >
-              💬 상담 문의하기
+              <img 
+                src={talkIcon} 
+                alt="KakaoTalk" 
+                className="h-5 w-5 object-contain mr-2" 
+              />
+              카톡 문의하기
             </Button>
           </div>
           
