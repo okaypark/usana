@@ -37,7 +37,7 @@ export default function HeroSection() {
               <span className="text-usana-blue-400 font-semibold">매주 주급 50만원</span>을 받는 스마트한 소비자가 되세요<br />
               <br />
               전세계 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 유사나 소비자들이<br />
-              <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 건강구독 중입니다.
+              <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
             </p>
             
             {/* Success Box - positioned below text, left aligned */}
