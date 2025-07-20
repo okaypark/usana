@@ -14,10 +14,10 @@ export default function HeroSection() {
                 <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-7xl font-bold leading-tight tracking-tighter">
-                <span className="text-white">프리미엄 영양제로 건강구독</span><br />
-                <span className="text-usana-blue-400 font-light">2명에게 건강구독마케팅 소개하면</span><br />
+                <span className="text-white">프리미엄 영양제 구독하고</span><br />
+                <span className="text-usana-blue-400 font-light">2명에게 소개하면</span><br />
                 <span className="text-white">당신도 </span><span className="text-usana-blue-400 font-bold">매주 주급받는</span><br />
-                <span className="text-white">스마트한 돈버는 소비자</span>
+                <span className="text-white">스마트한 소비자</span>
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed font-light">
@@ -44,9 +44,9 @@ export default function HeroSection() {
           </div>
           <div className="relative lg:col-span-2">
             <img
-              src="https://images.unsplash.com/photo-1579952363873-27d3bfad9c0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-              alt="건강과 성공을 함께 - USANA 기회"
-              className="rounded-2xl shadow-2xl w-full h-auto"
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
+              alt="프리미엄 영양제와 스마트한 라이프스타일"
+              className="rounded-2xl shadow-2xl w-full h-auto opacity-80 filter brightness-110 contrast-90"
             />
             <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 lg:-bottom-6 lg:-right-6 lg:top-auto lg:bottom-auto bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-6 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl border border-usana-platinum-200 scale-65 sm:scale-75 lg:scale-100">
               <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-5">
