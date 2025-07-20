@@ -25,10 +25,10 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-usana-navy-900 flex items-center">
-              <Leaf className="text-usana-gold-600 mr-3 h-8 w-8" />
+            <div className="text-2xl font-bold text-usana-blue-900 flex items-center">
+              <Leaf className="text-usana-blue-500 mr-3 h-8 w-8" />
               <span className="tracking-tight">USANA</span>
-              <span className="text-usana-gold-600 ml-2 font-light tracking-wide">BUSINESS</span>
+              <span className="text-usana-blue-600 ml-2 font-light tracking-wide">BUSINESS</span>
             </div>
           </div>
           
@@ -39,15 +39,15 @@ export default function Navigation() {
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-usana-navy-700 hover:text-usana-gold-600 px-4 py-2 text-sm font-semibold tracking-wide uppercase transition-all duration-300 relative group"
+                  className="text-usana-blue-700 hover:text-usana-blue-500 px-4 py-2 text-sm font-semibold tracking-wide uppercase transition-all duration-300 relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-usana-gold-600 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-usana-blue-500 group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
               <Button
                 onClick={() => handleNavClick("contact")}
-                className="bg-usana-navy-900 hover:bg-usana-navy-800 text-white px-6 py-3 rounded-sm text-sm font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white px-6 py-3 rounded-sm text-sm font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 전문 상담
               </Button>
@@ -68,14 +68,14 @@ export default function Navigation() {
                     <button
                       key={item.href}
                       onClick={() => handleNavClick(item.href)}
-                      className="text-left px-4 py-3 text-base font-semibold text-usana-navy-800 hover:text-usana-gold-600 transition-colors tracking-wide"
+                      className="text-left px-4 py-3 text-base font-semibold text-usana-blue-800 hover:text-usana-blue-500 transition-colors tracking-wide"
                     >
                       {item.label}
                     </button>
                   ))}
                   <Button
                     onClick={() => handleNavClick("contact")}
-                    className="bg-usana-navy-900 hover:bg-usana-navy-800 text-white mt-6 font-semibold tracking-wide"
+                    className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white mt-6 font-semibold tracking-wide"
                   >
                     전문 상담
                   </Button>

@@ -26,22 +26,24 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
   
-  /* Premium Business Colors */
-  --usana-navy-900: hsl(215, 28%, 17%);
-  --usana-navy-800: hsl(215, 25%, 27%);
-  --usana-navy-700: hsl(215, 20%, 35%);
-  --usana-navy-600: hsl(215, 15%, 45%);
-  --usana-gold-600: hsl(43, 74%, 49%);
-  --usana-gold-500: hsl(43, 84%, 59%);
-  --usana-gold-400: hsl(43, 89%, 70%);
-  --usana-platinum-100: hsl(220, 13%, 91%);
-  --usana-platinum-200: hsl(220, 13%, 87%);
-  --usana-platinum-300: hsl(220, 9%, 78%);
-  --usana-charcoal-900: hsl(210, 11%, 15%);
-  --usana-charcoal-800: hsl(210, 11%, 21%);
-  --usana-slate-50: hsl(210, 40%, 98%);
-  --usana-slate-100: hsl(210, 40%, 96%);
-  --usana-slate-200: hsl(214, 32%, 91%);
+  /* Premium Blue Business Colors */
+  --usana-blue-900: hsl(210, 70%, 15%);
+  --usana-blue-800: hsl(212, 68%, 25%);
+  --usana-blue-700: hsl(214, 65%, 35%);
+  --usana-blue-600: hsl(216, 62%, 45%);
+  --usana-blue-500: hsl(218, 85%, 55%);
+  --usana-blue-400: hsl(220, 90%, 65%);
+  --usana-silver-600: hsl(215, 16%, 50%);
+  --usana-silver-500: hsl(215, 20%, 65%);
+  --usana-silver-400: hsl(215, 25%, 75%);
+  --usana-platinum-100: hsl(215, 25%, 95%);
+  --usana-platinum-200: hsl(215, 20%, 90%);
+  --usana-platinum-300: hsl(215, 15%, 85%);
+  --usana-steel-900: hsl(210, 25%, 12%);
+  --usana-steel-800: hsl(210, 22%, 18%);
+  --usana-slate-50: hsl(215, 30%, 98%);
+  --usana-slate-100: hsl(215, 25%, 96%);
+  --usana-slate-200: hsl(215, 20%, 92%);
 }
 
 .dark {
@@ -77,49 +79,55 @@
   }
 }
 
-/* Premium Business Color Utilities */
-.text-usana-navy-900 { color: var(--usana-navy-900); }
-.text-usana-navy-800 { color: var(--usana-navy-800); }
-.text-usana-navy-700 { color: var(--usana-navy-700); }
-.text-usana-navy-600 { color: var(--usana-navy-600); }
-.text-usana-gold-600 { color: var(--usana-gold-600); }
-.text-usana-gold-500 { color: var(--usana-gold-500); }
-.text-usana-gold-400 { color: var(--usana-gold-400); }
-.text-usana-charcoal-900 { color: var(--usana-charcoal-900); }
-.text-usana-charcoal-800 { color: var(--usana-charcoal-800); }
+/* Premium Blue Business Color Utilities */
+.text-usana-blue-900 { color: var(--usana-blue-900); }
+.text-usana-blue-800 { color: var(--usana-blue-800); }
+.text-usana-blue-700 { color: var(--usana-blue-700); }
+.text-usana-blue-600 { color: var(--usana-blue-600); }
+.text-usana-blue-500 { color: var(--usana-blue-500); }
+.text-usana-blue-400 { color: var(--usana-blue-400); }
+.text-usana-silver-600 { color: var(--usana-silver-600); }
+.text-usana-silver-500 { color: var(--usana-silver-500); }
+.text-usana-silver-400 { color: var(--usana-silver-400); }
+.text-usana-steel-900 { color: var(--usana-steel-900); }
+.text-usana-steel-800 { color: var(--usana-steel-800); }
 
-.bg-usana-navy-900 { background-color: var(--usana-navy-900); }
-.bg-usana-navy-800 { background-color: var(--usana-navy-800); }
-.bg-usana-navy-700 { background-color: var(--usana-navy-700); }
-.bg-usana-navy-600 { background-color: var(--usana-navy-600); }
-.bg-usana-gold-600 { background-color: var(--usana-gold-600); }
-.bg-usana-gold-500 { background-color: var(--usana-gold-500); }
-.bg-usana-gold-400 { background-color: var(--usana-gold-400); }
+.bg-usana-blue-900 { background-color: var(--usana-blue-900); }
+.bg-usana-blue-800 { background-color: var(--usana-blue-800); }
+.bg-usana-blue-700 { background-color: var(--usana-blue-700); }
+.bg-usana-blue-600 { background-color: var(--usana-blue-600); }
+.bg-usana-blue-500 { background-color: var(--usana-blue-500); }
+.bg-usana-blue-400 { background-color: var(--usana-blue-400); }
+.bg-usana-silver-600 { background-color: var(--usana-silver-600); }
+.bg-usana-silver-500 { background-color: var(--usana-silver-500); }
+.bg-usana-silver-400 { background-color: var(--usana-silver-400); }
 .bg-usana-platinum-100 { background-color: var(--usana-platinum-100); }
 .bg-usana-platinum-200 { background-color: var(--usana-platinum-200); }
 .bg-usana-platinum-300 { background-color: var(--usana-platinum-300); }
-.bg-usana-charcoal-900 { background-color: var(--usana-charcoal-900); }
-.bg-usana-charcoal-800 { background-color: var(--usana-charcoal-800); }
+.bg-usana-steel-900 { background-color: var(--usana-steel-900); }
+.bg-usana-steel-800 { background-color: var(--usana-steel-800); }
 .bg-usana-slate-50 { background-color: var(--usana-slate-50); }
 .bg-usana-slate-100 { background-color: var(--usana-slate-100); }
 .bg-usana-slate-200 { background-color: var(--usana-slate-200); }
 
-.hover\:bg-usana-navy-800:hover { background-color: var(--usana-navy-800); }
-.hover\:bg-usana-navy-700:hover { background-color: var(--usana-navy-700); }
-.hover\:bg-usana-gold-500:hover { background-color: var(--usana-gold-500); }
-.hover\:bg-usana-gold-400:hover { background-color: var(--usana-gold-400); }
+.hover\:bg-usana-blue-800:hover { background-color: var(--usana-blue-800); }
+.hover\:bg-usana-blue-700:hover { background-color: var(--usana-blue-700); }
+.hover\:bg-usana-blue-600:hover { background-color: var(--usana-blue-600); }
+.hover\:bg-usana-blue-500:hover { background-color: var(--usana-blue-500); }
+.hover\:bg-usana-silver-500:hover { background-color: var(--usana-silver-500); }
+.hover\:bg-usana-silver-400:hover { background-color: var(--usana-silver-400); }
 
-/* Premium Business Gradients */
+/* Premium Blue Business Gradients */
 .gradient-usana-executive {
-  background: linear-gradient(135deg, var(--usana-navy-900), var(--usana-navy-700));
+  background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-700));
 }
 
 .gradient-usana-luxury {
-  background: linear-gradient(135deg, var(--usana-navy-800), var(--usana-gold-600));
+  background: linear-gradient(135deg, var(--usana-blue-800), var(--usana-silver-600));
 }
 
 .gradient-usana-professional {
-  background: linear-gradient(135deg, var(--usana-charcoal-900), var(--usana-navy-800));
+  background: linear-gradient(135deg, var(--usana-steel-900), var(--usana-blue-800));
 }
 
 .gradient-usana-premium {
@@ -127,7 +135,11 @@
 }
 
 .gradient-usana-accent {
-  background: linear-gradient(135deg, var(--usana-gold-500), var(--usana-gold-400));
+  background: linear-gradient(135deg, var(--usana-blue-500), var(--usana-blue-400));
+}
+
+.gradient-usana-hero {
+  background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-600));
 }
 
 /* Smooth scrolling */

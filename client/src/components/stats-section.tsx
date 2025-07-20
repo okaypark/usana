@@ -6,28 +6,28 @@ export default function StatsSection() {
       icon: Users,
       value: "5,000+",
       label: "Premium Partners",
-      color: "text-usana-gold-600",
+      color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },
     {
       icon: Leaf,
       value: "50+",
       label: "Global Products",
-      color: "text-usana-navy-600",
+      color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
     },
     {
       icon: DollarSign,
       value: "200~300만원",
       label: "Monthly Revenue",
-      color: "text-usana-gold-600",
+      color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },
     {
       icon: Globe,
       value: "24",
       label: "Countries Worldwide",
-      color: "text-usana-navy-600",
+      color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
     }
   ];
@@ -43,8 +43,8 @@ export default function StatsSection() {
                 <div className={`${stat.bgColor} p-6 rounded-2xl w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 border border-usana-platinum-200/50`}>
                   <Icon className={`${stat.color} h-10 w-10`} />
                 </div>
-                <p className="text-4xl font-bold text-usana-navy-900 mb-2">{stat.value}</p>
-                <p className="text-usana-navy-600 font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
+                <p className="text-4xl font-bold text-usana-blue-900 mb-2">{stat.value}</p>
+                <p className="text-usana-blue-600 font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
               </div>
             );
           })}

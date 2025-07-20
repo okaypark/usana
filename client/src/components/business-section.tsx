@@ -61,39 +61,39 @@ export default function BusinessSection() {
     <section id="business" className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-block px-6 py-3 bg-usana-gold-600/10 border border-usana-gold-400/20 rounded-full mb-6">
-            <span className="text-usana-gold-600 text-sm font-semibold tracking-wider uppercase">Executive Income Opportunity</span>
+          <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
+            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Executive Income Opportunity</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-usana-navy-900 mb-6 tracking-tight">
-            <span className="text-usana-gold-600">월 200~300만원</span><br />
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
+            <span className="text-usana-blue-600">월 200~300만원</span><br />
             <span className="font-light">프리미엄 비즈니스</span>
           </h2>
-          <p className="text-xl text-usana-navy-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
             글로벌 USANA 네트워크와 함께하는 전문 비즈니스 기회.<br />
-            투명하고 지속 가능한 수익 구조로 <span className="text-usana-gold-600 font-semibold">권리소득</span>을 창출하세요.
+            투명하고 지속 가능한 수익 구조로 <span className="text-usana-blue-600 font-semibold">권리소득</span>을 창출하세요.
           </p>
         </div>
 
         {/* Income Potential */}
-        <Card className="gradient-usana-luxury text-white mb-20 shadow-2xl border border-usana-gold-400/20">
+        <Card className="gradient-usana-luxury text-white mb-20 shadow-2xl border border-usana-blue-400/20">
           <CardContent className="p-12 lg:p-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="flex items-center mb-8">
-                  <div className="w-1 h-12 bg-usana-gold-400 mr-4"></div>
+                  <div className="w-1 h-12 bg-usana-blue-400 mr-4"></div>
                   <h3 className="text-4xl font-bold tracking-tight">Professional Revenue Structure</h3>
                 </div>
                 <div className="space-y-5">
                   {incomeStructure.map((item, index) => (
                     <div key={index} className="flex justify-between items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
                       <span className="text-lg font-medium tracking-wide">{item.label}</span>
-                      <span className="text-xl font-bold text-usana-gold-400">{item.amount}</span>
+                      <span className="text-xl font-bold text-usana-blue-400">{item.amount}</span>
                     </div>
                   ))}
-                  <div className="border-t border-usana-gold-400/30 pt-6 mt-8">
-                    <div className="flex justify-between items-center bg-usana-gold-400/20 border border-usana-gold-400/30 rounded-xl p-6">
+                  <div className="border-t border-usana-blue-400/30 pt-6 mt-8">
+                    <div className="flex justify-between items-center bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6">
                       <span className="text-xl font-bold tracking-wide">Executive Total Revenue</span>
-                      <span className="text-4xl font-bold text-usana-gold-400">200~330만원</span>
+                      <span className="text-4xl font-bold text-usana-blue-400">200~330만원</span>
                     </div>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ export default function BusinessSection() {
                   alt="Executive Business Success"
                   className="rounded-3xl shadow-2xl mb-8 w-full border border-white/20"
                 />
-                <p className="text-lg font-light text-usana-gold-200 tracking-wide">* Revenue may vary based on individual effort and market conditions</p>
+                <p className="text-lg font-light text-usana-blue-200 tracking-wide">* Revenue may vary based on individual effort and market conditions</p>
               </div>
             </div>
           </CardContent>
@@ -117,10 +117,10 @@ export default function BusinessSection() {
             return (
               <div key={index} className="text-center group">
                 <div className="bg-usana-platinum-100 border border-usana-platinum-200 p-6 rounded-2xl w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
-                  <Icon className="text-usana-navy-600 h-10 w-10" />
+                  <Icon className="text-usana-blue-600 h-10 w-10" />
                 </div>
-                <h4 className="text-2xl font-bold text-usana-navy-900 mb-3 tracking-tight">{benefit.title}</h4>
-                <p className="text-usana-navy-600 font-medium leading-relaxed">{benefit.description}</p>
+                <h4 className="text-2xl font-bold text-usana-blue-900 mb-3 tracking-tight">{benefit.title}</h4>
+                <p className="text-usana-blue-600 font-medium leading-relaxed">{benefit.description}</p>
               </div>
             );
           })}

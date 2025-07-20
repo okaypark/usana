@@ -45,25 +45,25 @@ export default function FreeSubscriptionSection() {
     <section className="bg-usana-slate-50 py-24 border-t border-usana-platinum-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-block px-6 py-3 bg-usana-gold-600/10 border border-usana-gold-400/20 rounded-full mb-6">
-            <span className="text-usana-gold-600 text-sm font-semibold tracking-wider uppercase">Premium Partnership Process</span>
+          <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
+            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Premium Partnership Process</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-usana-navy-900 mb-6 tracking-tight">
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
             <span className="font-light">프리미엄 파트너십</span><br />
-            <span className="text-usana-gold-600">시작 프로세스</span>
+            <span className="text-usana-blue-600">시작 프로세스</span>
           </h2>
-          <p className="text-xl text-usana-navy-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
+          <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
             전문적이고 체계적인 4단계 프로세스로 USANA 비즈니스를 시작하세요
           </p>
           
-          <div className="gradient-usana-luxury text-white rounded-2xl p-10 max-w-5xl mx-auto mb-16 shadow-2xl border border-usana-gold-400/20">
+          <div className="gradient-usana-luxury text-white rounded-2xl p-10 max-w-5xl mx-auto mb-16 shadow-2xl border border-usana-blue-400/20">
             <div className="flex items-center mb-6">
-              <div className="w-1 h-16 bg-usana-gold-400 mr-6"></div>
+              <div className="w-1 h-16 bg-usana-blue-400 mr-6"></div>
               <h3 className="text-3xl font-bold tracking-tight">Executive Cashback System</h3>
             </div>
             <p className="text-xl leading-relaxed font-light">
               <span className="font-semibold">네트워크 2~3단계 확장 시</span> 50% 할인에서 
-              <span className="text-usana-gold-400 font-bold"> 100% 캐시백</span>까지 
+              <span className="text-usana-blue-400 font-bold"> 100% 캐시백</span>까지 
               프리미엄 리워드 시스템을 경험하세요
             </p>
           </div>
@@ -91,17 +91,17 @@ export default function FreeSubscriptionSection() {
                         }}
                       />
                     )}
-                    <div className="absolute top-6 left-6 bg-usana-navy-900 text-usana-gold-400 rounded-xl w-14 h-14 flex items-center justify-center text-xl font-bold shadow-xl border border-usana-gold-400/30">
+                    <div className="absolute top-6 left-6 bg-usana-blue-900 text-usana-blue-400 rounded-xl w-14 h-14 flex items-center justify-center text-xl font-bold shadow-xl border border-usana-blue-400/30">
                       {step.number}
                     </div>
                   </div>
                   
                   <div className="p-8">
                     <div className="flex items-center mb-4">
-                      <Icon className="text-usana-gold-600 h-7 w-7 mr-4" />
-                      <h3 className="text-xl font-bold text-usana-navy-900 tracking-tight">{step.title}</h3>
+                      <Icon className="text-usana-blue-600 h-7 w-7 mr-4" />
+                      <h3 className="text-xl font-bold text-usana-blue-900 tracking-tight">{step.title}</h3>
                     </div>
-                    <p className="text-usana-navy-600 leading-relaxed font-medium">{step.description}</p>
+                    <p className="text-usana-blue-600 leading-relaxed font-medium">{step.description}</p>
                   </div>
                 </CardContent>
               </Card>

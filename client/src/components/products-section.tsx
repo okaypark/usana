@@ -56,16 +56,16 @@ export default function ProductsSection() {
     <section id="products" className="bg-white py-24 border-t border-usana-platinum-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <div className="inline-block px-6 py-3 bg-usana-gold-600/10 border border-usana-gold-400/20 rounded-full mb-6">
-            <span className="text-usana-gold-600 text-sm font-semibold tracking-wider uppercase">Premium Product Portfolio</span>
+          <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
+            <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">Premium Product Portfolio</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-usana-navy-900 mb-6 tracking-tight">
-            <span className="text-usana-gold-600">USANA</span><br />
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
+            <span className="text-usana-blue-600">USANA</span><br />
             <span className="font-light">Executive Collection</span>
           </h2>
-          <p className="text-xl text-usana-navy-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto leading-relaxed font-light">
             과학적으로 검증된 글로벌 프리미엄 제품으로<br />
-            <span className="text-usana-gold-600 font-semibold">건강과 성공</span>을 동시에 실현하세요
+            <span className="text-usana-blue-600 font-semibold">건강과 성공</span>을 동시에 실현하세요
           </p>
         </div>
 

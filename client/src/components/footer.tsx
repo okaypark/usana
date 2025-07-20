@@ -31,15 +31,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-usana-charcoal-900 text-white py-20">
+    <footer className="bg-usana-steel-900 text-white py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
             <div className="text-2xl font-bold mb-6 flex items-center">
-              <Leaf className="text-usana-gold-500 mr-3 h-8 w-8" />
+              <Leaf className="text-usana-blue-500 mr-3 h-8 w-8" />
               <span className="tracking-tight">USANA</span>
-              <span className="text-usana-gold-500 ml-2 font-light tracking-wide">BUSINESS</span>
+              <span className="text-usana-blue-500 ml-2 font-light tracking-wide">BUSINESS</span>
             </div>
             <p className="text-gray-300 mb-4">
               건강한 라이프스타일과 경제적 자유를 함께 실현하는 파트너
