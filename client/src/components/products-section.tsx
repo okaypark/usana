@@ -5,6 +5,7 @@ import nutritionImage from "@assets/스크린샷 2025-06-22 012157_1750522931098
 import celaviveImage from "@assets/Celavive-Full-Line-80-percent-1_1750520337102.jpg";
 import activeImage from "@assets/350d86bc4ae64c54a9cb9e65538ef700_raw_1750520755126.jpg";
 import dietProductImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522103001.png";
+import usaFlag from "@assets/usa_1752999004451.png";
 
 export default function ProductsSection() {
   const products = [
@@ -69,9 +70,7 @@ export default function ProductsSection() {
             USANA의 프리미엄 제품 라인업<br />
             <span className="text-usana-blue-600 font-bold text-3xl">100%<br />
               <span className="inline-flex items-center gap-2">
-                <span className="w-6 h-4 bg-gradient-to-b from-red-500 via-white to-blue-500 border border-gray-300 rounded-sm flex items-center justify-center">
-                  <span className="text-blue-600 text-xs font-bold">★</span>
-                </span>
+                <img src={usaFlag} alt="USA Flag" className="w-8 h-6 object-cover" />
                 Made in USA
               </span>
             </span>
