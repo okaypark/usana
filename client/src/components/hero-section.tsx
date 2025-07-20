@@ -31,9 +31,14 @@ export default function HeroSection() {
                 <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급</span><span className="text-white font-bold">받는</span><br />
                 <span className="text-white">스마트한 </span><span className="text-usana-blue-400 font-bold">브랜드 파트너</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-orange-400 font-bold mt-12 mb-2">
-                "프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!"
-              </p>
+              <div className="inline-block mt-12 mb-2">
+                <div className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30">
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-2xl"></div>
+                  <p className="relative text-lg sm:text-xl md:text-2xl text-white font-bold tracking-wide">
+                    "프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!"
+                  </p>
+                </div>
+              </div>
             </div>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light max-w-5xl">
               유사나 프리미엄 영양제, 스킨케어 구독으로<br />
