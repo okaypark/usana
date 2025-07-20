@@ -1,4 +1,4 @@
-import { Instagram, Youtube, MessageSquare } from "lucide-react";
+import { Instagram, Youtube, MessageSquare, BookOpen } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 
 export default function Footer() {
@@ -44,7 +44,7 @@ export default function Footer() {
                 className="mr-3 h-10 w-10 object-contain filter brightness-0 invert opacity-80" 
               />
               <span className="tracking-tight text-lg">유사나</span>
-              <span className="text-usana-blue-500 ml-2 font-light tracking-wide text-lg whitespace-nowrap">건강구독마케팅</span>
+              <span className="text-usana-blue-400 ml-2 font-semibold tracking-wide text-lg whitespace-nowrap">건강구독마케팅</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
               당신의 건강과 경제적 자유를 실현할 수 있도록 성심성의껏 함께 하겠습니다.<br />
@@ -52,6 +52,14 @@ export default function Footer() {
               <span className="text-usana-blue-400 font-semibold">박현진</span> 📞 010-4259-5311
             </p>
             <div className="flex space-x-4">
+              <a 
+                href="https://blog.naver.com/holictou00" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <BookOpen className="h-6 w-6" />
+              </a>
               <a 
                 href="https://open.kakao.com/o/sUZCkqfh" 
                 target="_blank" 
