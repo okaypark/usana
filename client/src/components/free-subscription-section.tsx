@@ -130,7 +130,7 @@ export default function FreeSubscriptionSection() {
           </div>
           
           <p className="text-gray-500 text-sm">
-            * Revenue may vary based on individual effort and market conditions
+            * 개인별 네트워크와 상황에 따라 무료구독 달성 시점이 달라질 수 있습니다
           </p>
         </div>
       </div>
