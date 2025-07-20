@@ -5,7 +5,7 @@ import profileImage from "@assets/241118g2_9590-1_1750521634701.jpg";
 export default function AboutSection() {
   const profile = {
     name: "박현진",
-    title: "USANA 에메랄드 디렉터 · 건강 라이프 코치",
+    title: "유사나 브랜드 파트너 · 건강 라이프 코치",
     story: "10년 넘게 서버 프로그래머로 살며 건강을 잃고 삶의 방향도 잃었습니다. 그때 만난 유사나는 단순한 건강기능식품이 아니라 삶을 바꾸는 기회였습니다. 제품을 체험하고, 블로그를 시작으로 사람들과 건강을 나누다 보니 지금은 유사나 에메랄드 디렉터가 되었고, 건강과 시간의 자유, 경제적 여유를 함께 누리고 있습니다. 이제는 저처럼 삶의 전환점을 찾는 분들에게 변화의 계기와 방향을 제안하는 일을 하고 있습니다. 건강, 레버리지, 부업이란 키워드에 관심 있다면 이 길을 함께 걸어볼 수 있습니다.",
     phone: "010-4259-5311",
     email: "okaypark7@gmail.com",
@@ -13,7 +13,7 @@ export default function AboutSection() {
   };
 
   const expertise = [
-    "영양 상담", "체중 관리", "사업 멘토링", "라이프 코칭"
+    "개인맞춤영양 상담", "체중 관리", "무료건강구독 상담", "부업·사업 멘토링"
   ];
 
   const companyStrengths = [
