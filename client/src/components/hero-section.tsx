@@ -39,7 +39,24 @@ export default function HeroSection() {
               전세계 약 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 소비자들이<br />
               <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 건강구독 중입니다.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-24 sm:mt-0">
+            
+            {/* Success Box - positioned below text */}
+            <div className="mt-8 sm:mt-10 flex justify-center">
+              <div className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-5 xl:p-6 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl border border-usana-platinum-200 w-full max-w-xs sm:max-w-sm lg:max-w-sm xl:max-w-md">
+                <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
+                  <div className="bg-usana-blue-500 p-1.5 sm:p-2 lg:p-3 rounded-lg lg:rounded-xl">
+                    <Heart className="text-white h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 xl:h-6 xl:w-6" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-xs xl:text-sm font-semibold tracking-wide uppercase">USANA SUCCESS</p>
+                    <p className="text-sm sm:text-base lg:text-xl xl:text-2xl font-bold text-usana-blue-900">450,000+</p>
+                    <p className="text-[9px] sm:text-xs lg:text-xs xl:text-sm text-usana-blue-600 font-medium">Global Brand Partners</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-8 sm:mt-10 lg:mt-12">
               <Button
                 onClick={() => scrollToSection("contact")}
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-5 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
@@ -55,22 +72,6 @@ export default function HeroSection() {
                 <Play className="mr-3 h-5 w-5" />
                 건강구독 제품보기
               </Button>
-            </div>
-            
-            {/* Success Box - positioned below buttons on PC, centered on mobile */}
-            <div className="mt-8 sm:mt-12 lg:mt-20 flex justify-center lg:justify-start lg:ml-12">
-              <div className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-5 xl:p-6 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl border border-usana-platinum-200 w-full max-w-xs sm:max-w-sm lg:max-w-sm xl:max-w-md">
-                <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
-                  <div className="bg-usana-blue-500 p-1.5 sm:p-2 lg:p-3 rounded-lg lg:rounded-xl">
-                    <Heart className="text-white h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 xl:h-6 xl:w-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-xs xl:text-sm font-semibold tracking-wide uppercase">USANA SUCCESS</p>
-                    <p className="text-sm sm:text-base lg:text-xl xl:text-2xl font-bold text-usana-blue-900">450,000+</p>
-                    <p className="text-[9px] sm:text-xs lg:text-xs xl:text-sm text-usana-blue-600 font-medium">Global Brand Partners</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
