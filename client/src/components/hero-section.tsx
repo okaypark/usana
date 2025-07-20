@@ -17,7 +17,7 @@ export default function HeroSection() {
         backgroundAttachment: 'scroll'
       } as React.CSSProperties & { '--desktop-bg': string; '--mobile-bg': string }}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 via-black/20 to-transparent" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.3) 70%, transparent 100%)' }}></div>
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.75) 40%, rgba(0,0,0,0.25) 80%, transparent 100%)' }}></div>
       <div className="absolute inset-0 bg-gradient-to-b from-white/3 via-transparent to-black/15"></div>
       <div className="relative w-full h-full flex items-start justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-3 lg:py-4 pt-12 sm:pt-6 lg:pt-8">
         <div className="w-full max-w-7xl mx-auto">
