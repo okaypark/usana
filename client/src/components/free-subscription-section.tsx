@@ -10,7 +10,7 @@ export default function FreeSubscriptionSection() {
   const steps = [
     {
       number: 1,
-      title: "건강상담 & 구독신청",
+      title: "건강상담 &\n구독신청",
       description: "전문 상담을 통해 개인에게 맞는 건강구독을 신청해보세요.",
       icon: UserPlus,
       color: "bg-blue-600",
@@ -26,7 +26,7 @@ export default function FreeSubscriptionSection() {
     },
     {
       number: 3,
-      title: "친구 2명 건강구독 안내",
+      title: "친구 2명\n건강구독 안내",
       description: "좋은 경험을 바탕으로 친구 2명에게 건강구독을 안내해주세요.",
       icon: Users,
       color: "bg-purple-600",
@@ -34,7 +34,7 @@ export default function FreeSubscriptionSection() {
     },
     {
       number: 4,
-      title: "친구 2명도 1번 반복",
+      title: "친구 2명도\n1번 반복",
       description: "친구들도 같은 과정을 반복하면서 자연스러운 네트워크가 형성됩니다.",
       icon: Trophy,
       color: "bg-orange-600",
@@ -98,9 +98,9 @@ export default function FreeSubscriptionSection() {
                   </div>
                   
                   <div className="p-8">
-                    <div className="flex items-center mb-4">
-                      <Icon className="text-usana-blue-600 h-7 w-7 mr-4" />
-                      <h3 className="text-lg font-bold text-usana-blue-900 tracking-tight whitespace-pre-line">{step.title}</h3>
+                    <div className="flex items-start mb-4">
+                      <Icon className="text-usana-blue-600 h-7 w-7 mr-4 mt-1 flex-shrink-0" />
+                      <h3 className="text-lg font-bold text-usana-blue-900 tracking-tight whitespace-pre-line leading-tight min-h-[3.5rem] flex items-center">{step.title}</h3>
                     </div>
                     <p className="text-usana-blue-600 leading-relaxed font-medium">{step.description}</p>
                   </div>
