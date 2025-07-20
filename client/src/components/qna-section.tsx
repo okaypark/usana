@@ -144,27 +144,7 @@ export default function QnaSection() {
             </Card>
           </div>
           
-          {/* Email Contact */}
-          <Card className="bg-gray-50 border-gray-200">
-            <CardContent className="p-6 text-center">
-              <div className="mb-4">
-                <div className="text-5xl mb-3">📧</div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">이메일 상담</h4>
-                <p className="text-gray-700 mb-4">okaypark7@gmail.com</p>
-                <Button
-                  onClick={() => {
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className="bg-blue-500 text-white hover:bg-blue-600 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
-                >
-                  무료상담 신청하기
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+
         </div>
       </div>
     </section>
