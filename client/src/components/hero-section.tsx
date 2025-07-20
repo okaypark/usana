@@ -34,8 +34,8 @@ export default function HeroSection() {
               <div className="inline-block mt-12 mb-2">
                 <div className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30">
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-2xl"></div>
-                  <p className="relative text-lg sm:text-xl md:text-2xl text-white font-bold tracking-wide">
-                    "프리미엄 영양제를 돈 벌면서<br className="sm:hidden" /> 마음껏 누리세요!!"
+                  <p className="relative text-base sm:text-lg md:text-xl text-white font-bold tracking-wide">
+                    "프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!"
                   </p>
                 </div>
               </div>
