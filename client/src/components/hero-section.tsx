@@ -42,21 +42,21 @@ export default function HeroSection() {
             
             {/* Success Box - positioned below text */}
             <div className="mt-8 sm:mt-10 flex justify-center">
-              <div className="bg-white/95 backdrop-blur-md p-3 sm:p-4 lg:p-5 xl:p-6 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl border border-usana-platinum-200 w-full max-w-xs sm:max-w-sm lg:max-w-sm xl:max-w-md">
-                <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4">
-                  <div className="bg-usana-blue-500 p-1.5 sm:p-2 lg:p-3 rounded-lg lg:rounded-xl">
-                    <Heart className="text-white h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 xl:h-6 xl:w-6" />
+              <div className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm">
+                <div className="flex items-center space-x-2 sm:space-x-2 lg:space-x-3">
+                  <div className="bg-usana-blue-500 p-1 sm:p-1.5 lg:p-2 rounded-md lg:rounded-lg">
+                    <Heart className="text-white h-3 w-3 sm:h-3 sm:w-3 lg:h-4 lg:w-4" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-xs xl:text-sm font-semibold tracking-wide uppercase">USANA SUCCESS</p>
-                    <p className="text-sm sm:text-base lg:text-xl xl:text-2xl font-bold text-usana-blue-900">450,000+</p>
-                    <p className="text-[9px] sm:text-xs lg:text-xs xl:text-sm text-usana-blue-600 font-medium">Global Brand Partners</p>
+                    <p className="text-usana-blue-600 text-[9px] sm:text-xs lg:text-xs font-semibold tracking-wide uppercase">USANA SUCCESS</p>
+                    <p className="text-sm sm:text-base lg:text-lg font-bold text-usana-blue-900">450,000+</p>
+                    <p className="text-[8px] sm:text-xs lg:text-xs text-usana-blue-600 font-medium">Global Brand Partners</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-16 sm:mt-8 lg:mt-4">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-6 sm:mt-4 lg:mt-2">
               <Button
                 onClick={() => scrollToSection("contact")}
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-4 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
