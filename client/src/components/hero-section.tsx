@@ -14,15 +14,15 @@ export default function HeroSection() {
                 <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tighter">
-                <span className="text-white">유튜브 구독자 추천하면 돈받죠?</span><br />
-                <span className="text-usana-blue-400 font-light">그럼 영양제 구독자 추천하면</span><br />
-                <span className="text-white">매월 </span><span className="text-usana-blue-400 font-bold">300만원씩 받으면서</span><br />
-                <span className="text-white">건강까지 챙길 수 있다면?</span>
+                <span className="text-white">프리미엄 영양제로 건강해지면서</span><br />
+                <span className="text-usana-blue-400 font-light">단 2명에게만 건강구독 소개하면</span><br />
+                <span className="text-white">당신도 </span><span className="text-usana-blue-400 font-bold">매주 주급받는</span><br />
+                <span className="text-white">스마트한 소비자</span>
               </h1>
             </div>
             <p className="text-xl lg:text-2xl text-gray-200 leading-relaxed font-light">
-              이미 영양제 드시고 계시죠? 그럼 똑같이 드시면서<br />
-              <span className="text-usana-blue-400 font-semibold">매월 300만원 구독수익</span>까지 받을 수 있는 방법이 있다면?
+              건강관리 하시면서 주변 2명에게만 추천하세요.<br />
+              그럼 <span className="text-usana-blue-400 font-semibold">매주 75만원씩</span> 정기적으로 들어오는 새로운 라이프스타일이 시작됩니다.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
               <Button
