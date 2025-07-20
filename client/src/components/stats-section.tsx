@@ -11,7 +11,7 @@ export default function StatsSection() {
     },
     {
       icon: Award,
-      value: "1위",
+      value: "USA 1위",
       label: "USA Premium Products",
       color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
