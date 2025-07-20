@@ -20,7 +20,7 @@ export default function AboutSection() {
     {
       icon: Medal,
       title: "품질 인증",
-      description: "FDA 승인 시설, NSF 인증, 비교 가이드 1위 등급",
+      description: "FDA 승인 시설, NSF 인증, 비타민 비교가이드 1위 달성 (Comparative Guide to Nutritional Supplements)",
       color: "text-usana-green-500"
     },
     {
@@ -32,7 +32,7 @@ export default function AboutSection() {
     {
       icon: Globe,
       title: "글로벌 네트워크",
-      description: "24개국 진출, 연매출 1조원 달성",
+      description: "NYSE 뉴욕증시 상장기업, 24개국 진출, 연매출 1조원 달성",
       color: "text-usana-orange-500"
     },
     {
@@ -45,16 +45,20 @@ export default function AboutSection() {
 
   const awards = [
     {
-      title: "비교 가이드 건강기능식품 부문 1위 (15년 연속)",
+      title: "미국 유타주 건강기능식품 부문 13년 연속 Best of State 최고 수상",
       color: "bg-yellow-50 text-yellow-600"
     },
     {
-      title: "포브스 선정 '아메리카 최고의 중소기업'",
+      title: "비교 가이드 건강기능식품 부문 1위 (15년 연속)",
       color: "bg-blue-50 text-blue-600"
     },
     {
-      title: "NSF 국제인증 취득 (세계 최초)",
+      title: "포브스 선정 '아메리카 최고의 중소기업'",
       color: "bg-green-50 text-green-600"
+    },
+    {
+      title: "NSF 국제인증 취득 (세계 최초)",
+      color: "bg-purple-50 text-purple-600"
     }
   ];
 
@@ -136,7 +140,8 @@ export default function AboutSection() {
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-3">회사 개요</h4>
                   <p className="text-gray-700 leading-relaxed">
-                    1992년 설립된 USANA는 미국 유타주에 본사를 둔 글로벌 건강기능식품 기업으로, 
+                    1974년 연구소를 통해 바이러스진단키트 개발 이후 반백년 넘는 인간세포기술의 집약체로 
+                    발전해온 USANA는 미국 유타주에 본사를 둔 글로벌 건강기능식품 기업으로, 
                     현재 24개국에 진출하여 과학적으로 검증된 최고 품질의 제품을 제공하고 있습니다.
                   </p>
                 </div>
