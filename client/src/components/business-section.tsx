@@ -159,7 +159,13 @@ export default function BusinessSection() {
         </Card>
 
         <div className="text-center mt-12">
-          <Button className="gradient-usana-cta text-white px-8 py-4 text-lg font-semibold h-auto hover:opacity-90">
+          <Button 
+            className="gradient-usana-cta text-white px-8 py-4 text-lg font-semibold h-auto hover:opacity-90"
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              contactSection?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             <Handshake className="mr-2 h-5 w-5" />
             사업 기회 상담받기
           </Button>
