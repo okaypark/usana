@@ -1,6 +1,6 @@
 import { Instagram, Youtube, MessageSquare } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
-import blogIcon from "@assets/f80bdd79a51358da6ee41a0fda520394_1753001335006.jpg";
+import blogIcon from "@assets/스크린샷 2025-07-20 175217_1753001577098.png";
 
 export default function Footer() {
   const quickLinks = [
