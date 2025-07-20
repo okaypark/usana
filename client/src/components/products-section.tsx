@@ -5,7 +5,7 @@ import nutritionImage from "@assets/스크린샷 2025-06-22 012157_1750522931098
 import celaviveImage from "@assets/Celavive-Full-Line-80-percent-1_1750520337102.jpg";
 import activeImage from "@assets/350d86bc4ae64c54a9cb9e65538ef700_raw_1750520755126.jpg";
 import dietProductImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522103001.png";
-import usaFlag from "@assets/usa_1752999004451.png";
+import usaFlag from "@assets/미국국기_1752999123362.jpg";
 
 export default function ProductsSection() {
   const products = [
