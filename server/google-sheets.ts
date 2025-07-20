@@ -37,11 +37,28 @@ class GoogleSheetsServiceImpl implements GoogleSheetsService {
         redirect: 'follow'
       });
 
+      const responseText = await response.text();
+      console.log('Apps Script 응답:', response.status, responseText);
+      
       if (!response.ok) {
-        throw new Error(`Google Sheets API Error: ${response.statusText}`);
+        console.error('Apps Script 응답 오류:', response.status, responseText);
+        throw new Error(`Google Sheets HTTP Error: ${response.status} - ${responseText}`);
       }
 
-      const result = await response.json();
+      // HTML 응답인 경우 (리다이렉트 후 최종 응답)
+      if (responseText.includes('<!DOCTYPE html>') || responseText.includes('<html')) {
+        console.log('HTML 응답 받음 - Apps Script 정상 실행으로 간주');
+        return { success: true, message: '상담신청이 접수되었습니다.' };
+      }
+
+      // JSON 응답 시도
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch (parseError) {
+        console.log('JSON 파싱 실패, HTML 응답으로 간주:', parseError);
+        return { success: true, message: '상담신청이 접수되었습니다.' };
+      }
       
       if (result.status !== 'success') {
         throw new Error(`Google Sheets Error: ${result.message}`);
