@@ -1,5 +1,6 @@
-import { Instagram, Youtube, MessageSquare, BookOpen } from "lucide-react";
+import { Instagram, Youtube, MessageSquare } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
+import blogIcon from "@assets/f80bdd79a51358da6ee41a0fda520394_1753001335006.jpg";
 
 export default function Footer() {
   const quickLinks = [
@@ -58,7 +59,11 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                <BookOpen className="h-6 w-6" />
+                <img 
+                  src={blogIcon} 
+                  alt="Blog" 
+                  className="h-8 w-8 object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity" 
+                />
               </a>
               <a 
                 href="https://open.kakao.com/o/sUZCkqfh" 
