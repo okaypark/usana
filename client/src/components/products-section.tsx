@@ -15,7 +15,7 @@ export default function ProductsSection() {
       icon: Pill,
       iconColor: "text-usana-green-500",
       iconBg: "bg-usana-green-500",
-      buttonColor: "bg-usana-green-600 hover:bg-usana-green-700",
+      buttonColor: "bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200",
       features: [
         "FDA 의약품제조시설 인증, 매년 검증",
         "북미 1위 12년 연속 생체이용률 96.1%",
