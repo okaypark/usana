@@ -82,15 +82,15 @@ export default function QnaSection() {
           <Card className="gradient-usana-cta text-white overflow-hidden">
             <CardContent className="p-6">
               <div className="text-center mb-4">
-                <h3 className="text-2xl font-bold mb-3">개인맞춤 건강구독 상담</h3>
-                <p className="text-lg mb-2">유사나 브랜드 파트너 박현진</p>
-                <p className="text-sm opacity-90">개인맞춤영양 상담 | 무료건강구독 상담 | 부업·사업 멘토링</p>
+                <h3 className="text-2xl font-bold mb-3 text-white">개인맞춤 건강구독 상담</h3>
+                <p className="text-lg mb-2 text-white font-semibold">유사나 브랜드 파트너 박현진</p>
+                <p className="text-sm text-white font-medium">개인맞춤영양 상담 | 무료건강구독 상담 | 부업·사업 멘토링</p>
               </div>
               
               <div className="grid md:grid-cols-2 gap-4 mt-4">
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <h4 className="text-xl font-semibold mb-3">즉시 상담 가능</h4>
+                    <h4 className="text-xl font-semibold mb-3 text-white">즉시 상담 가능</h4>
                     <Button
                       onClick={openKakaoChat}
                       className="bg-yellow-400 text-black hover:bg-yellow-500 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
@@ -103,7 +103,7 @@ export default function QnaSection() {
                 
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <h4 className="text-xl font-semibold mb-3">직통 전화 상담</h4>
+                    <h4 className="text-xl font-semibold mb-3 text-white">직통 전화 상담</h4>
                     <Button
                       onClick={() => callPhone("010-4259-5311")}
                       className="bg-green-500 text-white hover:bg-green-600 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
