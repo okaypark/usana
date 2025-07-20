@@ -48,7 +48,7 @@ export default function FreeSubscriptionSection() {
           <div className="inline-block px-6 py-3 bg-usana-blue-500/10 border border-usana-blue-400/20 rounded-full mb-6">
             <span className="text-usana-blue-500 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 프로세스</span>
           </div>
-          <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tight">
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
             <span className="font-light">건강구독 수익</span><br />
             <span className="text-usana-blue-600">시작 방법</span>
           </h2>

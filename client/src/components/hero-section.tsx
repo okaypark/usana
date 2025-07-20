@@ -13,7 +13,7 @@ export default function HeroSection() {
               <div className="inline-block px-4 py-2 bg-usana-blue-500/20 border border-usana-blue-400/30 rounded-full">
                 <span className="text-usana-blue-400 text-sm font-semibold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tighter">
                 <span className="text-white">유튜브 구독 안내로 돈버는시대</span><br />
                 <span className="text-usana-blue-400 font-light">프리미엄 영양제 구독 안내로</span><br />
                 <span className="text-white">매월 </span><span className="text-usana-blue-400 font-bold">2~300만원 돈벌면서</span><br />
