@@ -18,7 +18,7 @@ export default function FreeSubscriptionSection() {
     },
     {
       number: 2,
-      title: "건강한 제품체험 (건강구독)",
+      title: "건강한 제품체험\n(건강구독)",
       description: "직접 경험한 건강한 변화를 지인들에게 자연스럽게 공유해보세요.",
       icon: Share2,
       color: "bg-green-600",
