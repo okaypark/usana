@@ -39,16 +39,16 @@ export default function ProductsSection() {
     },
     {
       title: "다이어트 & 해독",
-      description: "굶지 않는 다이어트, 20g 단백질과 풍부한 영양소로 건강한 해독다이어트. 제대로 비워주고, 프리미엄 영양으로 채워주는 '비움채움 다이어트'",
+      description: "단백질 20g, 식이섬유 10g, 15가지 비타민·미네랄로 굶지 않는 건강한 다이어트. 체지방을 비워버리고, 고영양으로 채우는 '비움채움 다이어트'",
       image: activeImage,
       icon: Dumbbell,
       iconColor: "text-pink-500",
       iconBg: "bg-pink-500",
       buttonColor: "bg-pink-600 hover:bg-pink-700",
       features: [
-        "비움채움 다이어트: 해독 후 영양 공급",
-        "20g 단백질과 풍부한 영양소",
-        "굶지 않는 건강한 체중관리"
+        "단백질 20g + 식이섬유 10g 고함량",
+        "15가지 비타민·미네랄 완전 영양",
+        "체지방 비우고 고영양 채우는 건강 다이어트"
       ]
     }
   ];
