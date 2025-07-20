@@ -89,29 +89,8 @@ export default function QnaSection() {
               <div className="grid md:grid-cols-2 gap-4 mt-6">
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    {/* KakaoTalk Character Illustration */}
                     <div className="mb-4 flex justify-center">
-                      <svg width="120" height="120" viewBox="0 0 100 100" className="drop-shadow-lg">
-                        {/* Phone */}
-                        <rect x="30" y="20" width="40" height="60" rx="10" fill="#2D3748" stroke="#4A5568" strokeWidth="2"/>
-                        <rect x="33" y="25" width="34" height="45" rx="3" fill="#68D391"/>
-                        <circle cx="50" cy="75" r="4" fill="#4A5568"/>
-                        
-                        {/* Person holding phone */}
-                        <circle cx="50" cy="10" r="8" fill="#F7FAFC" stroke="#2D3748" strokeWidth="2"/>
-                        <ellipse cx="46" cy="7" rx="1.5" ry="2" fill="#2D3748"/>
-                        <ellipse cx="54" cy="7" rx="1.5" ry="2" fill="#2D3748"/>
-                        <path d="M 46 12 Q 50 15 54 12" stroke="#2D3748" strokeWidth="2" fill="none"/>
-                        
-                        {/* Hands */}
-                        <ellipse cx="22" cy="45" rx="5" ry="8" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5"/>
-                        <ellipse cx="78" cy="45" rx="5" ry="8" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5"/>
-                        
-                        {/* Chat bubbles on screen */}
-                        <ellipse cx="40" cy="35" rx="5" ry="3" fill="#FECA57"/>
-                        <ellipse cx="60" cy="42" rx="5" ry="3" fill="#FFFFFF"/>
-                        <ellipse cx="42" cy="52" rx="4" ry="2.5" fill="#FECA57"/>
-                      </svg>
+                      <div className="text-8xl">💬</div>
                     </div>
                     <h4 className="text-xl font-semibold mb-3">즉시 상담 가능</h4>
                     <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
@@ -127,39 +106,8 @@ export default function QnaSection() {
                 
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    {/* Phone Call Character Illustration */}
                     <div className="mb-4 flex justify-center">
-                      <svg width="120" height="120" viewBox="0 0 100 100" className="drop-shadow-lg">
-                        {/* Person's head */}
-                        <circle cx="50" cy="30" r="16" fill="#F7FAFC" stroke="#2D3748" strokeWidth="2"/>
-                        <ellipse cx="44" cy="26" rx="2" ry="2.5" fill="#2D3748"/>
-                        <ellipse cx="56" cy="26" rx="2" ry="2.5" fill="#2D3748"/>
-                        <path d="M 44 35 Q 50 40 56 35" stroke="#2D3748" strokeWidth="2" fill="none"/>
-                        
-                        {/* Hair - more detailed */}
-                        <path d="M 34 20 Q 50 12 66 20 Q 62 16 50 14 Q 38 16 34 20" fill="#2D3748"/>
-                        
-                        {/* Neck */}
-                        <rect x="47" y="46" width="6" height="8" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1"/>
-                        
-                        {/* Phone handset - more realistic */}
-                        <rect x="25" y="20" width="25" height="8" rx="4" fill="#4A5568"/>
-                        <rect x="27" y="22" width="5" height="4" rx="2" fill="#68D391"/>
-                        <rect x="42" y="22" width="5" height="4" rx="2" fill="#68D391"/>
-                        <circle cx="35" cy="24" r="1" fill="#10B981"/>
-                        
-                        {/* Arm and shoulder - more human-like */}
-                        <ellipse cx="35" cy="55" rx="8" ry="15" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1.5" transform="rotate(-25 35 55)"/>
-                        <circle cx="42" cy="48" r="4" fill="#F7FAFC" stroke="#2D3748" strokeWidth="1"/>
-                        
-                        {/* Body/shoulder */}
-                        <ellipse cx="50" cy="70" rx="20" ry="25" fill="#EDF2F7" stroke="#2D3748" strokeWidth="1.5"/>
-                        
-                        {/* Sound waves */}
-                        <path d="M 18 24 Q 15 24 18 24" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.8"/>
-                        <path d="M 15 24 Q 10 24 15 24" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.6"/>
-                        <path d="M 12 24 Q 5 24 12 24" stroke="#10B981" strokeWidth="2" fill="none" opacity="0.4"/>
-                      </svg>
+                      <div className="text-8xl">📞</div>
                     </div>
                     <h4 className="text-xl font-semibold mb-3">직통 전화 상담</h4>
                     <p className="text-sm mb-4 opacity-90">밤 12시까지, 휴일없음</p>
@@ -206,9 +154,22 @@ export default function QnaSection() {
           {/* Email Contact */}
           <Card className="bg-gray-50 border-gray-200">
             <CardContent className="p-6 text-center">
-              <h4 className="text-lg font-semibold text-gray-900 mb-2"><span className="text-3xl">📧</span> 이메일 문의</h4>
-              <p className="text-gray-700">okaypark7@gmail.com</p>
-              <p className="text-sm text-gray-500 mt-2">자세한 자료와 안내서를 이메일로 받아보세요</p>
+              <div className="mb-4">
+                <div className="text-5xl mb-3">📧</div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-2">이메일 상담</h4>
+                <p className="text-gray-700 mb-4">okaypark7@gmail.com</p>
+                <Button
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="bg-blue-500 text-white hover:bg-blue-600 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
+                >
+                  무료상담 신청하기
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>

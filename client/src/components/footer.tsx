@@ -3,6 +3,8 @@ import blogIcon from "@assets/스크린샷 2025-07-20 175217_1753001646225.png";
 import talkIcon from "@assets/스크린샷 2025-07-20 175222_1753001694463.png";
 import instaIcon from "@assets/스크린샷 2025-07-20 175627_1753001814175.png";
 import youtubeIcon from "@assets/스크린샷 2025-07-20 175615_1753001849693.png";
+import { MessageCircle, Phone, Mail } from "lucide-react";
+import { openKakaoChat, callPhone } from "@/lib/utils";
 
 export default function Footer() {
   const quickLinks = [
@@ -140,18 +142,35 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 className="text-lg font-semibold mb-4">연락처</h4>
-            <div className="space-y-2 text-gray-300">
-              <div className="flex items-center">
-                <span className="text-sm">{contactInfo.phone}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-sm">{contactInfo.email}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-sm">카톡아이디: {contactInfo.kakao}</span>
-              </div>
-              <div className="flex items-center">
-                <span className="text-sm">24시까지 언제든지</span>
+            <div className="space-y-3 text-gray-300">
+              <button 
+                onClick={() => callPhone("010-4259-5311")}
+                className="flex items-center hover:text-white transition-colors group"
+              >
+                <div className="text-xl mr-3">📞</div>
+                <span className="text-sm group-hover:underline">{contactInfo.phone}</span>
+              </button>
+              <button 
+                onClick={openKakaoChat}
+                className="flex items-center hover:text-white transition-colors group"
+              >
+                <div className="text-xl mr-3">💬</div>
+                <span className="text-sm group-hover:underline">카톡아이디: {contactInfo.kakao}</span>
+              </button>
+              <button 
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="flex items-center hover:text-white transition-colors group"
+              >
+                <div className="text-xl mr-3">📧</div>
+                <span className="text-sm group-hover:underline">{contactInfo.email}</span>
+              </button>
+              <div className="flex items-center text-gray-400">
+                <span className="text-sm">🕐 밤 12시까지 언제든지</span>
               </div>
             </div>
           </div>
