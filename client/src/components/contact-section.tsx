@@ -59,6 +59,52 @@ export default function ContactSection() {
   });
 
   const onSubmit = (data: InsertContact) => {
+    // 추가 검증: 필수 필드 확인
+    const requiredFields = [
+      { field: data.name, name: "이름" },
+      { field: data.phone, name: "전화번호" },
+      { field: data.interest, name: "관심 분야" }
+    ];
+
+    const missingFields = requiredFields.filter(item => !item.field || item.field.trim() === '');
+    
+    if (missingFields.length > 0) {
+      const missingFieldNames = missingFields.map(item => item.name).join(', ');
+      toast({
+        title: "입력 확인",
+        description: `다음 항목을 입력해주세요: ${missingFieldNames}`,
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 전화번호 형식 검증
+    const phoneRegex = /^[0-9-]{10,}$/;
+    if (!phoneRegex.test(data.phone)) {
+      toast({
+        title: "전화번호 형식 오류",
+        description: "올바른 전화번호 형식으로 입력해주세요 (예: 010-1234-5678)",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // 이메일 검증 (입력된 경우에만)
+    if (data.email && data.email.trim() !== '') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        toast({
+          title: "이메일 형식 오류",
+          description: "올바른 이메일 형식으로 입력해주세요",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
     setIsSubmitting(true);
     contactMutation.mutate(data);
   };

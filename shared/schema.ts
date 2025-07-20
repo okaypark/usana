@@ -36,6 +36,15 @@ export const insertContactSchema = createInsertSchema(contacts).omit({
   id: true,
   createdAt: true,
   isContacted: true,
+}).extend({
+  name: z.string().min(1, "이름을 입력해주세요").min(2, "이름은 최소 2글자 이상 입력해주세요"),
+  phone: z.string()
+    .min(1, "전화번호를 입력해주세요")
+    .regex(/^[0-9-]+$/, "올바른 전화번호 형식으로 입력해주세요")
+    .min(10, "전화번호는 최소 10자리 이상 입력해주세요"),
+  email: z.string().email("올바른 이메일 형식으로 입력해주세요").optional().or(z.literal("")),
+  interest: z.string().min(1, "관심 분야를 선택해주세요"),
+  message: z.string().optional()
 });
 
 export const insertFaqSchema = createInsertSchema(faqs).omit({
