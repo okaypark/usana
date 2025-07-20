@@ -11,11 +11,14 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
 
 ## Technical Architecture
 - **Frontend**: React.js with TypeScript
+- **Backend**: Express.js with in-memory storage
 - **Styling**: TailwindCSS with premium business color scheme
 - **UI Components**: shadcn/ui component library
 - **Icons**: Lucide React icons
-- **Typography**: Inter font family for professional appearance
+- **Typography**: Pretendard + Noto Sans KR for premium Korean typography
 - **Responsive**: Mobile-first design approach
+- **Data Management**: Google Sheets API + Apps Script integration
+- **Notifications**: Gmail API for real-time email alerts
 
 ## Recent Changes (Latest Updates)
 - **2025-01-20**: Major UI/UX and messaging updates
@@ -27,6 +30,10 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
     - "당신도 매주 주급받는 스마트한 돈버는 소비자"
   - **Responsive Design**: Enhanced hero section layout (3:2 grid ratio, wider content area)
   - **Mobile Optimization**: Fixed Premium Success box positioning to avoid content overlap
+  - **Google Sheets Integration**: Implemented comprehensive contact management system
+    - Automatic data storage in Google Sheets
+    - Real-time email notifications to okaypark7@gmail.com
+    - Google Apps Script automation for seamless processing
   - **User Preference**: All future work to be fully responsive (PC + Mobile dynamic sizing)
 
 ## Key Features

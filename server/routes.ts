@@ -3,18 +3,32 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
+import { googleSheetsService } from "./google-sheets";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {
       const contactData = insertContactSchema.parse(req.body);
+      
+      // 로컬 저장소에 저장
       const contact = await storage.createContact(contactData);
+      
+      // Google Sheets에 저장 및 이메일 알림 발송
+      try {
+        await googleSheetsService.addContactToSheet(contactData);
+        console.log('✅ 상담신청이 Google Sheets에 저장되고 이메일 알림이 발송되었습니다.');
+      } catch (sheetsError) {
+        console.error('⚠️ Google Sheets 연동 실패:', sheetsError);
+        // Google Sheets 실패해도 상담신청 자체는 성공으로 처리
+      }
+      
       res.json({ success: true, contact });
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ success: false, errors: error.errors });
       } else {
+        console.error('상담신청 처리 오류:', error);
         res.status(500).json({ success: false, message: "Failed to submit contact form" });
       }
     }
