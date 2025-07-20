@@ -1,0 +1,147 @@
+const SPREADSHEET_ID = '1TSNJpgQqjKUY9XZDDhKKFO15l-1KZFNsU-_HImo4-NI';
+const SHEET_NAME = '상담신청';
+const NOTIFICATION_EMAIL = 'okaypark7@gmail.com';
+
+function doPost(e) {
+  try {
+    console.log('doPost 요청 받음');
+    console.log('postData:', e.postData);
+    console.log('contents:', e.postData.contents);
+    
+    const data = JSON.parse(e.postData.contents);
+    console.log('파싱된 데이터:', data);
+    
+    if (data.action === 'addContact') {
+      console.log('addContact 액션 실행');
+      
+      // 여기서 직접 스프레드시트에 추가
+      const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+      const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+      
+      if (!sheet) {
+        throw new Error(`시트 '${SHEET_NAME}'를 찾을 수 없습니다.`);
+      }
+      
+      // 헤더 확인 및 추가
+      if (sheet.getLastRow() === 0) {
+        sheet.getRange(1, 1, 1, 6).setValues([['접수일시', '이름', '연락처', '이메일', '관심분야', '문의내용']]);
+      }
+      
+      const timestamp = new Date().toLocaleString('ko-KR');
+      const rowData = [
+        timestamp,
+        data.data.name || '',
+        data.data.phone || '',
+        data.data.email || '',
+        data.data.interest || '',
+        data.data.message || ''
+      ];
+      
+      sheet.appendRow(rowData);
+      console.log('스프레드시트에 데이터 추가 완료');
+      
+      // 이메일 발송
+      sendNotificationEmail(data.data);
+      
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          status: 'success',
+          message: '상담신청이 성공적으로 접수되었습니다.'
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    throw new Error('잘못된 액션입니다.');
+    
+  } catch (error) {
+    console.error('doPost 전체 오류:', error);
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        status: 'error',
+        message: error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function sendNotificationEmail(contactData) {
+  try {
+    const subject = `[USANA] 새로운 상담신청 - ${contactData.name}님`;
+    const body = `
+새로운 상담신청이 접수되었습니다.
+
+이름: ${contactData.name}
+연락처: ${contactData.phone}
+이메일: ${contactData.email}
+관심분야: ${contactData.interest}
+문의내용: ${contactData.message || '없음'}
+
+접수시간: ${new Date().toLocaleString('ko-KR')}
+    `;
+    
+    MailApp.sendEmail({
+      to: NOTIFICATION_EMAIL,
+      subject: subject,
+      body: body
+    });
+    
+    console.log('알림 이메일 발송 완료');
+  } catch (error) {
+    console.error('이메일 발송 오류:', error);
+  }
+}
+
+// 테스트 함수들은 유지
+function testAddContact() {
+  const testData = {
+    name: '테스트 사용자',
+    phone: '010-1234-5678',
+    email: 'test@example.com',
+    interest: 'business',
+    message: '테스트 메시지입니다.'
+  };
+  
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    
+    const timestamp = new Date().toLocaleString('ko-KR');
+    const rowData = [timestamp, testData.name, testData.phone, testData.email, testData.interest, testData.message];
+    
+    sheet.appendRow(rowData);
+    console.log('테스트 데이터 추가 성공');
+    return '성공';
+  } catch (error) {
+    console.error('테스트 실패:', error);
+    return error.toString();
+  }
+}
+
+function debugSpreadsheet() {
+  try {
+    console.log('SPREADSHEET_ID:', SPREADSHEET_ID);
+    
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    console.log('스프레드시트 이름:', spreadsheet.getName());
+    
+    const sheets = spreadsheet.getSheets();
+    console.log('총 시트 개수:', sheets.length);
+    
+    sheets.forEach((sheet, index) => {
+      console.log(`시트 ${index + 1}: ${sheet.getName()} (ID: ${sheet.getSheetId()})`);
+    });
+    
+    const targetSheet = spreadsheet.getSheetByName(SHEET_NAME);
+    if (targetSheet) {
+      console.log('상담신청 시트 찾음:', targetSheet.getName());
+    } else {
+      console.log('상담신청 시트 없음');
+    }
+    
+    return '디버깅 완료';
+    
+  } catch (error) {
+    console.error('디버깅 오류:', error);
+    return error.toString();
+  }
+}
