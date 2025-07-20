@@ -57,13 +57,12 @@ export default function Footer() {
                 href="https://blog.naver.com/holictou00" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="hover:scale-110 transition-transform"
               >
                 <img 
                   src={blogIcon} 
                   alt="Blog" 
-                  className="h-8 w-8 object-contain opacity-80 hover:opacity-100 transition-opacity" 
-                  style={{ filter: 'brightness(0) invert(1)' }}
+                  className="h-8 w-8 object-contain filter brightness-0 invert" 
                 />
               </a>
               <a 
