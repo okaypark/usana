@@ -47,8 +47,7 @@ export default function Footer() {
               <span className="text-usana-blue-500 ml-2 font-light tracking-wide text-lg whitespace-nowrap">건강구독마케팅</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              당신의 건강과 경제적 자유를 실현할 수 있도록<br />
-              성심성의껏 함께 하겠습니다.<br />
+              당신의 건강과 경제적 자유를 실현할 수 있도록 성심성의껏 함께 하겠습니다. 
               <span className="text-usana-blue-400 font-semibold">유사나 브랜드 파트너 박현진</span>
             </p>
             <div className="flex space-x-4">
