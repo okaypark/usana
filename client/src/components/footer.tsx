@@ -62,7 +62,8 @@ export default function Footer() {
                 <img 
                   src={blogIcon} 
                   alt="Blog" 
-                  className="h-8 w-8 object-contain filter brightness-0 invert opacity-80 hover:opacity-100 transition-opacity" 
+                  className="h-8 w-8 object-contain opacity-80 hover:opacity-100 transition-opacity" 
+                  style={{ filter: 'brightness(0) invert(1)' }}
                 />
               </a>
               <a 
