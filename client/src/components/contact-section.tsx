@@ -127,8 +127,7 @@ export default function ContactSection() {
     <section id="contact" className="bg-gray-50 dark:bg-gray-900 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-lg text-usana-blue-600 font-semibold mb-2">유사나 브랜드 파트너</p>
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">박현진</h2>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">상담 신청</h2>
           <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
             건강한 라이프스타일과 수익 창출의 기회, 지금 바로 시작해보세요. <br />
             전문 상담을 통해 맞춤형 솔루션을 제안해드립니다.
@@ -141,7 +140,7 @@ export default function ContactSection() {
             <CardContent className="p-8 lg:p-12">
               <h3 className="text-2xl font-bold text-gray-900 mb-8">무료 상담 신청하기</h3>
               <Form {...form}>
-                <form id="contact-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
                     control={form.control}
                     name="name"
@@ -309,58 +308,81 @@ export default function ContactSection() {
                     </label>
                   </div>
                   
-
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full gradient-usana-cta text-white py-4 text-lg font-semibold h-auto hover:opacity-90"
+                  >
+                    <Send className="mr-2 h-5 w-5" />
+                    {isSubmitting ? "신청 중..." : "상담 신청하기"}
+                  </Button>
                 </form>
               </Form>
             </CardContent>
           </Card>
 
-          {/* Contact Methods */}
+          {/* Contact Information */}
           <div className="space-y-8">
+            {/* Contact Methods */}
             <Card className="bg-white shadow-lg">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">빠른 상담 신청</h3>
-                
-                {/* Contact Buttons */}
-                <div className="grid grid-cols-1 gap-4 mb-8">
-                  <Button
-                    onClick={() => openKakaoChat(contactInfo.kakao)}
-                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 py-4 text-lg font-semibold h-auto"
-                  >
-                    <MessageCircle className="mr-3 h-6 w-6" />
-                    카카오톡 상담하기
-                  </Button>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h3>
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-usana-blue-500 p-3 rounded-full">
+                      <Phone className="text-white h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-gray-600">전화 상담</p>
+                      <p className="text-xl font-semibold text-gray-900">{contactInfo.phone}</p>
+                      <p className="text-sm text-gray-500">24시까지 언제든지</p>
+                    </div>
+                  </div>
                   
-                  <Button
-                    type="submit"
-                    form="contact-form"
-                    disabled={isSubmitting}
-                    className="w-full gradient-usana-cta text-white py-4 text-lg font-semibold h-auto hover:opacity-90"
-                  >
-                    <Send className="mr-3 h-6 w-6" />
-                    {isSubmitting ? "신청 중..." : "무료 상담 신청하기"}
-                  </Button>
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-green-500 p-3 rounded-full">
+                      <MessageCircle className="text-white h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-gray-600">카카오톡 상담</p>
+                      <p className="text-xl font-semibold text-gray-900">{contactInfo.kakao}</p>
+                      <p className="text-sm text-gray-500">24시간 언제든지</p>
+                    </div>
+                  </div>
                   
-                  <Button
-                    onClick={() => callPhone(contactInfo.phone)}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white py-4 text-lg font-semibold h-auto"
-                  >
-                    <Phone className="mr-3 h-6 w-6" />
-                    전화 상담하기
-                  </Button>
-                </div>
-                
-                {/* Contact Info */}
-                <div className="text-center space-y-2 text-gray-600 border-t pt-6">
-                  <p><strong>전화:</strong> {contactInfo.phone}</p>
-                  <p><strong>카카오톡:</strong> {contactInfo.kakao}</p>
-                  <p><strong>이메일:</strong> {contactInfo.email}</p>
-                  <p className="text-sm text-gray-500 mt-4">상담 가능 시간: 24시까지 언제든지 (휴일 없음)</p>
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-red-500 p-3 rounded-full">
+                      <Mail className="text-white h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-gray-600">이메일 상담</p>
+                      <p className="text-xl font-semibold text-gray-900">{contactInfo.email}</p>
+                      <p className="text-sm text-gray-500">24시간 내 답변</p>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
 
+
+            {/* Operating Hours */}
+            <Card className="bg-white shadow-lg">
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Clock className="mr-2 h-5 w-5" />
+                  상담 가능 시간
+                </h4>
+                <div className="space-y-2 text-gray-700">
+                  {operatingHours.map((hour, index) => (
+                    <div key={index} className="flex justify-between">
+                      <span>{hour.day}</span>
+                      <span>{hour.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
