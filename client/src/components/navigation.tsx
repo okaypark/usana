@@ -21,21 +21,28 @@ export default function Navigation() {
     setIsOpen(false);
   };
 
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <nav className="bg-white/95 backdrop-blur-sm shadow-xl border-b border-gray-200/50 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-usana-blue-900 flex items-center">
+            <button 
+              onClick={handleLogoClick}
+              className="text-2xl font-bold text-usana-blue-900 flex items-center hover:text-usana-blue-700 transition-all duration-300 cursor-pointer group"
+            >
               <img 
                 src={usanaLogo} 
                 alt="USANA Logo" 
-                className="mr-3 h-12 w-12 object-contain filter brightness-0 saturate-100" 
+                className="mr-3 h-12 w-12 object-contain filter brightness-0 saturate-100 group-hover:scale-105 transition-all duration-300" 
                 style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
               />
               <span className="tracking-tight">유사나</span>
               <span className="text-usana-blue-600 ml-2 font-light tracking-wide">건강구독 마케팅</span>
-            </div>
+            </button>
           </div>
           
           {/* Desktop Menu */}
