@@ -161,7 +161,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
             <div className="text-gray-400 text-sm">
-              <p>&copy; 2024 USANA 건강 파트너. All rights reserved.</p>
+              <p>&copy; 2025 USANA 브랜드 파트너 박현진. All rights reserved.</p>
               <p className="mt-1">USANA Health Sciences는 미국 유타주에 본사를 둔 글로벌 건강기능식품 기업입니다.</p>
             </div>
             <div className="text-gray-400 text-sm md:text-right">
