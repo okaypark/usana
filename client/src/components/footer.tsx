@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Youtube, MessageSquare } from "lucide-react";
+import { Instagram, Youtube, MessageSquare } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 
 export default function Footer() {
@@ -12,8 +12,8 @@ export default function Footer() {
 
   const productCategories = [
     "건강기능식품",
-    "센스 스킨케어",
-    "다이어트 제품",
+    "셀라비브 스킨케어",
+    "다이어트·해독",
     "스포츠 영양",
     "전체 제품"
   ];
@@ -52,18 +52,30 @@ export default function Footer() {
               <span className="text-usana-blue-400 font-semibold">박현진</span> 📞 010-4259-5311
             </p>
             <div className="flex space-x-4">
-              <button className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="h-6 w-6" />
-              </button>
-              <button className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="h-6 w-6" />
-              </button>
-              <button className="text-gray-400 hover:text-white transition-colors">
-                <Youtube className="h-6 w-6" />
-              </button>
-              <button className="text-gray-400 hover:text-white transition-colors">
+              <a 
+                href="https://open.kakao.com/o/sUZCkqfh" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 <MessageSquare className="h-6 w-6" />
-              </button>
+              </a>
+              <a 
+                href="https://www.instagram.com/okaypark7/#" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a 
+                href="https://www.youtube.com/@TV-ey3gi" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <Youtube className="h-6 w-6" />
+              </a>
             </div>
           </div>
 
@@ -109,10 +121,10 @@ export default function Footer() {
                 <span className="text-sm">{contactInfo.email}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-sm">{contactInfo.kakao}</span>
+                <span className="text-sm">카톡아이디: {contactInfo.kakao}</span>
               </div>
               <div className="flex items-center">
-                <span className="text-sm">24시까지 언제든지 (휴일없음)</span>
+                <span className="text-sm">24시까지 언제든지</span>
               </div>
             </div>
           </div>
