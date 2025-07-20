@@ -91,7 +91,7 @@ export default function QnaSection() {
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
                     {/* KakaoTalk Character Illustration */}
                     <div className="mb-4 flex justify-center">
-                      <svg width="100" height="100" viewBox="0 0 100 100" className="drop-shadow-lg">
+                      <svg width="120" height="120" viewBox="0 0 100 100" className="drop-shadow-lg">
                         {/* Phone */}
                         <rect x="30" y="20" width="40" height="60" rx="10" fill="#2D3748" stroke="#4A5568" strokeWidth="2"/>
                         <rect x="33" y="25" width="34" height="45" rx="3" fill="#68D391"/>
@@ -129,7 +129,7 @@ export default function QnaSection() {
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
                     {/* Phone Call Character Illustration */}
                     <div className="mb-4 flex justify-center">
-                      <svg width="100" height="100" viewBox="0 0 100 100" className="drop-shadow-lg">
+                      <svg width="120" height="120" viewBox="0 0 100 100" className="drop-shadow-lg">
                         {/* Person's head */}
                         <circle cx="50" cy="30" r="16" fill="#F7FAFC" stroke="#2D3748" strokeWidth="2"/>
                         <ellipse cx="44" cy="26" rx="2" ry="2.5" fill="#2D3748"/>
@@ -180,7 +180,7 @@ export default function QnaSection() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
               <CardContent className="p-6 text-center">
-                <div className="text-3xl mb-3">🎯</div>
+                <div className="text-5xl mb-3">🎯</div>
                 <h4 className="font-semibold text-gray-900 mb-2">무료 건강 체크</h4>
                 <p className="text-sm text-gray-700">개인맞춤 영양 상담으로 당신만의 건강 솔루션 제공</p>
               </CardContent>
@@ -188,7 +188,7 @@ export default function QnaSection() {
             
             <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
               <CardContent className="p-6 text-center">
-                <div className="text-3xl mb-3">💰</div>
+                <div className="text-5xl mb-3">💰</div>
                 <h4 className="font-semibold text-gray-900 mb-2">수익 구조 안내</h4>
                 <p className="text-sm text-gray-700">2명 소개로 시작하는 월 100-300만원 수익 창출 방법</p>
               </CardContent>
@@ -196,7 +196,7 @@ export default function QnaSection() {
             
             <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 sm:col-span-2 lg:col-span-1">
               <CardContent className="p-6 text-center">
-                <div className="text-3xl mb-3">✈️</div>
+                <div className="text-5xl mb-3">✈️</div>
                 <h4 className="font-semibold text-gray-900 mb-2">여행 혜택 안내</h4>
                 <p className="text-sm text-gray-700">제주부터 유럽까지, 다양한 여행 혜택과 인센티브</p>
               </CardContent>
@@ -206,7 +206,7 @@ export default function QnaSection() {
           {/* Email Contact */}
           <Card className="bg-gray-50 border-gray-200">
             <CardContent className="p-6 text-center">
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">📧 이메일 문의</h4>
+              <h4 className="text-lg font-semibold text-gray-900 mb-2"><span className="text-3xl">📧</span> 이메일 문의</h4>
               <p className="text-gray-700">okaypark7@gmail.com</p>
               <p className="text-sm text-gray-500 mt-2">자세한 자료와 안내서를 이메일로 받아보세요</p>
             </CardContent>
