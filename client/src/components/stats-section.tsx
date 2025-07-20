@@ -1,32 +1,32 @@
-import { Users, Leaf, DollarSign, Globe } from "lucide-react";
+import { Users, Award, DollarSign, Globe } from "lucide-react";
 
 export default function StatsSection() {
   const stats = [
     {
       icon: Users,
-      value: "5,000+",
-      label: "Premium Partners",
+      value: "450,000+",
+      label: "Global Partners",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },
     {
-      icon: Leaf,
-      value: "50+",
-      label: "Global Products",
+      icon: Award,
+      value: "1위",
+      label: "USA Premium Products",
       color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
     },
     {
       icon: DollarSign,
-      value: "200~300만원",
-      label: "Monthly Subscription",
+      value: "주급10만~50만원",
+      label: "월 무료 건강구독",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
     },
     {
       icon: Globe,
-      value: "24",
-      label: "Countries Worldwide",
+      value: "24개국",
+      label: "Global Business",
       color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
     }
