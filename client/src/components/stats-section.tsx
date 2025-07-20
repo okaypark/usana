@@ -1,4 +1,4 @@
-import { Users, Award, DollarSign, Globe } from "lucide-react";
+import { Users, Award, CircleDollarSign, Globe } from "lucide-react";
 
 export default function StatsSection() {
   const stats = [
@@ -17,8 +17,8 @@ export default function StatsSection() {
       bgColor: "bg-usana-slate-100"
     },
     {
-      icon: DollarSign,
-      value: "주급 50만원",
+      icon: CircleDollarSign,
+      value: "주급 50만",
       label: "월 무료 건강구독",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
