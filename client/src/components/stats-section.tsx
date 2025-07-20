@@ -25,7 +25,7 @@ export default function StatsSection() {
     },
     {
       icon: Globe,
-      value: "24개국",
+      value: "24개국 진출",
       label: "Global Business",
       color: "text-usana-blue-600",
       bgColor: "bg-usana-slate-100"
