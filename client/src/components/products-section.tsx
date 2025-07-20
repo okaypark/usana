@@ -67,7 +67,7 @@ export default function ProductsSection() {
             세계 최고 품질의 영양제와 스킨케어로<br />
             <span className="text-usana-blue-600 font-semibold">건강한 삶</span>을 선물하는<br />
             USANA의 프리미엄 제품 라인업<br />
-            <span className="text-usana-blue-600 font-bold text-3xl">100%<br />Made in USA</span>
+            <span className="text-usana-blue-600 font-bold text-3xl">100%<br />🇺🇸 Made in USA</span>
           </p>
         </div>
 
