@@ -244,32 +244,7 @@ export default function ContactSection() {
               </CardContent>
             </Card>
 
-            {/* Quick Actions */}
-            <Card className="gradient-usana-income text-white">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6">빠른 상담</h3>
-                <div className="space-y-4">
-                  <Button
-                    onClick={openKakaoChat}
-                    className="w-full bg-white text-usana-blue-600 hover:bg-gray-100 font-semibold"
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    카카오톡으로 상담하기
-                  </Button>
-                  <Button
-                    onClick={() => callPhone(contactInfo.phone)}
-                    variant="outline"
-                    className="w-full bg-white bg-opacity-20 border-2 border-white text-white hover:bg-white hover:text-usana-blue-600 font-semibold"
-                  >
-                    <Phone className="mr-2 h-4 w-4" />
-                    지금 전화하기
-                  </Button>
-                </div>
-                <p className="text-sm text-white text-opacity-80 mt-6">
-                  💡 첫 상담은 무료입니다. 부담 없이 연락주세요!
-                </p>
-              </CardContent>
-            </Card>
+
 
             {/* Operating Hours */}
             <Card className="bg-white shadow-lg">
