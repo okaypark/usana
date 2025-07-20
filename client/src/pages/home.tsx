@@ -6,6 +6,7 @@ import SubscriptionSection from "@/components/subscription-section";
 import FreeSubscriptionSection from "@/components/free-subscription-section";
 import BusinessSection from "@/components/business-section";
 import AboutSection from "@/components/about-section";
+import SimpleContactCTA from "@/components/simple-contact-cta";
 import QnaSection from "@/components/qna-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
@@ -22,6 +23,7 @@ export default function Home() {
       <FreeSubscriptionSection />
       <BusinessSection />
       <AboutSection />
+      <SimpleContactCTA />
       <QnaSection />
       <ContactSection />
       <Footer />
