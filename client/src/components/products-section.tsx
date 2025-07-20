@@ -18,7 +18,7 @@ export default function ProductsSection() {
       buttonColor: "bg-usana-green-600 hover:bg-usana-green-700",
       features: [
         "개인맞춤 최적 영양제 조합",
-        "수명연장 조성물 특허 인셀리전스",
+        "수명연장 조성물 특허물질 인셀리전스",
         "장기별 특화 건강 및 수명연장"
       ]
     },
