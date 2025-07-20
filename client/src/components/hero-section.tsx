@@ -32,7 +32,7 @@ export default function HeroSection() {
                 <span className="text-white">스마트한 브랜드 파트너</span>
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-usana-blue-300 font-medium mt-4 mb-4">
-                건강구독하며, 내가원하는 <span className="text-yellow-400 font-bold">주급</span>만큼
+                "건강구독 하면서 내가 원하는 <span className="text-yellow-400 font-bold">주급</span>만큼"
               </p>
             </div>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light max-w-5xl">
