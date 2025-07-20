@@ -100,7 +100,7 @@ export default function FreeSubscriptionSection() {
                   <div className="p-8">
                     <div className="flex items-center mb-4">
                       <Icon className="text-usana-blue-600 h-7 w-7 mr-4" />
-                      <h3 className="text-xl font-bold text-usana-blue-900 tracking-tight">{step.title}</h3>
+                      <h3 className="text-lg font-bold text-usana-blue-900 tracking-tight">{step.title}</h3>
                     </div>
                     <p className="text-usana-blue-600 leading-relaxed font-medium">{step.description}</p>
                   </div>
