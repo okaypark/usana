@@ -24,16 +24,16 @@ export default function ProductsSection() {
     },
     {
       title: "셀라비브 스킨케어",
-      description: "혁신적인 안티에이징 기술로 젊고 건강한 피부를 위한 프리미엄 화장품",
+      description: "수명연장 특허물질 인셀리전스 적용으로 피부세포를 더욱 젊고 탄력있게 만드는 프리미엄 안티에이징 화장품",
       image: celaviveImage,
       icon: Sparkles,
       iconColor: "text-sky-500",
       iconBg: "bg-sky-500",
       buttonColor: "bg-sky-600 hover:bg-sky-700",
       features: [
-        "독특한 셀룰러 영양 복합체",
-        "리뉴잉 젤 마스크",
-        "각종 어워드 수상"
+        "수명연장 특허물질 인셀리전스 적용",
+        "무파라벤, 자가보존포뮬러 적용",
+        "강력한 항산화로 피부세포 영양공급"
       ]
     },
     {
