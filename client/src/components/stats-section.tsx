@@ -18,7 +18,7 @@ export default function StatsSection() {
     },
     {
       icon: DollarSign,
-      value: "주급10만~50만원",
+      value: "주급 50만원",
       label: "월 무료 건강구독",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
