@@ -54,9 +54,9 @@ export default function HeroSection() {
                   <Heart className="text-white h-3 w-3 sm:h-4 sm:w-4 lg:h-7 lg:w-7" />
                 </div>
                 <div>
-                  <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-sm font-semibold tracking-wide uppercase">Premium Success</p>
-                  <p className="text-sm sm:text-lg lg:text-3xl font-bold text-usana-blue-900">10,000+</p>
-                  <p className="text-[9px] sm:text-xs text-usana-blue-600 font-medium">Global Partners</p>
+                  <p className="text-usana-blue-600 text-[10px] sm:text-xs lg:text-sm font-semibold tracking-wide uppercase">USANA SUCCESS</p>
+                  <p className="text-sm sm:text-lg lg:text-3xl font-bold text-usana-blue-900">450,000+</p>
+                  <p className="text-[9px] sm:text-xs text-usana-blue-600 font-medium">Global Brand Partners</p>
                 </div>
               </div>
             </div>
