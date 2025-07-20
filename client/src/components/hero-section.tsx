@@ -18,7 +18,7 @@ export default function HeroSection() {
       } as React.CSSProperties & { '--desktop-bg': string; '--mobile-bg': string }}
     >
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
-      <div className="relative w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
+      <div className="relative w-full h-full flex items-start justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 pt-16 sm:pt-20 lg:pt-24">
         <div className="w-full max-w-7xl mx-auto">
           <div className="space-y-8 sm:space-y-10 lg:space-y-12 animate-fade-in-up">
             <div className="space-y-4">
