@@ -38,7 +38,7 @@ export default function HeroSection() {
               <span className="text-usana-blue-400 font-semibold">매주 주급 10만~ 50만원</span>을 받는<br />
               스마트한 <span className="text-usana-blue-400 font-bold bg-usana-blue-400/20 px-2 py-1 rounded-md">'브랜드 파트너'</span>가 되세요<br />
               <br />
-              전세계 <span className="text-usana-blue-400 font-bold">45만명</span>이 스마트한 브랜드 파트너로<br />
+              전세계 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">45만명</span>이 스마트한 브랜드 파트너로<br />
               <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
             </p>
             
