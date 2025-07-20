@@ -18,15 +18,16 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
 - **Responsive**: Mobile-first design approach
 
 ## Recent Changes (Latest Updates)
-- **2025-01-**: Completely transformed website design and messaging strategy
-  - **Design**: Updated from navy/gold to sophisticated blue color scheme (blue-900 to blue-400, silver accents)
-  - **Messaging Revolution**: Changed from traditional business opportunity to "건강구독 수익" concept
-    - Main headline: "영양제 드시나요? 건강구독으로 건강해지면서 매월 300만원 구독수익"
-    - Focus: 건강 소비자 → 수익 창출 소비자 전환 유도
-    - Revenue: 200-300만원 → 300-500만원 월 구독수익 강조
-  - **Core Concept**: 매달 영양제 구독하는 소비자들에게 수익 기회 제공하는 마케팅 전략
-  - Enhanced typography with Inter font family and premium blue business styling
-  - Updated all sections to reflect "스마트 건강구독" positioning
+- **2025-01-20**: Major UI/UX and messaging updates
+  - **Typography Enhancement**: Upgraded from Inter to premium Korean fonts (Pretendard + Noto Sans KR)
+  - **Brand Identity**: Changed "USANA BUSINESS" → "유사나 건강구독 마케팅" with official USANA logo
+  - **Messaging Strategy**: Refined main headline to subscription marketing concept:
+    - "프리미엄 영양제로 건강구독"
+    - "2명에게 건강구독마케팅 소개하면"  
+    - "당신도 매주 주급받는 스마트한 돈버는 소비자"
+  - **Responsive Design**: Enhanced hero section layout (3:2 grid ratio, wider content area)
+  - **Mobile Optimization**: Fixed Premium Success box positioning to avoid content overlap
+  - **User Preference**: All future work to be fully responsive (PC + Mobile dynamic sizing)
 
 ## Key Features
 1. **Premium Business Branding**: Navy and gold color scheme for executive appeal
