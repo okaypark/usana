@@ -31,7 +31,7 @@ export default function HeroSection() {
                 <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급</span><span className="text-white font-bold">받는</span><br />
                 <span className="text-white">스마트한 브랜드 파트너</span>
               </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-usana-blue-300 font-medium mt-4 mb-4">
+              <p className="text-lg sm:text-xl md:text-2xl text-usana-blue-300 font-medium mt-8 mb-2">
                 "건강구독 하면서 내가 원하는 <span className="text-yellow-400 font-bold">주급</span>만큼"
               </p>
             </div>
