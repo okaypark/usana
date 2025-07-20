@@ -60,13 +60,14 @@ export default function ProductsSection() {
             <span className="text-usana-blue-700 text-sm font-bold tracking-wider uppercase">Premium Product Portfolio</span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
-            <span className="text-usana-blue-600">USA 1위 영양제</span><br />
+            <span className="text-usana-blue-600">미국 1위 영양제</span><br />
             <span className="text-usana-blue-600 font-semibold text-4xl lg:text-5xl">USANA 제품소개</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto leading-relaxed font-light">
             세계 최고 품질의 영양제와 스킨케어로<br />
             <span className="text-usana-blue-600 font-semibold">건강한 삶</span>을 선물하는<br />
-            USANA의 프리미엄 제품 라인업
+            USANA의 프리미엄 제품 라인업<br />
+            <span className="text-usana-blue-600 font-bold">100% Made in USA</span>
           </p>
         </div>
 
