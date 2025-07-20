@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, MessageCircle, Phone } from "lucide-react";
 import { openKakaoChat, callPhone } from "@/lib/utils";
+import talkIcon from "@assets/스크린샷 2025-07-20 175222_1753001694463.png";
 import type { Faq } from "@shared/schema";
 
 export default function QnaSection() {
@@ -90,7 +91,11 @@ export default function QnaSection() {
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
                     <div className="mb-4 flex justify-center">
-                      <div className="text-8xl">💬</div>
+                      <img 
+                        src={talkIcon} 
+                        alt="KakaoTalk" 
+                        className="h-20 w-20 object-contain" 
+                      />
                     </div>
                     <h4 className="text-xl font-semibold mb-3">즉시 상담 가능</h4>
                     <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
