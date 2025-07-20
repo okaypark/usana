@@ -18,7 +18,7 @@ export default function StatsSection() {
     },
     {
       icon: CircleDollarSign,
-      value: "특허받은 보상구조",
+      value: "특허받은\n보상플랜",
       label: "건강구독의 새로운 패러다임",
       color: "text-usana-blue-500",
       bgColor: "bg-usana-platinum-100"
