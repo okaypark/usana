@@ -10,16 +10,16 @@ export default function ProductsSection() {
   const products = [
     {
       title: "뉴트리션 영양제",
-      description: "셀센셜, 비타맥스, 프로파넬 등 프리미엄 영양소 보충제로 최적의 건강 관리",
+      description: "종합비타민 헬스팩을 중심으로 한 장기별 특화 영양제 구성으로 전신 건강 케어",
       image: nutritionImage,
       icon: Pill,
       iconColor: "text-usana-green-500",
       iconBg: "bg-usana-green-500",
       buttonColor: "bg-usana-green-600 hover:bg-usana-green-700",
       features: [
-        "FDA 승인 시설에서 제조",
-        "최고 등급 원료 사용",
-        "과학적 검증 완료"
+        "종합비타민 헬스팩 기본 구성",
+        "심장·혈관 특화 코큐빈",
+        "간 건강 헤파토플러스"
       ]
     },
     {
