@@ -74,7 +74,7 @@ export default function ProductsSection() {
           {products.map((product, index) => {
             const Icon = product.icon;
             return (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow h-full flex flex-col">
                 <div className="relative w-full h-64 overflow-hidden">
                   <img 
                     src={product.image} 
@@ -89,7 +89,7 @@ export default function ProductsSection() {
                     />
                   )}
                 </div>
-                <CardContent className="p-8">
+                <CardContent className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center mb-4">
                     <div className={`${product.iconBg} p-2 rounded-lg mr-3`}>
                       <Icon className="text-white h-5 w-5" />
@@ -97,7 +97,7 @@ export default function ProductsSection() {
                     <h3 className="text-2xl font-bold text-gray-900">{product.title}</h3>
                   </div>
                   <p className="text-gray-600 mb-6">{product.description}</p>
-                  <ul className="space-y-2 mb-6">
+                  <ul className="space-y-2 mb-6 flex-1">
                     {product.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center text-gray-700">
                         <Check className={`${product.iconColor} mr-2 h-4 w-4`} />
@@ -106,7 +106,7 @@ export default function ProductsSection() {
                     ))}
                   </ul>
                   <Button 
-                    className={`w-full ${product.buttonColor} text-white font-semibold`}
+                    className={`w-full ${product.buttonColor} text-white font-semibold mt-auto`}
                     onClick={() => {
                       if (index === 0) {
                         window.open('https://hyunjin.usana.com/s/vhlME3', '_blank');
