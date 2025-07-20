@@ -40,8 +40,8 @@ export default function StatsSection() {
             const Icon = stat.icon;
             return (
               <div key={index} className="text-center group">
-                <div className={`${stat.bgColor} p-6 rounded-2xl w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 border border-usana-platinum-200/50`}>
-                  <Icon className={`${stat.color} h-10 w-10`} />
+                <div className={`${stat.bgColor} p-6 rounded-2xl w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300 border border-usana-platinum-200/50 cursor-pointer`}>
+                  <Icon className={`${stat.color} h-10 w-10 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300`} />
                 </div>
                 <p className="text-4xl font-bold text-usana-blue-900 mb-2">{stat.value}</p>
                 <p className="text-usana-blue-600 font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
