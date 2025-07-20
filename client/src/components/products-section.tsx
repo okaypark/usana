@@ -48,7 +48,7 @@ export default function ProductsSection() {
       features: [
         "단백질 20g + 식이섬유 10g 고함량",
         "15가지 비타민·미네랄 완전 영양",
-        "체지방 비우고 고영양 채우는 건강 다이어트"
+        "1회 236kcal 제공으로 배고프지 않게 다이어트"
       ]
     }
   ];
