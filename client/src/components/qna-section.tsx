@@ -80,15 +80,15 @@ export default function QnaSection() {
           {/* Main Contact Card */}
           <Card className="gradient-usana-cta text-white overflow-hidden">
             <CardContent className="p-8">
-              <div className="text-center mb-6">
-                <h3 className="text-3xl font-bold mb-4">🌟 개인맞춤 건강구독 상담</h3>
+              <div className="text-center mb-4">
+                <h3 className="text-2xl font-bold mb-3">개인맞춤 건강구독 상담</h3>
                 <p className="text-lg mb-2">유사나 브랜드 파트너 박현진</p>
-                <p className="text-base opacity-90">개인맞춤영양 상담 | 무료건강구독 상담 | 부업·사업 멘토링</p>
+                <p className="text-sm opacity-90">개인맞춤영양 상담 | 무료건강구독 상담 | 부업·사업 멘토링</p>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6 mt-8">
-                <div className="text-center space-y-4">
-                  <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
+              <div className="grid md:grid-cols-2 gap-4 mt-6">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
                     {/* KakaoTalk Character Illustration */}
                     <div className="mb-4 flex justify-center">
                       <svg width="100" height="100" viewBox="0 0 100 100" className="drop-shadow-lg">
@@ -125,8 +125,8 @@ export default function QnaSection() {
                   </div>
                 </div>
                 
-                <div className="text-center space-y-4">
-                  <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
                     {/* Phone Call Character Illustration */}
                     <div className="mb-4 flex justify-center">
                       <svg width="100" height="100" viewBox="0 0 100 100" className="drop-shadow-lg">
