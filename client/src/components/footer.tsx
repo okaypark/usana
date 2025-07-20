@@ -143,14 +143,12 @@ export default function Footer() {
                 onClick={() => callPhone("010-4259-5311")}
                 className="flex items-center hover:text-white transition-colors group"
               >
-                <div className="text-xl mr-3">📞</div>
                 <span className="text-sm group-hover:underline">{contactInfo.phone}</span>
               </button>
               <button 
                 onClick={openKakaoChat}
                 className="flex items-center hover:text-white transition-colors group"
               >
-                <div className="text-xl mr-3">💬</div>
                 <span className="text-sm group-hover:underline">카톡아이디: {contactInfo.kakao}</span>
               </button>
               <button 
