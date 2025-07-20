@@ -62,7 +62,7 @@ export default function HeroSection() {
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-4 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <MessageCircle className="mr-3 h-5 w-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
-                건강구독 시작하기
+                건강구독 알아보기
               </Button>
               <Button
                 onClick={() => scrollToSection("products")}
