@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play, MessageCircle, Heart } from "lucide-react";
 import { scrollToSection } from "@/lib/utils";
-import usanaMarketingBg from "@assets/강구독마케팅-네트워크마케팅 유사나 박현진_1752988333585.png";
+import usanaMarketingBg from "@assets/강구독마케팅-네트워크마케팅 유사나 박현진2_1752988831788.png";
 
 export default function HeroSection() {
   return (
