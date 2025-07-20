@@ -64,8 +64,8 @@ export default function ProductsSection() {
             <span className="text-usana-blue-600 font-semibold">건강구독 제품</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto leading-relaxed font-light">
-            <span className="text-usana-blue-600 font-semibold">구독소개</span>로 매달 수익도 챙겨가는<br />
-            똑똑한 건강 소비방법
+            매달 구독하면서 건강도 챙기고<br />
+            <span className="text-usana-blue-600 font-semibold">구독소개</span>로 매달 수익도 챙겨가는 똑똑한 건강 소비방법
           </p>
         </div>
 
