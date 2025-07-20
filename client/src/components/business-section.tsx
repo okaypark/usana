@@ -81,7 +81,7 @@ export default function BusinessSection() {
               <div>
                 <div className="flex items-center mb-8">
                   <div className="w-1 h-12 bg-usana-blue-400 mr-4"></div>
-                  <h3 className="text-4xl font-extrabold tracking-tight">돈버는 건강구독 구조</h3>
+                  <h3 className="text-4xl font-bold tracking-tight">건강구독 수익 구조</h3>
                 </div>
                 <div className="space-y-5">
                   {incomeStructure.map((item, index) => (

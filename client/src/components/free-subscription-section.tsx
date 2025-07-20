@@ -112,7 +112,7 @@ export default function FreeSubscriptionSection() {
 
         <div className="text-center">
           <div className="bg-white rounded-xl p-8 shadow-lg max-w-2xl mx-auto mb-8">
-            <h3 className="text-2xl font-extrabold text-usana-blue-900 mb-4">🎯 돈버는 건강구독 받는 방법</h3>
+            <h3 className="text-2xl font-bold text-usana-blue-900 mb-4">🎯 건강구독 수익 받는 방법</h3>
             <p className="text-gray-600 mb-6">
               개인별 맞춤 상담을 통해 가장 효율적인 무료구독 방법을 안내해드립니다.
             </p>
