@@ -20,7 +20,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
       <div className="relative w-full h-full flex items-start justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-3 lg:py-4 pt-12 sm:pt-6 lg:pt-8">
         <div className="w-full max-w-7xl mx-auto">
-          <div className="space-y-8 sm:space-y-10 lg:space-y-12 animate-fade-in-up">
+          <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in-up">
             <div className="space-y-4">
               <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full shadow-lg shadow-usana-blue-500/20">
                 <span className="text-usana-blue-300 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
