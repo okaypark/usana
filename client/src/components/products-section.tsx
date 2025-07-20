@@ -25,16 +25,16 @@ export default function ProductsSection() {
     },
     {
       title: "셀라비브 스킨케어",
-      description: "수명연장 특허물질 인셀리전스 적용으로 피부세포를 더욱 젊고 탄력있게 만드는 프리미엄 안티에이징 화장품",
+      description: "펩타이드 독점성분 인셀리전스 테크놀로지로 피부내 콜라겐, 엘라스틴, 히알루론산 및 지질 성분을 활성화. 항산화 독점성분 '올리볼' 식물 복합 추출물로 피부에 강력한 항산화 효과",
       image: celaviveImage,
       icon: Sparkles,
       iconColor: "text-sky-500",
       iconBg: "bg-sky-500",
       buttonColor: "bg-sky-600 hover:bg-sky-700",
       features: [
-        "수명연장 특허물질 인셀리전스 적용",
-        "무파라벤, 자가보존포뮬러 적용",
-        "강력한 항산화로 피부세포 영양공급"
+        "펩타이드 독점성분 인셀리전스 테크놀로지",
+        "5 FREE: 알러지·파라벤·설페이트·페독시에탄올·합성색소 프리",
+        "올리볼 식물 복합 추출물 강력한 항산화"
       ]
     },
     {
