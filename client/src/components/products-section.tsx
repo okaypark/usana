@@ -61,7 +61,7 @@ export default function ProductsSection() {
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
             <span className="text-usana-blue-600">USA 1위 영양제</span><br />
-            <span className="text-usana-blue-600 font-semibold">USANA 제품소개</span>
+            <span className="text-usana-blue-600 font-semibold text-4xl lg:text-5xl">USANA 제품소개</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto leading-relaxed font-light">
             세계 최고 품질의 영양제와 스킨케어로<br />
