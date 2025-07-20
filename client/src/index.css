@@ -160,6 +160,10 @@
   background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-600));
 }
 
+.gradient-usana-cta {
+  background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-700));
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
