@@ -54,7 +54,7 @@ export class MemStorage implements IStorage {
         order: 3
       },
       {
-        question: "피라미드 다단계 판매와 다른 점은 무엇인가요? ⚖️",
+        question: "네트워크마케팅 유사나는 피라미드 다단계 판매와 다른 점은 무엇인가요? ⚖️",
         answer: "✅ 피라미드 다단계 판매와 달리, 매월 높은 매출압박도 없고, 직급유지등 다양한 매출조건들이 전혀 없고, 실적이 매주 이월되기 때문에 사재기가 전혀 없이, 자연스러운 개인맞춤 건강구독 소비로 모든 후원수당을 지급하고 있습니다. 📊",
         category: "business",
         order: 4
