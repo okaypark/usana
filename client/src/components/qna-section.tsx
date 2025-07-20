@@ -75,29 +75,85 @@ export default function QnaSection() {
           ))}
         </div>
 
-        {/* Contact for More Questions */}
-        <Card className="mt-16 gradient-usana-cta text-white">
-          <CardContent className="p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">더 궁금한 점이 있으신가요?</h3>
-            <p className="text-lg mb-6">언제든지 편하게 문의해주세요. 자세하고 친절한 상담을 제공해드립니다.</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={openKakaoChat}
-                className="bg-white text-usana-blue-600 hover:bg-gray-100 font-semibold"
-              >
-                <MessageCircle className="mr-2 h-4 w-4" />
-                카카오톡 상담
-              </Button>
-              <Button
-                onClick={() => callPhone("010-4259-5311")}
-                className="bg-white text-usana-blue-600 hover:bg-gray-100 font-semibold"
-              >
-                <Phone className="mr-2 h-4 w-4" />
-                전화 상담
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Enhanced Contact Section */}
+        <div className="mt-16 space-y-6">
+          {/* Main Contact Card */}
+          <Card className="gradient-usana-cta text-white overflow-hidden">
+            <CardContent className="p-8">
+              <div className="text-center mb-6">
+                <h3 className="text-3xl font-bold mb-4">🌟 개인맞춤 건강구독 상담</h3>
+                <p className="text-lg mb-2">유사나 브랜드 파트너 박현진</p>
+                <p className="text-base opacity-90">개인맞춤영양 상담 | 무료건강구독 상담 | 부업·사업 멘토링</p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6 mt-8">
+                <div className="text-center space-y-4">
+                  <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
+                    <h4 className="text-xl font-semibold mb-3">💬 즉시 상담 가능</h4>
+                    <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
+                    <Button
+                      onClick={openKakaoChat}
+                      className="bg-yellow-400 text-black hover:bg-yellow-500 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
+                    >
+                      <MessageCircle className="mr-2 h-5 w-5" />
+                      카카오톡 상담하기
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="text-center space-y-4">
+                  <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
+                    <h4 className="text-xl font-semibold mb-3">📞 직통 전화 상담</h4>
+                    <p className="text-sm mb-4 opacity-90">밤 12시까지, 휴일없음</p>
+                    <Button
+                      onClick={() => callPhone("010-4259-5311")}
+                      className="bg-green-500 text-white hover:bg-green-600 font-semibold px-6 py-3 rounded-full transition-all transform hover:scale-105"
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      010-4259-5311
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          {/* Benefits Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">🎯</div>
+                <h4 className="font-semibold text-gray-900 mb-2">무료 건강 체크</h4>
+                <p className="text-sm text-gray-700">개인맞춤 영양 상담으로 당신만의 건강 솔루션 제공</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">💰</div>
+                <h4 className="font-semibold text-gray-900 mb-2">수익 구조 안내</h4>
+                <p className="text-sm text-gray-700">2명 소개로 시작하는 월 100-300만원 수익 창출 방법</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 sm:col-span-2 lg:col-span-1">
+              <CardContent className="p-6 text-center">
+                <div className="text-3xl mb-3">✈️</div>
+                <h4 className="font-semibold text-gray-900 mb-2">여행 혜택 안내</h4>
+                <p className="text-sm text-gray-700">제주부터 유럽까지, 다양한 여행 혜택과 인센티브</p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Email Contact */}
+          <Card className="bg-gray-50 border-gray-200">
+            <CardContent className="p-6 text-center">
+              <h4 className="text-lg font-semibold text-gray-900 mb-2">📧 이메일 문의</h4>
+              <p className="text-gray-700">okaypark7@gmail.com</p>
+              <p className="text-sm text-gray-500 mt-2">자세한 자료와 안내서를 이메일로 받아보세요</p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );
