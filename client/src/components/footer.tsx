@@ -43,8 +43,8 @@ export default function Footer() {
                 alt="USANA Logo" 
                 className="mr-3 h-10 w-10 object-contain filter brightness-0 invert opacity-80" 
               />
-              <span className="tracking-tight">유사나</span>
-              <span className="text-usana-blue-500 ml-2 font-light tracking-wide">건강구독 마케팅</span>
+              <span className="tracking-tight text-lg">유사나</span>
+              <span className="text-usana-blue-500 ml-2 font-light tracking-wide text-lg whitespace-nowrap">건강구독마케팅</span>
             </div>
             <p className="text-gray-300 mb-4">
               건강한 라이프스타일과 경제적 자유를 함께 실현하는 파트너
