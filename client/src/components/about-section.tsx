@@ -26,7 +26,7 @@ export default function AboutSection() {
     {
       icon: Microscope,
       title: "과학적 검증",
-      description: "자체 연구소 운영, 100편 이상의 학술 논문",
+      description: "150명 넘는 과학자들 보유한 자체 연구소 운영, 100편 이상의 학술 논문",
       color: "text-usana-blue-500"
     },
     {
