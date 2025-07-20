@@ -129,7 +129,7 @@ export default function ContactSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">상담 신청</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            건강한 라이프스타일과 수익 창출의 기회, 지금 바로 시작해보세요. 
+            건강한 라이프스타일과 수익 창출의 기회, 지금 바로 시작해보세요. <br />
             전문 상담을 통해 맞춤형 솔루션을 제안해드립니다.
           </p>
         </div>
