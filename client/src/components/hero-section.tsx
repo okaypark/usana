@@ -39,7 +39,7 @@ export default function HeroSection() {
               전세계 약 <span className="text-usana-blue-400 font-bold">45만명</span>의 스마트한 소비자들이<br />
               <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 건강구독 중입니다.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-16 sm:mt-0">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-24 sm:mt-0">
               <Button
                 onClick={() => scrollToSection("contact")}
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-5 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl transition-all duration-300 tracking-wide"
