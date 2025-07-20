@@ -351,6 +351,16 @@ export default function ContactSection() {
 
 
 
+            {/* Consultation Area */}
+            <Card className="bg-white shadow-lg">
+              <CardContent className="p-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                  상담 가능 지역
+                </h4>
+                <p className="text-gray-700 text-lg">전국 무료상담 가능</p>
+              </CardContent>
+            </Card>
+
             {/* Operating Hours */}
             <Card className="bg-white shadow-lg">
               <CardContent className="p-6">
