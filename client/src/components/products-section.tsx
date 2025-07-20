@@ -17,9 +17,9 @@ export default function ProductsSection() {
       iconBg: "bg-usana-green-500",
       buttonColor: "bg-usana-green-600 hover:bg-usana-green-700",
       features: [
-        "개인맞춤 최적 영양제 조합",
-        "수명연장 조성물 특허물질 인셀리전스",
-        "장기별 특화 건강 및 수명연장"
+        "FDA 의약품제조시설 인증, 매년 검증",
+        "북미 1위 12년 연속 생체이용률 96.1%",
+        "한국 건강기능식품 대상 4회 이상 수상"
       ]
     },
     {
