@@ -42,34 +42,44 @@ export default function FreeSubscriptionSection() {
   ];
 
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-green-50 py-20">
+    <section className="bg-usana-slate-50 py-24 border-t border-usana-platinum-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">🎁 무료 구독 받는 방법</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            간단한 4단계로 USANA 제품을 무료로 받아보세요!
+        <div className="text-center mb-20">
+          <div className="inline-block px-6 py-3 bg-usana-gold-600/10 border border-usana-gold-400/20 rounded-full mb-6">
+            <span className="text-usana-gold-600 text-sm font-semibold tracking-wider uppercase">Premium Partnership Process</span>
+          </div>
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-navy-900 mb-6 tracking-tight">
+            <span className="font-light">프리미엄 파트너십</span><br />
+            <span className="text-usana-gold-600">시작 프로세스</span>
+          </h2>
+          <p className="text-xl text-usana-navy-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
+            전문적이고 체계적인 4단계 프로세스로 USANA 비즈니스를 시작하세요
           </p>
           
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl p-6 max-w-4xl mx-auto mb-12">
-            <h3 className="text-2xl font-bold mb-4">💰 캐시백 시스템</h3>
-            <p className="text-lg leading-relaxed">
-              <strong>2~3단계 내려가면</strong> 50% 할인에서 <strong className="text-yellow-300">100% 할인</strong>을 
-              캐시백을 통해 가능해집니다!
+          <div className="gradient-usana-luxury text-white rounded-2xl p-10 max-w-5xl mx-auto mb-16 shadow-2xl border border-usana-gold-400/20">
+            <div className="flex items-center mb-6">
+              <div className="w-1 h-16 bg-usana-gold-400 mr-6"></div>
+              <h3 className="text-3xl font-bold tracking-tight">Executive Cashback System</h3>
+            </div>
+            <p className="text-xl leading-relaxed font-light">
+              <span className="font-semibold">네트워크 2~3단계 확장 시</span> 50% 할인에서 
+              <span className="text-usana-gold-400 font-bold"> 100% 캐시백</span>까지 
+              프리미엄 리워드 시스템을 경험하세요
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <Card key={index} className="bg-white/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border border-usana-platinum-200/50 group">
                 <CardContent className="p-0">
-                  <div className="relative">
+                  <div className="relative overflow-hidden">
                     <img
                       src={step.image}
                       alt={step.title}
-                      className="w-full h-48 object-cover rounded-t-lg"
+                      className="w-full h-52 object-cover rounded-t-lg group-hover:scale-105 transition-transform duration-500"
                     />
                     {index === 1 && (
                       <img
@@ -81,17 +91,17 @@ export default function FreeSubscriptionSection() {
                         }}
                       />
                     )}
-                    <div className={`absolute top-4 left-4 ${step.color} text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold shadow-lg`}>
+                    <div className="absolute top-6 left-6 bg-usana-navy-900 text-usana-gold-400 rounded-xl w-14 h-14 flex items-center justify-center text-xl font-bold shadow-xl border border-usana-gold-400/30">
                       {step.number}
                     </div>
                   </div>
                   
-                  <div className="p-6">
+                  <div className="p-8">
                     <div className="flex items-center mb-4">
-                      <Icon className={`${step.color.replace('bg-', 'text-')} h-6 w-6 mr-3`} />
-                      <h3 className="text-lg font-bold text-gray-900">{step.title}</h3>
+                      <Icon className="text-usana-gold-600 h-7 w-7 mr-4" />
+                      <h3 className="text-xl font-bold text-usana-navy-900 tracking-tight">{step.title}</h3>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
+                    <p className="text-usana-navy-600 leading-relaxed font-medium">{step.description}</p>
                   </div>
                 </CardContent>
               </Card>

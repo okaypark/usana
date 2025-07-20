@@ -5,46 +5,46 @@ export default function StatsSection() {
     {
       icon: Users,
       value: "5,000+",
-      label: "만족한 고객",
-      color: "text-usana-blue-600",
-      bgColor: "bg-blue-100"
+      label: "Premium Partners",
+      color: "text-usana-gold-600",
+      bgColor: "bg-usana-platinum-100"
     },
     {
       icon: Leaf,
       value: "50+",
-      label: "프리미엄 제품",
-      color: "text-usana-green-600",
-      bgColor: "bg-green-100"
+      label: "Global Products",
+      color: "text-usana-navy-600",
+      bgColor: "bg-usana-slate-100"
     },
     {
       icon: DollarSign,
       value: "200~300만원",
-      label: "월 추가수익",
-      color: "text-usana-orange-600",
-      bgColor: "bg-orange-100"
+      label: "Monthly Revenue",
+      color: "text-usana-gold-600",
+      bgColor: "bg-usana-platinum-100"
     },
     {
       icon: Globe,
       value: "24",
-      label: "글로벌 진출국",
-      color: "text-purple-600",
-      bgColor: "bg-purple-100"
+      label: "Countries Worldwide",
+      color: "text-usana-navy-600",
+      bgColor: "bg-usana-slate-100"
     }
   ];
 
   return (
-    <section className="bg-white py-16">
+    <section className="bg-usana-slate-50 py-24 border-b border-usana-platinum-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={index} className="text-center">
-                <div className={`${stat.bgColor} p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center`}>
-                  <Icon className={`${stat.color} h-8 w-8`} />
+              <div key={index} className="text-center group">
+                <div className={`${stat.bgColor} p-6 rounded-2xl w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 border border-usana-platinum-200/50`}>
+                  <Icon className={`${stat.color} h-10 w-10`} />
                 </div>
-                <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-gray-600 mt-2">{stat.label}</p>
+                <p className="text-4xl font-bold text-usana-navy-900 mb-2">{stat.value}</p>
+                <p className="text-usana-navy-600 font-semibold tracking-wide uppercase text-sm">{stat.label}</p>
               </div>
             );
           })}

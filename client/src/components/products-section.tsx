@@ -53,12 +53,19 @@ export default function ProductsSection() {
   ];
 
   return (
-    <section id="products" className="bg-slate-50 py-20">
+    <section id="products" className="bg-white py-24 border-t border-usana-platinum-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">유사나 프리미엄 제품라인</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            과학적으로 검증된 최고 품질의 건강기능식품, 영양제, 화장품으로 건강한 라이프스타일을 지원합니다.
+        <div className="text-center mb-20">
+          <div className="inline-block px-6 py-3 bg-usana-gold-600/10 border border-usana-gold-400/20 rounded-full mb-6">
+            <span className="text-usana-gold-600 text-sm font-semibold tracking-wider uppercase">Premium Product Portfolio</span>
+          </div>
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-navy-900 mb-6 tracking-tight">
+            <span className="text-usana-gold-600">USANA</span><br />
+            <span className="font-light">Executive Collection</span>
+          </h2>
+          <p className="text-xl text-usana-navy-600 max-w-4xl mx-auto leading-relaxed font-light">
+            과학적으로 검증된 글로벌 프리미엄 제품으로<br />
+            <span className="text-usana-gold-600 font-semibold">건강과 성공</span>을 동시에 실현하세요
           </p>
         </div>
 

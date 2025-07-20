@@ -21,33 +21,35 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-sm shadow-xl border-b border-gray-200/50 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           <div className="flex items-center">
-            <div className="text-2xl font-bold text-usana-blue-800 flex items-center">
-              <Leaf className="text-usana-green-600 mr-2 h-8 w-8" />
-              USANA 건강 파트너
+            <div className="text-2xl font-bold text-usana-navy-900 flex items-center">
+              <Leaf className="text-usana-gold-600 mr-3 h-8 w-8" />
+              <span className="tracking-tight">USANA</span>
+              <span className="text-usana-gold-600 ml-2 font-light tracking-wide">BUSINESS</span>
             </div>
           </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="ml-10 flex items-center space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-gray-700 hover:text-usana-blue-600 px-3 py-2 text-sm font-medium transition-colors"
+                  className="text-usana-navy-700 hover:text-usana-gold-600 px-4 py-2 text-sm font-semibold tracking-wide uppercase transition-all duration-300 relative group"
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-usana-gold-600 group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
               <Button
                 onClick={() => handleNavClick("contact")}
-                className="bg-usana-orange-600 hover:bg-usana-orange-500 text-white px-4 py-2 rounded-lg text-sm font-medium"
+                className="bg-usana-navy-900 hover:bg-usana-navy-800 text-white px-6 py-3 rounded-sm text-sm font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                상담신청
+                전문 상담
               </Button>
             </div>
           </div>
@@ -66,16 +68,16 @@ export default function Navigation() {
                     <button
                       key={item.href}
                       onClick={() => handleNavClick(item.href)}
-                      className="text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-usana-blue-600 transition-colors"
+                      className="text-left px-4 py-3 text-base font-semibold text-usana-navy-800 hover:text-usana-gold-600 transition-colors tracking-wide"
                     >
                       {item.label}
                     </button>
                   ))}
                   <Button
                     onClick={() => handleNavClick("contact")}
-                    className="bg-usana-orange-600 hover:bg-usana-orange-500 text-white mt-4"
+                    className="bg-usana-navy-900 hover:bg-usana-navy-800 text-white mt-6 font-semibold tracking-wide"
                   >
-                    상담신청
+                    전문 상담
                   </Button>
                 </div>
               </SheetContent>

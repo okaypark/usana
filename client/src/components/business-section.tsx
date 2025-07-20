@@ -58,60 +58,69 @@ export default function BusinessSection() {
   ];
 
   return (
-    <section id="business" className="bg-white py-20">
+    <section id="business" className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">💰 추가수익 200~300만원 창출 기회</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            USANA와 함께 건강한 사업을 시작하여 권리소득을 만들어보세요. 
-            정직하고 투명한 수익 구조로 지속 가능한 부업을 제안드립니다.
+        <div className="text-center mb-20">
+          <div className="inline-block px-6 py-3 bg-usana-gold-600/10 border border-usana-gold-400/20 rounded-full mb-6">
+            <span className="text-usana-gold-600 text-sm font-semibold tracking-wider uppercase">Executive Income Opportunity</span>
+          </div>
+          <h2 className="text-5xl lg:text-6xl font-bold text-usana-navy-900 mb-6 tracking-tight">
+            <span className="text-usana-gold-600">월 200~300만원</span><br />
+            <span className="font-light">프리미엄 비즈니스</span>
+          </h2>
+          <p className="text-xl text-usana-navy-600 max-w-4xl mx-auto leading-relaxed font-light">
+            글로벌 USANA 네트워크와 함께하는 전문 비즈니스 기회.<br />
+            투명하고 지속 가능한 수익 구조로 <span className="text-usana-gold-600 font-semibold">권리소득</span>을 창출하세요.
           </p>
         </div>
 
         {/* Income Potential */}
-        <Card className="gradient-usana-income text-white mb-16">
-          <CardContent className="p-8 lg:p-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <Card className="gradient-usana-luxury text-white mb-20 shadow-2xl border border-usana-gold-400/20">
+          <CardContent className="p-12 lg:p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h3 className="text-3xl font-bold mb-6">월 수익 구조</h3>
-                <div className="space-y-4">
+                <div className="flex items-center mb-8">
+                  <div className="w-1 h-12 bg-usana-gold-400 mr-4"></div>
+                  <h3 className="text-4xl font-bold tracking-tight">Professional Revenue Structure</h3>
+                </div>
+                <div className="space-y-5">
                   {incomeStructure.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center bg-white bg-opacity-20 rounded-lg p-4">
-                      <span className="text-lg">{item.label}</span>
-                      <span className="text-xl font-bold">{item.amount}</span>
+                    <div key={index} className="flex justify-between items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
+                      <span className="text-lg font-medium tracking-wide">{item.label}</span>
+                      <span className="text-xl font-bold text-usana-gold-400">{item.amount}</span>
                     </div>
                   ))}
-                  <div className="border-t-2 border-white border-opacity-30 pt-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-xl font-semibold">월 총 수익</span>
-                      <span className="text-3xl font-bold">200~330만원</span>
+                  <div className="border-t border-usana-gold-400/30 pt-6 mt-8">
+                    <div className="flex justify-between items-center bg-usana-gold-400/20 border border-usana-gold-400/30 rounded-xl p-6">
+                      <span className="text-xl font-bold tracking-wide">Executive Total Revenue</span>
+                      <span className="text-4xl font-bold text-usana-gold-400">200~330만원</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="text-center">
                 <img
-                  src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
-                  alt="사업 성공"
-                  className="rounded-2xl shadow-2xl mb-6 w-full"
+                  src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
+                  alt="Executive Business Success"
+                  className="rounded-3xl shadow-2xl mb-8 w-full border border-white/20"
                 />
-                <p className="text-lg opacity-90">* 개인의 노력과 상황에 따라 수익은 달라질 수 있습니다.</p>
+                <p className="text-lg font-light text-usana-gold-200 tracking-wide">* Revenue may vary based on individual effort and market conditions</p>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Business Benefits */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-24">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
             return (
-              <div key={index} className="text-center">
-                <div className={`${benefit.color} p-4 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center`}>
-                  <Icon className="h-8 w-8" />
+              <div key={index} className="text-center group">
+                <div className="bg-usana-platinum-100 border border-usana-platinum-200 p-6 rounded-2xl w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                  <Icon className="text-usana-navy-600 h-10 w-10" />
                 </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                <p className="text-gray-600">{benefit.description}</p>
+                <h4 className="text-2xl font-bold text-usana-navy-900 mb-3 tracking-tight">{benefit.title}</h4>
+                <p className="text-usana-navy-600 font-medium leading-relaxed">{benefit.description}</p>
               </div>
             );
           })}
