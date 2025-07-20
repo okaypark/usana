@@ -59,6 +59,8 @@ export default function ContactSection() {
   });
 
   const onSubmit = (data: InsertContact) => {
+    console.log('폼 제출 데이터:', data);
+    
     // 추가 검증: 필수 필드 확인
     const requiredFields = [
       { field: data.name, name: "이름" },
@@ -70,12 +72,12 @@ export default function ContactSection() {
     
     if (missingFields.length > 0) {
       const missingFieldNames = missingFields.map(item => item.name).join(', ');
+      console.log('누락된 필드:', missingFields);
       toast({
         title: "입력 확인",
         description: `다음 항목을 입력해주세요: ${missingFieldNames}`,
         variant: "destructive",
       });
-      setIsSubmitting(false);
       return;
     }
 
@@ -187,7 +189,7 @@ export default function ContactSection() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>관심 분야 *</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select onValueChange={field.onChange} value={field.value}>
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="선택해주세요" />
