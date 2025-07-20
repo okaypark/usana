@@ -90,13 +90,6 @@ export default function QnaSection() {
               <div className="grid md:grid-cols-2 gap-4 mt-6">
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="mb-4 flex justify-center">
-                      <img 
-                        src={talkIcon} 
-                        alt="KakaoTalk" 
-                        className="h-20 w-20 object-contain" 
-                      />
-                    </div>
                     <h4 className="text-xl font-semibold mb-3">즉시 상담 가능</h4>
                     <p className="text-sm mb-4 opacity-90">카톡ID: holicotu</p>
                     <Button
@@ -111,9 +104,6 @@ export default function QnaSection() {
                 
                 <div className="text-center">
                   <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <div className="mb-4 flex justify-center">
-                      <div className="text-8xl">📞</div>
-                    </div>
                     <h4 className="text-xl font-semibold mb-3">직통 전화 상담</h4>
                     <p className="text-sm mb-4 opacity-90">밤 12시까지, 휴일없음</p>
                     <Button
