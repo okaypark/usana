@@ -73,13 +73,9 @@ export default function Footer() {
                 href="https://open.kakao.com/o/sUZCkqfh" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
+                className="hover:scale-110 transition-transform text-2xl"
               >
-                <img 
-                  src={talkIcon} 
-                  alt="KakaoTalk" 
-                  className="h-8 w-8 object-contain" 
-                />
+                💬
               </a>
               <a 
                 href="https://www.instagram.com/okaypark7/#" 

@@ -150,6 +150,7 @@ export default function ContactSection() {
                             <SelectItem value="products">제품 구매 및 건강 상담</SelectItem>
                             <SelectItem value="subscription">건강 구독 서비스</SelectItem>
                             <SelectItem value="business">사업 기회 상담</SelectItem>
+                            <SelectItem value="brochure">이메일로 사업안내 자료 받아보기</SelectItem>
                             <SelectItem value="both">제품 + 사업 모두</SelectItem>
                           </SelectContent>
                         </Select>
