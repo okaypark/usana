@@ -27,8 +27,8 @@ export default function Navigation() {
           <div className="flex items-center">
             <div className="text-2xl font-bold text-usana-blue-900 flex items-center">
               <Leaf className="text-usana-blue-500 mr-3 h-8 w-8" />
-              <span className="tracking-tight">USANA</span>
-              <span className="text-usana-blue-600 ml-2 font-light tracking-wide">BUSINESS</span>
+              <span className="tracking-tight">유사나</span>
+              <span className="text-usana-blue-600 ml-2 font-light tracking-wide">건강구독 마케팅</span>
             </div>
           </div>
           

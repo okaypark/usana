@@ -38,8 +38,8 @@ export default function Footer() {
           <div>
             <div className="text-2xl font-bold mb-6 flex items-center">
               <Leaf className="text-usana-blue-500 mr-3 h-8 w-8" />
-              <span className="tracking-tight">USANA</span>
-              <span className="text-usana-blue-500 ml-2 font-light tracking-wide">BUSINESS</span>
+              <span className="tracking-tight">유사나</span>
+              <span className="text-usana-blue-500 ml-2 font-light tracking-wide">건강구독 마케팅</span>
             </div>
             <p className="text-gray-300 mb-4">
               건강한 라이프스타일과 경제적 자유를 함께 실현하는 파트너
