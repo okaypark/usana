@@ -10,16 +10,16 @@ export default function ProductsSection() {
   const products = [
     {
       title: "뉴트리션 영양제",
-      description: "종합비타민 헬스팩을 중심으로 한 장기별 특화 영양제 구성으로 전신 건강 케어",
+      description: "종합비타민 헬스팩 중심으로 혈행·혈압·항산화·면역력·해독·다이어트·수명연장 등 각 장기별 개인맞춤 영양제 조합",
       image: nutritionImage,
       icon: Pill,
       iconColor: "text-usana-green-500",
       iconBg: "bg-usana-green-500",
       buttonColor: "bg-usana-green-600 hover:bg-usana-green-700",
       features: [
-        "종합비타민 헬스팩 기본 구성",
-        "심장·혈관 특화 코큐빈",
-        "간 건강 헤파토플러스"
+        "개인맞춤 최적 영양제 조합",
+        "수명연장 조성물 특허 인셀리전스",
+        "장기별 특화 건강 및 수명연장"
       ]
     },
     {
