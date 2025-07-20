@@ -129,6 +129,8 @@ USANA 건강구독 마케팅 상담신청 시스템
 }
 
 function testNotification() {
+  console.log('테스트 시작...');
+  
   const testData = {
     timestamp: new Date().toLocaleString('ko-KR'),
     name: '테스트 고객',
@@ -138,8 +140,18 @@ function testNotification() {
     message: '테스트 문의입니다.'
   };
   
-  addContactToSheet(testData);
-  sendNotificationEmail(testData);
+  try {
+    addContactToSheet(testData);
+    console.log('스프레드시트 추가 완료');
+    
+    sendNotificationEmail(testData);
+    console.log('이메일 발송 완료');
+    
+    return '테스트 성공!';
+  } catch (error) {
+    console.error('테스트 실패:', error);
+    return '테스트 실패: ' + error.toString();
+  }
 }
 ```
 
