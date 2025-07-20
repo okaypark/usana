@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Pill, Sparkles, Dumbbell, Check } from "lucide-react";
 import nutritionImage from "@assets/스크린샷 2025-06-22 012157_1750522931098.png";
 import celaviveImage from "@assets/Celavive-Full-Line-80-percent-1_1750520337102.jpg";
-import activeImage from "@assets/유사나 다이어트 해독 체중조절_1752999776953.png";
+import activeImage from "@assets/유사나 다이어트 해독 체중조절_1753000145215.png";
 import dietProductImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522103001.png";
 import usaFlag from "@assets/미국국기_1752999123362.jpg";
 
@@ -38,17 +38,17 @@ export default function ProductsSection() {
       ]
     },
     {
-      title: "다이어트 & 웰니스",
-      description: "건강한 체중 관리와 활력 넘치는 라이프스타일을 위한 맞춤형 솔루션",
+      title: "다이어트 & 해독",
+      description: "굶지 않는 다이어트, 20g 단백질과 풍부한 영양소로 건강한 해독다이어트. 제대로 비워주고, 프리미엄 영양으로 채워주는 '비움채움 다이어트'",
       image: activeImage,
       icon: Dumbbell,
       iconColor: "text-pink-500",
       iconBg: "bg-pink-500",
       buttonColor: "bg-pink-600 hover:bg-pink-700",
       features: [
-        "리셋 5일 프로그램",
-        "프로틴 바 & 쉐이크",
-        "과학적 체중관리법"
+        "비움채움 다이어트: 해독 후 영양 공급",
+        "20g 단백질과 풍부한 영양소",
+        "굶지 않는 건강한 체중관리"
       ]
     }
   ];
