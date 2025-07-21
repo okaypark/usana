@@ -626,6 +626,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 유사나 제품 스크래핑 API
+  app.get("/api/usana/scrape", requireAdminAuth, async (req, res) => {
+    try {
+      const { scrapeUsanaProducts } = await import("./usana-scraper");
+      
+      console.log('유사나 제품 스크래핑 요청 받음');
+      const products = await scrapeUsanaProducts();
+      
+      res.json({
+        success: true,
+        message: `${products.length}개의 제품 정보를 성공적으로 가져왔습니다.`,
+        data: products,
+        categoryCounts: products.reduce((acc, product) => {
+          acc[product.category] = (acc[product.category] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>)
+      });
+    } catch (error) {
+      console.error('유사나 제품 스크래핑 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "제품 정보를 가져오는 중 오류가 발생했습니다.",
+        error: error instanceof Error ? error.message : "알 수 없는 오류"
+      });
+    }
+  });
+
+  // 카테고리별 제품 필터링 API
+  app.post("/api/usana/filter", requireAdminAuth, async (req, res) => {
+    try {
+      const { categories, searchTerm } = req.body;
+      const { scrapeUsanaProducts, filterProductsByCategory, searchProducts } = await import("./usana-scraper");
+      
+      console.log('제품 필터링 요청:', { categories, searchTerm });
+      
+      let products = await scrapeUsanaProducts();
+      
+      // 카테고리 필터링
+      if (categories && categories.length > 0) {
+        products = filterProductsByCategory(products, categories);
+      }
+      
+      // 검색어 필터링
+      if (searchTerm) {
+        products = searchProducts(products, searchTerm);
+      }
+      
+      res.json({
+        success: true,
+        data: products,
+        total: products.length
+      });
+    } catch (error) {
+      console.error('제품 필터링 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "제품 필터링 중 오류가 발생했습니다.",
+        error: error instanceof Error ? error.message : "알 수 없는 오류"
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

@@ -130,3 +130,5 @@ export type InsertPackageProduct = z.infer<typeof insertPackageProductSchema>;
 export type PackageProduct = typeof packageProducts.$inferSelect;
 export type InsertAdmin = z.infer<typeof insertAdminSchema>;
 export type Admin = typeof admins.$inferSelect;
+export type UsanaProduct = typeof usanaProducts.$inferSelect;
+export type InsertUsanaProduct = typeof usanaProducts.$inferInsert;

@@ -14,6 +14,7 @@ import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown,
 import type { Package, PackageProduct } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
+import UsanaProductSelector from "@/components/usana-product-selector";
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -26,6 +27,7 @@ export default function AdminPage() {
   const [editingProduct, setEditingProduct] = useState<PackageProduct | null>(null);
   const [isAddAdminDialogOpen, setIsAddAdminDialogOpen] = useState(false);
   const [isAddingAdmin, setIsAddingAdmin] = useState(false);
+  const [isUsanaProductSelectorOpen, setIsUsanaProductSelectorOpen] = useState(false);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -679,18 +681,31 @@ export default function AdminPage() {
                 제품 구성
                 {currentPackage && (
                   <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
-                    <DialogTrigger asChild>
+                    <div className="flex gap-2">
                       <Button
                         size="sm"
                         onClick={() => {
-                          setEditingProduct(null);
-                          setIsProductDialogOpen(true);
+                          setIsUsanaProductSelectorOpen(true);
                         }}
+                        className="bg-blue-600 hover:bg-blue-700"
                       >
                         <Plus className="h-4 w-4 mr-2" />
-                        제품 추가
+                        유사나 제품 추가
                       </Button>
-                    </DialogTrigger>
+                      <DialogTrigger asChild>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            setEditingProduct(null);
+                            setIsProductDialogOpen(true);
+                          }}
+                        >
+                          <Plus className="h-4 w-4 mr-2" />
+                          직접 입력
+                        </Button>
+                      </DialogTrigger>
+                    </div>
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>
@@ -810,6 +825,25 @@ export default function AdminPage() {
             </TabsContent>
           </Tabs>
         </div>
+
+        {/* 유사나 제품 선택기 */}
+        <UsanaProductSelector
+          isOpen={isUsanaProductSelectorOpen}
+          onClose={() => setIsUsanaProductSelectorOpen(false)}
+          onSelect={(product) => {
+            // 선택된 유사나 제품을 구독패키지에 추가
+            if (currentPackage) {
+              addProductMutation.mutate({
+                packageId: currentPackage.id,
+                productName: product.name,
+                productDescription: `${product.category} - 제품코드: ${product.productCode}`,
+                price: `${product.price.toLocaleString()}원`,
+                pointValue: product.points,
+                order: 0
+              });
+            }
+          }}
+        />
       </div>
     </div>
   );
