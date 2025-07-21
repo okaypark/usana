@@ -8,7 +8,7 @@ export default function SubscriptionSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500/20 to-teal-500/15 border-2 border-blue-500/30 rounded-full mb-8 shadow-xl shadow-blue-500/20">
-            <span className="text-blue-700 text-lg font-bold tracking-wider">SUBSCRIPTION INNOVATION</span>
+            <span className="text-blue-700 text-base sm:text-lg md:text-xl font-bold tracking-wider">돈버는 영양제구독 혁신</span>
           </div>
           <h2 className="text-5xl lg:text-6xl font-bold text-slate-800 mb-8 tracking-tighter">
             <span className="text-blue-600">돈버는 영양제</span><br />
