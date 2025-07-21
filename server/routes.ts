@@ -64,10 +64,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
       (req.session as any).isAdminAuthenticated = true;
       (req.session as any).adminEmail = email;
       
-      res.json({
-        success: true,
-        message: "로그인 성공",
-        admin: { email, name: admin.name }
+      console.log('로그인 세션 설정:', {
+        sessionId: req.sessionID,
+        isAdminAuthenticated: true,
+        adminEmail: email
+      });
+      
+      // 세션 저장 후 응답
+      req.session.save((err) => {
+        if (err) {
+          console.error('세션 저장 오류:', err);
+          return res.status(500).json({
+            success: false,
+            message: "세션 저장 중 오류가 발생했습니다."
+          });
+        }
+        
+        console.log('세션 저장 완료');
+        res.json({
+          success: true,
+          message: "로그인 성공",
+          admin: { email, name: admin.name }
+        });
       });
     } catch (error) {
       console.error("관리자 로그인 오류:", error);
