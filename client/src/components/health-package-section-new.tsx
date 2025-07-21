@@ -204,7 +204,7 @@ export default function HealthPackageSection() {
                     </div>
                     
                     {/* 테마 제목 */}
-                    <h4 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold ${colors.text} mb-8 tracking-tight`}>{theme}</h4>
+                    <h4 className={`text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold ${colors.text} mb-8 tracking-tight`}>{theme}</h4>
                     
                     {/* 패키지 타입들 */}
                     <div className="flex gap-4 justify-center items-center flex-wrap">
