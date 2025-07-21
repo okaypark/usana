@@ -39,11 +39,13 @@ export default function Navigation() {
               <img 
                 src={usanaLogo} 
                 alt="USANA Logo" 
-                className="mr-3 h-12 w-12 object-contain filter brightness-0 saturate-100 group-hover:scale-105 transition-all duration-300" 
+                className="mr-3 h-12 w-12 object-contain filter brightness-0 saturate-100 group-hover:scale-105 group-hover:rotate-6 transition-all duration-300" 
                 style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
               />
-              <span className="tracking-tight">유사나</span>
-              <span className="text-usana-blue-600 ml-2 font-light tracking-wide">건강구독 마케팅</span>
+              <span className="tracking-tight group-hover:scale-105 transition-transform duration-300">유사나</span>
+              <span className="ml-2 font-bold tracking-wide marketing-text-vibrant group-hover:scale-110 transition-transform duration-300">
+                건강구독 마케팅
+              </span>
             </button>
           </div>
           

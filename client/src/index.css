@@ -123,6 +123,32 @@
   background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-700));
 }
 
+/* Vibrant Animation for Marketing Text */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gentle-glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(59, 130, 246, 0.3); }
+  50% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(147, 51, 234, 0.2); }
+}
+
+.marketing-text-vibrant {
+  background: linear-gradient(-45deg, 
+    var(--usana-blue-500), 
+    var(--usana-blue-600), 
+    #3b82f6, 
+    #6366f1, 
+    #8b5cf6);
+  background-size: 400% 400%;
+  animation: gradient-shift 4s ease infinite, gentle-glow 3s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Mobile Font Optimizations */
 @media (max-width: 640px) {
   /* Base mobile font size adjustments */
