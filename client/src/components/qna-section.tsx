@@ -6,6 +6,7 @@ import { ChevronDown, MessageCircle, Phone } from "lucide-react";
 import { openKakaoChat, callPhone } from "@/lib/utils";
 import talkIcon from "@assets/스크린샷 2025-07-20 175222_1753001694463.png";
 import type { Faq } from "@shared/schema";
+import SimpleContactCTA from "@/components/simple-contact-cta";
 
 export default function QnaSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -44,6 +45,17 @@ export default function QnaSection() {
   return (
     <section id="qna" className="py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Contact Form Section */}
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">무료 상담 신청하기</h2>
+            <p className="text-xl text-gray-600">
+              개인 맞춤형 건강 구독 상담을 받아보세요. 전문가가 직접 상담해드립니다.
+            </p>
+          </div>
+          <SimpleContactCTA />
+        </div>
+
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">자주 묻는 질문</h2>
           <p className="text-xl text-gray-600">

@@ -32,7 +32,7 @@ export default function SimpleContactCTA() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: InsertContact) => {
-      const response = await apiRequest("POST", "/api/contacts", data);
+      const response = await apiRequest("/api/contacts", "POST", data);
       return response.json();
     },
     onSuccess: () => {
