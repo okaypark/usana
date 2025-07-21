@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Play, MessageCircle, Heart, ChevronDown, ChevronUp } from "lucide-react";
 import { scrollToSection } from "@/lib/utils";
@@ -7,6 +7,27 @@ import usanaMarketingMobileBg from "@assets/스크린샷 2025-07-20 143223_17529
 
 export default function HeroSection() {
   const [showExpandedContent, setShowExpandedContent] = useState(false);
+  const [showSuccessContent, setShowSuccessContent] = useState(false);
+
+  // Auto-hide expanded content after 5 seconds
+  useEffect(() => {
+    if (showExpandedContent) {
+      const timer = setTimeout(() => {
+        setShowExpandedContent(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showExpandedContent]);
+
+  // Auto-hide success content after 5 seconds
+  useEffect(() => {
+    if (showSuccessContent) {
+      const timer = setTimeout(() => {
+        setShowSuccessContent(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessContent]);
   return (
     <section 
       className="relative text-white bg-cover bg-center bg-no-repeat min-h-screen w-full hero-background"
@@ -67,19 +88,14 @@ export default function HeroSection() {
                 </div>
               )}
             </div>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl text-gray-200 leading-relaxed font-light max-w-5xl">
-              유사나 프리미엄 영양제, 스킨케어 구독으로<br />
-              건강해지면서 소비자에서<br />
-              매주 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">주급 10만~ 50만원</span>을 받는<br />
-              스마트한 <span className="text-usana-blue-400 font-bold bg-usana-blue-400/20 px-2 py-1 rounded-md">'브랜드 파트너'</span>가 되세요<br />
-              <br />
-              전세계 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">45만명</span>이 스마트한 브랜드 파트너로<br />
-              <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>를 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
-            </p>
+
             
             {/* Success Box - positioned below text, left aligned */}
             <div className="mt-8 sm:mt-10 flex justify-start">
-              <div className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm group cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-300">
+              <div 
+                className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm group cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                onClick={() => setShowSuccessContent(true)}
+              >
                 <div className="flex items-center space-x-2 sm:space-x-2 lg:space-x-3">
                   <div className="bg-usana-blue-500 p-1 sm:p-1.5 lg:p-2 rounded-md lg:rounded-lg group-hover:scale-110 group-hover:bg-usana-blue-600 transition-all duration-300">
                     <Heart className="text-white h-3 w-3 sm:h-3 sm:w-3 lg:h-4 lg:w-4 group-hover:scale-110 transition-all duration-300" />
@@ -92,6 +108,18 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
+
+            {/* Success Expanded Content */}
+            {showSuccessContent && (
+              <div className="mt-4 animate-fade-in-up">
+                <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-6 shadow-xl">
+                  <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed font-medium">
+                    전세계 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">45만명</span>이 스마트한 브랜드 파트너로<br />
+                    <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
+                  </p>
+                </div>
+              </div>
+            )}
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mt-6 sm:mt-4 lg:mt-2">
               <Button
