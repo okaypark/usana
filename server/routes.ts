@@ -1,11 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema } from "@shared/schema";
+import { insertContactSchema, insertFaqSchema, insertPackageSchema, insertPackageProductSchema, insertApprovedAdminSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleSheetsService } from "./google-sheets";
 import bcrypt from "bcryptjs";
 import session from "express-session";
+import passport from "./oauth-config";
+import { requireOAuthAdmin, requireSuperAdmin } from "./auth-middleware";
 
 // 관리자 인증 미들웨어
 const requireAdminAuth = (req: any, res: any, next: any) => {

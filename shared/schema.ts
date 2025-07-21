@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp, boolean, decimal, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, boolean, decimal, integer, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -86,6 +86,24 @@ export const insertPackageProductSchema = createInsertSchema(packageProducts).om
   createdAt: true,
 });
 
+// 승인된 관리자 테이블
+export const approvedAdmins = pgTable("approved_admins", {
+  id: serial("id").primaryKey(),
+  kakaoId: varchar("kakao_id").unique(),
+  email: varchar("email"),
+  name: varchar("name"),
+  approvedBy: varchar("approved_by").notNull(), // 승인한 관리자의 구글 ID
+  approvedAt: timestamp("approved_at").defaultNow(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const insertApprovedAdminSchema = createInsertSchema(approvedAdmins).omit({
+  id: true,
+  approvedAt: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -96,3 +114,5 @@ export type InsertPackage = z.infer<typeof insertPackageSchema>;
 export type Package = typeof packages.$inferSelect;
 export type InsertPackageProduct = z.infer<typeof insertPackageProductSchema>;
 export type PackageProduct = typeof packageProducts.$inferSelect;
+export type InsertApprovedAdmin = z.infer<typeof insertApprovedAdminSchema>;
+export type ApprovedAdmin = typeof approvedAdmins.$inferSelect;
