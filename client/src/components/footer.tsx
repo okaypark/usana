@@ -16,11 +16,9 @@ export default function Footer() {
   ];
 
   const productCategories = [
-    "건강기능식품",
-    "셀라비브 스킨케어",
-    "다이어트·해독",
-    "스포츠 영양",
-    "전체 제품"
+    { name: "건강기능식품", url: "https://okay7.usana.com/s/1m1hw" },
+    { name: "셀라비브 스킨케어", url: "https://okay7.usana.com/s/J2UF_" },
+    { name: "다이어트·해독", url: "https://okay7.usana.com/s/zY-ze1" }
   ];
 
   const contactInfo = {
@@ -131,9 +129,14 @@ export default function Footer() {
             <ul className="space-y-2">
               {productCategories.map((category, index) => (
                 <li key={index}>
-                  <button className="text-gray-300 hover:text-white transition-colors text-left">
-                    {category}
-                  </button>
+                  <a 
+                    href={category.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white transition-colors text-left block"
+                  >
+                    {category.name}
+                  </a>
                 </li>
               ))}
             </ul>
