@@ -73,11 +73,14 @@ export default function QnaSection() {
             <Button
               onClick={toggleQuestionList}
               variant="outline"
-              className="flex items-center gap-2 mx-auto"
+              className="flex items-center gap-2 mx-auto hover:bg-blue-50"
             >
               <List className="h-4 w-4" />
               질문 전체목록
-              <Badge variant="secondary" className="ml-2">{faqs.length}</Badge>
+              <Badge variant="secondary" className="ml-1">{faqs.length}</Badge>
+              <span className="text-sm ml-1">
+                {showQuestionList ? '접기' : '보기'}
+              </span>
               <ChevronDown 
                 className={`h-4 w-4 transition-transform duration-200 ${
                   showQuestionList ? 'rotate-180' : ''
