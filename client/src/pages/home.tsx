@@ -66,10 +66,7 @@ export default function Home() {
         <QnaSection />
       </div>
       
-      {/* 상담 신청 섹션 */}
-      <div className="border-t-4 border-blue-200/50">
-        <ContactSection />
-      </div>
+
       
       <Footer />
       <FloatingActionButton />
