@@ -4,13 +4,15 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 import { scrollToSection } from "@/lib/utils";
+import ConsultationDialog from "@/components/consultation-dialog";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [consultationOpen, setConsultationOpen] = useState(false);
 
   const navItems = [
     { label: "제품소개", href: "products" },
-    { label: "건강구독", href: "products" },
+    { label: "건강구독", href: "health-packages" },
     { label: "사업기회", href: "business" },
     { label: "소개", href: "about" },
     { label: "Q&A", href: "qna" },
@@ -59,7 +61,7 @@ export default function Navigation() {
                 </button>
               ))}
               <Button
-                onClick={() => handleNavClick("contact")}
+                onClick={() => setConsultationOpen(true)}
                 className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white px-6 py-3 rounded-sm text-sm font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 건강구독 상담
@@ -93,7 +95,10 @@ export default function Navigation() {
                     </button>
                   ))}
                   <Button
-                    onClick={() => handleNavClick("contact")}
+                    onClick={() => {
+                      setConsultationOpen(true);
+                      setIsOpen(false);
+                    }}
                     className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white mt-6 font-semibold tracking-wide"
                   >
                     건강구독 상담
@@ -104,6 +109,11 @@ export default function Navigation() {
           </div>
         </div>
       </div>
+      
+      <ConsultationDialog 
+        open={consultationOpen} 
+        onOpenChange={setConsultationOpen} 
+      />
     </nav>
   );
 }
