@@ -295,6 +295,12 @@ export default function HealthPackageSection() {
                               <div className="text-lg mb-2">
                                 {selectedPackage.type === 'premium' && '👑 '}총구독료
                               </div>
+                              <div className="text-base text-gray-500 line-through mb-1">
+                                정가 {calculatePackageStats(packageProducts).totalPrice.toLocaleString('ko-KR')}원
+                              </div>
+                              <div className="text-sm text-red-600 font-semibold mb-2">
+                                -10% 할인
+                              </div>
                               <div className="text-xl">
                                 월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString('ko-KR')}원 ({calculatePackageStats(packageProducts).totalPoints}P)
                               </div>
