@@ -89,6 +89,12 @@ export default function SubscriptionSection() {
       color: "bg-cyan-600"
     },
     {
+      icon: "⚡",
+      title: "빠른 캐쉬백",
+      description: "구독시작후 4명 구독소개 후 13주 동안 최대 90만원 캐쉬백\n(빠른 무료구독 전환가능)",
+      color: "bg-yellow-600"
+    },
+    {
       icon: "🔄",
       title: "자동 수익 구조",
       description: "한 번 구축된 네트워크를 통한 자동화된 수익 창출 시스템",
@@ -218,7 +224,7 @@ export default function SubscriptionSection() {
                       </div>
                       <div>
                         <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                        <p className="text-gray-600">{benefit.description}</p>
+                        <p className="text-gray-600 whitespace-pre-line">{benefit.description}</p>
                       </div>
                     </div>
                   );
