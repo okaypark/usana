@@ -208,7 +208,7 @@ export default function HealthPackageSection() {
                     <h4 className={`text-3xl sm:text-4xl md:text-4xl lg:text-4xl xl:text-5xl font-extrabold ${colors.text} mb-8 tracking-tight`}>{theme}</h4>
                     
                     {/* 패키지 타입들 */}
-                    <div className="flex gap-4 justify-center items-center flex-col md:flex-row">
+                    <div className="flex gap-4 justify-center items-center flex-wrap md:flex-row">
                       {themePackages
                         .sort((a, b) => a.type.localeCompare(b.type))
                         .map((pkg) => {
