@@ -234,10 +234,10 @@ export default function HealthPackageSection() {
                                 boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                               } : {}}
                             >
-                              <div className="text-sm">
+                              <div className="text-base">
                                 {pkg.type === 'premium' && '✨ '}{getTypeDisplayName(pkg.type)}{pkg.type === 'premium' && ' ✨'}
                               </div>
-                              <div className="text-xs mt-1">
+                              <div className="text-sm mt-1">
                                 월 {stats.totalPoints || 0}P
                               </div>
                             </div>
