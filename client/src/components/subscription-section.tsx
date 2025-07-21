@@ -49,7 +49,7 @@ export default function SubscriptionSection() {
     {
       icon: Calendar,
       title: "무한단계 포인트적립",
-      description: "직추천 1명으로 인해 늘어난 인프라에 대한 무한단계 포인트 적립 (5000P MAXOUT)",
+      description: "직추천 1명으로 인해 늘어난 인프라에 대한 무한단계 포인트 적립\n(MAXOUT 5000P)",
       color: "bg-indigo-600"
     },
     {
@@ -136,7 +136,7 @@ export default function SubscriptionSection() {
                       </div>
                       <div>
                         <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                        <p className="text-gray-600">{benefit.description}</p>
+                        <p className="text-gray-600 whitespace-pre-line">{benefit.description}</p>
                       </div>
                     </div>
                   );
