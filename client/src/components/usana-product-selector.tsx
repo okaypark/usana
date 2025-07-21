@@ -21,17 +21,19 @@ interface UsanaProductSelectorProps {
   isOpen: boolean;
   onClose: () => void;
   onSelect: (product: UsanaProduct) => void;
+  onSelectMultiple?: (products: UsanaProduct[]) => void;
 }
 
 const CATEGORIES = ['뉴트리션', '셀라비브', '바디&헤어', '유사나기프트팩'];
 
-export default function UsanaProductSelector({ isOpen, onClose, onSelect }: UsanaProductSelectorProps) {
+export default function UsanaProductSelector({ isOpen, onClose, onSelect, onSelectMultiple }: UsanaProductSelectorProps) {
   const [products, setProducts] = useState<UsanaProduct[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<UsanaProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>(CATEGORIES);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState<Set<string>>(new Set());
   
   const { toast } = useToast();
 
@@ -105,7 +107,7 @@ export default function UsanaProductSelector({ isOpen, onClose, onSelect }: Usan
     );
   };
 
-  // 제품 선택 처리
+  // 제품 선택 처리 (단일)
   const handleSelectProduct = (product: UsanaProduct) => {
     onSelect(product);
     onClose();
@@ -114,6 +116,43 @@ export default function UsanaProductSelector({ isOpen, onClose, onSelect }: Usan
       description: `${product.name}이(가) 선택되었습니다.`,
       duration: 3000,
     });
+  };
+
+  // 체크박스 선택 처리
+  const toggleProductSelection = (productCode: string) => {
+    setSelectedProducts(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(productCode)) {
+        newSet.delete(productCode);
+      } else {
+        newSet.add(productCode);
+      }
+      return newSet;
+    });
+  };
+
+  // 전체 선택/해제
+  const toggleAllSelection = () => {
+    if (selectedProducts.size === filteredProducts.length) {
+      setSelectedProducts(new Set());
+    } else {
+      setSelectedProducts(new Set(filteredProducts.map(p => p.productCode)));
+    }
+  };
+
+  // 다중 선택된 제품 추가
+  const handleSelectMultipleProducts = () => {
+    const selectedProductList = products.filter(p => selectedProducts.has(p.productCode));
+    if (selectedProductList.length > 0 && onSelectMultiple) {
+      onSelectMultiple(selectedProductList);
+      setSelectedProducts(new Set());
+      onClose();
+      toast({
+        title: "제품 선택 완료",
+        description: `${selectedProductList.length}개 제품이 선택되었습니다.`,
+        duration: 3000,
+      });
+    }
   };
 
   // 다이얼로그가 열릴 때 제품 데이터 가져오기
@@ -198,9 +237,32 @@ export default function UsanaProductSelector({ isOpen, onClose, onSelect }: Usan
               </div>
             </div>
 
-            {/* 결과 요약 */}
-            <div className="text-sm text-gray-600">
-              총 {filteredProducts.length}개 제품 (전체 {products.length}개 중)
+            {/* 결과 요약 및 다중 선택 컨트롤 */}
+            <div className="flex justify-between items-center">
+              <div className="text-sm text-gray-600">
+                총 {filteredProducts.length}개 제품 (전체 {products.length}개 중)
+                {selectedProducts.size > 0 && ` | ${selectedProducts.size}개 선택됨`}
+              </div>
+              {onSelectMultiple && filteredProducts.length > 0 && (
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={toggleAllSelection}
+                  >
+                    {selectedProducts.size === filteredProducts.length ? '전체 해제' : '전체 선택'}
+                  </Button>
+                  {selectedProducts.size > 0 && (
+                    <Button
+                      size="sm"
+                      onClick={handleSelectMultipleProducts}
+                      className="bg-blue-600 hover:bg-blue-700"
+                    >
+                      선택한 {selectedProducts.size}개 추가
+                    </Button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -218,22 +280,49 @@ export default function UsanaProductSelector({ isOpen, onClose, onSelect }: Usan
             ) : (
               <div className="grid gap-2">
                 {filteredProducts.map((product) => (
-                  <Card key={product.productCode} className="cursor-pointer hover:shadow-md transition-shadow">
-                    <CardContent className="p-4" onClick={() => handleSelectProduct(product)}>
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <Badge variant="outline" className={getCategoryColor(product.category)}>
-                              {product.category}
-                            </Badge>
-                            <span className="text-xs text-gray-500">#{product.productCode}</span>
+                  <Card key={product.productCode} className="hover:shadow-md transition-shadow">
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3">
+                        {/* 체크박스 (다중 선택 모드일 때만) */}
+                        {onSelectMultiple && (
+                          <Checkbox
+                            checked={selectedProducts.has(product.productCode)}
+                            onCheckedChange={() => toggleProductSelection(product.productCode)}
+                          />
+                        )}
+                        
+                        {/* 제품 정보 */}
+                        <div 
+                          className="flex-1 cursor-pointer" 
+                          onClick={() => !onSelectMultiple && handleSelectProduct(product)}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <Badge variant="outline" className={getCategoryColor(product.category)}>
+                                  {product.category}
+                                </Badge>
+                                <span className="text-xs text-gray-500">#{product.productCode}</span>
+                              </div>
+                              <h4 className="font-medium text-sm">{product.name}</h4>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-sm font-semibold">{product.price.toLocaleString()}원</div>
+                              <div className="text-xs text-gray-500">{product.points}점</div>
+                            </div>
                           </div>
-                          <h4 className="font-medium text-sm">{product.name}</h4>
                         </div>
-                        <div className="text-right">
-                          <div className="text-sm font-semibold">{product.price.toLocaleString()}원</div>
-                          <div className="text-xs text-gray-500">{product.points}점</div>
-                        </div>
+                        
+                        {/* 단일 선택 버튼 (단일 선택 모드일 때만) */}
+                        {!onSelectMultiple && (
+                          <Button
+                            size="sm"
+                            onClick={() => handleSelectProduct(product)}
+                            className="bg-blue-600 hover:bg-blue-700"
+                          >
+                            선택
+                          </Button>
+                        )}
                       </div>
                     </CardContent>
                   </Card>

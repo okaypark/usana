@@ -30,6 +30,7 @@ export default function AdminPage() {
   const [isUsanaProductSelectorOpen, setIsUsanaProductSelectorOpen] = useState(false);
   const [editingFaq, setEditingFaq] = useState<Faq | null>(null);
   const [isFaqDialogOpen, setIsFaqDialogOpen] = useState(false);
+  const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -751,7 +752,6 @@ export default function AdminPage() {
                               <SelectContent>
                                 <SelectItem value="standard">스탠다드</SelectItem>
                                 <SelectItem value="premium">프리미엄</SelectItem>
-                                <SelectItem value="deluxe">디럭스</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
@@ -858,7 +858,6 @@ export default function AdminPage() {
                                           <SelectContent>
                                             <SelectItem value="standard">스탠다드</SelectItem>
                                             <SelectItem value="premium">프리미엄</SelectItem>
-                                            <SelectItem value="deluxe">디럭스</SelectItem>
                                           </SelectContent>
                                         </Select>
                                       </div>
@@ -1419,6 +1418,36 @@ export default function AdminPage() {
               setIsUsanaProductSelectorOpen(false);
             } else {
               console.error('currentPackage가 없습니다:', { selectedTheme, selectedType });
+            }
+          }}
+          onSelectMultiple={(products) => {
+            // 다중 선택된 유사나 제품들을 구독패키지에 추가
+            if (currentPackage && products.length > 0) {
+              console.log('다중 유사나 제품 추가 시도:', {
+                packageId: currentPackage.id,
+                productCount: products.length,
+                theme: currentPackage.theme,
+                type: currentPackage.type
+              });
+              
+              // 각 제품을 순차적으로 추가
+              products.forEach((product, index) => {
+                setTimeout(() => {
+                  createProductMutation.mutate({
+                    packageId: currentPackage.id,
+                    productName: product.name,
+                    productDescription: `${product.category} - 제품코드: ${product.productCode}`,
+                    price: `${product.price.toLocaleString()}원`,
+                    pointValue: product.points,
+                    quantity: 1, // 기본 수량 1개
+                    order: index
+                  });
+                }, index * 100); // 100ms 간격으로 순차 실행
+              });
+              
+              setIsUsanaProductSelectorOpen(false);
+            } else {
+              console.error('currentPackage가 없거나 선택된 제품이 없습니다');
             }
           }}
         />
