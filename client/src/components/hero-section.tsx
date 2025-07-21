@@ -102,7 +102,7 @@ export default function HeroSection() {
               {showExpandedContent && (
                 <div className="mt-4 animate-fade-in-up">
                   <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-6 shadow-xl text-center">
-                    <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed font-medium">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white leading-relaxed font-medium">
                       <span className="text-usana-blue-400 font-bold">유사나 프리미엄 영양제, 스킨케어 구독</span>으로<br />
                       건강해지면서 소비자에서<br />
                       매주 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">주급 10만~ 50만원</span>을 받는<br />
@@ -137,7 +137,7 @@ export default function HeroSection() {
             {showSuccessContent && (
               <div className="mt-4 animate-fade-in-up">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-6 shadow-xl text-center">
-                  <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed font-medium">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white leading-relaxed font-medium">
                     전세계 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">45만명</span>이 스마트한 브랜드 파트너로<br />
                     <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
                   </p>
