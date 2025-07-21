@@ -34,12 +34,6 @@ export default function SubscriptionSection() {
   const benefits2 = [
     {
       icon: "✈️",
-      title: "해외 연수 여행",
-      description: "매년 성과에 따른 해외 연수 여행 기회 제공",
-      color: "bg-purple-600"
-    },
-    {
-      icon: "🏆",
       title: "인센티브 여행",
       description: "목표 달성 시 가족과 함께하는 프리미엄 여행 패키지",
       color: "bg-orange-600"
