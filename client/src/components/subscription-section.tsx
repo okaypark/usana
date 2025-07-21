@@ -1,9 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Percent, Truck, Calendar, UserCheck } from "lucide-react";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useCallback } from "react";
 import healthSubscriptionImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522576482.png";
+import travelBrazil from "@assets/유사나 인센티브여행 브라질_1753085923560.png";
+import travelDubai from "@assets/유사나 인센티브여행 두바이_1753085923560.png";
+import travelVietnam from "@assets/유사나 인센티브여행 베트남_1753085923560.png";
+import travelJapan from "@assets/유사나 인센티브여행 일본_1753085923560.png";
 
 export default function SubscriptionSection() {
+  const travelImages = [
+    travelBrazil,
+    travelDubai,
+    travelVietnam,
+    travelJapan
+  ];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const interval = setInterval(() => {
+      scrollNext();
+    }, 3000); // 3초마다 자동 슬라이드
+
+    return () => clearInterval(interval);
+  }, [emblaApi, scrollNext]);
+
   const benefits1 = [
     {
       icon: Percent,
@@ -137,12 +166,20 @@ export default function SubscriptionSection() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-purple-100 to-orange-100 rounded-2xl p-8 shadow-xl">
-                <img
-                  src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600"
-                  alt="여행 혜택"
-                  className="w-full h-auto object-cover rounded-lg"
-                />
+              <div className="bg-gradient-to-br from-purple-100 to-orange-100 rounded-2xl p-8 shadow-xl overflow-hidden">
+                <div className="embla" ref={emblaRef}>
+                  <div className="embla__container flex">
+                    {travelImages.map((image, index) => (
+                      <div className="embla__slide flex-[0_0_100%] min-w-0" key={index}>
+                        <img
+                          src={image}
+                          alt={`유사나 인센티브 여행 ${index + 1}`}
+                          className="w-full h-auto object-cover rounded-lg"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
                 <div className="absolute top-4 left-4 bg-white rounded-lg px-3 py-2 shadow-md">
                   <span className="text-sm font-semibold text-purple-600">✈️ 해외 여행</span>
                 </div>
