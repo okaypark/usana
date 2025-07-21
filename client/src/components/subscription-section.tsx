@@ -504,7 +504,7 @@ export default function SubscriptionSection() {
                       }`}
                       onClick={() => handlePackageClick('standard', '해독다이어트구독')}
                     >
-                      스탠다드<br />월 {calculatePackageStats(packageProductsData['다이어트해독구독_standard'] || []).totalPoints}P
+                      스탠다드<br />월 {calculatePackageStats(packageProductsData['해독다이어트구독_standard'] || []).totalPoints}P
                     </div>
                     <div 
                       className={`bg-gradient-to-r from-amber-400 via-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-full font-bold shadow-2xl text-center cursor-pointer transition-all duration-300 border-2 border-amber-300 ${
@@ -518,7 +518,7 @@ export default function SubscriptionSection() {
                         boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                       }}
                     >
-                      ✨ 프리미엄 ✨<br />월 {calculatePackageStats(packageProductsData['다이어트해독구독_premium'] || []).totalPoints}P
+                      ✨ 프리미엄 ✨<br />월 {calculatePackageStats(packageProductsData['해독다이어트구독_premium'] || []).totalPoints}P
                     </div>
                   </div>
                   
