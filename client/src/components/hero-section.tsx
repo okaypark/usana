@@ -93,20 +93,20 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-2xl mt-6 sm:mt-4 lg:mt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mt-6 sm:mt-4 lg:mt-2">
               <Button
                 onClick={() => scrollToSection("contact")}
-                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-10 py-4 text-lg font-semibold h-auto shadow-xl hover:shadow-2xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-6 py-3 text-base font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
-                <MessageCircle className="mr-3 h-5 w-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+                <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독 알아보기
               </Button>
               <Button
                 onClick={() => scrollToSection("products")}
                 variant="outline"
-                className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-10 py-4 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-6 py-3 text-base font-semibold h-auto backdrop-blur-sm bg-white/5 hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
-                <Play className="mr-3 h-5 w-5 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+                <Play className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독 제품보기
               </Button>
             </div>

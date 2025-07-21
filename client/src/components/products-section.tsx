@@ -114,11 +114,11 @@ export default function ProductsSection() {
                     className={`w-full ${product.buttonColor} text-white font-semibold mt-auto`}
                     onClick={() => {
                       if (index === 0) {
-                        window.open('https://hyunjin.usana.com/s/vhlME3', '_blank');
+                        window.open('https://okay7.usana.com/s/1m1hw', '_blank');
                       } else if (index === 1) {
-                        window.open('https://hyunjin.usana.com/s/1wUH21', '_blank');
+                        window.open('https://okay7.usana.com/s/J2UF_', '_blank');
                       } else if (index === 2) {
-                        window.open('https://hyunjin.usana.com/s/Yr7NY', '_blank');
+                        window.open('https://okay7.usana.com/s/zraMu', '_blank');
                       }
                     }}
                   >
