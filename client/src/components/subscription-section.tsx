@@ -174,7 +174,7 @@ export default function SubscriptionSection() {
                         <img
                           src={image}
                           alt={`유사나 인센티브 여행 ${index + 1}`}
-                          className="w-full h-80 object-cover rounded-lg"
+                          className="w-full h-auto object-cover rounded-lg"
                         />
                       </div>
                     ))}
