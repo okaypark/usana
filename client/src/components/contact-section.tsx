@@ -325,7 +325,10 @@ export default function ContactSection() {
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h3>
                 <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
+                  <div 
+                    className="flex items-center space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                    onClick={() => callPhone(contactInfo.phone)}
+                  >
                     <div className="bg-usana-blue-500 p-3 rounded-full">
                       <Phone className="text-white h-6 w-6" />
                     </div>
@@ -336,7 +339,10 @@ export default function ContactSection() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-4">
+                  <div 
+                    className="flex items-center space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                    onClick={openKakaoChat}
+                  >
                     <div className="bg-yellow-400 p-2 rounded-full flex items-center justify-center">
                       <img 
                         src={kakaoTalkIcon} 
