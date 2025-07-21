@@ -6,10 +6,18 @@ import usanaMarketingBg from "@assets/건강구독마케팅-네트워크마케�
 import usanaMarketingMobileBg from "@assets/스크린샷 2025-07-20 143223_1752989552583.png";
 
 export default function HeroSection() {
-  const [showExpandedContent, setShowExpandedContent] = useState(false);
+  const [showExpandedContent, setShowExpandedContent] = useState(true); // 처음에 자동으로 표시
   const [showSuccessContent, setShowSuccessContent] = useState(false);
 
-  // Auto-hide expanded content after 5 seconds
+  // 페이지 로딩시 자동으로 안내문구를 3초간 표시
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowExpandedContent(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Auto-hide expanded content after 5 seconds when manually clicked
   useEffect(() => {
     if (showExpandedContent) {
       const timer = setTimeout(() => {
