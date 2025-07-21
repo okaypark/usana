@@ -30,63 +30,56 @@ export async function scrapeUsanaProducts(url: string = 'https://usanaq.com/mobi
     const htmlText = $.text();
     console.log('HTML 텍스트 샘플:', htmlText.substring(0, 500));
     
-    // 다양한 방법으로 테이블 데이터 추출 시도
+    // 로그에서 확인된 실제 HTML 구조에 맞게 파싱
     let foundProducts = false;
     
-    // 방법 1: 기존 방식
-    $('table tr').each((index, element) => {
-      const $row = $(element);
-      const cells = $row.find('td');
+    // 먼저 카테고리 행 찾기 (th 태그에 배경색이 navy인 행들)
+    $('tr').each((trIndex, trElement) => {
+      const $row = $(trElement);
       
-      if (cells.length >= 6) {
-        console.log(`행 ${index}: ${cells.length}개 셀`, cells.map((i, el) => $(el).text().trim()).get());
-      }
-      
-      // 카테고리 행 확인 - 다양한 패턴 체크
-      if (cells.length === 1 || (cells.length > 1 && cells.first().attr('colspan'))) {
-        const categoryText = cells.first().text().trim();
-        console.log('카테고리 후보:', categoryText);
+      // 카테고리 행 확인 (style에 background-color:navy가 있거나 th 태그가 있는 행)
+      const categoryHeader = $row.find('th[colspan="7"]');
+      if (categoryHeader.length > 0) {
+        const categoryText = categoryHeader.text().trim();
+        console.log('카테고리 발견:', categoryText);
         
-        if (categoryText.includes('뉴트리션') || categoryText === '뉴트리션') {
+        if (categoryText === '뉴트리션') {
           currentCategory = '뉴트리션';
-          console.log('뉴트리션 카테고리 설정');
-        } else if (categoryText.includes('셀라비브')) {
-          currentCategory = '셀라비브';
-          console.log('셀라비브 카테고리 설정');
-        } else if (categoryText.includes('바디') && categoryText.includes('헤어')) {
+        } else if (categoryText === '셀라비브') {
+          currentCategory = '셀라비브';  
+        } else if (categoryText.includes('바디') || categoryText.includes('헤어')) {
           currentCategory = '바디&헤어';
-          console.log('바디&헤어 카테고리 설정');
-        } else if (categoryText.includes('유사나') && categoryText.includes('기프트')) {
+        } else if (categoryText.includes('기프트') || categoryText.includes('비즈니스')) {
           currentCategory = '유사나기프트팩';
-          console.log('유사나기프트팩 카테고리 설정');
-        } else if (categoryText.includes('뉴트리션') === false && 
-                   categoryText.includes('셀라비브') === false &&
-                   categoryText.includes('바디') === false &&
-                   categoryText.includes('기프트') === false &&
-                   categoryText.length > 0) {
-          currentCategory = ''; // 원하지 않는 카테고리
-          console.log('카테고리 초기화:', categoryText);
+        } else if (categoryText.includes('프로모션')) {
+          currentCategory = '프로모션';
+        } else {
+          currentCategory = categoryText; // 기타 카테고리 그대로 사용
         }
-        return;
+        return; // 다음 행으로
       }
       
-      // 제품 데이터 행 처리 - 6개 이상의 열이 있는 행
-      if (cells.length >= 6 && currentCategory) {
+      // 제품 데이터 행 처리 (7개 열: 품번, 제품명, 가격, 점수, +, 수량, -)
+      const cells = $row.find('td');
+      if (cells.length === 7 && currentCategory) {
         const productCode = $(cells[0]).text().trim();
         const name = $(cells[1]).text().trim();
         const priceText = $(cells[2]).text().trim().replace(/,/g, '').replace(/[^0-9]/g, '');
         const pointsText = $(cells[3]).text().trim().replace(/[^0-9]/g, '');
         
-        console.log('제품 후보:', {
-          productCode, name, priceText, pointsText, category: currentCategory
-        });
-        
-        // 유효한 데이터인지 확인
-        if (productCode && name && priceText && pointsText) {
-          const price = parseInt(priceText);
-          const points = parseInt(pointsText);
+        // 헤더 행이 아니고 실제 제품 데이터인지 확인
+        if (productCode && name && 
+            productCode !== '품번' && name !== '제품명' && 
+            !productCode.includes('품번') && !name.includes('제품명')) {
           
-          if (!isNaN(price) && !isNaN(points) && price > 0 && points >= 0) {
+          console.log('제품 후보:', {
+            productCode, name, priceText, pointsText, category: currentCategory
+          });
+          
+          const price = parseInt(priceText) || 0;
+          const points = parseInt(pointsText) || 0;
+          
+          if (productCode.length > 0 && name.length > 0 && price >= 0) {
             products.push({
               productCode,
               category: currentCategory,
