@@ -86,6 +86,11 @@ export default function AdminPage() {
     enabled: isAuthenticated === true,
   });
 
+  const { data: adminListData, refetch: refetchAdmins } = useQuery({
+    queryKey: ["/api/admin/list"],
+    enabled: isAuthenticated === true
+  });
+
   // 테마별 그룹화
   const themes = Array.from(new Set(packages.map(pkg => pkg.theme)));
   
@@ -211,12 +216,13 @@ export default function AdminPage() {
     console.log('전송 데이터:', { email, name, password });
 
     try {
-      const result = await apiRequest("/api/admin/add", "POST", {
+      const response = await apiRequest("/api/admin/add", "POST", {
         email,
         name,
         password
-      }) as any;
+      });
 
+      const result = await response.json();
       console.log('관리자 추가 응답:', result);
 
       if (result && result.success) {
@@ -228,6 +234,8 @@ export default function AdminPage() {
         setIsAddAdminDialogOpen(false);
         // 폼 리셋
         (e.target as HTMLFormElement).reset();
+        // 관리자 목록 새로고침
+        refetchAdmins();
       } else {
         toast({
           title: "추가 실패",
@@ -238,12 +246,23 @@ export default function AdminPage() {
       }
     } catch (error: any) {
       console.error('관리자 추가 에러:', error);
-      toast({
-        title: "오류 발생",
-        description: error.message || "관리자 추가 중 오류가 발생했습니다.",
-        variant: "destructive",
-        duration: 3000,
-      });
+      // 409 에러 (이미 존재하는 이메일)인 경우 특별 처리
+      if (error.message.includes('409:')) {
+        const errorData = JSON.parse(error.message.split('409: ')[1]);
+        toast({
+          title: "추가 실패",
+          description: errorData.message || "이미 등록된 이메일입니다.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      } else {
+        toast({
+          title: "오류 발생",
+          description: error.message || "관리자 추가 중 오류가 발생했습니다.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      }
     } finally {
       setIsAddingAdmin(false);
     }
@@ -415,27 +434,43 @@ export default function AdminPage() {
                 </Card>
               </div>
 
-              {/* 현재 관리자 정보 */}
+              {/* 등록된 관리자 목록 */}
               <Card className="border-gray-200 shadow-md">
                 <CardHeader className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-t-lg">
                   <CardTitle className="flex items-center gap-2 text-gray-700">
                     <Users className="w-5 h-5" />
-                    현재 관리자 정보
+                    등록된 관리자 목록
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center">
-                        <Users className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">박현진</h3>
-                        <p className="text-sm text-gray-600">okaypark7@gmail.com</p>
-                        <p className="text-xs text-blue-600 mt-1">유사나 에메랄드 디렉터</p>
-                      </div>
+                  {adminListData?.admins ? (
+                    <div className="space-y-3">
+                      {adminListData.admins.map((admin: any, index: number) => (
+                        <div key={admin.id} className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center">
+                              <span className="text-white font-semibold text-sm">{index + 1}</span>
+                            </div>
+                            <div className="flex-1">
+                              <h3 className="font-semibold text-gray-900">{admin.name}</h3>
+                              <p className="text-sm text-gray-600">{admin.email}</p>
+                              <p className="text-xs text-blue-600 mt-1">
+                                {new Date(admin.createdAt).toLocaleDateString('ko-KR', {
+                                  year: 'numeric',
+                                  month: 'long',
+                                  day: 'numeric'
+                                })} 가입
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="text-center py-8 text-gray-500">
+                      관리자 정보를 불러오는 중...
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </TabsContent>

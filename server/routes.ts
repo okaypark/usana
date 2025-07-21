@@ -270,6 +270,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 관리자 목록 조회 API
+  app.get("/api/admin/list", requireAdminAuth, async (req, res) => {
+    try {
+      const admins = await storage.getAllAdmins();
+      res.json({
+        success: true,
+        admins: admins.map(admin => ({
+          id: admin.id,
+          email: admin.email,
+          name: admin.name,
+          createdAt: admin.createdAt
+        }))
+      });
+    } catch (error) {
+      console.error('관리자 목록 조회 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "관리자 목록 조회 중 오류가 발생했습니다."
+      });
+    }
+  });
+
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {

@@ -49,6 +49,7 @@ export interface IStorage {
   
   // 관리자 관리
   getAdminByEmail(email: string): Promise<Admin | undefined>;
+  getAllAdmins(): Promise<Admin[]>;
   createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin>;
   updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean>;
 }
@@ -323,6 +324,11 @@ export class DatabaseStorage implements IStorage {
   async getAdminByEmail(email: string): Promise<Admin | undefined> {
     const [admin] = await db.select().from(admins).where(eq(admins.email, email));
     return admin || undefined;
+  }
+
+  async getAllAdmins(): Promise<Admin[]> {
+    const adminList = await db.select().from(admins).orderBy(desc(admins.createdAt));
+    return adminList;
   }
 
   async createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin> {
