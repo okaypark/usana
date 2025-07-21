@@ -239,6 +239,10 @@ export default function SubscriptionSection() {
                             <>
                               소개인과 지인들의 매출에 따른 <span className="font-bold text-emerald-700">무한단계 포인트 적립</span>
                             </>
+                          ) : benefit.title === "자동 수익 구조" ? (
+                            <>
+                              한 번 구축된 네트워크를 통한 <span className="font-bold text-violet-700">자동화된 수익 창출 시스템</span>
+                            </>
                           ) : (
                             benefit.description
                           )}
