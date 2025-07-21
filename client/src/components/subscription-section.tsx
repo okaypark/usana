@@ -311,7 +311,7 @@ export default function SubscriptionSection() {
                   </div>
                   <div className="text-lg">
                     <div className="text-green-600 font-medium mb-1">스탠다드 월 100P~150P</div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full font-bold inline-block shadow-lg">
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
@@ -340,7 +340,7 @@ export default function SubscriptionSection() {
                   </div>
                   <div className="text-lg">
                     <div className="text-orange-600 font-medium mb-1">스탠다드 월 100P~150P</div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full font-bold inline-block shadow-lg">
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
@@ -369,7 +369,7 @@ export default function SubscriptionSection() {
                   </div>
                   <div className="text-lg">
                     <div className="text-pink-600 font-medium mb-1">스탠다드 월 100P~150P</div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full font-bold inline-block shadow-lg">
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
