@@ -833,7 +833,7 @@ export default function AdminPage() {
           onSelect={(product) => {
             // 선택된 유사나 제품을 구독패키지에 추가
             if (currentPackage) {
-              addProductMutation.mutate({
+              createProductMutation.mutate({
                 packageId: currentPackage.id,
                 productName: product.name,
                 productDescription: `${product.category} - 제품코드: ${product.productCode}`,
@@ -841,6 +841,7 @@ export default function AdminPage() {
                 pointValue: product.points,
                 order: 0
               });
+              setIsUsanaProductSelectorOpen(false);
             }
           }}
         />
