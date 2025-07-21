@@ -24,10 +24,16 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
     setIsLoading(true);
 
     try {
-      const result = await apiRequest("/api/admin/login", "POST", {
-        email,
-        password,
-      }) as any;
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include', // 쿠키 포함
+        body: JSON.stringify({ email, password }),
+      });
+      
+      const result = await response.json();
 
       if (result.success) {
         toast({

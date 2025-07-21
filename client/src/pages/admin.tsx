@@ -27,21 +27,24 @@ export default function AdminPage() {
   const queryClient = useQueryClient();
 
   // 인증 상태 확인
+  const checkAuth = async () => {
+    try {
+      const response = await fetch("/api/admin/status", {
+        credentials: 'include',
+        cache: 'no-cache'
+      });
+      const result = await response.json();
+      console.log('관리자 페이지 인증 확인:', result);
+      setIsAuthenticated(result.isAuthenticated);
+      return result.isAuthenticated;
+    } catch (error) {
+      console.error("인증 상태 확인 오류:", error);
+      setIsAuthenticated(false);
+      return false;
+    }
+  };
+  
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch("/api/admin/status", {
-          credentials: 'include',
-          cache: 'no-cache'
-        });
-        const result = await response.json();
-        console.log('관리자 페이지 인증 확인:', result);
-        setIsAuthenticated(result.isAuthenticated);
-      } catch (error) {
-        console.error("인증 상태 확인 오류:", error);
-        setIsAuthenticated(false);
-      }
-    };
     checkAuth();
   }, []);
 
@@ -200,7 +203,12 @@ export default function AdminPage() {
 
   // 인증되지 않은 경우 로그인 페이지 표시
   if (isAuthenticated === false) {
-    return <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />;
+    return <AdminLogin onLoginSuccess={async () => {
+      console.log('로그인 성공 - 인증 상태 재확인');
+      await new Promise(resolve => setTimeout(resolve, 100)); // 잠깐 대기
+      const authenticated = await checkAuth();
+      console.log('재확인된 인증 상태:', authenticated);
+    }} />;
   }
 
   // 패키지 데이터 로딩 중
