@@ -33,21 +33,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password } = req.body;
       
-      // 관리자 이메일 확인
-      const adminEmail = 'okaypark7@gmail.com';
-      if (email !== adminEmail) {
-        return res.status(401).json({
-          success: false,
-          message: "관리자 권한이 없습니다."
-        });
-      }
-      
       // 관리자 계정 정보 가져오기
       const admin = await storage.getAdminByEmail(email);
       if (!admin) {
         return res.status(401).json({
           success: false,
-          message: "관리자 계정을 찾을 수 없습니다."
+          message: "관리자 권한이 없습니다."
         });
       }
       
