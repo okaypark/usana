@@ -86,6 +86,158 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 패키지 관리 API
+  app.get("/api/packages", async (req, res) => {
+    try {
+      const packages = await storage.getPackages();
+      res.json(packages);
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to get packages" });
+    }
+  });
+
+  app.get("/api/packages/theme/:theme", async (req, res) => {
+    try {
+      const { theme } = req.params;
+      const packages = await storage.getPackagesByTheme(theme);
+      res.json(packages);
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to get packages by theme" });
+    }
+  });
+
+  app.get("/api/packages/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const pkg = await storage.getPackageById(id);
+      if (!pkg) {
+        return res.status(404).json({ success: false, message: "Package not found" });
+      }
+      
+      res.json(pkg);
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to get package" });
+    }
+  });
+
+  app.post("/api/packages", async (req, res) => {
+    try {
+      const packageData = req.body;
+      const pkg = await storage.createPackage(packageData);
+      res.json({ success: true, package: pkg });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to create package" });
+    }
+  });
+
+  app.put("/api/packages/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const packageData = req.body;
+      const pkg = await storage.updatePackage(id, packageData);
+      if (!pkg) {
+        return res.status(404).json({ success: false, message: "Package not found" });
+      }
+      
+      res.json({ success: true, package: pkg });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to update package" });
+    }
+  });
+
+  app.delete("/api/packages/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const success = await storage.deletePackage(id);
+      if (!success) {
+        return res.status(404).json({ success: false, message: "Package not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to delete package" });
+    }
+  });
+
+  // 패키지 제품 관리 API
+  app.get("/api/packages/:packageId/products", async (req, res) => {
+    try {
+      const packageId = parseInt(req.params.packageId, 10);
+      if (isNaN(packageId)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const products = await storage.getPackageProducts(packageId);
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to get package products" });
+    }
+  });
+
+  app.post("/api/packages/:packageId/products", async (req, res) => {
+    try {
+      const packageId = parseInt(req.params.packageId, 10);
+      if (isNaN(packageId)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const productData = { ...req.body, packageId };
+      const product = await storage.createPackageProduct(productData);
+      res.json({ success: true, product });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to create package product" });
+    }
+  });
+
+  app.put("/api/package-products/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid product ID" });
+      }
+      
+      const productData = req.body;
+      const product = await storage.updatePackageProduct(id, productData);
+      if (!product) {
+        return res.status(404).json({ success: false, message: "Product not found" });
+      }
+      
+      res.json({ success: true, product });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to update package product" });
+    }
+  });
+
+  app.delete("/api/package-products/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid product ID" });
+      }
+      
+      const success = await storage.deletePackageProduct(id);
+      if (!success) {
+        return res.status(404).json({ success: false, message: "Product not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to delete package product" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

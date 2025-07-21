@@ -1,4 +1,22 @@
-import { users, contacts, faqs, type User, type InsertUser, type Contact, type InsertContact, type Faq, type InsertFaq } from "@shared/schema";
+import {
+  users,
+  contacts,
+  faqs,
+  packages,
+  packageProducts,
+  type User,
+  type InsertUser,
+  type Contact,
+  type InsertContact,
+  type Faq,
+  type InsertFaq,
+  type Package,
+  type InsertPackage,
+  type PackageProduct,
+  type InsertPackageProduct,
+} from "@shared/schema";
+import { db } from "./db";
+import { eq, desc, asc } from "drizzle-orm";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -11,9 +29,23 @@ export interface IStorage {
   
   getFaqs(): Promise<Faq[]>;
   createFaq(faq: InsertFaq): Promise<Faq>;
+  
+  // 패키지 관리
+  getPackages(): Promise<Package[]>;
+  getPackagesByTheme(theme: string): Promise<Package[]>;
+  getPackageById(id: number): Promise<Package | undefined>;
+  createPackage(packageData: InsertPackage): Promise<Package>;
+  updatePackage(id: number, packageData: Partial<InsertPackage>): Promise<Package | undefined>;
+  deletePackage(id: number): Promise<boolean>;
+  
+  // 패키지 제품 관리
+  getPackageProducts(packageId: number): Promise<PackageProduct[]>;
+  createPackageProduct(productData: InsertPackageProduct): Promise<PackageProduct>;
+  updatePackageProduct(id: number, productData: Partial<InsertPackageProduct>): Promise<PackageProduct | undefined>;
+  deletePackageProduct(id: number): Promise<boolean>;
 }
 
-export class MemStorage implements IStorage {
+export class MemStorage {
   private users: Map<number, User>;
   private contacts: Map<number, Contact>;
   private faqs: Map<number, Faq>;
@@ -168,4 +200,116 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db.insert(users).values(insertUser).returning();
+    return user;
+  }
+
+  async createContact(contact: InsertContact): Promise<Contact> {
+    const [newContact] = await db.insert(contacts).values({
+      ...contact,
+      email: contact.email || null,
+      message: contact.message || null,
+    }).returning();
+    return newContact;
+  }
+
+  async getContacts(): Promise<Contact[]> {
+    return await db.select().from(contacts).orderBy(desc(contacts.createdAt));
+  }
+
+  async updateContactStatus(id: number, isContacted: boolean): Promise<Contact | undefined> {
+    const [updatedContact] = await db
+      .update(contacts)
+      .set({ isContacted })
+      .where(eq(contacts.id, id))
+      .returning();
+    return updatedContact || undefined;
+  }
+
+  async getFaqs(): Promise<Faq[]> {
+    return await db.select().from(faqs).orderBy(asc(faqs.order));
+  }
+
+  async createFaq(faq: InsertFaq): Promise<Faq> {
+    const [newFaq] = await db.insert(faqs).values(faq).returning();
+    return newFaq;
+  }
+
+  // 패키지 관리
+  async getPackages(): Promise<Package[]> {
+    return await db.select().from(packages).orderBy(asc(packages.theme), asc(packages.type));
+  }
+
+  async getPackagesByTheme(theme: string): Promise<Package[]> {
+    return await db.select().from(packages).where(eq(packages.theme, theme));
+  }
+
+  async getPackageById(id: number): Promise<Package | undefined> {
+    const [pkg] = await db.select().from(packages).where(eq(packages.id, id));
+    return pkg || undefined;
+  }
+
+  async createPackage(packageData: InsertPackage): Promise<Package> {
+    const [newPackage] = await db.insert(packages).values(packageData).returning();
+    return newPackage;
+  }
+
+  async updatePackage(id: number, packageData: Partial<InsertPackage>): Promise<Package | undefined> {
+    const [updatedPackage] = await db
+      .update(packages)
+      .set({ ...packageData, updatedAt: new Date() })
+      .where(eq(packages.id, id))
+      .returning();
+    return updatedPackage || undefined;
+  }
+
+  async deletePackage(id: number): Promise<boolean> {
+    // 먼저 연관된 제품들 삭제
+    await db.delete(packageProducts).where(eq(packageProducts.packageId, id));
+    // 패키지 삭제
+    const result = await db.delete(packages).where(eq(packages.id, id));
+    return (result.rowCount ?? 0) > 0;
+  }
+
+  // 패키지 제품 관리
+  async getPackageProducts(packageId: number): Promise<PackageProduct[]> {
+    return await db
+      .select()
+      .from(packageProducts)
+      .where(eq(packageProducts.packageId, packageId))
+      .orderBy(asc(packageProducts.order));
+  }
+
+  async createPackageProduct(productData: InsertPackageProduct): Promise<PackageProduct> {
+    const [newProduct] = await db.insert(packageProducts).values(productData).returning();
+    return newProduct;
+  }
+
+  async updatePackageProduct(id: number, productData: Partial<InsertPackageProduct>): Promise<PackageProduct | undefined> {
+    const [updatedProduct] = await db
+      .update(packageProducts)
+      .set(productData)
+      .where(eq(packageProducts.id, id))
+      .returning();
+    return updatedProduct || undefined;
+  }
+
+  async deletePackageProduct(id: number): Promise<boolean> {
+    const result = await db.delete(packageProducts).where(eq(packageProducts.id, id));
+    return (result.rowCount ?? 0) > 0;
+  }
+}
+
+export const storage = new DatabaseStorage();

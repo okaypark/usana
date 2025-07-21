@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Percent, Truck, Calendar, UserCheck } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import type { Package, PackageProduct } from "@shared/schema";
 import healthSubscriptionImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522576482.png";
 import travelBrazil from "@assets/유사나 인센티브여행 브라질_1753085923560.png";
 import travelDubai from "@assets/유사나 인센티브여행 두바이_1753085923560.png";
@@ -11,6 +13,21 @@ import travelJapan from "@assets/유사나 인센티브여행 일본_17530859235
 
 export default function SubscriptionSection() {
   const [selectedPackage, setSelectedPackage] = useState<{type: string, theme: string} | null>(null);
+  
+  // 패키지 데이터 조회
+  const { data: packages = [], isLoading } = useQuery<Package[]>({
+    queryKey: ['/api/packages'],
+  });
+  
+  // 선택된 패키지의 제품 정보 조회
+  const selectedPackageData = packages.find(pkg => 
+    selectedPackage && pkg.theme === selectedPackage.theme && pkg.type === selectedPackage.type
+  );
+  
+  const { data: packageProducts = [] } = useQuery<PackageProduct[]>({
+    queryKey: ['/api/packages', selectedPackageData?.id, 'products'],
+    enabled: !!selectedPackageData?.id,
+  });
   
   const travelImages = [
     travelBrazil,
@@ -77,66 +94,7 @@ export default function SubscriptionSection() {
     }
   ];
 
-  // 제품구성 데이터
-  const packageDetails = {
-    면역건강구독: {
-      standard: {
-        products: [
-          { name: "비타민 C", description: "면역력 강화 및 항산화 작용", price: "40P" },
-          { name: "아연", description: "면역세포 활성화", price: "30P" },
-          { name: "프로바이오틱스", description: "장 건강 및 면역력 증진", price: "50P" }
-        ],
-        totalPrice: "120P"
-      },
-      premium: {
-        products: [
-          { name: "비타민 C (고함량)", description: "프리미엄 면역력 강화", price: "60P" },
-          { name: "아연 + 셀레늄", description: "강화된 면역세포 활성화", price: "45P" },
-          { name: "프로바이오틱스 플러스", description: "장 건강 및 면역력 증진", price: "70P" },
-          { name: "에키네시아", description: "자연 면역력 부스터", price: "35P" }
-        ],
-        totalPrice: "210P"
-      }
-    },
-    해독다이어트구독: {
-      standard: {
-        products: [
-          { name: "화이버지", description: "식이섬유로 노폐물 배출", price: "45P" },
-          { name: "리셋", description: "간 해독 및 정화", price: "40P" },
-          { name: "뉴트리밀", description: "건강한 체중관리", price: "35P" }
-        ],
-        totalPrice: "120P"
-      },
-      premium: {
-        products: [
-          { name: "화이버지 플러스", description: "프리미엄 식이섬유", price: "65P" },
-          { name: "리셋 프로", description: "강화된 간 해독", price: "60P" },
-          { name: "뉴트리밀 골드", description: "프리미엄 체중관리", price: "55P" },
-          { name: "디톡스 컴플렉스", description: "체내 독소 완전 배출", price: "35P" }
-        ],
-        totalPrice: "215P"
-      }
-    },
-    피부건강구독: {
-      standard: {
-        products: [
-          { name: "셀라바이브", description: "피부 세포 재생", price: "50P" },
-          { name: "비타민 E", description: "피부 보습 및 탄력", price: "35P" },
-          { name: "코큐텐", description: "피부 노화 방지", price: "40P" }
-        ],
-        totalPrice: "125P"
-      },
-      premium: {
-        products: [
-          { name: "셀라바이브 골드", description: "프리미엄 피부 재생", price: "75P" },
-          { name: "비타민 E 컴플렉스", description: "강화된 피부 보습", price: "50P" },
-          { name: "코큐텐 플러스", description: "고급 노화 방지", price: "60P" },
-          { name: "콜라겐 부스터", description: "피부 탄력 극대화", price: "35P" }
-        ],
-        totalPrice: "220P"
-      }
-    }
-  };
+
 
   const handlePackageClick = (type: string, theme: string) => {
     if (selectedPackage?.type === type && selectedPackage?.theme === theme) {
@@ -408,7 +366,7 @@ export default function SubscriptionSection() {
                   </div>
                   
                   {/* 제품구성 상세 정보 */}
-                  {selectedPackage?.theme === '면역건강구독' && (
+                  {selectedPackage?.theme === '면역건강구독' && selectedPackageData && (
                     <div className={`mt-4 p-6 rounded-xl border-2 animate-in slide-in-from-top duration-300 ${
                       selectedPackage.type === 'premium' 
                         ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
@@ -418,11 +376,11 @@ export default function SubscriptionSection() {
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-green-800'
                         }`}>
-                          {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
+                          {selectedPackageData.name} 제품구성
                         </h5>
                       </div>
                       <div className="space-y-3">
-                        {packageDetails.면역건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
+                        {packageProducts.map((product, index) => (
                           <div key={index} className={`flex justify-between items-start p-4 rounded-lg border-2 ${
                             selectedPackage.type === 'premium' 
                               ? 'bg-white border-amber-200 shadow-md hover:shadow-lg transition-shadow' 
@@ -432,12 +390,12 @@ export default function SubscriptionSection() {
                               <div className={`font-semibold ${
                                 selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-green-800'
                               }`}>
-                                {selectedPackage.type === 'premium' && '🌟 '}{product.name}
+                                {selectedPackage.type === 'premium' && '🌟 '}{product.productName}
                               </div>
                               <div className={`text-sm mt-1 ${
                                 selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-green-600'
                               }`}>
-                                {product.description}
+                                {product.productDescription}
                               </div>
                             </div>
                             <div className={`font-bold text-lg ${
@@ -456,7 +414,7 @@ export default function SubscriptionSection() {
                             {selectedPackage.type === 'premium' && '👑 '}총 구독료
                           </span>
                           <span className="text-xl">
-                            {packageDetails.면역건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].totalPrice}
+                            {selectedPackageData.totalPrice}
                           </span>
                         </div>
                         {selectedPackage.type === 'premium' && (
@@ -519,7 +477,7 @@ export default function SubscriptionSection() {
                   </div>
                   
                   {/* 제품구성 상세 정보 */}
-                  {selectedPackage?.theme === '해독다이어트구독' && (
+                  {selectedPackage?.theme === '해독다이어트구독' && selectedPackageData && (
                     <div className={`mt-4 p-6 rounded-xl border-2 animate-in slide-in-from-top duration-300 ${
                       selectedPackage.type === 'premium' 
                         ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
@@ -529,11 +487,11 @@ export default function SubscriptionSection() {
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-orange-800'
                         }`}>
-                          {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
+                          {selectedPackageData.name} 제품구성
                         </h5>
                       </div>
                       <div className="space-y-3">
-                        {packageDetails.해독다이어트구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
+                        {packageProducts.map((product, index) => (
                           <div key={index} className={`flex justify-between items-start p-4 rounded-lg border-2 ${
                             selectedPackage.type === 'premium' 
                               ? 'bg-white border-amber-200 shadow-md hover:shadow-lg transition-shadow' 
@@ -543,12 +501,12 @@ export default function SubscriptionSection() {
                               <div className={`font-semibold ${
                                 selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-orange-800'
                               }`}>
-                                {selectedPackage.type === 'premium' && '🌟 '}{product.name}
+                                {selectedPackage.type === 'premium' && '🌟 '}{product.productName}
                               </div>
                               <div className={`text-sm mt-1 ${
                                 selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-orange-600'
                               }`}>
-                                {product.description}
+                                {product.productDescription}
                               </div>
                             </div>
                             <div className={`font-bold text-lg ${
@@ -567,7 +525,7 @@ export default function SubscriptionSection() {
                             {selectedPackage.type === 'premium' && '👑 '}총 구독료
                           </span>
                           <span className="text-xl">
-                            {packageDetails.해독다이어트구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].totalPrice}
+                            {selectedPackageData.totalPrice}
                           </span>
                         </div>
                         {selectedPackage.type === 'premium' && (
@@ -630,7 +588,7 @@ export default function SubscriptionSection() {
                   </div>
                   
                   {/* 제품구성 상세 정보 */}
-                  {selectedPackage?.theme === '피부건강구독' && (
+                  {selectedPackage?.theme === '피부건강구독' && selectedPackageData && (
                     <div className={`mt-4 p-6 rounded-xl border-2 animate-in slide-in-from-top duration-300 ${
                       selectedPackage.type === 'premium' 
                         ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
@@ -640,11 +598,11 @@ export default function SubscriptionSection() {
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-pink-800'
                         }`}>
-                          {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
+                          {selectedPackageData.name} 제품구성
                         </h5>
                       </div>
                       <div className="space-y-3">
-                        {packageDetails.피부건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
+                        {packageProducts.map((product, index) => (
                           <div key={index} className={`flex justify-between items-start p-4 rounded-lg border-2 ${
                             selectedPackage.type === 'premium' 
                               ? 'bg-white border-amber-200 shadow-md hover:shadow-lg transition-shadow' 
@@ -654,12 +612,12 @@ export default function SubscriptionSection() {
                               <div className={`font-semibold ${
                                 selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-pink-800'
                               }`}>
-                                {selectedPackage.type === 'premium' && '🌟 '}{product.name}
+                                {selectedPackage.type === 'premium' && '🌟 '}{product.productName}
                               </div>
                               <div className={`text-sm mt-1 ${
                                 selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-pink-600'
                               }`}>
-                                {product.description}
+                                {product.productDescription}
                               </div>
                             </div>
                             <div className={`font-bold text-lg ${
@@ -678,7 +636,7 @@ export default function SubscriptionSection() {
                             {selectedPackage.type === 'premium' && '👑 '}총 구독료
                           </span>
                           <span className="text-xl">
-                            {packageDetails.피부건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].totalPrice}
+                            {selectedPackageData.totalPrice}
                           </span>
                         </div>
                         {selectedPackage.type === 'premium' && (
