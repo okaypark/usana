@@ -10,11 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Phone, Mail, MessageCircle, Send, Clock } from "lucide-react";
+import { Phone, Mail, MessageCircle, Send, Clock, Users } from "lucide-react";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { openKakaoChat, callPhone } from "@/lib/utils";
+import kakaoTalkIcon from "@assets/카카오톡문의_1753107407844.png";
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -114,7 +115,8 @@ export default function ContactSection() {
   const contactInfo = {
     phone: "010-4259-5311",
     email: "okaypark7@gmail.com",
-    kakao: "holicotu"
+    kakao: "holicotu",
+    openChat: "유사나 건강구독 오픈채팅"
   };
 
   const operatingHours = [
@@ -334,8 +336,12 @@ export default function ContactSection() {
                   </div>
                   
                   <div className="flex items-center space-x-4">
-                    <div className="bg-green-500 p-3 rounded-full">
-                      <MessageCircle className="text-white h-6 w-6" />
+                    <div className="bg-yellow-400 p-2 rounded-full flex items-center justify-center">
+                      <img 
+                        src={kakaoTalkIcon} 
+                        alt="KakaoTalk" 
+                        className="h-8 w-8 object-contain"
+                      />
                     </div>
                     <div>
                       <p className="text-gray-600">카카오톡 상담</p>
@@ -344,6 +350,16 @@ export default function ContactSection() {
                     </div>
                   </div>
                   
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-orange-500 p-3 rounded-full">
+                      <Users className="text-white h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-gray-600">오픈채팅 문의</p>
+                      <p className="text-xl font-semibold text-gray-900">{contactInfo.openChat}</p>
+                      <p className="text-sm text-gray-500">24시간 언제든지</p>
+                    </div>
+                  </div>
 
                 </div>
               </CardContent>
