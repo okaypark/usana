@@ -55,7 +55,7 @@ export default function HeroSection() {
                 <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급받는</span><br />
                 <span className="text-white">스마트한 </span><span className="text-usana-blue-400 font-bold">브랜드 파트너</span>
               </h1>
-              <div className="inline-block mt-12 mb-2">
+              <div className="inline-block mt-12 mb-2 w-full flex justify-center sm:justify-start">
                 <div 
                   className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30 cursor-pointer hover:scale-105 hover:shadow-3xl transition-all duration-300 group animate-pulse-gentle shimmer-overlay"
                   onClick={() => setShowExpandedContent(!showExpandedContent)}
@@ -90,8 +90,8 @@ export default function HeroSection() {
             </div>
 
             
-            {/* Success Box - positioned below text, left aligned */}
-            <div className="mt-16 sm:mt-20 lg:mt-24 xl:mt-28 flex justify-start">
+            {/* Success Box - center aligned on mobile, left aligned on larger screens */}
+            <div className="mt-20 sm:mt-20 lg:mt-24 xl:mt-28 flex justify-center sm:justify-start">
               <div 
                 className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm group cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-300 animate-float-gentle"
                 onClick={() => setShowSuccessContent(true)}
