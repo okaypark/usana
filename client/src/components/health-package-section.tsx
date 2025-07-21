@@ -181,17 +181,19 @@ export default function HealthPackageSection() {
                           </div>
                         </div>
                       ))}
-                      <div className={`flex justify-between items-center p-4 rounded-lg font-bold border-3 ${
+                      <div className={`p-4 rounded-lg font-bold border-3 ${
                         selectedPackage.type === 'premium' 
                           ? 'bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-400 shadow-lg' 
                           : 'bg-green-100 text-green-800 border-green-300'
                       }`}>
-                        <span className="text-lg">
-                          {selectedPackage.type === 'premium' && '👑 '}총 구독료
-                        </span>
-                        <span className="text-xl">
-                          월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString()}원 ({calculatePackageStats(packageProducts).totalPoints}P)
-                        </span>
+                        <div className="text-center">
+                          <div className="text-lg mb-2">
+                            {selectedPackage.type === 'premium' && '👑 '}총구독료
+                          </div>
+                          <div className="text-xl">
+                            월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString()}원 ({calculatePackageStats(packageProducts).totalPoints}P)
+                          </div>
+                        </div>
                       </div>
                       {selectedPackage.type === 'premium' && (
                         <div className="mt-4 p-3 bg-gradient-to-r from-amber-400 to-yellow-500 text-white rounded-lg text-center">
@@ -225,7 +227,8 @@ export default function HealthPackageSection() {
                     }`}
                     onClick={() => handlePackageClick('standard', '해독다이어트구독')}
                   >
-                    스탠다드<br />월 {calculatePackageStats(packageProductsData['해독다이어트구독_standard'] || []).totalPoints}P
+                    <div className="text-sm">스탠다드</div>
+                    <div className="text-xs mt-1">월 {calculatePackageStats(packageProductsData['해독다이어트구독_standard'] || []).totalPoints}P</div>
                   </div>
                   <div 
                     className={`bg-gradient-to-r from-amber-400 via-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-full font-bold shadow-2xl text-center cursor-pointer transition-all duration-300 border-2 border-amber-300 ${
@@ -239,7 +242,8 @@ export default function HealthPackageSection() {
                       boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                     }}
                   >
-                    ✨ 프리미엄 ✨<br />월 {calculatePackageStats(packageProductsData['해독다이어트구독_premium'] || []).totalPoints}P
+                    <div className="text-sm">✨ 프리미엄 ✨</div>
+                    <div className="text-xs mt-1">월 {calculatePackageStats(packageProductsData['해독다이어트구독_premium'] || []).totalPoints}P</div>
                   </div>
                 </div>
                 

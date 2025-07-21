@@ -233,8 +233,12 @@ export default function HealthPackageSection() {
                                 boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                               } : {}}
                             >
-                              {pkg.type === 'premium' && '✨ '}{getTypeDisplayName(pkg.type)}{pkg.type === 'premium' && ' ✨'}<br />
-                              월 {stats.totalPoints || 0}P
+                              <div className="text-sm">
+                                {pkg.type === 'premium' && '✨ '}{getTypeDisplayName(pkg.type)}{pkg.type === 'premium' && ' ✨'}
+                              </div>
+                              <div className="text-xs mt-1">
+                                월 {stats.totalPoints || 0}P
+                              </div>
                             </div>
                           );
                         })}
@@ -281,17 +285,19 @@ export default function HealthPackageSection() {
                               </div>
                             </div>
                           ))}
-                          <div className={`flex justify-between items-center p-4 rounded-lg font-bold border-3 ${
+                          <div className={`p-4 rounded-lg font-bold border-3 ${
                             selectedPackage.type === 'premium' 
                               ? 'bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-400 shadow-lg' 
                               : `bg-${theme === '면역건강구독' ? 'green' : theme === '해독다이어트구독' ? 'orange' : 'pink'}-100 ${colors.text} border-${theme === '면역건강구독' ? 'green' : theme === '해독다이어트구독' ? 'orange' : 'pink'}-300`
                           }`}>
-                            <span className="text-lg">
-                              {selectedPackage.type === 'premium' && '👑 '}총 구독료
-                            </span>
-                            <span className="text-xl">
-                              월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString('ko-KR')}원 ({calculatePackageStats(packageProducts).totalPoints}P)
-                            </span>
+                            <div className="text-center">
+                              <div className="text-lg mb-2">
+                                {selectedPackage.type === 'premium' && '👑 '}총구독료
+                              </div>
+                              <div className="text-xl">
+                                월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString('ko-KR')}원 ({calculatePackageStats(packageProducts).totalPoints}P)
+                              </div>
+                            </div>
                           </div>
                           {selectedPackage.type === 'premium' && (
                             <div className="mt-4 p-3 bg-gradient-to-r from-amber-400 to-yellow-500 text-white rounded-lg text-center">
