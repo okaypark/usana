@@ -13,20 +13,20 @@ export default function SubscriptionSection() {
     },
     {
       icon: Truck,
-      title: "소개자 캐쉬백",
-      description: "2명 건강구독 소개 시 소개자 소비금액의 10%를 달러로 캐쉬백",
+      title: "패스트 보너스",
+      description: "직추천 가입자의 소비포인트의 10% $로 캐쉬백",
       color: "bg-green-600"
     },
     {
       icon: Calendar,
       title: "포인트 적립",
-      description: "소비자들의 소비포인트가 나에게 적립되어 캐쉬백으로 지급",
+      description: "하부 무한단계 소비자들의 소비포인트 누적 적립 (레버리지효과)",
       color: "bg-indigo-600"
     },
     {
       icon: UserCheck,
-      title: "다단계 수당",
-      description: "직접 소개한 사람의 지인 소개 시 그의 수당의 10% 추가 지급",
+      title: "매칭 보너스",
+      description: "직추천 가입자가 받는 후원수당의 10%를 추가 지급",
       color: "bg-teal-600"
     }
   ];
