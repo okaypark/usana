@@ -66,7 +66,10 @@ export default function Home() {
         <QnaSection />
       </div>
       
-
+      {/* 연락처 정보 섹션 */}
+      <div className="border-t-4 border-blue-200/50">
+        <ContactSection />
+      </div>
       
       <Footer />
       <FloatingActionButton />
