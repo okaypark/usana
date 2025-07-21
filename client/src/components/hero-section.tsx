@@ -47,9 +47,9 @@ export default function HeroSection() {
           <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-fade-in-up">
             <div className="space-y-4">
               <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full shadow-lg shadow-usana-blue-500/20">
-                <span className="text-usana-blue-300 text-xs sm:text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
+                <span className="text-usana-blue-300 text-sm sm:text-base md:text-lg font-bold tracking-wider uppercase">돈버는 영양제구독 마케팅</span>
               </div>
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold leading-tight sm:leading-relaxed tracking-tighter">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold leading-tight sm:leading-relaxed tracking-tighter">
                 <span className="text-white">프리미엄 영양제 구독하고</span><br />
                 <span className="text-usana-blue-400 font-light">2명에게 구독소개하면</span><br />
                 <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급받는</span><br />
@@ -62,7 +62,7 @@ export default function HeroSection() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-2xl"></div>
                   <div className="relative flex items-center justify-between">
-                    <p className="text-xs sm:text-sm md:text-base text-white font-bold tracking-wide">
+                    <p className="text-sm sm:text-base md:text-lg text-white font-bold tracking-wide">
                       프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!
                     </p>
                     {showExpandedContent ? (
@@ -78,7 +78,7 @@ export default function HeroSection() {
               {showExpandedContent && (
                 <div className="mt-4 animate-fade-in-up">
                   <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-6 shadow-xl text-center">
-                    <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed font-medium">
+                    <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed font-medium">
                       <span className="text-usana-blue-400 font-bold">유사나 프리미엄 영양제, 스킨케어 구독</span>으로<br />
                       건강해지면서 소비자에서<br />
                       매주 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">주급 10만~ 50만원</span>을 받는<br />
@@ -113,7 +113,7 @@ export default function HeroSection() {
             {showSuccessContent && (
               <div className="mt-4 animate-fade-in-up">
                 <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-6 shadow-xl text-center">
-                  <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed font-medium">
+                  <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed font-medium">
                     전세계 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">45만명</span>이 스마트한 브랜드 파트너로<br />
                     <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'주급'</span>을 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
                   </p>
@@ -124,7 +124,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mt-6 sm:mt-4 lg:mt-2">
               <Button
                 onClick={() => scrollToSection("business")}
-                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-6 py-3 text-base font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-6 py-3 text-lg font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독 알아보기
@@ -132,7 +132,7 @@ export default function HeroSection() {
               <Button
                 onClick={() => scrollToSection("products")}
                 variant="outline"
-                className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-6 py-3 text-base font-semibold h-auto backdrop-blur-sm bg-white/5 hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                className="border-2 border-usana-blue-400/50 text-white hover:bg-usana-blue-400 hover:text-usana-blue-900 px-6 py-3 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <Play className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독 제품보기
