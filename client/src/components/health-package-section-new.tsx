@@ -272,11 +272,7 @@ export default function HealthPackageSection() {
                                     </span>
                                   )}
                                 </div>
-                                <div className={`text-sm mt-1 ${
-                                  selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-gray-600'
-                                }`}>
-                                  {product.productDescription}
-                                </div>
+
                               </div>
                               <div className={`font-bold text-lg ${
                                 selectedPackage.type === 'premium' ? 'text-amber-700' : colors.text
