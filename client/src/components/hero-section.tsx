@@ -91,7 +91,7 @@ export default function HeroSection() {
 
             
             {/* Success Box - positioned below text, left aligned */}
-            <div className="mt-12 sm:mt-16 lg:mt-20 flex justify-start">
+            <div className="mt-16 sm:mt-20 lg:mt-24 xl:mt-28 flex justify-start">
               <div 
                 className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm group cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-300"
                 onClick={() => setShowSuccessContent(true)}
