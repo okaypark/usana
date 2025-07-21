@@ -24,18 +24,6 @@ export default function QnaSection() {
     setShowQuestionList(!showQuestionList);
   };
 
-  const scrollToQuestion = (index: number) => {
-    setOpenFaq(index);
-    setShowQuestionList(false);
-    // Smooth scroll to the question
-    setTimeout(() => {
-      document.getElementById(`faq-${index}`)?.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }, 100);
-  };
-
   if (isLoading) {
     return (
       <section id="qna" className="py-32">
@@ -88,34 +76,14 @@ export default function QnaSection() {
               />
             </Button>
             
-            {/* Collapsible Question List */}
-            {showQuestionList && (
-              <Card className="mt-4 bg-blue-50 border-blue-200">
-                <CardContent className="p-4">
-                  <div className="grid gap-2">
-                    {faqs.map((faq, index) => (
-                      <Button
-                        key={faq.id}
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => scrollToQuestion(index)}
-                        className="justify-start text-left hover:bg-blue-100 p-2 h-auto"
-                      >
-                        <Badge variant="outline" className="mr-3 flex-shrink-0 min-w-[24px] h-6">
-                          {index + 1}
-                        </Badge>
-                        <span className="text-sm text-gray-800 truncate">{faq.question}</span>
-                      </Button>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+
           </div>
         </div>
 
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
+        {/* FAQ Cards - Only show when toggle is active */}
+        {showQuestionList && (
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
             <Card 
               key={faq.id} 
               id={`faq-${index}`}
@@ -157,8 +125,9 @@ export default function QnaSection() {
                 </CardContent>
               )}
             </Card>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
