@@ -91,7 +91,7 @@ export default function SubscriptionSection() {
     {
       icon: "⚡",
       title: "빠른 캐쉬백",
-      description: "구독시작후 4명 구독소개 후 13주 동안 최대 90만원 캐쉬백\n(빠른 무료구독 전환가능)",
+      description: "구독시작후 4명 구독소개 후 13주 동안 최대 90만원 캐쉬백\n(빠른 무료구독 전환가능 - 200P 약45만 건강구독)",
       color: "bg-yellow-600"
     },
     {
