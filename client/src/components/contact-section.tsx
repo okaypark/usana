@@ -16,6 +16,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { openKakaoChat, callPhone } from "@/lib/utils";
 import kakaoTalkIcon from "@assets/카카오톡문의_1753107407844.png";
+import openChatIcon from "@assets/오픈채팅문의_1753107603498.png";
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -350,9 +351,16 @@ export default function ContactSection() {
                     </div>
                   </div>
                   
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-orange-500 p-3 rounded-full">
-                      <Users className="text-white h-6 w-6" />
+                  <div 
+                    className="flex items-center space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors" 
+                    onClick={() => window.open('https://open.kakao.com/o/sJeNT3fg', '_blank')}
+                  >
+                    <div className="bg-yellow-400 p-2 rounded-full flex items-center justify-center">
+                      <img 
+                        src={openChatIcon} 
+                        alt="Open Chat" 
+                        className="h-8 w-8 object-contain"
+                      />
                     </div>
                     <div>
                       <p className="text-gray-600">오픈채팅 문의</p>
