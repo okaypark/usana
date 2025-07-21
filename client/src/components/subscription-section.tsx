@@ -356,8 +356,11 @@ export default function SubscriptionSection() {
         <div className="mt-20">
           <div className="text-center mb-12">
             <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">건강구독 테마별 패키지</h3>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-2">
               개인 맞춤형 건강 목표에 따른 전문 구독 패키지로 더 스마트한 건강관리를 시작하세요
+            </p>
+            <p className="text-sm text-gray-500 max-w-xl mx-auto">
+              건강상담으로 개인최적맞춤 패키지로 내용 변경될 수 있습니다.
             </p>
           </div>
 
@@ -583,18 +586,6 @@ export default function SubscriptionSection() {
                 </div>
               </CardContent>
             </Card>
-
-            {/* 개인 건강상담 안내 */}
-            <div className="col-span-full mt-8 mb-4">
-              <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-2 border-blue-200">
-                <h4 className="text-xl font-bold text-blue-800 mb-2">
-                  💬 개인별 건강상담을 통해 최적의 패키지를 추천받으세요
-                </h4>
-                <p className="text-blue-600">
-                  전문 건강 상담사가 귀하의 건강 상태와 목표에 맞는 맞춤형 패키지를 제안해드립니다.
-                </p>
-              </div>
-            </div>
 
             {/* 피부건강구독 */}
             <Card className="bg-gradient-to-br from-pink-50 to-purple-50 border-2 border-pink-200 hover:border-pink-400 transition-all duration-300 hover:shadow-xl">
