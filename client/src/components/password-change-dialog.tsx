@@ -39,6 +39,7 @@ export default function PasswordChangeDialog({ children }: PasswordChangeDialogP
         title: "비밀번호 불일치",
         description: "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.",
         variant: "destructive",
+        duration: 3000, // 3초 후 자동 사라짐
       });
       return;
     }
@@ -48,6 +49,7 @@ export default function PasswordChangeDialog({ children }: PasswordChangeDialogP
         title: "비밀번호 조건 미충족",
         description: "새 비밀번호는 최소 8자 이상이어야 합니다.",
         variant: "destructive",
+        duration: 3000, // 3초 후 자동 사라짐
       });
       return;
     }
@@ -64,6 +66,7 @@ export default function PasswordChangeDialog({ children }: PasswordChangeDialogP
         toast({
           title: "비밀번호 변경 완료",
           description: "비밀번호가 성공적으로 변경되었습니다.",
+          duration: 3000, // 3초 후 자동 사라짐
         });
         setIsOpen(false);
         resetForm();
@@ -72,6 +75,7 @@ export default function PasswordChangeDialog({ children }: PasswordChangeDialogP
           title: "변경 실패",
           description: result.message || "비밀번호 변경에 실패했습니다.",
           variant: "destructive",
+          duration: 3000, // 3초 후 자동 사라짐
         });
       }
     } catch (error) {
@@ -79,6 +83,7 @@ export default function PasswordChangeDialog({ children }: PasswordChangeDialogP
         title: "오류 발생",
         description: "비밀번호 변경 중 오류가 발생했습니다.",
         variant: "destructive",
+        duration: 3000, // 3초 후 자동 사라짐
       });
     } finally {
       setIsLoading(false);

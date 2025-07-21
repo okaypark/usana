@@ -62,6 +62,7 @@ export default function AdminPage() {
         toast({
           title: "로그아웃 완료",
           description: "성공적으로 로그아웃되었습니다.",
+          duration: 3000, // 3초 후 자동 사라짐
         });
       }
     } catch (error) {
@@ -70,6 +71,7 @@ export default function AdminPage() {
         title: "로그아웃 오류",
         description: "로그아웃 중 오류가 발생했습니다.",
         variant: "destructive",
+        duration: 3000, // 3초 후 자동 사라짐
       });
     }
   };

@@ -39,6 +39,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
         toast({
           title: "로그인 성공",
           description: "관리자 페이지에 접속합니다.",
+          duration: 3000, // 3초 후 자동 사라짐
         });
         onLoginSuccess();
       } else {
@@ -46,6 +47,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
           title: "로그인 실패",
           description: result.message || "잘못된 계정 정보입니다.",
           variant: "destructive",
+          duration: 3000, // 3초 후 자동 사라짐
         });
       }
     } catch (error) {
@@ -53,6 +55,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
         title: "로그인 오류",
         description: "로그인 중 오류가 발생했습니다.",
         variant: "destructive",
+        duration: 3000, // 3초 후 자동 사라짐
       });
     } finally {
       setIsLoading(false);
