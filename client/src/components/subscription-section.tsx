@@ -271,7 +271,7 @@ export default function SubscriptionSection() {
               <Button 
                 className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
               >
-                수당 시스템 자세히 보기
+                추가수당 자세히 보기
               </Button>
             </CardContent>
           </Card>
