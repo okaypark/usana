@@ -157,7 +157,7 @@ export default function HealthPackageSection() {
                             ? 'bg-white border-amber-200 shadow-md hover:shadow-lg transition-shadow' 
                             : 'bg-white border-green-100'
                         }`}>
-                          <div className="flex-1">
+                          <div className="flex-1 text-left">
                             <div className={`font-semibold ${
                               selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-green-800'
                             }`}>
@@ -174,7 +174,7 @@ export default function HealthPackageSection() {
                               {product.productDescription}
                             </div>
                           </div>
-                          <div className={`font-bold text-lg ${
+                          <div className={`font-bold text-lg text-right ${
                             selectedPackage.type === 'premium' ? 'text-amber-700' : 'text-green-700'
                           }`}>
                             {product.price}

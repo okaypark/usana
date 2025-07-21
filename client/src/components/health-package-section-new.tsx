@@ -261,7 +261,7 @@ export default function HealthPackageSection() {
                                 ? 'bg-white border-amber-200 shadow-md hover:shadow-lg transition-shadow' 
                                 : 'bg-white border-gray-100'
                             }`}>
-                              <div className="flex-1">
+                              <div className="flex-1 text-left">
                                 <div className={`font-semibold ${
                                   selectedPackage.type === 'premium' ? 'text-amber-800' : colors.text
                                 }`}>
@@ -274,7 +274,7 @@ export default function HealthPackageSection() {
                                 </div>
 
                               </div>
-                              <div className={`font-bold text-lg ${
+                              <div className={`font-bold text-lg text-right ${
                                 selectedPackage.type === 'premium' ? 'text-amber-700' : colors.text
                               }`}>
                                 {parseInt(product.price.replace(/[^0-9]/g, '') || '0').toLocaleString('ko-KR')}원
