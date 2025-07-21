@@ -54,7 +54,7 @@ export default function FreeSubscriptionSection() {
             <span className="font-light">시작방법</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
-            간단한 4단계로 건강 소비자에서 수익 창출 소비자로 업그레이드하세요
+            간단한 4단계로 건강 소비자에서 수익 창출 <span className="font-bold text-usana-blue-700">브랜드 파트너</span>로 업그레이드하세요
           </p>
           
           <div className="gradient-usana-luxury text-white rounded-2xl p-10 max-w-5xl mx-auto mb-16 shadow-2xl border border-usana-blue-400/20">
