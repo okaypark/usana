@@ -50,8 +50,8 @@ export default function FreeSubscriptionSection() {
             <span className="text-usana-blue-700 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 프로세스</span>
           </div>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
-            <span className="text-usana-blue-600 font-bold">돈버는 건강구독</span><br />
-            <span className="font-light">시작 방법</span>
+            <span className="text-usana-blue-600 font-bold">돈버는 스마트 건강구독</span><br />
+            <span className="font-light">시작방법</span>
           </h2>
           <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
             간단한 4단계로 건강 소비자에서 수익 창출 소비자로 업그레이드하세요
