@@ -217,7 +217,9 @@ export default function AdminPage() {
         password
       }) as any;
 
-      if (result.success) {
+      console.log('관리자 추가 응답:', result);
+
+      if (result && result.success) {
         toast({
           title: "관리자 추가 완료",
           description: `${name} 관리자가 성공적으로 추가되었습니다.`,
@@ -234,10 +236,11 @@ export default function AdminPage() {
           duration: 3000,
         });
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.error('관리자 추가 에러:', error);
       toast({
         title: "오류 발생",
-        description: "관리자 추가 중 오류가 발생했습니다.",
+        description: error.message || "관리자 추가 중 오류가 발생했습니다.",
         variant: "destructive",
         duration: 3000,
       });
@@ -361,9 +364,12 @@ export default function AdminPage() {
                           관리자 추가
                         </Button>
                       </DialogTrigger>
-                      <DialogContent>
+                      <DialogContent aria-describedby="dialog-description">
                         <DialogHeader>
                           <DialogTitle>새 관리자 추가</DialogTitle>
+                          <p id="dialog-description" className="text-sm text-muted-foreground mt-2">
+                            새로운 관리자 계정을 생성합니다. 이메일, 이름, 비밀번호(최소 8자)를 입력해주세요.
+                          </p>
                         </DialogHeader>
                         <form onSubmit={handleAddAdmin} className="space-y-4">
                           <div>
