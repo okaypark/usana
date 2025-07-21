@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Clock, Home, Users as UsersIcon, TrendingUp, Handshake } from "lucide-react";
+import { Star, Clock, Home, Users as UsersIcon, TrendingUp, Handshake, Award, Crown, Gem } from "lucide-react";
 
 export default function BusinessSection() {
   const incomeStructure = [
@@ -38,22 +38,22 @@ export default function BusinessSection() {
 
   const successStories = [
     {
-      name: "김민정",
+      name: "***",
       title: "골드 파트너",
       testimonial: "6개월 만에 월 250만원 수익을 달성했어요. 건강도 챙기고 경제적 자유도 얻게 되어 정말 감사합니다.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616c6d4e6e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
+      icon: "gold"
     },
     {
-      name: "박준호",
-      title: "플래티넘 파트너",
+      name: "***",
+      title: "루비 파트너", 
       testimonial: "본업을 유지하면서도 월 300만원 추가 수익을 만들 수 있어서 가족들과 더 많은 시간을 보낼 수 있게 되었습니다.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
+      icon: "ruby"
     },
     {
-      name: "이수연",
+      name: "***",
       title: "다이아몬드 파트너",
-      testimonial: "처음에는 반신반의했지만, 체계적인 교육과 지원으로 1년 만에 다이아몬드 등급까지 올랐어요. 이제는 권리소득으로 여유로운 삶을 살고 있습니다.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80"
+      testimonial: "처음에는 반신반의했지만, 체계적인 교육과 지원으로 1년 만에 다이아몬드 등급까지 올랐어요. 이제는 월 3천~5천만원 권리소득으로 진정한 경제적 자유를 누리고 있습니다.",
+      icon: "diamond"
     }
   ];
 
@@ -131,29 +131,55 @@ export default function BusinessSection() {
           <CardContent className="p-8 lg:p-12">
             <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">성공 파트너 이야기</h3>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {successStories.map((story, index) => (
-                <Card key={index} className="bg-white shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <img
-                        src={story.image}
-                        alt={`${story.name} 파트너`}
-                        className="w-16 h-16 rounded-full mr-4 object-cover"
-                      />
-                      <div>
-                        <h4 className="text-lg font-semibold text-gray-900">{story.name}</h4>
-                        <p className="text-gray-600 text-sm">{story.title}</p>
+              {successStories.map((story, index) => {
+                const getPartnerIcon = (iconType: string) => {
+                  switch (iconType) {
+                    case 'gold':
+                      return <Award className="h-8 w-8 text-yellow-500" />;
+                    case 'ruby':
+                      return <Crown className="h-8 w-8 text-red-500" />;
+                    case 'diamond':
+                      return <Gem className="h-8 w-8 text-blue-500" />;
+                    default:
+                      return <Award className="h-8 w-8 text-gray-500" />;
+                  }
+                };
+
+                const getPartnerBg = (iconType: string) => {
+                  switch (iconType) {
+                    case 'gold':
+                      return 'bg-yellow-100 border-yellow-300';
+                    case 'ruby':
+                      return 'bg-red-100 border-red-300';
+                    case 'diamond':
+                      return 'bg-blue-100 border-blue-300';
+                    default:
+                      return 'bg-gray-100 border-gray-300';
+                  }
+                };
+
+                return (
+                  <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center mb-4">
+                        <div className={`w-16 h-16 rounded-full mr-4 flex items-center justify-center border-2 ${getPartnerBg(story.icon)}`}>
+                          {getPartnerIcon(story.icon)}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900">{story.name}</h4>
+                          <p className="text-gray-600 text-sm font-medium">{story.title}</p>
+                        </div>
                       </div>
-                    </div>
-                    <p className="text-gray-700 mb-4">"{story.testimonial}"</p>
-                    <div className="flex items-center text-yellow-500">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-current" />
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      <p className="text-gray-700 mb-4 leading-relaxed">"{story.testimonial}"</p>
+                      <div className="flex items-center text-yellow-500">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-current" />
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </CardContent>
         </Card>
