@@ -6,15 +6,31 @@ import usanaMarketingBg from "@assets/건강구독마케팅-네트워크마케�
 import usanaMarketingMobileBg from "@assets/스크린샷 2025-07-20 143223_1752989552583.png";
 
 export default function HeroSection() {
-  const [showExpandedContent, setShowExpandedContent] = useState(true); // 처음에 자동으로 표시
+  const [showExpandedContent, setShowExpandedContent] = useState(false); // 1초 후에 자동으로 표시
   const [showSuccessContent, setShowSuccessContent] = useState(false);
 
-  // 페이지 로딩시 자동으로 안내문구를 3초간 표시
+  // 페이지 로딩시 프리미엄 배지는 1초 후부터, Success 배지는 2초 후부터 자동 표시
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // 프리미엄 배지: 1초 후에 표시
+    const expandedShowTimer = setTimeout(() => {
+      setShowExpandedContent(true);
+    }, 1000);
+
+    // 프리미엄 배지: 1초 후 표시하고 3초간 유지 후 숨김 (1초~4초)
+    const expandedHideTimer = setTimeout(() => {
       setShowExpandedContent(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+    }, 4000);
+
+    // Success 배지: 2초 후에 표시하고 3초간 유지 (2초~5초)
+    const successShowTimer = setTimeout(() => {
+      setShowSuccessContent(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(expandedShowTimer);
+      clearTimeout(expandedHideTimer);
+      clearTimeout(successShowTimer);
+    };
   }, []);
 
   // Auto-hide expanded content after 5 seconds when manually clicked
