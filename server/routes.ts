@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertFaqSchema, insertPackageSchema, insertPackageProductSchema } from "@shared/schema";
+import { insertContactSchema, insertFaqSchema, insertPackageSchema, insertPackageProductSchema, insertAdminSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleSheetsService } from "./google-sheets";
 import bcrypt from "bcryptjs";
@@ -212,6 +212,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
+
+  // 관리자 추가 API
+  app.post("/api/admin/add", requireAdminAuth, async (req, res) => {
+    try {
+      const { email, name, password } = req.body;
+
+      // 입력 데이터 유효성 검증
+      if (!email || !name || !password) {
+        return res.status(400).json({
+          success: false,
+          message: "이메일, 이름, 비밀번호를 모두 입력해주세요."
+        });
+      }
+
+      if (password.length < 8) {
+        return res.status(400).json({
+          success: false,
+          message: "비밀번호는 최소 8자 이상이어야 합니다."
+        });
+      }
+
+      // 이미 존재하는 관리자인지 확인
+      const existingAdmin = await storage.getAdminByEmail(email);
+      if (existingAdmin) {
+        return res.status(409).json({
+          success: false,
+          message: "이미 등록된 이메일입니다."
+        });
+      }
+
+      // 비밀번호 해시 생성
+      const passwordHash = await bcrypt.hash(password, 10);
+
+      // 새 관리자 추가
+      const newAdmin = await storage.createAdmin({
+        email,
+        name,
+        passwordHash
+      });
+
+      res.json({
+        success: true,
+        message: "관리자가 성공적으로 추가되었습니다.",
+        admin: {
+          id: newAdmin.id,
+          email: newAdmin.email,
+          name: newAdmin.name
+        }
+      });
+    } catch (error) {
+      console.error('관리자 추가 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "관리자 추가 중 오류가 발생했습니다."
+      });
+    }
+  });
+
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {

@@ -7,21 +7,25 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2, LogOut, Settings } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus } from "lucide-react";
 import type { Package, PackageProduct } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [activeTab, setActiveTab] = useState("admin");
   const [selectedTheme, setSelectedTheme] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
   const [isPackageDialogOpen, setIsPackageDialogOpen] = useState(false);
   const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<PackageProduct | null>(null);
+  const [isAddAdminDialogOpen, setIsAddAdminDialogOpen] = useState(false);
+  const [isAddingAdmin, setIsAddingAdmin] = useState(false);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -194,6 +198,52 @@ export default function AdminPage() {
     }
   };
 
+  // 관리자 추가 핸들러
+  const handleAddAdmin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsAddingAdmin(true);
+    
+    const formData = new FormData(e.currentTarget as HTMLFormElement);
+    const email = formData.get('adminEmail') as string;
+    const name = formData.get('adminName') as string;
+    const password = formData.get('adminPassword') as string;
+
+    try {
+      const result = await apiRequest("/api/admin/add", "POST", {
+        email,
+        name,
+        password
+      }) as any;
+
+      if (result.success) {
+        toast({
+          title: "관리자 추가 완료",
+          description: `${name} 관리자가 성공적으로 추가되었습니다.`,
+          duration: 3000,
+        });
+        setIsAddAdminDialogOpen(false);
+        // 폼 리셋
+        (e.target as HTMLFormElement).reset();
+      } else {
+        toast({
+          title: "추가 실패",
+          description: result.message || "관리자 추가에 실패했습니다.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "오류 발생",
+        description: "관리자 추가 중 오류가 발생했습니다.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    } finally {
+      setIsAddingAdmin(false);
+    }
+  };
+
   // 인증 상태 로딩 중
   if (isAuthenticated === null) {
     return (
@@ -223,35 +273,165 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">패키지 관리</h1>
-            <p className="text-gray-600">건강구독 패키지와 제품 구성을 관리할 수 있습니다.</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <PasswordChangeDialog>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* 헤더 */}
+        <div className="mb-8">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+                  유사나 관리자 페이지
+                </h1>
+                <p className="text-gray-600">건강구독 마케팅 시스템을 관리할 수 있습니다.</p>
+              </div>
               <Button
+                onClick={handleLogout}
                 variant="outline"
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
               >
-                <Settings className="w-4 h-4" />
-                비밀번호 변경
+                <LogOut className="w-4 h-4" />
+                로그아웃
               </Button>
-            </PasswordChangeDialog>
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              로그아웃
-            </Button>
+            </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* 탭 컨테이너 */}
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 bg-gray-50 rounded-t-xl p-1">
+              <TabsTrigger 
+                value="admin" 
+                className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              >
+                <Users className="w-4 h-4" />
+                관리자
+              </TabsTrigger>
+              <TabsTrigger 
+                value="packages" 
+                className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              >
+                <Package2 className="w-4 h-4" />
+                구독패키지
+              </TabsTrigger>
+            </TabsList>
+
+            {/* 관리자 탭 */}
+            <TabsContent value="admin" className="p-6 space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                {/* 비밀번호 변경 카드 */}
+                <Card className="border-blue-200 shadow-md">
+                  <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">
+                    <CardTitle className="flex items-center gap-2 text-blue-700">
+                      <Settings className="w-5 h-5" />
+                      비밀번호 관리
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <p className="text-gray-600 mb-4">현재 관리자 계정의 비밀번호를 변경할 수 있습니다.</p>
+                    <PasswordChangeDialog>
+                      <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                        <Settings className="w-4 h-4 mr-2" />
+                        비밀번호 변경
+                      </Button>
+                    </PasswordChangeDialog>
+                  </CardContent>
+                </Card>
+
+                {/* 관리자 추가 카드 */}
+                <Card className="border-green-200 shadow-md">
+                  <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
+                    <CardTitle className="flex items-center gap-2 text-green-700">
+                      <UserPlus className="w-5 h-5" />
+                      관리자 추가
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <p className="text-gray-600 mb-4">새로운 관리자 계정을 추가할 수 있습니다.</p>
+                    <Dialog open={isAddAdminDialogOpen} onOpenChange={setIsAddAdminDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button 
+                          variant="outline" 
+                          className="w-full border-green-300 text-green-700 hover:bg-green-50"
+                        >
+                          <UserPlus className="w-4 h-4 mr-2" />
+                          관리자 추가
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>새 관리자 추가</DialogTitle>
+                        </DialogHeader>
+                        <form onSubmit={handleAddAdmin} className="space-y-4">
+                          <div>
+                            <Label htmlFor="adminEmail">이메일</Label>
+                            <Input
+                              id="adminEmail"
+                              type="email"
+                              placeholder="admin@example.com"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="adminName">이름</Label>
+                            <Input
+                              id="adminName"
+                              placeholder="관리자 이름"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="adminPassword">비밀번호</Label>
+                            <Input
+                              id="adminPassword"
+                              type="password"
+                              placeholder="최소 8자 이상"
+                              required
+                            />
+                          </div>
+                          <Button 
+                            type="submit" 
+                            className="w-full"
+                            disabled={isAddingAdmin}
+                          >
+                            {isAddingAdmin ? "추가 중..." : "관리자 추가"}
+                          </Button>
+                        </form>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* 현재 관리자 정보 */}
+              <Card className="border-gray-200 shadow-md">
+                <CardHeader className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-t-lg">
+                  <CardTitle className="flex items-center gap-2 text-gray-700">
+                    <Users className="w-5 h-5" />
+                    현재 관리자 정보
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center">
+                        <Users className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">박현진</h3>
+                        <p className="text-sm text-gray-600">okaypark7@gmail.com</p>
+                        <p className="text-xs text-blue-600 mt-1">유사나 에메랄드 디렉터</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* 구독패키지 탭 */}
+            <TabsContent value="packages" className="p-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* 패키지 선택 */}
           <Card>
             <CardHeader>
@@ -489,6 +669,9 @@ export default function AdminPage() {
               )}
             </CardContent>
           </Card>
+        </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </div>

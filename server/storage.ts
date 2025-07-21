@@ -15,6 +15,8 @@ import {
   type InsertPackage,
   type PackageProduct,
   type InsertPackageProduct,
+  type Admin,
+  type InsertAdmin,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc } from "drizzle-orm";
@@ -46,8 +48,8 @@ export interface IStorage {
   deletePackageProduct(id: number): Promise<boolean>;
   
   // 관리자 관리
-  getAdminByEmail(email: string): Promise<any>;
-  createAdmin(adminData: any): Promise<any>;
+  getAdminByEmail(email: string): Promise<Admin | undefined>;
+  createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin>;
   updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean>;
 }
 
@@ -318,12 +320,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   // 관리자 관리
-  async getAdminByEmail(email: string): Promise<any> {
+  async getAdminByEmail(email: string): Promise<Admin | undefined> {
     const [admin] = await db.select().from(admins).where(eq(admins.email, email));
-    return admin || null;
+    return admin || undefined;
   }
 
-  async createAdmin(adminData: any): Promise<any> {
+  async createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin> {
     const [newAdmin] = await db.insert(admins).values(adminData).returning();
     return newAdmin;
   }

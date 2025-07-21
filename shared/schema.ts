@@ -71,6 +71,16 @@ export const insertContactSchema = createInsertSchema(contacts).omit({
   message: z.string().optional()
 });
 
+// 관리자 테이블
+export const admins = pgTable("admins", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  passwordHash: text("password_hash").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const insertFaqSchema = createInsertSchema(faqs).omit({
   id: true,
 });
@@ -86,20 +96,14 @@ export const insertPackageProductSchema = createInsertSchema(packageProducts).om
   createdAt: true,
 });
 
-// 관리자 계정 테이블
-export const admins = pgTable("admins", {
-  id: serial("id").primaryKey(),
-  email: varchar("email").unique().notNull(),
-  name: varchar("name").notNull(),
-  passwordHash: text("password_hash").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
-});
-
 export const insertAdminSchema = createInsertSchema(admins).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  email: z.string().email("올바른 이메일 형식으로 입력해주세요"),
+  name: z.string().min(1, "이름을 입력해주세요"),
+  password: z.string().min(8, "비밀번호는 최소 8자 이상이어야 합니다"),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
