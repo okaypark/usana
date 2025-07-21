@@ -208,6 +208,8 @@ export default function AdminPage() {
     const name = formData.get('adminName') as string;
     const password = formData.get('adminPassword') as string;
 
+    console.log('전송 데이터:', { email, name, password });
+
     try {
       const result = await apiRequest("/api/admin/add", "POST", {
         email,
@@ -368,6 +370,7 @@ export default function AdminPage() {
                             <Label htmlFor="adminEmail">이메일</Label>
                             <Input
                               id="adminEmail"
+                              name="adminEmail"
                               type="email"
                               placeholder="admin@example.com"
                               required
@@ -377,6 +380,7 @@ export default function AdminPage() {
                             <Label htmlFor="adminName">이름</Label>
                             <Input
                               id="adminName"
+                              name="adminName"
                               placeholder="관리자 이름"
                               required
                             />
@@ -385,6 +389,7 @@ export default function AdminPage() {
                             <Label htmlFor="adminPassword">비밀번호</Label>
                             <Input
                               id="adminPassword"
+                              name="adminPassword"
                               type="password"
                               placeholder="최소 8자 이상"
                               required
