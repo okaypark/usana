@@ -310,7 +310,8 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="text-green-600 font-bold text-lg">
-                    월 150P ~200P
+                    스탠다드 월 100P~150P<br/>
+                    프리미엄 월 200P~
                   </div>
                 </div>
               </CardContent>
@@ -336,7 +337,8 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="text-orange-600 font-bold text-lg">
-                    월 200P ~300P
+                    스탠다드 월 100P~150P<br/>
+                    프리미엄 월 200P~
                   </div>
                 </div>
               </CardContent>
@@ -362,7 +364,8 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="text-pink-600 font-bold text-lg">
-                    월 180P ~250P
+                    스탠다드 월 100P~150P<br/>
+                    프리미엄 월 200P~
                   </div>
                 </div>
               </CardContent>
