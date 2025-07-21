@@ -63,7 +63,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="bg-slate-50 py-20">
+    <section id="about" className="py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">소개</h2>

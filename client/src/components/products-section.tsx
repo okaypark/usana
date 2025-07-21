@@ -54,7 +54,7 @@ export default function ProductsSection() {
   ];
 
   return (
-    <section id="products" className="bg-white py-24 border-t border-usana-platinum-200">
+    <section id="products" className="py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full mb-6 shadow-lg shadow-usana-blue-500/20">
