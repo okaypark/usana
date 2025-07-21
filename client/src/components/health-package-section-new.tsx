@@ -169,7 +169,7 @@ export default function HealthPackageSection() {
   const packageProducts = selectedPackage ? packageProductsData[`${selectedPackage.theme}_${selectedPackage.type}`] || [] : [];
 
   return (
-    <section id="health-packages" className="py-32">
+    <section id="health-packages" className="py-16 sm:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4">건강구독 테마별 패키지</h3>

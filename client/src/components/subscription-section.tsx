@@ -4,7 +4,7 @@ import { Heart, Shield, Zap } from "lucide-react";
 
 export default function SubscriptionSection() {
   return (
-    <section id="subscription-innovation" className="py-32">
+    <section id="subscription-innovation" className="py-16 sm:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500/20 to-teal-500/15 border-2 border-blue-500/30 rounded-full mb-8 shadow-xl shadow-blue-500/20">

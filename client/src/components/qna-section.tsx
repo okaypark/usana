@@ -26,7 +26,7 @@ export default function QnaSection() {
 
   if (isLoading) {
     return (
-      <section id="qna" className="py-32">
+      <section id="qna" className="py-16 sm:py-24 lg:py-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">자주 묻는 질문</h2>
@@ -48,7 +48,7 @@ export default function QnaSection() {
   }
 
   return (
-    <section id="qna" className="py-32">
+    <section id="qna" className="py-16 sm:py-24 lg:py-32">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">자주 묻는 질문</h2>
