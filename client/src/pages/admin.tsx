@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus, Home } from "lucide-react";
 import type { Package, PackageProduct, Faq } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
@@ -472,14 +472,24 @@ export default function AdminPage() {
                 </h1>
                 <p className="text-gray-600">건강구독 마케팅 시스템을 관리할 수 있습니다.</p>
               </div>
-              <Button
-                onClick={handleLogout}
-                variant="outline"
-                className="flex items-center gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
-              >
-                <LogOut className="w-4 h-4" />
-                로그아웃
-              </Button>
+              <div className="flex items-center gap-3">
+                <Button
+                  onClick={() => window.open("/", "_blank")}
+                  variant="outline"
+                  className="flex items-center gap-2 bg-green-50 hover:bg-green-100 border-green-200 text-green-700 hover:text-green-800"
+                >
+                  <Home className="w-4 h-4" />
+                  메인 웹사이트
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  variant="outline"
+                  className="flex items-center gap-2 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+                >
+                  <LogOut className="w-4 h-4" />
+                  로그아웃
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -487,24 +497,24 @@ export default function AdminPage() {
         {/* 탭 컨테이너 */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-gray-50 rounded-t-xl p-1">
+            <TabsList className="grid w-full grid-cols-3 bg-gray-100 rounded-t-xl p-2 gap-1">
               <TabsTrigger 
                 value="admin" 
-                className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                className="flex items-center gap-2 rounded-lg py-3 px-4 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 text-gray-600 data-[state=active]:scale-105"
               >
                 <Users className="w-4 h-4" />
                 관리자
               </TabsTrigger>
               <TabsTrigger 
                 value="packages" 
-                className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                className="flex items-center gap-2 rounded-lg py-3 px-4 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 text-gray-600 data-[state=active]:scale-105"
               >
                 <Package2 className="w-4 h-4" />
                 구독패키지
               </TabsTrigger>
               <TabsTrigger 
                 value="faqs" 
-                className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+                className="flex items-center gap-2 rounded-lg py-3 px-4 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 text-gray-600 data-[state=active]:scale-105"
               >
                 <Settings className="w-4 h-4" />
                 FAQ 관리
