@@ -156,15 +156,9 @@ export default function AdminPage() {
       console.log('현재 패키지 ID:', currentPackage?.id);
       
       // 현재 패키지의 제품 목록 쿼리를 무효화
-      await queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
       
-      // 모든 패키지 관련 쿼리도 무효화 (안전장치)
-      await queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
-      
-      // 강제로 다시 가져오기
-      await queryClient.refetchQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
-      
-      console.log('쿼리 무효화 및 리페치 완료');
+      console.log('쿼리 무효화 완료');
       
       toast({ title: "제품이 성공적으로 추가되었습니다." });
       setIsProductDialogOpen(false);
@@ -860,6 +854,12 @@ export default function AdminPage() {
           isOpen={isUsanaProductSelectorOpen}
           onClose={() => setIsUsanaProductSelectorOpen(false)}
           onSelect={(product) => {
+            // 이미 제품 추가 중이면 중복 실행 방지
+            if (createProductMutation.isPending) {
+              console.log('제품 추가 중이므로 중복 실행 방지');
+              return;
+            }
+
             // 선택된 유사나 제품을 구독패키지에 추가
             if (currentPackage) {
               console.log('유사나 제품 추가 시도:', {
