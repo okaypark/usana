@@ -4,6 +4,7 @@ import StatsSection from "@/components/stats-section";
 import ProductsSection from "@/components/products-section";
 import HealthPackageSection from "@/components/health-package-section";
 import SubscriptionSection from "@/components/subscription-section";
+import WeeklyIncomeSection from "@/components/weekly-income-section";
 import FreeSubscriptionSection from "@/components/free-subscription-section";
 import BusinessSection from "@/components/business-section";
 import AboutSection from "@/components/about-section";
@@ -22,6 +23,7 @@ export default function Home() {
       <ProductsSection />
       <HealthPackageSection />
       <SubscriptionSection />
+      <WeeklyIncomeSection />
       <FreeSubscriptionSection />
       <BusinessSection />
       <AboutSection />
