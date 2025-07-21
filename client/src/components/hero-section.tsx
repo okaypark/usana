@@ -55,7 +55,26 @@ export default function HeroSection() {
                 <span className="text-white">당신도 매주 </span><span className="text-yellow-400 font-bold">주급받는</span><br />
                 <span className="text-white">스마트한 </span><span className="text-usana-blue-400 font-bold">브랜드 파트너</span>
               </h1>
-              <div className="inline-block mt-12 mb-2 w-full flex justify-center sm:justify-start">
+              {/* Success Box - left aligned */}
+              <div className="mt-8 mb-2 flex justify-start">
+                <div 
+                  className="bg-white/95 backdrop-blur-md p-2 sm:p-3 lg:p-3 rounded-lg lg:rounded-xl shadow-lg lg:shadow-xl border border-usana-platinum-200 w-auto max-w-xs sm:max-w-sm group cursor-pointer hover:scale-105 hover:shadow-2xl transition-all duration-300 animate-float-gentle mobile-success-click"
+                  onClick={() => setShowSuccessContent(true)}
+                >
+                  <div className="flex items-center space-x-2 sm:space-x-2 lg:space-x-3">
+                    <div className="bg-usana-blue-500 p-1 sm:p-1.5 lg:p-2 rounded-md lg:rounded-lg group-hover:scale-110 group-hover:bg-usana-blue-600 transition-all duration-300">
+                      <Heart className="text-white h-3 w-3 sm:h-3 sm:w-3 lg:h-4 lg:w-4 group-hover:scale-110 transition-all duration-300" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-usana-blue-600 text-[9px] sm:text-xs lg:text-xs font-semibold tracking-wide uppercase group-hover:text-usana-blue-700 transition-all duration-300">USANA SUCCESS</p>
+                      <p className="text-sm sm:text-base lg:text-lg font-bold text-usana-blue-900 group-hover:text-usana-blue-800 group-hover:scale-105 transition-all duration-300">450,000+</p>
+                      <p className="text-[8px] sm:text-xs lg:text-xs text-usana-blue-600 font-medium group-hover:text-usana-blue-700 transition-all duration-300">Global Brand Partners</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="inline-block mb-2 w-full flex justify-center sm:justify-start">
                 <div 
                   className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30 cursor-pointer hover:scale-105 hover:shadow-3xl transition-all duration-300 group animate-pulse-gentle shimmer-overlay mobile-click-bounce"
                   onClick={() => setShowExpandedContent(!showExpandedContent)}
