@@ -414,7 +414,7 @@ export default function SubscriptionSection() {
                         ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
                         : 'bg-green-50 border-green-200'
                     }`}>
-                      <div className="flex items-center mb-4">
+                      <div className="text-center mb-4">
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-green-800'
                         }`}>
@@ -525,7 +525,7 @@ export default function SubscriptionSection() {
                         ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
                         : 'bg-orange-50 border-orange-200'
                     }`}>
-                      <div className="flex items-center mb-4">
+                      <div className="text-center mb-4">
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-orange-800'
                         }`}>
@@ -636,7 +636,7 @@ export default function SubscriptionSection() {
                         ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
                         : 'bg-pink-50 border-pink-200'
                     }`}>
-                      <div className="flex items-center mb-4">
+                      <div className="text-center mb-4">
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-pink-800'
                         }`}>
