@@ -235,6 +235,10 @@ export default function SubscriptionSection() {
                               구독시작후 4명 구독소개 후 <span className="font-bold text-yellow-700">13주 동안 최대 90만원 캐쉬백</span><br />
                               (<span className="font-bold text-yellow-700">빠른 무료구독 전환가능</span> - 200P 약45만 건강구독)
                             </>
+                          ) : benefit.title === "무한단계 수당" ? (
+                            <>
+                              소개인과 지인들의 매출에 따른 <span className="font-bold text-emerald-700">무한단계 포인트 적립</span>
+                            </>
                           ) : (
                             benefit.description
                           )}
