@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus } from "lucide-react";
 import type { Package, PackageProduct } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
@@ -88,6 +88,12 @@ export default function AdminPage() {
 
   const { data: adminListData, refetch: refetchAdmins } = useQuery({
     queryKey: ["/api/admin/list"],
+    enabled: isAuthenticated === true
+  });
+
+  // 현재 로그인한 관리자의 이메일 가져오기
+  const { data: currentAdminData } = useQuery({
+    queryKey: ["/api/admin/current"],
     enabled: isAuthenticated === true
   });
 
@@ -268,6 +274,53 @@ export default function AdminPage() {
     }
   };
 
+  // 관리자 삭제 핸들러
+  const handleDeleteAdmin = async (adminId: number, adminName: string) => {
+    if (!confirm(`정말로 "${adminName}" 관리자를 삭제하시겠습니까?`)) {
+      return;
+    }
+
+    try {
+      const response = await apiRequest(`/api/admin/${adminId}`, "DELETE");
+      const result = await response.json();
+
+      if (result && result.success) {
+        toast({
+          title: "관리자 삭제 완료",
+          description: `${adminName} 관리자가 성공적으로 삭제되었습니다.`,
+          duration: 3000,
+        });
+        // 관리자 목록 새로고침
+        refetchAdmins();
+      } else {
+        toast({
+          title: "삭제 실패",
+          description: result.message || "관리자 삭제에 실패했습니다.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      }
+    } catch (error: any) {
+      console.error('관리자 삭제 에러:', error);
+      if (error.message.includes('403:')) {
+        const errorData = JSON.parse(error.message.split('403: ')[1]);
+        toast({
+          title: "권한 없음",
+          description: errorData.message || "주 관리자만 다른 관리자를 삭제할 수 있습니다.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      } else {
+        toast({
+          title: "오류 발생",
+          description: error.message || "관리자 삭제 중 오류가 발생했습니다.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      }
+    }
+  };
+
   // 인증 상태 로딩 중
   if (isAuthenticated === null) {
     return (
@@ -445,26 +498,64 @@ export default function AdminPage() {
                 <CardContent className="p-6">
                   {adminListData?.admins ? (
                     <div className="space-y-3">
-                      {adminListData.admins.map((admin: any, index: number) => (
-                        <div key={admin.id} className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center">
-                              <span className="text-white font-semibold text-sm">{index + 1}</span>
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="font-semibold text-gray-900">{admin.name}</h3>
-                              <p className="text-sm text-gray-600">{admin.email}</p>
-                              <p className="text-xs text-blue-600 mt-1">
-                                {new Date(admin.createdAt).toLocaleDateString('ko-KR', {
-                                  year: 'numeric',
-                                  month: 'long',
-                                  day: 'numeric'
-                                })} 가입
-                              </p>
+                      {adminListData.admins.map((admin: any, index: number) => {
+                        const isMainAdmin = admin.email === 'okaypark7@gmail.com';
+                        const isCurrentUserMainAdmin = currentAdminData?.admin?.email === 'okaypark7@gmail.com';
+                        const canDelete = isCurrentUserMainAdmin && !isMainAdmin;
+                        
+                        return (
+                          <div key={admin.id} className={`rounded-lg p-4 border ${
+                            isMainAdmin 
+                              ? 'bg-gradient-to-r from-yellow-50 to-amber-50 border-yellow-200' 
+                              : 'bg-blue-50 border-blue-200'
+                          }`}>
+                            <div className="flex items-center gap-3">
+                              <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                                isMainAdmin 
+                                  ? 'bg-gradient-to-r from-yellow-600 to-amber-600' 
+                                  : 'bg-gradient-to-r from-blue-600 to-indigo-600'
+                              }`}>
+                                {isMainAdmin ? (
+                                  <Crown className="w-5 h-5 text-white" />
+                                ) : (
+                                  <span className="text-white font-semibold text-sm">{index + 1}</span>
+                                )}
+                              </div>
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2">
+                                  <h3 className="font-semibold text-gray-900">{admin.name}</h3>
+                                  {isMainAdmin && (
+                                    <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">
+                                      주 관리자
+                                    </span>
+                                  )}
+                                </div>
+                                <p className="text-sm text-gray-600">{admin.email}</p>
+                                <p className={`text-xs mt-1 ${
+                                  isMainAdmin ? 'text-yellow-600' : 'text-blue-600'
+                                }`}>
+                                  {new Date(admin.createdAt).toLocaleDateString('ko-KR', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                  })} 가입
+                                </p>
+                              </div>
+                              {canDelete && (
+                                <Button
+                                  variant="destructive"
+                                  size="sm"
+                                  onClick={() => handleDeleteAdmin(admin.id, admin.name)}
+                                  className="ml-auto"
+                                >
+                                  <UserMinus className="w-4 h-4 mr-1" />
+                                  삭제
+                                </Button>
+                              )}
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   ) : (
                     <div className="text-center py-8 text-gray-500">

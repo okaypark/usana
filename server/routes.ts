@@ -292,6 +292,81 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 현재 관리자 정보 조회 API
+  app.get("/api/admin/current", requireAdminAuth, async (req, res) => {
+    try {
+      const adminEmail = (req.session as any).adminEmail;
+      const admin = await storage.getAdminByEmail(adminEmail);
+      
+      if (admin) {
+        res.json({
+          success: true,
+          admin: {
+            id: admin.id,
+            email: admin.email,
+            name: admin.name
+          }
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "관리자 정보를 찾을 수 없습니다."
+        });
+      }
+    } catch (error) {
+      console.error('현재 관리자 정보 조회 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "관리자 정보 조회 중 오류가 발생했습니다."
+      });
+    }
+  });
+
+  // 관리자 삭제 API (주 관리자만 가능)
+  app.delete("/api/admin/:id", requireAdminAuth, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const adminEmail = (req.session as any).adminEmail;
+      
+      // 주 관리자만 삭제 권한 있음
+      if (adminEmail !== 'okaypark7@gmail.com') {
+        return res.status(403).json({
+          success: false,
+          message: "주 관리자만 다른 관리자를 삭제할 수 있습니다."
+        });
+      }
+
+      // 자기 자신은 삭제할 수 없음
+      const targetAdmin = await storage.getAdminById(parseInt(id));
+      if (targetAdmin?.email === 'okaypark7@gmail.com') {
+        return res.status(400).json({
+          success: false,
+          message: "주 관리자는 삭제할 수 없습니다."
+        });
+      }
+
+      const deleted = await storage.deleteAdmin(parseInt(id));
+      
+      if (deleted) {
+        res.json({
+          success: true,
+          message: "관리자가 성공적으로 삭제되었습니다."
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "삭제할 관리자를 찾을 수 없습니다."
+        });
+      }
+    } catch (error) {
+      console.error('관리자 삭제 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "관리자 삭제 중 오류가 발생했습니다."
+      });
+    }
+  });
+
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {

@@ -49,8 +49,10 @@ export interface IStorage {
   
   // 관리자 관리
   getAdminByEmail(email: string): Promise<Admin | undefined>;
+  getAdminById(id: number): Promise<Admin | undefined>;
   getAllAdmins(): Promise<Admin[]>;
   createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin>;
+  deleteAdmin(id: number): Promise<boolean>;
   updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean>;
 }
 
@@ -326,6 +328,11 @@ export class DatabaseStorage implements IStorage {
     return admin || undefined;
   }
 
+  async getAdminById(id: number): Promise<Admin | undefined> {
+    const [admin] = await db.select().from(admins).where(eq(admins.id, id));
+    return admin || undefined;
+  }
+
   async getAllAdmins(): Promise<Admin[]> {
     const adminList = await db.select().from(admins).orderBy(desc(admins.createdAt));
     return adminList;
@@ -334,6 +341,11 @@ export class DatabaseStorage implements IStorage {
   async createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin> {
     const [newAdmin] = await db.insert(admins).values(adminData).returning();
     return newAdmin;
+  }
+
+  async deleteAdmin(id: number): Promise<boolean> {
+    const result = await db.delete(admins).where(eq(admins.id, id));
+    return (result.rowCount ?? 0) > 0;
   }
 
   async updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean> {
