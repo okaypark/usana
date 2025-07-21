@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Percent, Truck, Calendar, UserCheck } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useState } from "react";
 import healthSubscriptionImage from "@assets/2010ca4d-c010-4f90-b826-5e585a679fcf_1750522576482.png";
 import travelBrazil from "@assets/유사나 인센티브여행 브라질_1753085923560.png";
 import travelDubai from "@assets/유사나 인센티브여행 두바이_1753085923560.png";
@@ -10,6 +10,8 @@ import travelVietnam from "@assets/유사나 인센티브여행 베트남_175308
 import travelJapan from "@assets/유사나 인센티브여행 일본_1753085923560.png";
 
 export default function SubscriptionSection() {
+  const [selectedPackage, setSelectedPackage] = useState<{type: string, theme: string} | null>(null);
+  
   const travelImages = [
     travelBrazil,
     travelDubai,
@@ -74,6 +76,75 @@ export default function SubscriptionSection() {
       color: "bg-rose-600"
     }
   ];
+
+  // 제품구성 데이터
+  const packageDetails = {
+    면역건강구독: {
+      standard: {
+        products: [
+          { name: "비타민 C", description: "면역력 강화 및 항산화 작용", price: "40P" },
+          { name: "아연", description: "면역세포 활성화", price: "30P" },
+          { name: "프로바이오틱스", description: "장 건강 및 면역력 증진", price: "50P" }
+        ],
+        totalPrice: "120P"
+      },
+      premium: {
+        products: [
+          { name: "비타민 C (고함량)", description: "프리미엄 면역력 강화", price: "60P" },
+          { name: "아연 + 셀레늄", description: "강화된 면역세포 활성화", price: "45P" },
+          { name: "프로바이오틱스 플러스", description: "장 건강 및 면역력 증진", price: "70P" },
+          { name: "에키네시아", description: "자연 면역력 부스터", price: "35P" }
+        ],
+        totalPrice: "210P"
+      }
+    },
+    해독다이어트구독: {
+      standard: {
+        products: [
+          { name: "화이버지", description: "식이섬유로 노폐물 배출", price: "45P" },
+          { name: "리셋", description: "간 해독 및 정화", price: "40P" },
+          { name: "뉴트리밀", description: "건강한 체중관리", price: "35P" }
+        ],
+        totalPrice: "120P"
+      },
+      premium: {
+        products: [
+          { name: "화이버지 플러스", description: "프리미엄 식이섬유", price: "65P" },
+          { name: "리셋 프로", description: "강화된 간 해독", price: "60P" },
+          { name: "뉴트리밀 골드", description: "프리미엄 체중관리", price: "55P" },
+          { name: "디톡스 컴플렉스", description: "체내 독소 완전 배출", price: "35P" }
+        ],
+        totalPrice: "215P"
+      }
+    },
+    피부건강구독: {
+      standard: {
+        products: [
+          { name: "셀라바이브", description: "피부 세포 재생", price: "50P" },
+          { name: "비타민 E", description: "피부 보습 및 탄력", price: "35P" },
+          { name: "코큐텐", description: "피부 노화 방지", price: "40P" }
+        ],
+        totalPrice: "125P"
+      },
+      premium: {
+        products: [
+          { name: "셀라바이브 골드", description: "프리미엄 피부 재생", price: "75P" },
+          { name: "비타민 E 컴플렉스", description: "강화된 피부 보습", price: "50P" },
+          { name: "코큐텐 플러스", description: "고급 노화 방지", price: "60P" },
+          { name: "콜라겐 부스터", description: "피부 탄력 극대화", price: "35P" }
+        ],
+        totalPrice: "220P"
+      }
+    }
+  };
+
+  const handlePackageClick = (type: string, theme: string) => {
+    if (selectedPackage?.type === type && selectedPackage?.theme === theme) {
+      setSelectedPackage(null); // 같은 것을 클릭하면 닫기
+    } else {
+      setSelectedPackage({ type, theme }); // 새로운 것 선택
+    }
+  };
 
   const benefits3 = [
     {
@@ -310,13 +381,51 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="flex gap-4 justify-center items-center">
-                    <div className="border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium text-center">
+                    <div 
+                      className={`border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium text-center cursor-pointer transition-all duration-200 ${
+                        selectedPackage?.type === 'standard' && selectedPackage?.theme === '면역건강구독' 
+                          ? 'bg-green-600 text-white scale-105' 
+                          : 'hover:bg-green-50 hover:scale-105'
+                      }`}
+                      onClick={() => handlePackageClick('standard', '면역건강구독')}
+                    >
                       스탠다드<br />월 100P~
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center">
+                    <div 
+                      className={`bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center cursor-pointer transition-all duration-200 ${
+                        selectedPackage?.type === 'premium' && selectedPackage?.theme === '면역건강구독'
+                          ? 'scale-105 shadow-xl' 
+                          : 'hover:scale-105 hover:shadow-xl'
+                      }`}
+                      onClick={() => handlePackageClick('premium', '면역건강구독')}
+                    >
                       프리미엄<br />월 200P~
                     </div>
                   </div>
+                  
+                  {/* 제품구성 상세 정보 */}
+                  {selectedPackage?.theme === '면역건강구독' && (
+                    <div className="mt-4 p-4 bg-green-50 rounded-lg border border-green-200 animate-in slide-in-from-top duration-300">
+                      <h5 className="font-bold text-green-800 mb-3">
+                        {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
+                      </h5>
+                      <div className="space-y-2">
+                        {packageDetails.면역건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
+                          <div key={index} className="flex justify-between items-start bg-white p-3 rounded border">
+                            <div className="flex-1">
+                              <div className="font-medium text-green-800">{product.name}</div>
+                              <div className="text-xs text-green-600">{product.description}</div>
+                            </div>
+                            <div className="text-green-700 font-semibold">{product.price}</div>
+                          </div>
+                        ))}
+                        <div className="flex justify-between items-center bg-green-100 p-3 rounded font-bold text-green-800 border-2 border-green-300">
+                          <span>총 구독료</span>
+                          <span>{packageDetails.면역건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].totalPrice}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -341,13 +450,51 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="flex gap-4 justify-center items-center">
-                    <div className="border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium text-center">
+                    <div 
+                      className={`border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium text-center cursor-pointer transition-all duration-200 ${
+                        selectedPackage?.type === 'standard' && selectedPackage?.theme === '해독다이어트구독' 
+                          ? 'bg-orange-600 text-white scale-105' 
+                          : 'hover:bg-orange-50 hover:scale-105'
+                      }`}
+                      onClick={() => handlePackageClick('standard', '해독다이어트구독')}
+                    >
                       스탠다드<br />월 100P~
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center">
+                    <div 
+                      className={`bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center cursor-pointer transition-all duration-200 ${
+                        selectedPackage?.type === 'premium' && selectedPackage?.theme === '해독다이어트구독'
+                          ? 'scale-105 shadow-xl' 
+                          : 'hover:scale-105 hover:shadow-xl'
+                      }`}
+                      onClick={() => handlePackageClick('premium', '해독다이어트구독')}
+                    >
                       프리미엄<br />월 200P~
                     </div>
                   </div>
+                  
+                  {/* 제품구성 상세 정보 */}
+                  {selectedPackage?.theme === '해독다이어트구독' && (
+                    <div className="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200 animate-in slide-in-from-top duration-300">
+                      <h5 className="font-bold text-orange-800 mb-3">
+                        {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
+                      </h5>
+                      <div className="space-y-2">
+                        {packageDetails.해독다이어트구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
+                          <div key={index} className="flex justify-between items-start bg-white p-3 rounded border">
+                            <div className="flex-1">
+                              <div className="font-medium text-orange-800">{product.name}</div>
+                              <div className="text-xs text-orange-600">{product.description}</div>
+                            </div>
+                            <div className="text-orange-700 font-semibold">{product.price}</div>
+                          </div>
+                        ))}
+                        <div className="flex justify-between items-center bg-orange-100 p-3 rounded font-bold text-orange-800 border-2 border-orange-300">
+                          <span>총 구독료</span>
+                          <span>{packageDetails.해독다이어트구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].totalPrice}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -372,13 +519,51 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="flex gap-4 justify-center items-center">
-                    <div className="border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium text-center">
+                    <div 
+                      className={`border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium text-center cursor-pointer transition-all duration-200 ${
+                        selectedPackage?.type === 'standard' && selectedPackage?.theme === '피부건강구독' 
+                          ? 'bg-pink-600 text-white scale-105' 
+                          : 'hover:bg-pink-50 hover:scale-105'
+                      }`}
+                      onClick={() => handlePackageClick('standard', '피부건강구독')}
+                    >
                       스탠다드<br />월 100P~
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center">
+                    <div 
+                      className={`bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center cursor-pointer transition-all duration-200 ${
+                        selectedPackage?.type === 'premium' && selectedPackage?.theme === '피부건강구독'
+                          ? 'scale-105 shadow-xl' 
+                          : 'hover:scale-105 hover:shadow-xl'
+                      }`}
+                      onClick={() => handlePackageClick('premium', '피부건강구독')}
+                    >
                       프리미엄<br />월 200P~
                     </div>
                   </div>
+                  
+                  {/* 제품구성 상세 정보 */}
+                  {selectedPackage?.theme === '피부건강구독' && (
+                    <div className="mt-4 p-4 bg-pink-50 rounded-lg border border-pink-200 animate-in slide-in-from-top duration-300">
+                      <h5 className="font-bold text-pink-800 mb-3">
+                        {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
+                      </h5>
+                      <div className="space-y-2">
+                        {packageDetails.피부건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
+                          <div key={index} className="flex justify-between items-start bg-white p-3 rounded border">
+                            <div className="flex-1">
+                              <div className="font-medium text-pink-800">{product.name}</div>
+                              <div className="text-xs text-pink-600">{product.description}</div>
+                            </div>
+                            <div className="text-pink-700 font-semibold">{product.price}</div>
+                          </div>
+                        ))}
+                        <div className="flex justify-between items-center bg-pink-100 p-3 rounded font-bold text-pink-800 border-2 border-pink-300">
+                          <span>총 구독료</span>
+                          <span>{packageDetails.피부건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].totalPrice}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
