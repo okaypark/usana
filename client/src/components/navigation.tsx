@@ -64,12 +64,12 @@ export default function Navigation() {
               >
                 건강구독 상담
               </Button>
-              <Button
+              <button
                 onClick={() => window.location.href = '/admin'}
-                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-sm text-xs font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
+                className="text-gray-300 hover:text-gray-500 text-xs font-light opacity-30 hover:opacity-60 transition-opacity duration-500 ml-2"
               >
                 관리자
-              </Button>
+              </button>
             </div>
           </div>
           
