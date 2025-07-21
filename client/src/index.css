@@ -149,6 +149,19 @@
   background-clip: text;
 }
 
+/* Hero Badge Pulse Animation */
+@keyframes badge-pulse {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.05); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.badge-pulse-animation {
+  animation: badge-pulse 3s ease-in-out infinite;
+}
+
 /* Mobile Font Optimizations */
 @media (max-width: 640px) {
   /* Base mobile font size adjustments */

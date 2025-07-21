@@ -57,7 +57,7 @@ export default function HeroSection() {
               </h1>
               <div className="inline-block mt-12 mb-2 w-full flex justify-center sm:justify-start">
                 <div 
-                  className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30 cursor-pointer hover:scale-105 hover:shadow-3xl transition-all duration-300 group animate-pulse-gentle shimmer-overlay mobile-click-bounce"
+                  className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30 cursor-pointer hover:scale-105 hover:shadow-3xl transition-all duration-300 group badge-pulse-animation shimmer-overlay mobile-click-bounce"
                   onClick={() => setShowExpandedContent(!showExpandedContent)}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-2xl"></div>
