@@ -113,9 +113,24 @@ export default function AdminPage() {
   );
 
   // 선택된 패키지의 제품 목록 조회 (인증된 경우에만)
-  const { data: packageProducts = [] } = useQuery<PackageProduct[]>({
+  const { data: packageProducts = [], isLoading: productsLoading, error: productsError } = useQuery<PackageProduct[]>({
     queryKey: ['/api/packages', currentPackage?.id, 'products'],
+    queryFn: () => {
+      console.log('제품 목록 쿼리 실행:', currentPackage?.id);
+      return fetch(`/api/packages/${currentPackage?.id}/products`, {
+        credentials: 'include'
+      }).then(res => res.json());
+    },
     enabled: !!currentPackage?.id && isAuthenticated === true,
+  });
+
+  // 디버깅을 위한 로그
+  console.log('현재 상태:', {
+    currentPackageId: currentPackage?.id,
+    isAuthenticated,
+    packageProducts: packageProducts?.length || 0,
+    productsLoading,
+    productsError
   });
 
   // 패키지 업데이트 뮤테이션
@@ -136,18 +151,20 @@ export default function AdminPage() {
   const createProductMutation = useMutation({
     mutationFn: async (productData: Omit<PackageProduct, 'id' | 'createdAt'>) =>
       apiRequest(`/api/packages/${currentPackage?.id}/products`, 'POST', productData),
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       console.log('제품 추가 성공:', data);
       console.log('현재 패키지 ID:', currentPackage?.id);
       
       // 현재 패키지의 제품 목록 쿼리를 무효화
-      queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+      await queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
       
       // 모든 패키지 관련 쿼리도 무효화 (안전장치)
-      queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
+      await queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
       
       // 강제로 다시 가져오기
-      queryClient.refetchQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+      await queryClient.refetchQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+      
+      console.log('쿼리 무효화 및 리페치 완료');
       
       toast({ title: "제품이 성공적으로 추가되었습니다." });
       setIsProductDialogOpen(false);
