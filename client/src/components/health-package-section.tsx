@@ -101,16 +101,7 @@ export default function HealthPackageSection() {
                     <path fillRule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-bold text-green-800 mb-3">면역건강구독</h4>
-                <p className="text-green-700 mb-4 leading-relaxed">
-                  계절변화와 스트레스로부터 몸을 보호하는<br />
-                  <span className="font-bold">면역력 강화 전문 패키지</span>
-                </p>
-                <div className="bg-green-100 rounded-lg p-3 mb-4">
-                  <p className="text-sm text-green-800 font-medium">
-                    비타민C + 아연 + 프로바이오틱스
-                  </p>
-                </div>
+                <h4 className="text-xl font-bold text-green-800 mb-6">면역건강구독</h4>
                 <div className="flex gap-4 justify-center items-center">
                   <div 
                     className={`border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium text-center cursor-pointer transition-all duration-200 ${
@@ -212,16 +203,7 @@ export default function HealthPackageSection() {
                     <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-bold text-orange-800 mb-3">해독다이어트구독</h4>
-                <p className="text-orange-700 mb-4 leading-relaxed">
-                  체내 독소 배출과 건강한 체중관리를 위한<br />
-                  <span className="font-bold">디톡스 + 다이어트 패키지</span>
-                </p>
-                <div className="bg-orange-100 rounded-lg p-3 mb-4">
-                  <p className="text-sm text-orange-800 font-medium">
-                    화이버지 + 리셋 + 뉴트리밀
-                  </p>
-                </div>
+                <h4 className="text-xl font-bold text-orange-800 mb-6">해독다이어트구독</h4>
                 <div className="flex gap-4 justify-center items-center">
                   <div 
                     className={`border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium text-center cursor-pointer transition-all duration-200 ${
@@ -323,16 +305,7 @@ export default function HealthPackageSection() {
                     <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0112.12 15.12z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h4 className="text-xl font-bold text-pink-800 mb-3">피부건강구독</h4>
-                <p className="text-pink-700 mb-4 leading-relaxed">
-                  안티에이징과 피부 재생을 위한<br />
-                  <span className="font-bold">뷰티 + 안티에이징 패키지</span>
-                </p>
-                <div className="bg-pink-100 rounded-lg p-3 mb-4">
-                  <p className="text-sm text-pink-800 font-medium">
-                    셀라바이브 + 비타민E + 코큐텐
-                  </p>
-                </div>
+                <h4 className="text-xl font-bold text-pink-800 mb-6">피부건강구독</h4>
                 <div className="flex gap-4 justify-center items-center">
                   <div 
                     className={`border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium text-center cursor-pointer transition-all duration-200 ${
@@ -429,7 +402,7 @@ export default function HealthPackageSection() {
         {/* 상담 문의 섹션 */}
         <div className="mt-16 text-center">
           <p className="text-lg text-gray-600 mb-6">
-            개인별 건강 상담을 통해 최적의 패키지를 추천받으세요
+            관리자 페이지에서 각 패키지별 제품을 등록하면 여기에 표시됩니다
           </p>
           <Button 
             size="lg" 
