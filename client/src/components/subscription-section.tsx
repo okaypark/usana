@@ -309,9 +309,11 @@ export default function SubscriptionSection() {
                       비타민C + 아연 + 프로바이오틱스
                     </p>
                   </div>
-                  <div className="text-green-600 font-bold text-lg">
-                    스탠다드 월 100P~150P<br/>
-                    프리미엄 월 200P~
+                  <div className="text-lg">
+                    <div className="text-green-600 font-medium mb-1">스탠다드 월 100P~150P</div>
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                      ✨ 프리미엄 월 200P~
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -336,9 +338,11 @@ export default function SubscriptionSection() {
                       화이버지 + 리셋 + 뉴트리밀
                     </p>
                   </div>
-                  <div className="text-orange-600 font-bold text-lg">
-                    스탠다드 월 100P~150P<br/>
-                    프리미엄 월 200P~
+                  <div className="text-lg">
+                    <div className="text-orange-600 font-medium mb-1">스탠다드 월 100P~150P</div>
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                      ✨ 프리미엄 월 200P~
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -363,9 +367,11 @@ export default function SubscriptionSection() {
                       셀라바이브 + 비타민E + 코큐텐
                     </p>
                   </div>
-                  <div className="text-pink-600 font-bold text-lg">
-                    스탠다드 월 100P~150P<br/>
-                    프리미엄 월 200P~
+                  <div className="text-lg">
+                    <div className="text-pink-600 font-medium mb-1">스탠다드 월 100P~150P</div>
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                      ✨ 프리미엄 월 200P~
+                    </div>
                   </div>
                 </div>
               </CardContent>
