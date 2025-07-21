@@ -310,10 +310,10 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="space-y-2">
-                    <div className="border-2 border-green-600 text-green-600 px-3 py-1 rounded-full font-medium inline-block">
+                    <div className="border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium inline-block">
                       스탠다드 월 100P~150P
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full font-bold inline-block shadow-lg">
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold inline-block shadow-lg">
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
@@ -341,10 +341,10 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="space-y-2">
-                    <div className="border-2 border-orange-600 text-orange-600 px-3 py-1 rounded-full font-medium inline-block">
+                    <div className="border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium inline-block">
                       스탠다드 월 100P~150P
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full font-bold inline-block shadow-lg">
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold inline-block shadow-lg">
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
@@ -372,10 +372,10 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="space-y-2">
-                    <div className="border-2 border-pink-600 text-pink-600 px-3 py-1 rounded-full font-medium inline-block">
+                    <div className="border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium inline-block">
                       스탠다드 월 100P~150P
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-3 py-1 rounded-full font-bold inline-block shadow-lg">
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold inline-block shadow-lg">
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
