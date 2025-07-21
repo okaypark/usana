@@ -13,6 +13,8 @@ import { Plus, Edit, Trash2 } from "lucide-react";
 import type { Package, PackageProduct } from "@shared/schema";
 
 export default function AdminPage() {
+  const [selectedTheme, setSelectedTheme] = useState<string>("");
+  const [selectedType, setSelectedType] = useState<string>("");
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
   const [isPackageDialogOpen, setIsPackageDialogOpen] = useState(false);
   const [isProductDialogOpen, setIsProductDialogOpen] = useState(false);
@@ -26,19 +28,29 @@ export default function AdminPage() {
     queryKey: ['/api/packages'],
   });
 
+  // 테마별 그룹화
+  const themes = Array.from(new Set(packages.map(pkg => pkg.theme)));
+  
+  // 선택된 테마의 패키지 타입들
+  const typesForTheme = packages
+    .filter(pkg => pkg.theme === selectedTheme)
+    .map(pkg => pkg.type);
+
+  // 선택된 패키지 찾기
+  const currentPackage = packages.find(pkg => 
+    pkg.theme === selectedTheme && pkg.type === selectedType
+  );
+
   // 선택된 패키지의 제품 목록 조회
   const { data: packageProducts = [] } = useQuery<PackageProduct[]>({
-    queryKey: ['/api/packages', selectedPackage?.id, 'products'],
-    enabled: !!selectedPackage?.id,
+    queryKey: ['/api/packages', currentPackage?.id, 'products'],
+    enabled: !!currentPackage?.id,
   });
 
   // 패키지 업데이트 뮤테이션
   const updatePackageMutation = useMutation({
     mutationFn: async (data: { id: number; packageData: Partial<Package> }) =>
-      apiRequest(`/api/packages/${data.id}`, {
-        method: 'PUT',
-        body: JSON.stringify(data.packageData),
-      }),
+      apiRequest(`/api/packages/${data.id}`, 'PUT', data.packageData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
       toast({ title: "패키지가 성공적으로 업데이트되었습니다." });
@@ -52,12 +64,9 @@ export default function AdminPage() {
   // 제품 생성 뮤테이션
   const createProductMutation = useMutation({
     mutationFn: async (productData: Omit<PackageProduct, 'id' | 'createdAt'>) =>
-      apiRequest(`/api/packages/${selectedPackage?.id}/products`, {
-        method: 'POST',
-        body: JSON.stringify(productData),
-      }),
+      apiRequest(`/api/packages/${currentPackage?.id}/products`, 'POST', productData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/packages', selectedPackage?.id, 'products'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
       toast({ title: "제품이 성공적으로 추가되었습니다." });
       setIsProductDialogOpen(false);
     },
@@ -69,12 +78,9 @@ export default function AdminPage() {
   // 제품 업데이트 뮤테이션
   const updateProductMutation = useMutation({
     mutationFn: async (data: { id: number; productData: Partial<PackageProduct> }) =>
-      apiRequest(`/api/package-products/${data.id}`, {
-        method: 'PUT',
-        body: JSON.stringify(data.productData),
-      }),
+      apiRequest(`/api/package-products/${data.id}`, 'PUT', data.productData),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/packages', selectedPackage?.id, 'products'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
       toast({ title: "제품이 성공적으로 업데이트되었습니다." });
       setIsProductDialogOpen(false);
       setEditingProduct(null);
@@ -87,9 +93,9 @@ export default function AdminPage() {
   // 제품 삭제 뮤테이션
   const deleteProductMutation = useMutation({
     mutationFn: async (id: number) =>
-      apiRequest(`/api/package-products/${id}`, { method: 'DELETE' }),
+      apiRequest(`/api/package-products/${id}`, 'DELETE'),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/packages', selectedPackage?.id, 'products'] });
+      queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
       toast({ title: "제품이 성공적으로 삭제되었습니다." });
     },
     onError: () => {
@@ -101,7 +107,7 @@ export default function AdminPage() {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
-    if (!selectedPackage) return;
+    if (!currentPackage) return;
 
     const packageData = {
       name: formData.get('name') as string,
@@ -109,17 +115,17 @@ export default function AdminPage() {
       totalPrice: formData.get('totalPrice') as string,
     };
 
-    updatePackageMutation.mutate({ id: selectedPackage.id, packageData });
+    updatePackageMutation.mutate({ id: currentPackage.id, packageData });
   };
 
   const handleProductSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     
-    if (!selectedPackage) return;
+    if (!currentPackage) return;
 
     const productData = {
-      packageId: selectedPackage.id,
+      packageId: currentPackage.id,
       productName: formData.get('productName') as string,
       productDescription: formData.get('productDescription') as string,
       price: formData.get('price') as string,
@@ -151,86 +157,105 @@ export default function AdminPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* 패키지 목록 */}
+          {/* 패키지 선택 */}
           <Card>
             <CardHeader>
-              <CardTitle>패키지 목록</CardTitle>
+              <CardTitle>패키지 선택</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {packages.map((pkg) => (
-                  <div
-                    key={pkg.id}
-                    className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                      selectedPackage?.id === pkg.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                    onClick={() => setSelectedPackage(pkg)}
-                  >
+              <div className="space-y-6">
+                {/* 테마 선택 */}
+                <div>
+                  <Label htmlFor="theme-select">구독 테마</Label>
+                  <Select value={selectedTheme} onValueChange={setSelectedTheme}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="구독 테마를 선택하세요" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {themes.map((theme) => (
+                        <SelectItem key={theme} value={theme}>
+                          {theme}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* 타입 선택 */}
+                {selectedTheme && (
+                  <div>
+                    <Label htmlFor="type-select">패키지 타입</Label>
+                    <Select value={selectedType} onValueChange={setSelectedType}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="패키지 타입을 선택하세요" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {typesForTheme.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type === 'standard' ? '스탠다드' : '프리미엄'}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                )}
+
+                {/* 선택된 패키지 정보 */}
+                {currentPackage && (
+                  <div className="p-4 border-2 border-blue-500 bg-blue-50 rounded-lg">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h3 className="font-semibold text-lg">{pkg.name}</h3>
-                        <p className="text-sm text-gray-600">{pkg.description}</p>
-                        <p className="text-sm font-medium text-blue-600 mt-1">{pkg.totalPrice}</p>
+                        <h3 className="font-semibold text-lg">{currentPackage.name}</h3>
+                        <p className="text-sm text-gray-600">{currentPackage.description}</p>
+                        <p className="text-sm font-medium text-blue-600 mt-1">{currentPackage.totalPrice}</p>
                       </div>
-                      <div className="flex gap-2">
-                        <Dialog open={isPackageDialogOpen} onOpenChange={setIsPackageDialogOpen}>
-                          <DialogTrigger asChild>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedPackage(pkg);
-                                setIsPackageDialogOpen(true);
-                              }}
-                            >
-                              <Edit className="h-4 w-4" />
+                      <Dialog open={isPackageDialogOpen} onOpenChange={setIsPackageDialogOpen}>
+                        <DialogTrigger asChild>
+                          <Button size="sm" variant="outline">
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>패키지 편집</DialogTitle>
+                          </DialogHeader>
+                          <form onSubmit={handlePackageSubmit} className="space-y-4">
+                            <div>
+                              <Label htmlFor="name">패키지명</Label>
+                              <Input
+                                id="name"
+                                name="name"
+                                defaultValue={currentPackage?.name}
+                                required
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="description">설명</Label>
+                              <Textarea
+                                id="description"
+                                name="description"
+                                defaultValue={currentPackage?.description || ''}
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="totalPrice">총 가격</Label>
+                              <Input
+                                id="totalPrice"
+                                name="totalPrice"
+                                defaultValue={currentPackage?.totalPrice}
+                                placeholder="예: 월 130P"
+                                required
+                              />
+                            </div>
+                            <Button type="submit" className="w-full">
+                              패키지 업데이트
                             </Button>
-                          </DialogTrigger>
-                          <DialogContent>
-                            <DialogHeader>
-                              <DialogTitle>패키지 편집</DialogTitle>
-                            </DialogHeader>
-                            <form onSubmit={handlePackageSubmit} className="space-y-4">
-                              <div>
-                                <Label htmlFor="name">패키지명</Label>
-                                <Input
-                                  id="name"
-                                  name="name"
-                                  defaultValue={selectedPackage?.name}
-                                  required
-                                />
-                              </div>
-                              <div>
-                                <Label htmlFor="description">설명</Label>
-                                <Textarea
-                                  id="description"
-                                  name="description"
-                                  defaultValue={selectedPackage?.description || ''}
-                                />
-                              </div>
-                              <div>
-                                <Label htmlFor="totalPrice">총 가격</Label>
-                                <Input
-                                  id="totalPrice"
-                                  name="totalPrice"
-                                  defaultValue={selectedPackage?.totalPrice}
-                                  placeholder="예: 월 130P"
-                                  required
-                                />
-                              </div>
-                              <Button type="submit" className="w-full">
-                                패키지 업데이트
-                              </Button>
-                            </form>
-                          </DialogContent>
-                        </Dialog>
-                      </div>
+                          </form>
+                        </DialogContent>
+                      </Dialog>
                     </div>
                   </div>
-                ))}
+                )}
               </div>
             </CardContent>
           </Card>
@@ -240,7 +265,7 @@ export default function AdminPage() {
             <CardHeader>
               <CardTitle className="flex justify-between items-center">
                 제품 구성
-                {selectedPackage && (
+                {currentPackage && (
                   <Dialog open={isProductDialogOpen} onOpenChange={setIsProductDialogOpen}>
                     <DialogTrigger asChild>
                       <Button
@@ -316,11 +341,11 @@ export default function AdminPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {selectedPackage ? (
+              {currentPackage ? (
                 <div>
                   <div className="mb-4 p-3 bg-blue-50 rounded-lg">
-                    <h3 className="font-semibold">{selectedPackage.name}</h3>
-                    <p className="text-sm text-gray-600">{selectedPackage.description}</p>
+                    <h3 className="font-semibold">{currentPackage.name}</h3>
+                    <p className="text-sm text-gray-600">{currentPackage.description}</p>
                   </div>
                   <div className="space-y-3">
                     {packageProducts.map((product) => (
@@ -364,7 +389,7 @@ export default function AdminPage() {
                 </div>
               ) : (
                 <p className="text-gray-500 text-center py-8">
-                  편집할 패키지를 선택해주세요
+                  편집할 구독 테마와 패키지 타입을 선택해주세요
                 </p>
               )}
             </CardContent>
