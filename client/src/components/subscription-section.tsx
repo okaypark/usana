@@ -55,7 +55,7 @@ export default function SubscriptionSection() {
     {
       icon: UserCheck,
       title: "매칭 보너스",
-      description: "직추천 가입자가 받는 후원수당의 10%를 나에게도 추가 지급",
+      description: "직추천 가입자들이 받는 모든 후원수당의 10%를 나에게도 추가 지급",
       color: "bg-teal-600"
     }
   ];
