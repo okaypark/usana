@@ -200,6 +200,18 @@ export default function AdminPage() {
     },
   });
 
+  // 제품 수량 업데이트 뮤테이션
+  const updateProductQuantityMutation = useMutation({
+    mutationFn: async ({ id, quantity }: { id: number; quantity: number }) =>
+      apiRequest(`/api/package-products/${id}/quantity`, 'PATCH', { quantity }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+    },
+    onError: () => {
+      toast({ title: "수량 변경에 실패했습니다.", variant: "destructive" });
+    },
+  });
+
   const handlePackageSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -810,26 +822,63 @@ export default function AdminPage() {
                             {product.price}
                           </p>
                         </div>
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => {
-                              setEditingProduct(product);
-                              setIsProductDialogOpen(true);
-                            }}
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => {
-                              deleteProductMutation.mutate(product.id);
-                            }}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
+                        <div className="flex items-center gap-3">
+                          {/* 수량 조절 UI */}
+                          <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-200"
+                              onClick={() => {
+                                if (product.quantity && product.quantity > 1) {
+                                  updateProductQuantityMutation.mutate({
+                                    id: product.id,
+                                    quantity: product.quantity - 1
+                                  });
+                                }
+                              }}
+                              disabled={!product.quantity || product.quantity <= 1}
+                            >
+                              -
+                            </Button>
+                            <span className="text-sm font-medium min-w-[20px] text-center">
+                              {product.quantity || 1}
+                            </span>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-6 w-6 p-0 text-gray-600 hover:bg-gray-200"
+                              onClick={() => {
+                                updateProductQuantityMutation.mutate({
+                                  id: product.id,
+                                  quantity: (product.quantity || 1) + 1
+                                });
+                              }}
+                            >
+                              +
+                            </Button>
+                          </div>
+                          <div className="flex gap-2">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                setEditingProduct(product);
+                                setIsProductDialogOpen(true);
+                              }}
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => {
+                                deleteProductMutation.mutate(product.id);
+                              }}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -872,6 +921,7 @@ export default function AdminPage() {
                 productDescription: `${product.category} - 제품코드: ${product.productCode}`,
                 price: `${product.price.toLocaleString()}원`,
                 pointValue: product.points,
+                quantity: 1, // 기본 수량 1개
                 order: 0
               });
               setIsUsanaProductSelectorOpen(false);

@@ -626,6 +626,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 제품 수량 업데이트 API
+  app.patch("/api/package-products/:id/quantity", requireAdminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid product ID" });
+      }
+      
+      const { quantity } = req.body;
+      if (typeof quantity !== 'number' || quantity < 1) {
+        return res.status(400).json({ success: false, message: "Quantity must be a positive number" });
+      }
+      
+      const success = await storage.updatePackageProductQuantity(id, quantity);
+      if (!success) {
+        return res.status(404).json({ success: false, message: "Product not found" });
+      }
+      
+      res.json({ success: true });
+    } catch (error) {
+      console.error('제품 수량 업데이트 오류:', error);
+      res.status(500).json({ success: false, message: "Failed to update product quantity" });
+    }
+  });
+
   // 유사나 제품 스크래핑 API
   app.get("/api/usana/scrape", requireAdminAuth, async (req, res) => {
     try {

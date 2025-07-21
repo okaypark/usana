@@ -47,6 +47,7 @@ export const packageProducts = pgTable("package_products", {
   productDescription: text("product_description"),
   price: text("price").notNull(),
   pointValue: integer("point_value"), // USANA 포인트 값
+  quantity: integer("quantity").default(1).notNull(), // 수량 (기본값 1)
   order: integer("order").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

@@ -45,6 +45,7 @@ export interface IStorage {
   getPackageProducts(packageId: number): Promise<PackageProduct[]>;
   createPackageProduct(productData: InsertPackageProduct): Promise<PackageProduct>;
   updatePackageProduct(id: number, productData: Partial<InsertPackageProduct>): Promise<PackageProduct | undefined>;
+  updatePackageProductQuantity(id: number, quantity: number): Promise<boolean>;
   deletePackageProduct(id: number): Promise<boolean>;
   
   // 관리자 관리
@@ -315,6 +316,14 @@ export class DatabaseStorage implements IStorage {
       .where(eq(packageProducts.id, id))
       .returning();
     return updatedProduct || undefined;
+  }
+
+  async updatePackageProductQuantity(id: number, quantity: number): Promise<boolean> {
+    const result = await db
+      .update(packageProducts)
+      .set({ quantity })
+      .where(eq(packageProducts.id, id));
+    return (result.rowCount ?? 0) > 0;
   }
 
   async deletePackageProduct(id: number): Promise<boolean> {

@@ -55,7 +55,7 @@ export default function HealthPackageSection() {
     }
   };
 
-  // 동적 가격 및 포인트 계산 함수
+  // 동적 가격 및 포인트 계산 함수 (수량 포함)
   const calculatePackageStats = (products: PackageProduct[]) => {
     if (!products || products.length === 0) {
       return { totalPrice: 0, totalPoints: 0, subscriptionPrice: 0 };
@@ -64,11 +64,13 @@ export default function HealthPackageSection() {
     const totalPrice = products.reduce((sum, product) => {
       // 가격 문자열에서 숫자만 추출 (예: "25,000원" -> 25000)
       const price = parseInt(product.price.replace(/[^0-9]/g, '')) || 0;
-      return sum + price;
+      const quantity = product.quantity || 1;
+      return sum + (price * quantity);
     }, 0);
 
     const totalPoints = products.reduce((sum, product) => {
-      return sum + (product.pointValue || 0);
+      const quantity = product.quantity || 1;
+      return sum + ((product.pointValue || 0) * quantity);
     }, 0);
 
     const subscriptionPrice = Math.floor(totalPrice * 0.9); // 10% 할인
@@ -160,6 +162,11 @@ export default function HealthPackageSection() {
                               selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-green-800'
                             }`}>
                               {selectedPackage.type === 'premium' && '🌟 '}{product.productName}
+                              {product.quantity && product.quantity > 1 && (
+                                <span className="text-sm ml-2 px-2 py-1 bg-green-100 text-green-700 rounded-full font-normal">
+                                  x{product.quantity}
+                                </span>
+                              )}
                             </div>
                             <div className={`text-sm mt-1 ${
                               selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-green-600'
@@ -262,6 +269,11 @@ export default function HealthPackageSection() {
                               selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-orange-800'
                             }`}>
                               {selectedPackage.type === 'premium' && '🌟 '}{product.productName}
+                              {product.quantity && product.quantity > 1 && (
+                                <span className="text-sm ml-2 px-2 py-1 bg-orange-100 text-orange-700 rounded-full font-normal">
+                                  x{product.quantity}
+                                </span>
+                              )}
                             </div>
                             <div className={`text-sm mt-1 ${
                               selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-orange-600'
@@ -364,6 +376,11 @@ export default function HealthPackageSection() {
                               selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-pink-800'
                             }`}>
                               {selectedPackage.type === 'premium' && '🌟 '}{product.productName}
+                              {product.quantity && product.quantity > 1 && (
+                                <span className="text-sm ml-2 px-2 py-1 bg-pink-100 text-pink-700 rounded-full font-normal">
+                                  x{product.quantity}
+                                </span>
+                              )}
                             </div>
                             <div className={`text-sm mt-1 ${
                               selectedPackage.type === 'premium' ? 'text-amber-600' : 'text-pink-600'
