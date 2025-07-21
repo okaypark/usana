@@ -32,6 +32,8 @@ export interface IStorage {
   
   getFaqs(): Promise<Faq[]>;
   createFaq(faq: InsertFaq): Promise<Faq>;
+  updateFaq(id: number, faq: InsertFaq): Promise<Faq | undefined>;
+  deleteFaq(id: number): Promise<boolean>;
   
   // 패키지 관리
   getPackages(): Promise<Package[]>;
@@ -210,6 +212,20 @@ export class MemStorage {
     this.faqs.set(id, newFaq);
     return newFaq;
   }
+
+  async updateFaq(id: number, faq: InsertFaq): Promise<Faq | undefined> {
+    const existingFaq = this.faqs.get(id);
+    if (existingFaq) {
+      const updatedFaq: Faq = { ...faq, id };
+      this.faqs.set(id, updatedFaq);
+      return updatedFaq;
+    }
+    return undefined;
+  }
+
+  async deleteFaq(id: number): Promise<boolean> {
+    return this.faqs.delete(id);
+  }
 }
 
 export class DatabaseStorage implements IStorage {
@@ -257,6 +273,20 @@ export class DatabaseStorage implements IStorage {
   async createFaq(faq: InsertFaq): Promise<Faq> {
     const [newFaq] = await db.insert(faqs).values(faq).returning();
     return newFaq;
+  }
+
+  async updateFaq(id: number, faq: InsertFaq): Promise<Faq | undefined> {
+    const [updatedFaq] = await db
+      .update(faqs)
+      .set(faq)
+      .where(eq(faqs.id, id))
+      .returning();
+    return updatedFaq || undefined;
+  }
+
+  async deleteFaq(id: number): Promise<boolean> {
+    const result = await db.delete(faqs).where(eq(faqs.id, id));
+    return result.rowCount > 0;
   }
 
   // 패키지 관리

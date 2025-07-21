@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus } from "lucide-react";
-import type { Package, PackageProduct } from "@shared/schema";
+import type { Package, PackageProduct, Faq } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
 import UsanaProductSelector from "@/components/usana-product-selector";
@@ -28,6 +28,8 @@ export default function AdminPage() {
   const [isAddAdminDialogOpen, setIsAddAdminDialogOpen] = useState(false);
   const [isAddingAdmin, setIsAddingAdmin] = useState(false);
   const [isUsanaProductSelectorOpen, setIsUsanaProductSelectorOpen] = useState(false);
+  const [editingFaq, setEditingFaq] = useState<Faq | null>(null);
+  const [isFaqDialogOpen, setIsFaqDialogOpen] = useState(false);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -97,6 +99,12 @@ export default function AdminPage() {
   const { data: currentAdminData } = useQuery({
     queryKey: ["/api/admin/current"],
     enabled: isAuthenticated === true
+  });
+
+  // FAQ 목록 조회
+  const { data: faqs = [], isLoading: faqsLoading } = useQuery<Faq[]>({
+    queryKey: ['/api/faqs'],
+    enabled: isAuthenticated === true,
   });
 
   // 테마별 그룹화
@@ -358,6 +366,70 @@ export default function AdminPage() {
     }
   };
 
+  // FAQ 생성/수정 핸들러
+  const handleFaqSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const faqData = {
+      question: formData.get('question') as string,
+      answer: formData.get('answer') as string,
+      category: formData.get('category') as string,
+      order: parseInt(formData.get('order') as string) || 1
+    };
+
+    try {
+      if (editingFaq) {
+        // FAQ 수정
+        const response = await apiRequest(`/api/faqs/${editingFaq.id}`, 'PUT', faqData);
+        if (response.ok) {
+          toast({
+            title: "FAQ 수정 완료",
+            description: "FAQ가 성공적으로 수정되었습니다.",
+          });
+        }
+      } else {
+        // FAQ 추가
+        const response = await apiRequest('/api/faqs', 'POST', faqData);
+        if (response.ok) {
+          toast({
+            title: "FAQ 추가 완료",
+            description: "새 FAQ가 성공적으로 추가되었습니다.",
+          });
+        }
+      }
+      queryClient.invalidateQueries({ queryKey: ['/api/faqs'] });
+      setIsFaqDialogOpen(false);
+      setEditingFaq(null);
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      toast({
+        title: "오류 발생",
+        description: "FAQ 처리 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // FAQ 삭제 핸들러
+  const handleDeleteFaq = async (faqId: number) => {
+    try {
+      const response = await apiRequest(`/api/faqs/${faqId}`, 'DELETE');
+      if (response.ok) {
+        toast({
+          title: "FAQ 삭제 완료",
+          description: "FAQ가 성공적으로 삭제되었습니다.",
+        });
+        queryClient.invalidateQueries({ queryKey: ['/api/faqs'] });
+      }
+    } catch (error) {
+      toast({
+        title: "삭제 실패",
+        description: "FAQ 삭제 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
   // 인증 상태 로딩 중
   if (isAuthenticated === null) {
     return (
@@ -414,7 +486,7 @@ export default function AdminPage() {
         {/* 탭 컨테이너 */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-2 bg-gray-50 rounded-t-xl p-1">
+            <TabsList className="grid w-full grid-cols-3 bg-gray-50 rounded-t-xl p-1">
               <TabsTrigger 
                 value="admin" 
                 className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
@@ -428,6 +500,13 @@ export default function AdminPage() {
               >
                 <Package2 className="w-4 h-4" />
                 구독패키지
+              </TabsTrigger>
+              <TabsTrigger 
+                value="faqs" 
+                className="flex items-center gap-2 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              >
+                <Settings className="w-4 h-4" />
+                FAQ 관리
               </TabsTrigger>
             </TabsList>
 
@@ -892,6 +971,140 @@ export default function AdminPage() {
             </CardContent>
           </Card>
         </div>
+            </TabsContent>
+
+            {/* FAQ 관리 탭 */}
+            <TabsContent value="faqs" className="p-6 space-y-6">
+              <Card className="border-green-200 shadow-md">
+                <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
+                  <CardTitle className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-green-700">
+                      <Settings className="w-5 h-5" />
+                      FAQ 관리
+                    </div>
+                    <Dialog open={isFaqDialogOpen} onOpenChange={setIsFaqDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button 
+                          className="bg-green-600 hover:bg-green-700 text-white"
+                          onClick={() => setEditingFaq(null)}
+                        >
+                          <Plus className="w-4 h-4 mr-2" />
+                          새 FAQ 추가
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>
+                            {editingFaq ? 'FAQ 수정' : '새 FAQ 추가'}
+                          </DialogTitle>
+                        </DialogHeader>
+                        <form onSubmit={handleFaqSubmit} className="space-y-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <Label htmlFor="category">카테고리</Label>
+                              <Input
+                                id="category"
+                                name="category"
+                                defaultValue={editingFaq?.category || ""}
+                                placeholder="예: 제품안전성, 사업방식"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <Label htmlFor="order">순서</Label>
+                              <Input
+                                id="order"
+                                name="order"
+                                type="number"
+                                defaultValue={editingFaq?.order || 1}
+                                min={1}
+                                required
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <Label htmlFor="question">질문</Label>
+                            <Input
+                              id="question"
+                              name="question"
+                              defaultValue={editingFaq?.question || ""}
+                              placeholder="자주 묻는 질문을 입력하세요"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="answer">답변</Label>
+                            <Textarea
+                              id="answer"
+                              name="answer"
+                              defaultValue={editingFaq?.answer || ""}
+                              placeholder="상세한 답변을 입력하세요"
+                              rows={6}
+                              required
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            {editingFaq ? 'FAQ 수정' : 'FAQ 추가'}
+                          </Button>
+                        </form>
+                      </DialogContent>
+                    </Dialog>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  {faqsLoading ? (
+                    <div className="text-center py-8">FAQ 목록 로딩 중...</div>
+                  ) : faqs.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500">
+                      등록된 FAQ가 없습니다. 새 FAQ를 추가해보세요.
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {faqs
+                        .sort((a, b) => a.order - b.order)
+                        .map((faq) => (
+                        <div
+                          key={faq.id}
+                          className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+                        >
+                          <div className="flex justify-between items-start gap-4">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                                  {faq.category}
+                                </span>
+                                <span className="text-sm text-gray-500">순서: {faq.order}</span>
+                              </div>
+                              <h4 className="font-medium text-gray-900 mb-2">{faq.question}</h4>
+                              <p className="text-sm text-gray-600 line-clamp-3">{faq.answer}</p>
+                            </div>
+                            <div className="flex gap-2">
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => {
+                                  setEditingFaq(faq);
+                                  setIsFaqDialogOpen(true);
+                                }}
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handleDeleteFaq(faq.id)}
+                                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
             </TabsContent>
           </Tabs>
         </div>

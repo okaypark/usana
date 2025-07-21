@@ -439,13 +439,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create FAQ (for admin purposes)
-  app.post("/api/faqs", async (req, res) => {
+  app.post("/api/faqs", requireAdminAuth, async (req, res) => {
     try {
-      const faqData = req.body;
+      const faqData = insertFaqSchema.parse(req.body);
       const faq = await storage.createFaq(faqData);
       res.json({ success: true, faq });
     } catch (error) {
-      res.status(500).json({ success: false, message: "Failed to create FAQ" });
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ success: false, errors: error.errors });
+      } else {
+        console.error('FAQ 생성 오류:', error);
+        res.status(500).json({ success: false, message: "Failed to create FAQ" });
+      }
+    }
+  });
+
+  // Update FAQ
+  app.put("/api/faqs/:id", requireAdminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid FAQ ID" });
+      }
+
+      const faqData = insertFaqSchema.parse(req.body);
+      const faq = await storage.updateFaq(id, faqData);
+      
+      if (!faq) {
+        return res.status(404).json({ success: false, message: "FAQ not found" });
+      }
+
+      res.json({ success: true, faq });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ success: false, errors: error.errors });
+      } else {
+        console.error('FAQ 수정 오류:', error);
+        res.status(500).json({ success: false, message: "Failed to update FAQ" });
+      }
+    }
+  });
+
+  // Delete FAQ
+  app.delete("/api/faqs/:id", requireAdminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid FAQ ID" });
+      }
+
+      const success = await storage.deleteFaq(id);
+      if (!success) {
+        return res.status(404).json({ success: false, message: "FAQ not found" });
+      }
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error('FAQ 삭제 오류:', error);
+      res.status(500).json({ success: false, message: "Failed to delete FAQ" });
     }
   });
 
