@@ -58,18 +58,18 @@ export default function ProductsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full mb-6 shadow-lg shadow-usana-blue-500/20">
-            <span className="text-usana-blue-700 text-sm font-bold tracking-wider uppercase">Premium Product Portfolio</span>
+            <span className="text-usana-blue-700 text-base sm:text-lg md:text-xl font-bold tracking-wider uppercase">Premium Product Portfolio</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
             <span className="text-usana-blue-600">미국 1위 영양제</span><br />
-            <span className="text-usana-blue-600 font-semibold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">USANA 제품소개</span>
+            <span className="text-usana-blue-600 font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">USANA 제품소개</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-usana-blue-600 max-w-4xl mx-auto leading-relaxed font-light">
             세계 최고 품질의 영양제와 스킨케어로<br />
             <span className="text-usana-blue-600 font-semibold">건강한 삶</span>을 선물하는<br />
             USANA의 프리미엄 제품 라인업<br />
-            <span className="text-usana-blue-600 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl flex flex-col items-center gap-2">
-              <img src={usaFlag} alt="USA Flag" className="w-12 h-16 object-cover" />
+            <span className="text-usana-blue-600 font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl flex flex-col items-center gap-3">
+              <img src={usaFlag} alt="USA Flag" className="w-16 h-20 sm:w-20 sm:h-24 object-cover" />
               <span className="text-center">100%<br />Made in USA</span>
             </span>
           </p>
@@ -99,7 +99,7 @@ export default function ProductsSection() {
                     <div className={`${product.iconBg} p-2 rounded-lg mr-3`}>
                       <Icon className="text-white h-5 w-5" />
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{product.title}</h3>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">{product.title}</h3>
                   </div>
                   <p className="text-gray-600 mb-6">{product.description}</p>
                   <ul className="space-y-2 mb-6 flex-1">
