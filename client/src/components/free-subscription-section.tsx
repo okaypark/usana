@@ -62,12 +62,7 @@ export default function FreeSubscriptionSection() {
               <div className="w-1 h-16 bg-usana-blue-400 mr-6"></div>
               <h3 className="text-3xl font-bold tracking-tight">스마트 구독 혜택 시스템</h3>
             </div>
-            <p className="text-xl leading-relaxed font-light mb-4">
-              <span className="font-semibold">건강구독 2~3단계 확장 시</span> 구독료 50% 할인에서 
-              <span className="text-usana-blue-400 font-bold"> 100% 무료구독</span>까지 
-              똑똑한 소비자 혜택을 경험하세요
-            </p>
-            <p className="text-lg leading-relaxed font-light text-usana-blue-200">
+            <p className="text-xl leading-relaxed font-light text-usana-blue-200">
               <span className="font-semibold text-usana-blue-300">스마트 구독 4단계를 완료하시고, 내가 소개한 2~4인의 지인들도 4단계를 달성하면</span><br />
               여러분은 <span className="font-bold text-usana-blue-400">50%~100% 무료구독 그 이상의 혜택</span>을 받게 됩니다.
             </p>
