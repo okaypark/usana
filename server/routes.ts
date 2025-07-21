@@ -124,17 +124,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email } = req.body;
       
-      // 실제 환경에서는 이메일 발송 서비스 연동
-      // 여기서는 시뮬레이션으로 처리
+      // 관리자 존재 여부 확인
+      const admin = await storage.getAdminByEmail(email);
+      if (!admin) {
+        return res.status(404).json({
+          success: false,
+          message: "해당 이메일로 등록된 관리자를 찾을 수 없습니다."
+        });
+      }
+      
       console.log(`📧 비밀번호 재설정 이메일 발송 요청: ${email}`);
       
-      // 실제로는 임시 토큰을 생성하고 이메일로 재설정 링크 발송
-      // const resetToken = crypto.randomBytes(32).toString('hex');
-      // await sendPasswordResetEmail(email, resetToken);
-      
-      res.json({ 
-        success: true, 
-        message: "비밀번호 재설정 링크가 이메일로 발송되었습니다." 
+      // 현재는 이메일 발송 서비스가 설정되지 않음
+      // SENDGRID_API_KEY가 필요함
+      res.status(503).json({ 
+        success: false, 
+        message: "이메일 발송 서비스가 설정되지 않았습니다. 관리자에게 문의하거나 로그인 후 비밀번호를 변경해주세요." 
       });
     } catch (error) {
       console.error('비밀번호 재설정 요청 오류:', error);

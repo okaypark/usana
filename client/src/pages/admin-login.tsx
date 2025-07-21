@@ -134,14 +134,15 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
             </Button>
           </form>
 
-          <div className="mt-6 text-center space-y-3">
-            <Link href="/admin/password-reset">
-              <Button variant="link" className="text-sm text-blue-600 hover:text-blue-800">
-                비밀번호를 잊으셨나요?
-              </Button>
-            </Link>
-            <p className="text-xs text-gray-500">
-              관리자 계정이 필요하시면 시스템 관리자에게 문의하세요
+          <div className="text-center mt-6">
+            <p className="text-sm text-gray-600">
+              비밀번호를 잊으셨나요?{" "}
+              <span className="text-orange-600 font-medium">
+                로그인 후 비밀번호 변경 가능
+              </span>
+            </p>
+            <p className="text-xs text-gray-500 mt-2">
+              문의: okaypark7@gmail.com
             </p>
           </div>
         </CardContent>
