@@ -13,7 +13,7 @@ export default function Navigation() {
   const navItems = [
     { label: "제품소개", href: "products" },
     { label: "건강구독", href: "health-packages" },
-    { label: "사업기회", href: "business" },
+    { label: "사업기회", href: "free-subscription" },
     { label: "소개", href: "about" },
     { label: "Q&A", href: "qna" },
   ];
