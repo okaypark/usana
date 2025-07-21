@@ -57,10 +57,20 @@ export default function PasswordChangeDialog({ children }: PasswordChangeDialogP
     setIsLoading(true);
 
     try {
-      const result = await apiRequest("/api/admin/change-password", "POST", {
-        currentPassword,
-        newPassword,
-      }) as any;
+      const response = await fetch("/api/admin/change-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+        }),
+      });
+      
+      const result = await response.json();
+      console.log('비밀번호 변경 응답:', result);
 
       if (result.success) {
         toast({
