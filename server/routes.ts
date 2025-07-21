@@ -33,8 +33,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { email, password } = req.body;
       
+      console.log('로그인 시도:', { email, password: password ? '***' : 'empty' });
+      
       // 관리자 계정 정보 가져오기
       const admin = await storage.getAdminByEmail(email);
+      console.log('조회된 관리자:', admin ? { id: admin.id, email: admin.email, name: admin.name } : 'not found');
+      
       if (!admin) {
         return res.status(401).json({
           success: false,
@@ -44,6 +48,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // 비밀번호 확인
       const isValidPassword = await bcrypt.compare(password, admin.passwordHash);
+      console.log('비밀번호 검증 결과:', isValidPassword);
+      
       if (!isValidPassword) {
         return res.status(401).json({
           success: false,
