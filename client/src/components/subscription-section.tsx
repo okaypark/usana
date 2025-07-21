@@ -14,9 +14,9 @@ import travelJapan from "@assets/유사나 인센티브여행 일본_17530859235
 export default function SubscriptionSection() {
   const [selectedPackage, setSelectedPackage] = useState<{type: string, theme: string} | null>(null);
   
-  // 패키지 데이터 조회
+  // 패키지 데이터 조회 (공개 API 사용)
   const { data: packages = [], isLoading } = useQuery<Package[]>({
-    queryKey: ['/api/packages'],
+    queryKey: ['/api/public/packages'],
   });
   
   // 선택된 패키지의 제품 정보 조회
@@ -25,7 +25,7 @@ export default function SubscriptionSection() {
   );
   
   const { data: packageProducts = [] } = useQuery<PackageProduct[]>({
-    queryKey: ['/api/packages', selectedPackageData?.id, 'products'],
+    queryKey: ['/api/public/packages', selectedPackageData?.id, 'products'],
     enabled: !!selectedPackageData?.id,
   });
   

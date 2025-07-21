@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,10 +9,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut } from "lucide-react";
 import type { Package, PackageProduct } from "@shared/schema";
+import AdminLogin from "./admin-login";
 
 export default function AdminPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [selectedTheme, setSelectedTheme] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
@@ -23,9 +25,41 @@ export default function AdminPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  // 패키지 목록 조회
+  // 인증 상태 확인
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const result = await apiRequest("/api/admin/status") as any;
+        setIsAuthenticated(result.isAuthenticated);
+      } catch (error) {
+        setIsAuthenticated(false);
+      }
+    };
+    checkAuth();
+  }, []);
+
+  // 로그아웃 처리
+  const handleLogout = async () => {
+    try {
+      await apiRequest("/api/admin/logout", "POST");
+      setIsAuthenticated(false);
+      toast({
+        title: "로그아웃 완료",
+        description: "성공적으로 로그아웃되었습니다.",
+      });
+    } catch (error) {
+      toast({
+        title: "로그아웃 오류",
+        description: "로그아웃 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // 패키지 목록 조회 (인증된 경우에만)
   const { data: packages = [], isLoading: packagesLoading } = useQuery<Package[]>({
     queryKey: ['/api/packages'],
+    enabled: isAuthenticated === true,
   });
 
   // 테마별 그룹화
@@ -41,10 +75,10 @@ export default function AdminPage() {
     pkg.theme === selectedTheme && pkg.type === selectedType
   );
 
-  // 선택된 패키지의 제품 목록 조회
+  // 선택된 패키지의 제품 목록 조회 (인증된 경우에만)
   const { data: packageProducts = [] } = useQuery<PackageProduct[]>({
     queryKey: ['/api/packages', currentPackage?.id, 'products'],
-    enabled: !!currentPackage?.id,
+    enabled: !!currentPackage?.id && isAuthenticated === true,
   });
 
   // 패키지 업데이트 뮤테이션
@@ -140,10 +174,25 @@ export default function AdminPage() {
     }
   };
 
+  // 인증 상태 로딩 중
+  if (isAuthenticated === null) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-lg">인증 상태 확인 중...</div>
+      </div>
+    );
+  }
+
+  // 인증되지 않은 경우 로그인 페이지 표시
+  if (isAuthenticated === false) {
+    return <AdminLogin onLoginSuccess={() => setIsAuthenticated(true)} />;
+  }
+
+  // 패키지 데이터 로딩 중
   if (packagesLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-lg">로딩 중...</div>
+        <div className="text-lg">데이터 로딩 중...</div>
       </div>
     );
   }
@@ -151,9 +200,19 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">패키지 관리</h1>
-          <p className="text-gray-600">건강구독 패키지와 제품 구성을 관리할 수 있습니다.</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">패키지 관리</h1>
+            <p className="text-gray-600">건강구독 패키지와 제품 구성을 관리할 수 있습니다.</p>
+          </div>
+          <Button
+            onClick={handleLogout}
+            variant="outline"
+            className="flex items-center gap-2"
+          >
+            <LogOut className="w-4 h-4" />
+            로그아웃
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

@@ -4,8 +4,86 @@ import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleSheetsService } from "./google-sheets";
+import bcrypt from "bcryptjs";
+import session from "express-session";
+
+// 관리자 인증 미들웨어
+const requireAdminAuth = (req: any, res: any, next: any) => {
+  if (!req.session?.isAdminAuthenticated) {
+    return res.status(401).json({ success: false, message: "관리자 인증이 필요합니다." });
+  }
+  next();
+};
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // 세션 설정
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'usana-admin-secret-key-2025',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: false, // development에서는 false
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000, // 24시간
+    }
+  }));
+
+  // 관리자 로그인 API
+  app.post("/api/admin/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      // 환경변수에서 관리자 계정 정보 가져오기
+      const adminUsername = process.env.ADMIN_USERNAME || 'admin';
+      const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
+      
+      if (!adminPasswordHash) {
+        return res.status(500).json({ 
+          success: false, 
+          message: "관리자 계정이 설정되지 않았습니다." 
+        });
+      }
+      
+      // 사용자명 확인
+      if (username !== adminUsername) {
+        return res.status(401).json({ 
+          success: false, 
+          message: "잘못된 계정 정보입니다." 
+        });
+      }
+      
+      // 비밀번호 확인
+      const isPasswordValid = await bcrypt.compare(password, adminPasswordHash);
+      if (!isPasswordValid) {
+        return res.status(401).json({ 
+          success: false, 
+          message: "잘못된 계정 정보입니다." 
+        });
+      }
+      
+      // 세션에 인증 정보 저장
+      (req.session as any).isAdminAuthenticated = true;
+      
+      res.json({ success: true, message: "로그인 성공" });
+    } catch (error) {
+      console.error('관리자 로그인 오류:', error);
+      res.status(500).json({ success: false, message: "로그인 처리 중 오류가 발생했습니다." });
+    }
+  });
+
+  // 관리자 로그아웃 API
+  app.post("/api/admin/logout", (req, res) => {
+    (req.session as any).isAdminAuthenticated = false;
+    req.session?.destroy(() => {
+      res.json({ success: true, message: "로그아웃 성공" });
+    });
+  });
+
+  // 관리자 인증 상태 확인 API
+  app.get("/api/admin/status", (req, res) => {
+    const isAuthenticated = !!(req.session as any)?.isAdminAuthenticated;
+    res.json({ isAuthenticated });
+  });
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {
@@ -86,8 +164,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // 패키지 관리 API
-  app.get("/api/packages", async (req, res) => {
+  // 공개 패키지 목록 조회 (홈페이지용)
+  app.get("/api/public/packages", async (req, res) => {
     try {
       const packages = await storage.getPackages();
       res.json(packages);
@@ -96,7 +174,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/packages/theme/:theme", async (req, res) => {
+  // 공개 패키지 제품 조회 (홈페이지용)
+  app.get("/api/public/packages/:packageId/products", async (req, res) => {
+    try {
+      const packageId = parseInt(req.params.packageId, 10);
+      if (isNaN(packageId)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const products = await storage.getPackageProducts(packageId);
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to get package products" });
+    }
+  });
+
+  // 패키지 관리 API (관리자 인증 필요)
+  app.get("/api/packages", requireAdminAuth, async (req, res) => {
+    try {
+      const packages = await storage.getPackages();
+      res.json(packages);
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to get packages" });
+    }
+  });
+
+  app.get("/api/packages/theme/:theme", requireAdminAuth, async (req, res) => {
     try {
       const { theme } = req.params;
       const packages = await storage.getPackagesByTheme(theme);
@@ -106,7 +209,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/packages/:id", async (req, res) => {
+  app.get("/api/packages/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {
@@ -124,7 +227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/packages", async (req, res) => {
+  app.post("/api/packages", requireAdminAuth, async (req, res) => {
     try {
       const packageData = req.body;
       const pkg = await storage.createPackage(packageData);
@@ -134,7 +237,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/packages/:id", async (req, res) => {
+  app.put("/api/packages/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {
@@ -153,7 +256,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/packages/:id", async (req, res) => {
+  app.delete("/api/packages/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {
@@ -171,8 +274,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // 패키지 제품 관리 API
-  app.get("/api/packages/:packageId/products", async (req, res) => {
+  // 패키지 제품 관리 API (관리자 인증 필요)
+  app.get("/api/packages/:packageId/products", requireAdminAuth, async (req, res) => {
     try {
       const packageId = parseInt(req.params.packageId, 10);
       if (isNaN(packageId)) {
@@ -186,7 +289,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/packages/:packageId/products", async (req, res) => {
+  app.post("/api/packages/:packageId/products", requireAdminAuth, async (req, res) => {
     try {
       const packageId = parseInt(req.params.packageId, 10);
       if (isNaN(packageId)) {
@@ -201,7 +304,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/package-products/:id", async (req, res) => {
+  app.put("/api/package-products/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {
@@ -220,7 +323,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/package-products/:id", async (req, res) => {
+  app.delete("/api/package-products/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id, 10);
       if (isNaN(id)) {
