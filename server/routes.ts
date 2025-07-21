@@ -84,6 +84,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     const isAuthenticated = !!(req.session as any)?.isAdminAuthenticated;
     res.json({ isAuthenticated });
   });
+
+  // 비밀번호 재설정 요청 API
+  app.post("/api/admin/password-reset", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      // 실제 환경에서는 이메일 발송 서비스 연동
+      // 여기서는 시뮬레이션으로 처리
+      console.log(`📧 비밀번호 재설정 이메일 발송 요청: ${email}`);
+      
+      // 실제로는 임시 토큰을 생성하고 이메일로 재설정 링크 발송
+      // const resetToken = crypto.randomBytes(32).toString('hex');
+      // await sendPasswordResetEmail(email, resetToken);
+      
+      res.json({ 
+        success: true, 
+        message: "비밀번호 재설정 링크가 이메일로 발송되었습니다." 
+      });
+    } catch (error) {
+      console.error('비밀번호 재설정 요청 오류:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "비밀번호 재설정 요청 처리 중 오류가 발생했습니다." 
+      });
+    }
+  });
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {

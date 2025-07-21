@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { Eye, EyeOff, Lock, User } from "lucide-react";
+import { Link } from "wouter";
 
 interface AdminLoginProps {
   onLoginSuccess: () => void;
@@ -124,7 +125,12 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-6 text-center space-y-3">
+            <Link href="/admin/password-reset">
+              <Button variant="link" className="text-sm text-blue-600 hover:text-blue-800">
+                비밀번호를 잊으셨나요?
+              </Button>
+            </Link>
             <p className="text-xs text-gray-500">
               관리자 계정이 필요하시면 시스템 관리자에게 문의하세요
             </p>
