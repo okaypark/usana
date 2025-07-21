@@ -2,7 +2,7 @@ import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import StatsSection from "@/components/stats-section";
 import ProductsSection from "@/components/products-section";
-import HealthPackageSection from "@/components/health-package-section";
+import HealthPackageSection from "@/components/health-package-section-new";
 import SubscriptionSection from "@/components/subscription-section";
 import FreeSubscriptionSection from "@/components/free-subscription-section";
 import BusinessSection from "@/components/business-section";

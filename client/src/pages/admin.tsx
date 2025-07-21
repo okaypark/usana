@@ -683,7 +683,229 @@ export default function AdminPage() {
             </TabsContent>
 
             {/* 구독패키지 탭 */}
-            <TabsContent value="packages" className="p-6">
+            <TabsContent value="packages" className="p-6 space-y-6">
+              {/* 새 패키지 추가 섹션 */}
+              <Card className="border-green-200 shadow-md">
+                <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-t-lg">
+                  <CardTitle className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-green-700">
+                      <Package2 className="w-5 h-5" />
+                      패키지 관리
+                    </div>
+                    <Dialog open={isPackageDialogOpen} onOpenChange={setIsPackageDialogOpen}>
+                      <DialogTrigger asChild>
+                        <Button className="bg-green-600 hover:bg-green-700 text-white">
+                          <Plus className="w-4 h-4 mr-2" />
+                          새 패키지 추가
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>새 구독패키지 추가</DialogTitle>
+                        </DialogHeader>
+                        <form onSubmit={async (e) => {
+                          e.preventDefault();
+                          const formData = new FormData(e.currentTarget);
+                          const packageData = {
+                            theme: formData.get('theme') as string,
+                            type: formData.get('type') as string,
+                            name: formData.get('name') as string,
+                            description: formData.get('description') as string,
+                            totalPrice: '0원'
+                          };
+
+                          try {
+                            const response = await apiRequest('/api/packages', 'POST', packageData);
+                            if (response.ok) {
+                              toast({
+                                title: "패키지 추가 완료",
+                                description: "새 구독패키지가 성공적으로 추가되었습니다.",
+                              });
+                              queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
+                              setIsPackageDialogOpen(false);
+                              (e.target as HTMLFormElement).reset();
+                            }
+                          } catch (error) {
+                            toast({
+                              title: "패키지 추가 실패",
+                              description: "패키지 추가 중 오류가 발생했습니다.",
+                              variant: "destructive",
+                            });
+                          }
+                        }} className="space-y-4">
+                          <div>
+                            <Label htmlFor="theme">테마</Label>
+                            <Input
+                              id="theme"
+                              name="theme"
+                              placeholder="예: 면역건강구독"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="type">타입</Label>
+                            <Select name="type" required>
+                              <SelectTrigger>
+                                <SelectValue placeholder="패키지 타입 선택" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="standard">스탠다드</SelectItem>
+                                <SelectItem value="premium">프리미엄</SelectItem>
+                                <SelectItem value="deluxe">디럭스</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label htmlFor="name">패키지명</Label>
+                            <Input
+                              id="name"
+                              name="name"
+                              placeholder="예: 기본적인 면역력 강화 패키지"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="description">설명</Label>
+                            <Textarea
+                              id="description"
+                              name="description"
+                              placeholder="패키지에 대한 상세 설명을 입력하세요"
+                              rows={3}
+                            />
+                          </div>
+                          <Button type="submit" className="w-full">
+                            패키지 추가
+                          </Button>
+                        </form>
+                      </DialogContent>
+                    </Dialog>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  <div className="space-y-4">
+                    {themes.map((theme) => (
+                      <div key={theme} className="border rounded-lg p-4">
+                        <h3 className="font-semibold text-lg mb-3">{theme}</h3>
+                        <div className="grid gap-3">
+                          {packages
+                            .filter(pkg => pkg.theme === theme)
+                            .map((pkg) => (
+                            <div key={pkg.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1">
+                                <div className="font-medium">{pkg.type} - {pkg.name}</div>
+                                <div className="text-sm text-gray-600">{pkg.description}</div>
+                                <div className="text-sm font-semibold text-blue-600 mt-1">
+                                  {pkg.totalPrice} {pkg.totalPoints ? `(${pkg.totalPoints}P)` : ''}
+                                </div>
+                              </div>
+                              <div className="flex gap-2">
+                                <Dialog>
+                                  <DialogTrigger asChild>
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                    >
+                                      <Edit className="h-4 w-4" />
+                                    </Button>
+                                  </DialogTrigger>
+                                  <DialogContent>
+                                    <DialogHeader>
+                                      <DialogTitle>패키지 정보 수정</DialogTitle>
+                                    </DialogHeader>
+                                    <form onSubmit={async (e) => {
+                                      e.preventDefault();
+                                      const formData = new FormData(e.currentTarget);
+                                      const packageData = {
+                                        theme: formData.get('theme') as string,
+                                        type: formData.get('type') as string,
+                                        name: formData.get('name') as string,
+                                        description: formData.get('description') as string,
+                                      };
+
+                                      try {
+                                        const response = await apiRequest(`/api/packages/${pkg.id}`, 'PUT', packageData);
+                                        if (response.ok) {
+                                          toast({
+                                            title: "패키지 수정 완료",
+                                            description: "패키지 정보가 성공적으로 수정되었습니다.",
+                                          });
+                                          queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
+                                          queryClient.invalidateQueries({ queryKey: ['/api/public/packages'] });
+                                        }
+                                      } catch (error) {
+                                        toast({
+                                          title: "패키지 수정 실패",
+                                          description: "패키지 수정 중 오류가 발생했습니다.",
+                                          variant: "destructive",
+                                        });
+                                      }
+                                    }} className="space-y-4">
+                                      <div>
+                                        <Label htmlFor="theme">테마</Label>
+                                        <Input
+                                          id="theme"
+                                          name="theme"
+                                          defaultValue={pkg.theme}
+                                          required
+                                        />
+                                      </div>
+                                      <div>
+                                        <Label htmlFor="type">타입</Label>
+                                        <Select name="type" defaultValue={pkg.type} required>
+                                          <SelectTrigger>
+                                            <SelectValue />
+                                          </SelectTrigger>
+                                          <SelectContent>
+                                            <SelectItem value="standard">스탠다드</SelectItem>
+                                            <SelectItem value="premium">프리미엄</SelectItem>
+                                            <SelectItem value="deluxe">디럭스</SelectItem>
+                                          </SelectContent>
+                                        </Select>
+                                      </div>
+                                      <div>
+                                        <Label htmlFor="name">패키지명</Label>
+                                        <Input
+                                          id="name"
+                                          name="name"
+                                          defaultValue={pkg.name}
+                                          required
+                                        />
+                                      </div>
+                                      <div>
+                                        <Label htmlFor="description">설명</Label>
+                                        <Textarea
+                                          id="description"
+                                          name="description"
+                                          defaultValue={pkg.description || ''}
+                                          rows={3}
+                                        />
+                                      </div>
+                                      <Button type="submit" className="w-full">
+                                        수정 완료
+                                      </Button>
+                                    </form>
+                                  </DialogContent>
+                                </Dialog>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => {
+                                    setSelectedTheme(pkg.theme);
+                                    setSelectedType(pkg.type);
+                                  }}
+                                  className="text-blue-600"
+                                >
+                                  제품 관리
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* 패키지 선택 */}
           <Card>
@@ -901,7 +1123,7 @@ export default function AdminPage() {
                             const price = parseInt(product.price?.replace(/[^0-9]/g, '') || '0');
                             const quantity = product.quantity || 1;
                             return total + (price * quantity);
-                          }, 0).toLocaleString()}원
+                          }, 0).toLocaleString('ko-KR')}원
                         </span>
                       </div>
                       <div className="flex justify-between items-center text-sm mt-1">
@@ -934,7 +1156,7 @@ export default function AdminPage() {
                         updatePackageMutation.mutate({
                           id: currentPackage.id,
                           packageData: {
-                            totalPrice: totalPrice.toString() + '원',
+                            totalPrice: totalPrice.toLocaleString('ko-KR') + '원',
                             totalPoints: totalPoints
                           }
                         });

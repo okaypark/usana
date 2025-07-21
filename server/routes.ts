@@ -582,6 +582,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const packageData = req.body;
       const pkg = await storage.updatePackage(id, packageData);
+      
+      if (!pkg) {
+        return res.status(404).json({ success: false, message: "Package not found" });
+      }
+      
+      res.json({ success: true, package: pkg });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Failed to update package" });
+    }
+  });
+
+  app.put("/api/packages/:id", requireAdminAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id, 10);
+      if (isNaN(id)) {
+        return res.status(400).json({ success: false, message: "Invalid package ID" });
+      }
+      
+      const packageData = req.body;
+      const pkg = await storage.updatePackage(id, packageData);
       if (!pkg) {
         return res.status(404).json({ success: false, message: "Package not found" });
       }
