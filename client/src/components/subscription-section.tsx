@@ -28,6 +28,58 @@ export default function SubscriptionSection() {
     queryKey: ['/api/public/packages', selectedPackageData?.id, 'products'],
     enabled: !!selectedPackageData?.id,
   });
+
+  // 패키지별 제품 정보를 위한 통합 쿼리
+  const allPackageProductsQuery = useQuery<Record<string, PackageProduct[]>>({
+    queryKey: ['/api/all-package-products', packages.map(p => p.id).join(',')],
+    queryFn: async () => {
+      const results: Record<string, PackageProduct[]> = {};
+      
+      for (const pkg of packages) {
+        try {
+          const response = await fetch(`/api/public/packages/${pkg.id}/products`);
+          if (response.ok) {
+            const products = await response.json();
+            results[`${pkg.theme}_${pkg.type}`] = products;
+          }
+        } catch (error) {
+          console.error(`Error fetching products for ${pkg.theme}_${pkg.type}:`, error);
+          results[`${pkg.theme}_${pkg.type}`] = [];
+        }
+      }
+      
+      return results;
+    },
+    enabled: packages.length > 0,
+  });
+
+  const packageProductsData = allPackageProductsQuery.data || {};
+
+  // 패키지 선택 핸들러
+  const handlePackageClick = (type: string, theme: string) => {
+    setSelectedPackage({ type, theme });
+  };
+
+  // 동적 가격 및 포인트 계산 함수
+  const calculatePackageStats = (products: PackageProduct[]) => {
+    if (!products || products.length === 0) {
+      return { totalPrice: 0, totalPoints: 0, subscriptionPrice: 0 };
+    }
+
+    const totalPrice = products.reduce((sum, product) => {
+      // 가격 문자열에서 숫자만 추출 (예: "25,000원" -> 25000)
+      const price = parseInt(product.price.replace(/[^0-9]/g, '')) || 0;
+      return sum + price;
+    }, 0);
+
+    const totalPoints = products.reduce((sum, product) => {
+      return sum + (product.pointValue || 0);
+    }, 0);
+
+    const subscriptionPrice = Math.floor(totalPrice * 0.9); // 10% 할인
+
+    return { totalPrice, totalPoints, subscriptionPrice };
+  };
   
   const travelImages = [
     travelBrazil,
@@ -96,13 +148,7 @@ export default function SubscriptionSection() {
 
 
 
-  const handlePackageClick = (type: string, theme: string) => {
-    if (selectedPackage?.type === type && selectedPackage?.theme === theme) {
-      setSelectedPackage(null); // 같은 것을 클릭하면 닫기
-    } else {
-      setSelectedPackage({ type, theme }); // 새로운 것 선택
-    }
-  };
+
 
   const benefits3 = [
     {
@@ -347,7 +393,7 @@ export default function SubscriptionSection() {
                       }`}
                       onClick={() => handlePackageClick('standard', '면역건강구독')}
                     >
-                      스탠다드<br />월 100P~
+                      스탠다드<br />월 {calculatePackageStats(packageProductsData['면역건강구독_standard'] || []).totalPoints}P
                     </div>
                     <div 
                       className={`bg-gradient-to-r from-amber-400 via-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-full font-bold shadow-2xl text-center cursor-pointer transition-all duration-300 border-2 border-amber-300 ${
@@ -361,7 +407,7 @@ export default function SubscriptionSection() {
                         boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                       }}
                     >
-                      ✨ 프리미엄 ✨<br />월 200P~
+                      ✨ 프리미엄 ✨<br />월 {calculatePackageStats(packageProductsData['면역건강구독_premium'] || []).totalPoints}P
                     </div>
                   </div>
                   
@@ -414,7 +460,7 @@ export default function SubscriptionSection() {
                             {selectedPackage.type === 'premium' && '👑 '}총 구독료
                           </span>
                           <span className="text-xl">
-                            {selectedPackageData.totalPrice}
+                            월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString()}원 ({calculatePackageStats(packageProducts).totalPoints}P)
                           </span>
                         </div>
                         {selectedPackage.type === 'premium' && (
@@ -458,7 +504,7 @@ export default function SubscriptionSection() {
                       }`}
                       onClick={() => handlePackageClick('standard', '해독다이어트구독')}
                     >
-                      스탠다드<br />월 100P~
+                      스탠다드<br />월 {calculatePackageStats(packageProductsData['다이어트해독구독_standard'] || []).totalPoints}P
                     </div>
                     <div 
                       className={`bg-gradient-to-r from-amber-400 via-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-full font-bold shadow-2xl text-center cursor-pointer transition-all duration-300 border-2 border-amber-300 ${
@@ -472,7 +518,7 @@ export default function SubscriptionSection() {
                         boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                       }}
                     >
-                      ✨ 프리미엄 ✨<br />월 200P~
+                      ✨ 프리미엄 ✨<br />월 {calculatePackageStats(packageProductsData['다이어트해독구독_premium'] || []).totalPoints}P
                     </div>
                   </div>
                   
@@ -525,7 +571,7 @@ export default function SubscriptionSection() {
                             {selectedPackage.type === 'premium' && '👑 '}총 구독료
                           </span>
                           <span className="text-xl">
-                            {selectedPackageData.totalPrice}
+                            월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString()}원 ({calculatePackageStats(packageProducts).totalPoints}P)
                           </span>
                         </div>
                         {selectedPackage.type === 'premium' && (
@@ -569,7 +615,7 @@ export default function SubscriptionSection() {
                       }`}
                       onClick={() => handlePackageClick('standard', '피부건강구독')}
                     >
-                      스탠다드<br />월 100P~
+                      스탠다드<br />월 {calculatePackageStats(packageProductsData['피부건강구독_standard'] || []).totalPoints}P
                     </div>
                     <div 
                       className={`bg-gradient-to-r from-amber-400 via-yellow-500 to-yellow-600 text-white px-5 py-3 rounded-full font-bold shadow-2xl text-center cursor-pointer transition-all duration-300 border-2 border-amber-300 ${
@@ -583,7 +629,7 @@ export default function SubscriptionSection() {
                         boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                       }}
                     >
-                      ✨ 프리미엄 ✨<br />월 200P~
+                      ✨ 프리미엄 ✨<br />월 {calculatePackageStats(packageProductsData['피부건강구독_premium'] || []).totalPoints}P
                     </div>
                   </div>
                   
@@ -636,7 +682,7 @@ export default function SubscriptionSection() {
                             {selectedPackage.type === 'premium' && '👑 '}총 구독료
                           </span>
                           <span className="text-xl">
-                            {selectedPackageData.totalPrice}
+                            월 {calculatePackageStats(packageProducts).subscriptionPrice.toLocaleString()}원 ({calculatePackageStats(packageProducts).totalPoints}P)
                           </span>
                         </div>
                         {selectedPackage.type === 'premium' && (
