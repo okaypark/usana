@@ -35,6 +35,7 @@ export const packages = pgTable("packages", {
   name: text("name").notNull(),
   description: text("description"),
   totalPrice: text("total_price").notNull(),
+  totalPoints: integer("total_points").default(0),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

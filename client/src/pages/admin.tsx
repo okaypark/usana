@@ -884,9 +884,66 @@ export default function AdminPage() {
             <CardContent>
               {currentPackage ? (
                 <div>
-                  <div className="mb-4 p-3 bg-blue-50 rounded-lg">
-                    <h3 className="font-semibold">{currentPackage.name}</h3>
-                    <p className="text-sm text-gray-600">{currentPackage.description}</p>
+                  <div className="mb-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h3 className="font-semibold text-lg text-blue-900">{currentPackage.name}</h3>
+                    <p className="text-sm text-gray-600 mb-3">{currentPackage.description}</p>
+                    
+                    {/* 실시간 총합계 표시 */}
+                    <div className="bg-white rounded-lg p-3 border border-blue-300">
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-700">총 제품 수:</span>
+                        <span className="font-medium">{packageProducts.length}개</span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm mt-1">
+                        <span className="text-gray-700">총 금액:</span>
+                        <span className="font-semibold text-blue-600">
+                          {packageProducts.reduce((total, product) => {
+                            const price = parseInt(product.price?.replace(/[^0-9]/g, '') || '0');
+                            const quantity = product.quantity || 1;
+                            return total + (price * quantity);
+                          }, 0).toLocaleString()}원
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-sm mt-1">
+                        <span className="text-gray-700">총 포인트:</span>
+                        <span className="font-semibold text-green-600">
+                          {packageProducts.reduce((total, product) => {
+                            const points = parseInt(product.pointValue?.toString() || '0');
+                            const quantity = product.quantity || 1;
+                            return total + (points * quantity);
+                          }, 0).toLocaleString()}P
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 패키지 정보 업데이트 버튼 */}
+                    <Button
+                      onClick={() => {
+                        const totalPrice = packageProducts.reduce((total, product) => {
+                          const price = parseInt(product.price?.replace(/[^0-9]/g, '') || '0');
+                          const quantity = product.quantity || 1;
+                          return total + (price * quantity);
+                        }, 0);
+                        
+                        const totalPoints = packageProducts.reduce((total, product) => {
+                          const points = parseInt(product.pointValue?.toString() || '0');
+                          const quantity = product.quantity || 1;
+                          return total + (points * quantity);
+                        }, 0);
+
+                        updatePackageMutation.mutate({
+                          id: currentPackage.id,
+                          packageData: {
+                            totalPrice: totalPrice.toString() + '원',
+                            totalPoints: totalPoints
+                          }
+                        });
+                      }}
+                      className="w-full mt-3 bg-blue-600 hover:bg-blue-700"
+                      disabled={updatePackageMutation.isPending}
+                    >
+                      {updatePackageMutation.isPending ? '업데이트 중...' : '패키지 정보 업데이트'}
+                    </Button>
                   </div>
                   <div className="space-y-3">
                     {packageProducts.map((product) => (
