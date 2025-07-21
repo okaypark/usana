@@ -190,7 +190,10 @@ export default function AdminPage() {
       apiRequest(`/api/package-products/${id}`, 'DELETE'),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
-      toast({ title: "제품이 성공적으로 삭제되었습니다." });
+      toast({ 
+        title: "제거되었습니다.", 
+        duration: 1000 // 1초 후 자동 사라짐
+      });
     },
     onError: () => {
       toast({ title: "제품 삭제에 실패했습니다.", variant: "destructive" });
@@ -301,9 +304,6 @@ export default function AdminPage() {
 
   // 관리자 삭제 핸들러
   const handleDeleteAdmin = async (adminId: number, adminName: string) => {
-    if (!confirm(`정말로 "${adminName}" 관리자를 삭제하시겠습니까?`)) {
-      return;
-    }
 
     try {
       const response = await apiRequest(`/api/admin/${adminId}`, "DELETE");
@@ -825,9 +825,7 @@ export default function AdminPage() {
                             size="sm"
                             variant="outline"
                             onClick={() => {
-                              if (confirm('이 제품을 삭제하시겠습니까?')) {
-                                deleteProductMutation.mutate(product.id);
-                              }
+                              deleteProductMutation.mutate(product.id);
                             }}
                           >
                             <Trash2 className="h-4 w-4" />
