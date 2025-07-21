@@ -309,11 +309,11 @@ export default function SubscriptionSection() {
                       비타민C + 아연 + 프로바이오틱스
                     </p>
                   </div>
-                  <div className="space-y-2">
-                    <div className="border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium inline-block">
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    <div className="border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium">
                       스탠다드 월 100P~150P
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{width: '220px', textAlign: 'center', display: 'inline-block'}}>
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{width: '160px', textAlign: 'center'}}>
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
@@ -340,11 +340,11 @@ export default function SubscriptionSection() {
                       화이버지 + 리셋 + 뉴트리밀
                     </p>
                   </div>
-                  <div className="space-y-2">
-                    <div className="border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium inline-block">
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    <div className="border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium">
                       스탠다드 월 100P~150P
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{width: '220px', textAlign: 'center', display: 'inline-block'}}>
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{width: '160px', textAlign: 'center'}}>
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
@@ -371,11 +371,11 @@ export default function SubscriptionSection() {
                       셀라바이브 + 비타민E + 코큐텐
                     </p>
                   </div>
-                  <div className="space-y-2">
-                    <div className="border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium inline-block">
+                  <div className="flex gap-2 justify-center flex-wrap">
+                    <div className="border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium">
                       스탠다드 월 100P~150P
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{width: '220px', textAlign: 'center', display: 'inline-block'}}>
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg" style={{width: '160px', textAlign: 'center'}}>
                       ✨ 프리미엄 월 200P~
                     </div>
                   </div>
