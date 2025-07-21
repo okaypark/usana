@@ -30,7 +30,7 @@ export default function AdminPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await apiRequest("/api/admin/status") as any;
+        const result = await apiRequest("/api/admin/status", "GET") as any;
         setIsAuthenticated(result.isAuthenticated);
       } catch (error) {
         setIsAuthenticated(false);
