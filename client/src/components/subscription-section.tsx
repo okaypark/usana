@@ -144,7 +144,7 @@ export default function SubscriptionSection() {
                       </div>
                       <div>
                         <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                        <p className="text-gray-600 whitespace-pre-line">{benefit.description}</p>
+                        <p className="text-gray-600">{benefit.description}</p>
                       </div>
                     </div>
                   );
@@ -230,15 +230,15 @@ export default function SubscriptionSection() {
                       </div>
                       <div>
                         <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                        <p className="text-gray-600 whitespace-pre-line">
+                        <p className="text-gray-600">
                           {benefit.title === "지속적 캐쉬백" ? (
                             <>
-                              하부 조직의 소비 인프라에서 발생하는 지속적인 캐쉬백 수익<br />
+                              하부 조직의 소비 인프라에서 발생하는 지속적인 캐쉬백 수익 
                               (유사나 건강구독 <span className="font-bold text-cyan-700">재구매율 67%</span>, <span className="font-bold text-cyan-700">안정적 매출</span> 발생)
                             </>
                           ) : benefit.title === "빠른 캐쉬백" ? (
                             <>
-                              구독시작후 4명 구독소개 후 <span className="font-bold text-yellow-700">13주 동안 최대 90만원 캐쉬백</span><br />
+                              구독시작후 4명 구독소개 후 <span className="font-bold text-yellow-700">13주 동안 최대 90만원 캐쉬백</span> 
                               (<span className="font-bold text-yellow-700">빠른 무료구독 전환가능</span> - 200P 약45만 건강구독)
                             </>
                           ) : benefit.title === "무한단계 수당" ? (
