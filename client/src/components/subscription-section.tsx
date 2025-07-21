@@ -275,8 +275,11 @@ export default function SubscriptionSection() {
         <div className="mt-20">
           <div className="text-center mb-12">
             <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">건강구독 테마별 패키지</h3>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-2">
               개인 맞춤형 건강 목표에 따른 전문 구독 패키지로 더 스마트한 건강관리를 시작하세요
+            </p>
+            <p className="text-sm text-gray-500 max-w-xl mx-auto">
+              건강상담에 따라 개인최적맞춤에 따라 패키지 내용은 변경될 수 있습니다
             </p>
           </div>
 
