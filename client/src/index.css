@@ -123,6 +123,42 @@
   background: linear-gradient(135deg, var(--usana-blue-900), var(--usana-blue-700));
 }
 
+/* Mobile Font Optimizations */
+@media (max-width: 640px) {
+  /* Base mobile font size adjustments */
+  .text-xs { font-size: 0.65rem; }
+  .text-sm { font-size: 0.8rem; }
+  .text-base { font-size: 0.9rem; }
+  .text-lg { font-size: 1rem; }
+  .text-xl { font-size: 1.1rem; }
+  .text-2xl { font-size: 1.3rem; }
+  .text-3xl { font-size: 1.6rem; }
+  .text-4xl { font-size: 2rem; }
+  
+  /* Improved line height for mobile readability */
+  p, div, span {
+    line-height: 1.5;
+  }
+  
+  /* Better button sizing for mobile */
+  .btn-mobile {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  /* Card content mobile adjustments */
+  .card-mobile {
+    padding: 1rem;
+  }
+  
+  /* Hero section mobile optimizations */
+  .hero-background {
+    background-image: var(--mobile-bg) !important;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
 /* Hero Background - Responsive Images */
 .hero-background {
   /* Desktop background by default */

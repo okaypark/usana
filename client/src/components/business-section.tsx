@@ -64,11 +64,11 @@ export default function BusinessSection() {
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full mb-6 shadow-lg shadow-usana-blue-500/20">
             <span className="text-usana-blue-700 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 혁신</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
             <span className="text-usana-blue-600">매월 200~300만원</span><br />
             <span className="font-light">구독소개 수익</span>
           </h2>
-          <p className="text-xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
             건강을 위해 영양제를 구독하는 똑똑한 소비자들에게<br />
             <span className="text-usana-blue-600 font-semibold">구독할수록 돈이 되는 특별한 혜택</span>을 제공합니다.
           </p>

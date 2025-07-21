@@ -323,7 +323,7 @@ export default function ContactSection() {
             {/* Contact Methods */}
             <Card className="bg-white shadow-lg">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">연락처 정보</h3>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-6">연락처 정보</h3>
                 <div className="space-y-6">
                   <div 
                     className="flex items-center space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
@@ -334,7 +334,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <p className="text-gray-600">전화 상담</p>
-                      <p className="text-xl font-semibold text-gray-900">{contactInfo.phone}</p>
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.phone}</p>
                       <p className="text-sm text-gray-500">24시까지 언제든지</p>
                     </div>
                   </div>
@@ -352,7 +352,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <p className="text-gray-600">카카오톡 상담</p>
-                      <p className="text-xl font-semibold text-gray-900">{contactInfo.kakao}</p>
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.kakao}</p>
                       <p className="text-sm text-gray-500">24시간 언제든지</p>
                     </div>
                   </div>
@@ -370,7 +370,7 @@ export default function ContactSection() {
                     </div>
                     <div>
                       <p className="text-gray-600">오픈채팅 문의</p>
-                      <p className="text-xl font-semibold text-gray-900">{contactInfo.openChat}</p>
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.openChat}</p>
                       <p className="text-sm text-gray-500">24시간 언제든지</p>
                     </div>
                   </div>
