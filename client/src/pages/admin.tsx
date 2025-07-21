@@ -136,12 +136,24 @@ export default function AdminPage() {
   const createProductMutation = useMutation({
     mutationFn: async (productData: Omit<PackageProduct, 'id' | 'createdAt'>) =>
       apiRequest(`/api/packages/${currentPackage?.id}/products`, 'POST', productData),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log('제품 추가 성공:', data);
+      console.log('현재 패키지 ID:', currentPackage?.id);
+      
+      // 현재 패키지의 제품 목록 쿼리를 무효화
       queryClient.invalidateQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+      
+      // 모든 패키지 관련 쿼리도 무효화 (안전장치)
+      queryClient.invalidateQueries({ queryKey: ['/api/packages'] });
+      
+      // 강제로 다시 가져오기
+      queryClient.refetchQueries({ queryKey: ['/api/packages', currentPackage?.id, 'products'] });
+      
       toast({ title: "제품이 성공적으로 추가되었습니다." });
       setIsProductDialogOpen(false);
     },
-    onError: () => {
+    onError: (error) => {
+      console.error('제품 추가 실패:', error);
       toast({ title: "제품 추가에 실패했습니다.", variant: "destructive" });
     },
   });
@@ -833,6 +845,12 @@ export default function AdminPage() {
           onSelect={(product) => {
             // 선택된 유사나 제품을 구독패키지에 추가
             if (currentPackage) {
+              console.log('유사나 제품 추가 시도:', {
+                packageId: currentPackage.id,
+                productName: product.name,
+                theme: currentPackage.theme,
+                type: currentPackage.type
+              });
               createProductMutation.mutate({
                 packageId: currentPackage.id,
                 productName: product.name,
@@ -842,6 +860,8 @@ export default function AdminPage() {
                 order: 0
               });
               setIsUsanaProductSelectorOpen(false);
+            } else {
+              console.error('currentPackage가 없습니다:', { selectedTheme, selectedType });
             }
           }}
         />
