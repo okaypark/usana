@@ -131,7 +131,9 @@ export default function SubscriptionSection() {
               </div>
             </div>
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 1</h3>
+              <div className="inline-block bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-full mb-4 shadow-lg">
+                <h3 className="text-lg sm:text-xl font-bold tracking-wide">구독 혜택 1</h3>
+              </div>
               <div className="space-y-6">
                 {benefits1.map((benefit, index) => {
                   const Icon = benefit.icon;
@@ -141,7 +143,7 @@ export default function SubscriptionSection() {
                         <Icon className="text-white h-5 w-5" />
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                        <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
                         <p className="text-gray-600 whitespace-pre-line">{benefit.description}</p>
                       </div>
                     </div>
@@ -154,7 +156,9 @@ export default function SubscriptionSection() {
           {/* 혜택 2 - 텍스트 + 이미지 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 2 - 여행</h3>
+              <div className="inline-block bg-gradient-to-r from-purple-500 to-orange-500 text-white px-6 py-3 rounded-full mb-4 shadow-lg">
+                <h3 className="text-lg sm:text-xl font-bold tracking-wide">구독 혜택 2 - 여행</h3>
+              </div>
               <div className="space-y-6">
                 {benefits2.map((benefit, index) => {
                   return (
@@ -163,7 +167,7 @@ export default function SubscriptionSection() {
                         {benefit.icon}
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                        <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
                         <p className="text-gray-600">{benefit.description}</p>
                       </div>
                     </div>
@@ -214,7 +218,9 @@ export default function SubscriptionSection() {
               </div>
             </div>
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">구독 혜택 3 - 소개수당</h3>
+              <div className="inline-block bg-gradient-to-r from-emerald-500 to-cyan-500 text-white px-6 py-3 rounded-full mb-4 shadow-lg">
+                <h3 className="text-lg sm:text-xl font-bold tracking-wide">구독 혜택 3 - 소개수당</h3>
+              </div>
               <div className="space-y-6">
                 {benefits3.map((benefit, index) => {
                   return (
@@ -223,7 +229,7 @@ export default function SubscriptionSection() {
                         {benefit.icon}
                       </div>
                       <div>
-                        <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
+                        <h4 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
                         <p className="text-gray-600 whitespace-pre-line">
                           {benefit.title === "지속적 캐쉬백" ? (
                             <>
