@@ -45,9 +45,14 @@ export default function HealthPackageSection() {
 
   const packageProductsData = allPackageProductsQuery.data || {};
 
-  // 패키지 선택 핸들러
+  // 패키지 선택 핸들러 (토글 방식)
   const handlePackageClick = (type: string, theme: string) => {
-    setSelectedPackage({ type, theme });
+    // 같은 패키지를 다시 클릭하면 접기
+    if (selectedPackage?.type === type && selectedPackage?.theme === theme) {
+      setSelectedPackage(null);
+    } else {
+      setSelectedPackage({ type, theme });
+    }
   };
 
   // 동적 가격 및 포인트 계산 함수
