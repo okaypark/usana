@@ -71,6 +71,18 @@ export const insertContactSchema = createInsertSchema(contacts).omit({
   message: z.string().optional()
 });
 
+// 유사나 제품 정보 테이블
+export const usanaProducts = pgTable("usana_products", {
+  id: serial("id").primaryKey(),
+  productCode: text("product_code").notNull().unique(), // 제품 번호 (예: 100, 101)
+  category: text("category").notNull(), // 뉴트리션, 셀라비브, 바디&헤어, 유사나기프트팩, 비즈니스도구, 프로모션
+  name: text("name").notNull(), // 제품명
+  price: integer("price").notNull(), // 가격 (원)
+  points: integer("points").notNull(), // 실적점수
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // 관리자 테이블
 export const admins = pgTable("admins", {
   id: serial("id").primaryKey(),
