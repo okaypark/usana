@@ -228,7 +228,7 @@ export default function SubscriptionSection() {
                           {benefit.title === "지속적 캐쉬백" ? (
                             <>
                               하부 조직의 소비 인프라에서 발생하는 지속적인 캐쉬백 수익<br />
-                              (유사나 건강구독 재구매율 <span className="font-bold text-cyan-700">67%</span>, <span className="font-bold text-cyan-700">안정적 매출</span> 발생)
+                              (유사나 건강구독 <span className="font-bold text-cyan-700">재구매율 67%</span>, <span className="font-bold text-cyan-700">안정적 매출</span> 발생)
                             </>
                           ) : benefit.title === "빠른 캐쉬백" ? (
                             <>
