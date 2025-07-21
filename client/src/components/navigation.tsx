@@ -64,6 +64,12 @@ export default function Navigation() {
               >
                 건강구독 상담
               </Button>
+              <Button
+                onClick={() => window.location.href = '/admin'}
+                className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-sm text-xs font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                관리자
+              </Button>
             </div>
           </div>
           
