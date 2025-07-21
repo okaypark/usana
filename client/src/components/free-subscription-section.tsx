@@ -66,6 +66,9 @@ export default function FreeSubscriptionSection() {
               <span className="font-semibold text-usana-blue-300">스마트 구독 4단계를 완료하시고, 내가 소개한 2~4인의 지인들도 4단계를 달성하면</span><br />
               여러분은 <span className="font-bold text-usana-blue-400">50%~100% 무료구독 그 이상의 혜택</span>을 받게 됩니다.
             </p>
+            <p className="text-lg leading-relaxed font-light text-usana-blue-300 mt-4">
+              단지 <span className="font-bold text-usana-blue-400">100P~200P 건강구독</span>으로 건강해지는 조건이면 충분합니다.
+            </p>
           </div>
         </div>
 
