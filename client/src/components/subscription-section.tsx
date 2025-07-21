@@ -36,7 +36,7 @@ export default function SubscriptionSection() {
   const benefits1 = [
     {
       icon: Percent,
-      title: "10% 할인",
+      title: "10% 할인가 구매",
       description: "정기 구독 시 일반 구매 대비 10% 할인된 가격으로 제공",
       color: "bg-blue-600"
     },
@@ -48,14 +48,14 @@ export default function SubscriptionSection() {
     },
     {
       icon: Calendar,
-      title: "포인트 적립",
-      description: "하부 무한단계 소비자들의 소비포인트 누적 적립 (레버리지효과)",
+      title: "무한단계 포인트적립",
+      description: "직추천 1명으로 인해 늘어난 인프라에 대한 무한단계 포인트 적립 (5000P MAXOUT)",
       color: "bg-indigo-600"
     },
     {
       icon: UserCheck,
       title: "매칭 보너스",
-      description: "직추천 가입자가 받는 후원수당의 10%를 추가 지급",
+      description: "직추천 가입자가 받는 후원수당의 10%를 나에게도 추가 지급",
       color: "bg-teal-600"
     }
   ];
