@@ -310,11 +310,11 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="flex gap-4 justify-center items-center">
-                    <div className="border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium">
-                      스탠다드 월 100P~
+                    <div className="border-2 border-green-600 text-green-600 px-4 py-2 rounded-full font-medium text-center">
+                      스탠다드<br />월 100P~
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                      프리미엄 월 200P~
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center">
+                      프리미엄<br />월 200P~
                     </div>
                   </div>
                 </div>
@@ -341,11 +341,11 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="flex gap-4 justify-center items-center">
-                    <div className="border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium">
-                      스탠다드 월 100P~
+                    <div className="border-2 border-orange-600 text-orange-600 px-4 py-2 rounded-full font-medium text-center">
+                      스탠다드<br />월 100P~
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                      프리미엄 월 200P~
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center">
+                      프리미엄<br />월 200P~
                     </div>
                   </div>
                 </div>
@@ -372,11 +372,11 @@ export default function SubscriptionSection() {
                     </p>
                   </div>
                   <div className="flex gap-4 justify-center items-center">
-                    <div className="border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium">
-                      스탠다드 월 100P~
+                    <div className="border-2 border-pink-600 text-pink-600 px-4 py-2 rounded-full font-medium text-center">
+                      스탠다드<br />월 100P~
                     </div>
-                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
-                      프리미엄 월 200P~
+                    <div className="bg-gradient-to-r from-yellow-400 to-amber-500 text-white px-4 py-2 rounded-full font-bold shadow-lg text-center">
+                      프리미엄<br />월 200P~
                     </div>
                   </div>
                 </div>
