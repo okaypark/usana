@@ -81,14 +81,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // 관리자 로그아웃 API
   app.post("/api/admin/logout", (req, res) => {
     (req.session as any).isAdminAuthenticated = false;
-    req.session?.destroy(() => {
+    (req.session as any).adminEmail = null;
+    req.session?.destroy((err) => {
+      if (err) {
+        console.error('세션 삭제 오류:', err);
+        return res.status(500).json({ success: false, message: "로그아웃 중 오류가 발생했습니다." });
+      }
       res.json({ success: true, message: "로그아웃 성공" });
     });
   });
 
   // 관리자 인증 상태 확인 API
   app.get("/api/admin/status", (req, res) => {
-    const isAuthenticated = !!(req.session as any)?.isAdminAuthenticated;
+    const session = req.session as any;
+    const isAuthenticated = !!(session?.isAdminAuthenticated && session?.adminEmail);
+    console.log('인증 상태 확인:', { 
+      sessionId: req.sessionID,
+      isAdminAuthenticated: session?.isAdminAuthenticated,
+      adminEmail: session?.adminEmail,
+      결과: isAuthenticated 
+    });
     res.json({ isAuthenticated });
   });
 

@@ -21,13 +21,13 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
 - **Notifications**: Gmail API for real-time email alerts
 
 ## Recent Changes (Latest Updates)
-- **2025-01-21**: 보안 강화 및 관리자 시스템 완성
-  - **관리자 인증 시스템**: 세션 기반 보안 로그인/로그아웃 구현
-  - **비밀번호 보안 강화**: 기본 비밀번호 UHS2025!@#$ (대소문자+숫자+특수문자)
-  - **비밀번호 변경 기능**: 관리자 페이지 내 실시간 비밀번호 변경 시스템
-  - **패스워드 복구**: 이메일 기반 비밀번호 재설정 링크 제공
-  - **접근 권한 관리**: 일반 사용자는 홈페이지 자유 탐색, /admin은 인증 필수
-  - **API 보안**: 모든 관리자 API 라우트에 인증 미들웨어 적용
+- **2025-01-21**: OAuth 제거 및 간단한 이메일 기반 관리자 시스템 구현
+  - **관리자 계정**: okaypark7@gmail.com / 4dkdlql! (데이터베이스 저장)
+  - **인증 시스템**: 세션 기반 로그인/로그아웃, OAuth 완전 제거
+  - **데이터베이스 관리**: PostgreSQL admins 테이블로 관리자 정보 저장
+  - **실시간 비밀번호 변경**: 관리자 페이지에서 현재/새 비밀번호로 변경 가능
+  - **세션 관리**: 쿠키 기반 세션으로 인증 상태 유지
+  - **보안 강화**: bcrypt 암호화, 세션 무효화 처리
 - **2025-01-20**: Major UI/UX and messaging updates
   - **Typography Enhancement**: Upgraded from Inter to premium Korean fonts (Pretendard + Noto Sans KR)
   - **Brand Identity**: Changed "USANA BUSINESS" → "유사나 건강구독 마케팅" with official USANA logo

@@ -30,9 +30,15 @@ export default function AdminPage() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await apiRequest("/api/admin/status", "GET") as any;
+        const response = await fetch("/api/admin/status", {
+          credentials: 'include',
+          cache: 'no-cache'
+        });
+        const result = await response.json();
+        console.log('관리자 페이지 인증 확인:', result);
         setIsAuthenticated(result.isAuthenticated);
       } catch (error) {
+        console.error("인증 상태 확인 오류:", error);
         setIsAuthenticated(false);
       }
     };
@@ -42,13 +48,21 @@ export default function AdminPage() {
   // 로그아웃 처리
   const handleLogout = async () => {
     try {
-      await apiRequest("/api/admin/logout", "POST");
-      setIsAuthenticated(false);
-      toast({
-        title: "로그아웃 완료",
-        description: "성공적으로 로그아웃되었습니다.",
+      const response = await fetch("/api/admin/logout", {
+        method: "POST",
+        credentials: 'include'
       });
+      const result = await response.json();
+      
+      if (result.success) {
+        setIsAuthenticated(false);
+        toast({
+          title: "로그아웃 완료",
+          description: "성공적으로 로그아웃되었습니다.",
+        });
+      }
     } catch (error) {
+      console.error('로그아웃 오류:', error);
       toast({
         title: "로그아웃 오류",
         description: "로그아웃 중 오류가 발생했습니다.",
