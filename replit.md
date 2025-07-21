@@ -6,7 +6,7 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
 ## User Preferences
 - **Design Style**: 고급지고 세련된 비즈니스 스타일 선호
 - **Contact Information**: 박현진 (USANA 에메랄드 디렉터), 010-4259-5311, okaypark7@gmail.com
-- **Business Focus**: 월 200-300만원 수익 창출, 소비 기반 리워드 시스템, 영업압박 없는 자연스러운 진행
+- **Business Focus**: 월 200-300만원 수익 창출, 소비 기반 주급 시스템, 영업압박 없는 자연스러운 진행
 - **Operating Hours**: 밤 12시까지 언제든지, 휴일없음
 
 ## Technical Architecture

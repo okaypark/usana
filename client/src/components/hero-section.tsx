@@ -44,11 +44,11 @@ export default function HeroSection() {
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light max-w-5xl">
               유사나 프리미엄 영양제, 스킨케어 구독으로<br />
               건강해지면서 소비자에서<br />
-              매주 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">리워드 10만~ 50만원</span>을 받는<br />
+              매주 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">주급 10만~ 50만원</span>을 받는<br />
               스마트한 <span className="text-usana-blue-400 font-bold bg-usana-blue-400/20 px-2 py-1 rounded-md">'브랜드 파트너'</span>가 되세요<br />
               <br />
               전세계 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">45만명</span>이 스마트한 브랜드 파트너로<br />
-              <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'소비 리워드'</span>를 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
+              <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">'소비 주급'</span>를 받으며 <span className="text-usana-blue-400 font-bold">건강구독</span> 중입니다.
             </p>
             
             {/* Success Box - positioned below text, left aligned */}
