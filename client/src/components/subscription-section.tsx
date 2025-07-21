@@ -415,17 +415,11 @@ export default function SubscriptionSection() {
                         : 'bg-green-50 border-green-200'
                     }`}>
                       <div className="flex items-center mb-4">
-                        {selectedPackage.type === 'premium' && <span className="mr-2 text-xl">👑</span>}
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-green-800'
                         }`}>
-                          {selectedPackage.type === 'standard' ? '스탠다드' : '✨ 프리미엄 럭셔리'} 제품구성
+                          {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
                         </h5>
-                        {selectedPackage.type === 'premium' && (
-                          <span className="ml-auto bg-gradient-to-r from-amber-400 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                            EXCLUSIVE
-                          </span>
-                        )}
                       </div>
                       <div className="space-y-3">
                         {packageDetails.면역건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
@@ -532,17 +526,11 @@ export default function SubscriptionSection() {
                         : 'bg-orange-50 border-orange-200'
                     }`}>
                       <div className="flex items-center mb-4">
-                        {selectedPackage.type === 'premium' && <span className="mr-2 text-xl">👑</span>}
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-orange-800'
                         }`}>
-                          {selectedPackage.type === 'standard' ? '스탠다드' : '✨ 프리미엄 럭셔리'} 제품구성
+                          {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
                         </h5>
-                        {selectedPackage.type === 'premium' && (
-                          <span className="ml-auto bg-gradient-to-r from-amber-400 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                            EXCLUSIVE
-                          </span>
-                        )}
                       </div>
                       <div className="space-y-3">
                         {packageDetails.해독다이어트구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
@@ -649,17 +637,11 @@ export default function SubscriptionSection() {
                         : 'bg-pink-50 border-pink-200'
                     }`}>
                       <div className="flex items-center mb-4">
-                        {selectedPackage.type === 'premium' && <span className="mr-2 text-xl">👑</span>}
                         <h5 className={`font-bold text-lg ${
                           selectedPackage.type === 'premium' ? 'text-amber-800' : 'text-pink-800'
                         }`}>
-                          {selectedPackage.type === 'standard' ? '스탠다드' : '✨ 프리미엄 럭셔리'} 제품구성
+                          {selectedPackage.type === 'standard' ? '스탠다드' : '프리미엄'} 제품구성
                         </h5>
-                        {selectedPackage.type === 'premium' && (
-                          <span className="ml-auto bg-gradient-to-r from-amber-400 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                            EXCLUSIVE
-                          </span>
-                        )}
                       </div>
                       <div className="space-y-3">
                         {packageDetails.피부건강구독[selectedPackage.type === 'standard' ? 'standard' : 'premium'].products.map((product, index) => (
