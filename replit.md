@@ -21,6 +21,13 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
 - **Notifications**: Gmail API for real-time email alerts
 
 ## Recent Changes (Latest Updates)
+- **2025-01-21**: Mobile UI/UX comprehensive optimization
+  - **Mobile font sizing**: Enhanced all section titles, product names, and theme subtitles for better mobile readability
+  - **Hero section mobile improvements**: Center-aligned badges, mobile-only click animations, expandable content center alignment
+  - **Section spacing optimization**: Reduced mobile padding by 50% across all sections (py-32 → py-16 sm:py-24 lg:py-32)
+  - **Product title enhancements**: Increased mobile font sizes and center alignment for nutrition, skincare, and diet products
+  - **Success story update**: Authentic health journey narrative replacing time-based achievements
+  - **Icon fixes**: Resolved missing Pill icon for nutrition products with proper color variables
 - **2025-01-21**: 패키지 완전 초기화 및 레이아웃 재구성
   - **패키지 초기화**: 모든 패키지 제품 삭제 및 포인트 0P로 초기화 완료
   - **설명 텍스트 제거**: 각 패키지의 하드코딩된 설명 텍스트 모두 제거
