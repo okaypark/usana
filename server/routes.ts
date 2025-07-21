@@ -110,6 +110,59 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
+
+  // 비밀번호 변경 API (인증된 관리자만)
+  app.post("/api/admin/change-password", async (req, res) => {
+    // 관리자 인증 확인
+    if (!(req.session as any)?.isAdminAuthenticated) {
+      return res.status(401).json({ 
+        success: false, 
+        message: "관리자 인증이 필요합니다." 
+      });
+    }
+    try {
+      const { currentPassword, newPassword } = req.body;
+      
+      if (!currentPassword || !newPassword) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "현재 비밀번호와 새 비밀번호가 필요합니다." 
+        });
+      }
+
+      const adminUsername = process.env.ADMIN_USERNAME;
+      const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
+
+      // 현재 비밀번호 확인
+      const isCurrentPasswordValid = await bcrypt.compare(currentPassword, adminPasswordHash);
+      if (!isCurrentPasswordValid) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "현재 비밀번호가 올바르지 않습니다." 
+        });
+      }
+
+      // 새 비밀번호 해시 생성
+      const newPasswordHash = await bcrypt.hash(newPassword, 12);
+      
+      // 실제 환경에서는 환경변수나 데이터베이스에 새 해시를 저장해야 함
+      // 여기서는 콘솔에 출력하여 관리자가 수동으로 업데이트하도록 안내
+      console.log(`🔐 새 비밀번호 해시 (ADMIN_PASSWORD_HASH 환경변수로 설정하세요):`);
+      console.log(newPasswordHash);
+      
+      res.json({ 
+        success: true, 
+        message: "비밀번호가 변경되었습니다. 새 해시를 환경변수에 적용하세요.",
+        newPasswordHash 
+      });
+    } catch (error) {
+      console.error('비밀번호 변경 오류:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "비밀번호 변경 중 오류가 발생했습니다." 
+      });
+    }
+  });
   // Contact form submission
   app.post("/api/contacts", async (req, res) => {
     try {

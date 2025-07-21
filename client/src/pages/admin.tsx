@@ -9,9 +9,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2, LogOut } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut, Settings } from "lucide-react";
 import type { Package, PackageProduct } from "@shared/schema";
 import AdminLogin from "./admin-login";
+import PasswordChangeDialog from "@/components/password-change-dialog";
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
@@ -205,14 +206,25 @@ export default function AdminPage() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">패키지 관리</h1>
             <p className="text-gray-600">건강구독 패키지와 제품 구성을 관리할 수 있습니다.</p>
           </div>
-          <Button
-            onClick={handleLogout}
-            variant="outline"
-            className="flex items-center gap-2"
-          >
-            <LogOut className="w-4 h-4" />
-            로그아웃
-          </Button>
+          <div className="flex items-center gap-3">
+            <PasswordChangeDialog>
+              <Button
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                <Settings className="w-4 h-4" />
+                비밀번호 변경
+              </Button>
+            </PasswordChangeDialog>
+            <Button
+              onClick={handleLogout}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              로그아웃
+            </Button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
