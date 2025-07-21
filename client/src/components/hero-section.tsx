@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Play, MessageCircle, Heart } from "lucide-react";
+import { Play, MessageCircle, Heart, ChevronDown, ChevronUp } from "lucide-react";
 import { scrollToSection } from "@/lib/utils";
 import usanaMarketingBg from "@assets/건강구독마케팅-네트워크마케팅 유사나 박현진 pc31_1752997037407.png";
 import usanaMarketingMobileBg from "@assets/스크린샷 2025-07-20 143223_1752989552583.png";
 
 export default function HeroSection() {
+  const [showExpandedContent, setShowExpandedContent] = useState(false);
   return (
     <section 
       className="relative text-white bg-cover bg-center bg-no-repeat min-h-screen w-full hero-background"
@@ -33,13 +35,37 @@ export default function HeroSection() {
                 <span className="text-white">스마트한 </span><span className="text-usana-blue-400 font-bold">브랜드 파트너</span>
               </h1>
               <div className="inline-block mt-12 mb-2">
-                <div className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30">
+                <div 
+                  className="relative bg-gradient-to-r from-amber-500/90 to-orange-500/90 backdrop-blur-sm border-2 border-amber-400/50 rounded-2xl px-8 py-4 shadow-2xl shadow-amber-500/30 cursor-pointer hover:scale-105 hover:shadow-3xl transition-all duration-300 group"
+                  onClick={() => setShowExpandedContent(!showExpandedContent)}
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-2xl"></div>
-                  <p className="relative text-sm sm:text-base md:text-lg text-white font-bold tracking-wide">
-                    프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!
-                  </p>
+                  <div className="relative flex items-center justify-between">
+                    <p className="text-sm sm:text-base md:text-lg text-white font-bold tracking-wide">
+                      프리미엄 영양제를 돈 벌면서 마음껏 누리세요!!
+                    </p>
+                    {showExpandedContent ? (
+                      <ChevronUp className="ml-3 h-5 w-5 text-white group-hover:scale-110 transition-all duration-300" />
+                    ) : (
+                      <ChevronDown className="ml-3 h-5 w-5 text-white group-hover:scale-110 transition-all duration-300" />
+                    )}
+                  </div>
                 </div>
               </div>
+
+              {/* Expandable Content */}
+              {showExpandedContent && (
+                <div className="mt-4 animate-fade-in-up">
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-6 shadow-xl">
+                    <p className="text-lg sm:text-xl md:text-2xl text-white leading-relaxed font-medium">
+                      <span className="text-usana-blue-400 font-bold">유사나 프리미엄 영양제, 스킨케어 구독</span>으로<br />
+                      건강해지면서 소비자에서<br />
+                      매주 <span className="text-yellow-400 font-bold bg-yellow-400/20 px-2 py-1 rounded-md">주급 10만~ 50만원</span>을 받는<br />
+                      스마트한 <span className="text-usana-blue-400 font-bold bg-usana-blue-400/20 px-2 py-1 rounded-md">'브랜드 파트너'</span>가 되세요
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl text-gray-200 leading-relaxed font-light max-w-5xl">
               유사나 프리미엄 영양제, 스킨케어 구독으로<br />
