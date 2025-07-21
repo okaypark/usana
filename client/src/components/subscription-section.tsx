@@ -279,7 +279,7 @@ export default function SubscriptionSection() {
               개인 맞춤형 건강 목표에 따른 전문 구독 패키지로 더 스마트한 건강관리를 시작하세요
             </p>
             <p className="text-sm text-gray-500 max-w-xl mx-auto">
-              건강상담에 따라 개인최적맞춤에 따라 패키지 내용은 변경될 수 있습니다
+              건강상담으로 개인최적맞춤 패키지로 내용 변경될 수 있습니다.
             </p>
           </div>
 
