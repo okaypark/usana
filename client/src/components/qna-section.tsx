@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, MessageCircle, Phone } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ChevronDown, MessageCircle, Phone, List } from "lucide-react";
 import { openKakaoChat, callPhone } from "@/lib/utils";
 import talkIcon from "@assets/스크린샷 2025-07-20 175222_1753001694463.png";
 import type { Faq } from "@shared/schema";
 
 export default function QnaSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [showQuestionList, setShowQuestionList] = useState(false);
 
   const { data: faqs = [], isLoading } = useQuery<Faq[]>({
     queryKey: ["/api/faqs"],
@@ -16,6 +18,22 @@ export default function QnaSection() {
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const toggleQuestionList = () => {
+    setShowQuestionList(!showQuestionList);
+  };
+
+  const scrollToQuestion = (index: number) => {
+    setOpenFaq(index);
+    setShowQuestionList(false);
+    // Smooth scroll to the question
+    setTimeout(() => {
+      document.getElementById(`faq-${index}`)?.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }, 100);
   };
 
   if (isLoading) {
@@ -49,20 +67,71 @@ export default function QnaSection() {
           <p className="text-xl text-gray-600">
             USANA와 건강 구독, 사업 기회에 대해 궁금한 점들을 확인해보세요.
           </p>
+          
+          {/* Question List Toggle */}
+          <div className="mt-6">
+            <Button
+              onClick={toggleQuestionList}
+              variant="outline"
+              className="flex items-center gap-2 mx-auto"
+            >
+              <List className="h-4 w-4" />
+              질문 전체목록
+              <Badge variant="secondary" className="ml-2">{faqs.length}</Badge>
+              <ChevronDown 
+                className={`h-4 w-4 transition-transform duration-200 ${
+                  showQuestionList ? 'rotate-180' : ''
+                }`}
+              />
+            </Button>
+            
+            {/* Collapsible Question List */}
+            {showQuestionList && (
+              <Card className="mt-4 bg-blue-50 border-blue-200">
+                <CardContent className="p-4">
+                  <div className="grid gap-2">
+                    {faqs.map((faq, index) => (
+                      <Button
+                        key={faq.id}
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => scrollToQuestion(index)}
+                        className="justify-start text-left hover:bg-blue-100 p-2 h-auto"
+                      >
+                        <Badge variant="outline" className="mr-3 flex-shrink-0 min-w-[24px] h-6">
+                          {index + 1}
+                        </Badge>
+                        <span className="text-sm text-gray-800 truncate">{faq.question}</span>
+                      </Button>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </div>
 
         <div className="space-y-6">
           {faqs.map((faq, index) => (
-            <Card key={faq.id} className="bg-white border border-gray-200 hover:border-gray-300 transition-all duration-200 overflow-hidden shadow-sm hover:shadow-md">
+            <Card 
+              key={faq.id} 
+              id={`faq-${index}`}
+              className="bg-white border border-gray-200 hover:border-gray-300 transition-all duration-200 overflow-hidden shadow-sm hover:shadow-md"
+            >
               <button
                 className="w-full text-left p-6 focus:outline-none hover:bg-gray-50 transition-all duration-200 cursor-pointer"
                 onClick={() => toggleFaq(index)}
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                  <div className="flex items-start gap-3">
+                    <Badge variant="outline" className="flex-shrink-0 mt-1">
+                      Q{index + 1}
+                    </Badge>
+                    <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                  </div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm text-gray-500 font-medium">
-                      {openFaq === index ? '접기' : 'QNA보기'}
+                      {openFaq === index ? '접기' : '답변보기'}
                     </span>
                     <ChevronDown 
                       className={`text-gray-500 h-5 w-5 transition-transform duration-200 flex-shrink-0 ${
@@ -75,7 +144,12 @@ export default function QnaSection() {
               {openFaq === index && (
                 <CardContent className="px-6 pb-6 pt-0 border-t border-gray-100">
                   <div className="pt-4">
-                    <p className="text-gray-700 leading-relaxed whitespace-pre-line">{faq.answer}</p>
+                    <div className="flex items-start gap-3">
+                      <Badge variant="secondary" className="flex-shrink-0 mt-1">
+                        A
+                      </Badge>
+                      <p className="text-gray-700 leading-relaxed whitespace-pre-line">{faq.answer}</p>
+                    </div>
                   </div>
                 </CardContent>
               )}
