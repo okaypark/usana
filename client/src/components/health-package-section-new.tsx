@@ -173,11 +173,11 @@ export default function HealthPackageSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-4">건강구독 테마별 패키지</h3>
-          <p className="text-base md:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto mb-2">
+          <p className="text-lg md:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto mb-2">
             개인 맞춤형 건강 목표에 따른 전문 구독 패키지로<br />
             더 스마트한 건강관리를 시작하세요
           </p>
-          <p className="text-base md:text-base text-gray-500 max-w-xl mx-auto">
+          <p className="text-lg md:text-base text-gray-500 max-w-xl mx-auto">
             건강상담으로 개인최적맞춤 패키지로 내용 변경될 수 있습니다.
           </p>
         </div>
