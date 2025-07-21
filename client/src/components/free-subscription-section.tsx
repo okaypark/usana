@@ -49,24 +49,24 @@ export default function FreeSubscriptionSection() {
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full mb-6 shadow-lg shadow-usana-blue-500/20">
             <span className="text-usana-blue-700 text-sm font-bold tracking-wider uppercase">돈버는 영양제구독 프로세스</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
+          <h2 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
             <span className="text-usana-blue-600 font-bold">돈버는 스마트 건강구독</span><br />
             <span className="font-light">시작방법</span>
           </h2>
-          <p className="text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
+          <p className="text-lg sm:text-xl text-usana-blue-600 max-w-4xl mx-auto mb-10 leading-relaxed font-light">
             간단한 4단계로 건강 소비자에서 수익 창출 <span className="font-bold text-usana-blue-700">브랜드 파트너</span>로 업그레이드하세요
           </p>
           
           <div className="gradient-usana-luxury text-white rounded-2xl p-10 max-w-5xl mx-auto mb-16 shadow-2xl border border-usana-blue-400/20">
             <div className="flex items-center mb-6">
               <div className="w-1 h-16 bg-usana-blue-400 mr-6"></div>
-              <h3 className="text-3xl font-bold tracking-tight">스마트 구독 혜택 시스템</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight">스마트 구독 혜택 시스템</h3>
             </div>
-            <p className="text-xl leading-relaxed font-light text-usana-blue-200">
+            <p className="text-lg sm:text-xl leading-relaxed font-light text-usana-blue-200">
               <span className="font-semibold text-usana-blue-300">스마트 구독 4단계를 완료하시고, 내가 소개한 2~4인의 지인들도 4단계를 달성하면</span><br />
               여러분은 <span className="font-bold text-usana-blue-400">50%~100% 무료구독 그 이상의 혜택</span>을 받게 됩니다.
             </p>
-            <p className="text-lg leading-relaxed font-light text-usana-blue-300 mt-4">
+            <p className="text-base sm:text-lg leading-relaxed font-light text-usana-blue-300 mt-4">
               단지 <span className="font-bold text-usana-blue-400">100P~200P 건강구독</span>으로 건강해지는 조건이면 충분합니다.
             </p>
           </div>
