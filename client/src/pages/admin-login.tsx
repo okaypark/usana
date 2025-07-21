@@ -13,7 +13,7 @@ interface AdminLoginProps {
 }
 
 export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,7 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
 
     try {
       const result = await apiRequest("/api/admin/login", "POST", {
-        username,
+        email,
         password,
       }) as any;
 
@@ -70,18 +70,18 @@ export default function AdminLogin({ onLoginSuccess }: AdminLoginProps) {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-sm font-medium text-gray-700">
-                사용자명
+              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                이메일
               </Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
-                  id="username"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="pl-10 h-11"
-                  placeholder="관리자 ID를 입력하세요"
+                  placeholder="관리자 이메일을 입력하세요"
                   required
                 />
               </div>

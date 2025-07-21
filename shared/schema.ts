@@ -86,22 +86,20 @@ export const insertPackageProductSchema = createInsertSchema(packageProducts).om
   createdAt: true,
 });
 
-// 승인된 관리자 테이블
-export const approvedAdmins = pgTable("approved_admins", {
+// 관리자 계정 테이블
+export const admins = pgTable("admins", {
   id: serial("id").primaryKey(),
-  kakaoId: varchar("kakao_id").unique(),
-  email: varchar("email"),
-  name: varchar("name"),
-  approvedBy: varchar("approved_by").notNull(), // 승인한 관리자의 구글 ID
-  approvedAt: timestamp("approved_at").defaultNow(),
-  isActive: boolean("is_active").default(true),
+  email: varchar("email").unique().notNull(),
+  name: varchar("name").notNull(),
+  passwordHash: text("password_hash").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-export const insertApprovedAdminSchema = createInsertSchema(approvedAdmins).omit({
+export const insertAdminSchema = createInsertSchema(admins).omit({
   id: true,
-  approvedAt: true,
   createdAt: true,
+  updatedAt: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -114,5 +112,5 @@ export type InsertPackage = z.infer<typeof insertPackageSchema>;
 export type Package = typeof packages.$inferSelect;
 export type InsertPackageProduct = z.infer<typeof insertPackageProductSchema>;
 export type PackageProduct = typeof packageProducts.$inferSelect;
-export type InsertApprovedAdmin = z.infer<typeof insertApprovedAdminSchema>;
-export type ApprovedAdmin = typeof approvedAdmins.$inferSelect;
+export type InsertAdmin = z.infer<typeof insertAdminSchema>;
+export type Admin = typeof admins.$inferSelect;

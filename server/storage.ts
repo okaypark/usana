@@ -4,7 +4,7 @@ import {
   faqs,
   packages,
   packageProducts,
-  approvedAdmins,
+  admins,
   type User,
   type InsertUser,
   type Contact,
@@ -15,8 +15,6 @@ import {
   type InsertPackage,
   type PackageProduct,
   type InsertPackageProduct,
-  type ApprovedAdmin,
-  type InsertApprovedAdmin,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc } from "drizzle-orm";
@@ -47,12 +45,10 @@ export interface IStorage {
   updatePackageProduct(id: number, productData: Partial<InsertPackageProduct>): Promise<PackageProduct | undefined>;
   deletePackageProduct(id: number): Promise<boolean>;
   
-  // 승인된 관리자 관리
-  isApprovedKakaoUser(kakaoId: string): Promise<boolean>;
-  getApprovedAdmins(): Promise<ApprovedAdmin[]>;
-  createApprovedAdmin(adminData: InsertApprovedAdmin): Promise<ApprovedAdmin>;
-  removeApprovedAdmin(id: number): Promise<boolean>;
-  toggleApprovedAdmin(id: number, isActive: boolean): Promise<ApprovedAdmin | undefined>;
+  // 관리자 관리
+  getAdminByEmail(email: string): Promise<any>;
+  createAdmin(adminData: any): Promise<any>;
+  updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean>;
 }
 
 export class MemStorage {
@@ -321,42 +317,32 @@ export class DatabaseStorage implements IStorage {
     return (result.rowCount ?? 0) > 0;
   }
 
-  // 승인된 관리자 관리
-  async isApprovedKakaoUser(kakaoId: string): Promise<boolean> {
-    const [admin] = await db
-      .select()
-      .from(approvedAdmins)
-      .where(eq(approvedAdmins.kakaoId, kakaoId))
-      .where(eq(approvedAdmins.isActive, true));
-    return !!admin;
+  // 관리자 관리
+  async getAdminByEmail(email: string): Promise<any> {
+    const [admin] = await db.select().from(admins).where(eq(admins.email, email));
+    return admin || null;
   }
 
-  async getApprovedAdmins(): Promise<ApprovedAdmin[]> {
-    return await db.select().from(approvedAdmins).orderBy(desc(approvedAdmins.createdAt));
-  }
-
-  async createApprovedAdmin(adminData: InsertApprovedAdmin): Promise<ApprovedAdmin> {
-    const [newAdmin] = await db.insert(approvedAdmins).values(adminData).returning();
+  async createAdmin(adminData: any): Promise<any> {
+    const [newAdmin] = await db.insert(admins).values(adminData).returning();
     return newAdmin;
   }
 
-  async removeApprovedAdmin(id: number): Promise<boolean> {
+  async updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean> {
     try {
-      await db.delete(approvedAdmins).where(eq(approvedAdmins.id, id));
-      return true;
+      const [updatedAdmin] = await db
+        .update(admins)
+        .set({ 
+          passwordHash: newPasswordHash,
+          updatedAt: new Date()
+        })
+        .where(eq(admins.email, email))
+        .returning();
+      return !!updatedAdmin;
     } catch (error) {
-      console.error('Error removing approved admin:', error);
+      console.error('Error updating admin password:', error);
       return false;
     }
-  }
-
-  async toggleApprovedAdmin(id: number, isActive: boolean): Promise<ApprovedAdmin | undefined> {
-    const [updatedAdmin] = await db
-      .update(approvedAdmins)
-      .set({ isActive })
-      .where(eq(approvedAdmins.id, id))
-      .returning();
-    return updatedAdmin || undefined;
   }
 }
 

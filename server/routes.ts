@@ -1,13 +1,11 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertFaqSchema, insertPackageSchema, insertPackageProductSchema, insertApprovedAdminSchema } from "@shared/schema";
+import { insertContactSchema, insertFaqSchema, insertPackageSchema, insertPackageProductSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleSheetsService } from "./google-sheets";
 import bcrypt from "bcryptjs";
 import session from "express-session";
-import passport from "./oauth-config";
-import { requireOAuthAdmin, requireSuperAdmin } from "./auth-middleware";
 
 // 관리자 인증 미들웨어
 const requireAdminAuth = (req: any, res: any, next: any) => {
@@ -33,43 +31,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // 관리자 로그인 API
   app.post("/api/admin/login", async (req, res) => {
     try {
-      const { username, password } = req.body;
+      const { email, password } = req.body;
       
-      // 환경변수에서 관리자 계정 정보 가져오기
-      const adminUsername = process.env.ADMIN_USERNAME || 'admin';
-      const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
-      
-      if (!adminPasswordHash) {
-        return res.status(500).json({ 
-          success: false, 
-          message: "관리자 계정이 설정되지 않았습니다." 
+      // 관리자 이메일 확인
+      const adminEmail = 'okaypark7@gmail.com';
+      if (email !== adminEmail) {
+        return res.status(401).json({
+          success: false,
+          message: "관리자 권한이 없습니다."
         });
       }
       
-      // 사용자명 확인
-      if (username !== adminUsername) {
-        return res.status(401).json({ 
-          success: false, 
-          message: "잘못된 계정 정보입니다." 
+      // 관리자 계정 정보 가져오기
+      const admin = await storage.getAdminByEmail(email);
+      if (!admin) {
+        return res.status(401).json({
+          success: false,
+          message: "관리자 계정을 찾을 수 없습니다."
         });
       }
       
       // 비밀번호 확인
-      const isPasswordValid = await bcrypt.compare(password, adminPasswordHash);
-      if (!isPasswordValid) {
-        return res.status(401).json({ 
-          success: false, 
-          message: "잘못된 계정 정보입니다." 
+      const isValidPassword = await bcrypt.compare(password, admin.passwordHash);
+      if (!isValidPassword) {
+        return res.status(401).json({
+          success: false,
+          message: "잘못된 비밀번호입니다."
         });
       }
       
-      // 세션에 인증 정보 저장
+      // 세션에 관리자 인증 정보 저장
       (req.session as any).isAdminAuthenticated = true;
+      (req.session as any).adminEmail = email;
       
-      res.json({ success: true, message: "로그인 성공" });
+      res.json({
+        success: true,
+        message: "로그인 성공",
+        admin: { email, name: admin.name }
+      });
     } catch (error) {
-      console.error('관리자 로그인 오류:', error);
-      res.status(500).json({ success: false, message: "로그인 처리 중 오류가 발생했습니다." });
+      console.error("관리자 로그인 오류:", error);
+      res.status(500).json({
+        success: false,
+        message: "서버 오류가 발생했습니다."
+      });
     }
   });
 
@@ -113,55 +118,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // 비밀번호 변경 API (인증된 관리자만)
-  app.post("/api/admin/change-password", async (req, res) => {
-    // 관리자 인증 확인
-    if (!(req.session as any)?.isAdminAuthenticated) {
-      return res.status(401).json({ 
-        success: false, 
-        message: "관리자 인증이 필요합니다." 
-      });
-    }
+  // 비밀번호 변경 API
+  app.post("/api/admin/change-password", requireAdminAuth, async (req, res) => {
     try {
       const { currentPassword, newPassword } = req.body;
+      const adminEmail = (req.session as any).adminEmail;
       
       if (!currentPassword || !newPassword) {
-        return res.status(400).json({ 
-          success: false, 
-          message: "현재 비밀번호와 새 비밀번호가 필요합니다." 
+        return res.status(400).json({
+          success: false,
+          message: "현재 비밀번호와 새 비밀번호를 입력해주세요."
         });
       }
-
-      const adminUsername = process.env.ADMIN_USERNAME;
-      const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
-
+      
+      // 관리자 계정 정보 가져오기
+      const admin = await storage.getAdminByEmail(adminEmail);
+      if (!admin) {
+        return res.status(404).json({
+          success: false,
+          message: "관리자 계정을 찾을 수 없습니다."
+        });
+      }
+      
       // 현재 비밀번호 확인
-      const isCurrentPasswordValid = await bcrypt.compare(currentPassword, adminPasswordHash);
+      const isCurrentPasswordValid = await bcrypt.compare(currentPassword, admin.passwordHash);
       if (!isCurrentPasswordValid) {
-        return res.status(400).json({ 
-          success: false, 
-          message: "현재 비밀번호가 올바르지 않습니다." 
+        return res.status(401).json({
+          success: false,
+          message: "현재 비밀번호가 일치하지 않습니다."
         });
       }
-
+      
+      // 새 비밀번호 유효성 검증
+      if (newPassword.length < 6) {
+        return res.status(400).json({
+          success: false,
+          message: "새 비밀번호는 최소 6자 이상이어야 합니다."
+        });
+      }
+      
       // 새 비밀번호 해시 생성
-      const newPasswordHash = await bcrypt.hash(newPassword, 12);
+      const newPasswordHash = await bcrypt.hash(newPassword, 10);
       
-      // 실제 환경에서는 환경변수나 데이터베이스에 새 해시를 저장해야 함
-      // 여기서는 콘솔에 출력하여 관리자가 수동으로 업데이트하도록 안내
-      console.log(`🔐 새 비밀번호 해시 (ADMIN_PASSWORD_HASH 환경변수로 설정하세요):`);
-      console.log(newPasswordHash);
+      // 데이터베이스에 새 비밀번호 업데이트
+      const updated = await storage.updateAdminPassword(adminEmail, newPasswordHash);
       
-      res.json({ 
-        success: true, 
-        message: "비밀번호가 변경되었습니다. 새 해시를 환경변수에 적용하세요.",
-        newPasswordHash 
+      if (!updated) {
+        return res.status(500).json({
+          success: false,
+          message: "비밀번호 업데이트에 실패했습니다."
+        });
+      }
+      
+      res.json({
+        success: true,
+        message: "비밀번호가 성공적으로 변경되었습니다."
       });
     } catch (error) {
       console.error('비밀번호 변경 오류:', error);
-      res.status(500).json({ 
-        success: false, 
-        message: "비밀번호 변경 중 오류가 발생했습니다." 
+      res.status(500).json({
+        success: false,
+        message: "비밀번호 변경 중 오류가 발생했습니다."
       });
     }
   });
