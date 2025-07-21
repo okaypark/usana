@@ -87,7 +87,7 @@ export default function HealthPackageSection() {
   // 테마별 색상 설정
   const getThemeColors = (theme: string) => {
     switch (theme) {
-      case '면역건강구독':
+      case '면역건강':
         return {
           card: 'from-green-50 to-emerald-50 border-green-200 hover:border-green-400',
           icon: 'bg-green-500',
@@ -95,7 +95,7 @@ export default function HealthPackageSection() {
           button: 'border-green-600 text-green-600 hover:bg-green-50',
           selected: 'bg-green-600 text-white'
         };
-      case '해독다이어트구독':
+      case '해독다이어트':
         return {
           card: 'from-orange-50 to-red-50 border-orange-200 hover:border-orange-400',
           icon: 'bg-orange-500',
@@ -103,7 +103,7 @@ export default function HealthPackageSection() {
           button: 'border-orange-600 text-orange-600 hover:bg-orange-50',
           selected: 'bg-orange-600 text-white'
         };
-      case '피부건강구독':
+      case '피부건강':
         return {
           card: 'from-pink-50 to-rose-50 border-pink-200 hover:border-pink-400',
           icon: 'bg-pink-500',
@@ -125,19 +125,19 @@ export default function HealthPackageSection() {
   // 아이콘 선택
   const getThemeIcon = (theme: string) => {
     switch (theme) {
-      case '면역건강구독':
+      case '면역건강':
         return (
           <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clipRule="evenodd" />
           </svg>
         );
-      case '해독다이어트구독':
+      case '해독다이어트':
         return (
           <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
-      case '피부건강구독':
+      case '피부건강':
         return (
           <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 20 20">
             <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
@@ -234,10 +234,10 @@ export default function HealthPackageSection() {
                                 boxShadow: '0 10px 25px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
                               } : {}}
                             >
-                              <div className="text-base">
+                              <div className="text-lg">
                                 {pkg.type === 'premium' && '✨ '}{getTypeDisplayName(pkg.type)}{pkg.type === 'premium' && ' ✨'}
                               </div>
-                              <div className="text-sm mt-1">
+                              <div className="text-base mt-1">
                                 월 {stats.totalPoints || 0}P
                               </div>
                             </div>
@@ -250,7 +250,7 @@ export default function HealthPackageSection() {
                       <div className={`mt-4 p-6 rounded-xl border-2 animate-in slide-in-from-top duration-300 ${
                         selectedPackage.type === 'premium' 
                           ? 'bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border-amber-200 shadow-lg' 
-                          : `bg-${theme === '면역건강구독' ? 'green' : theme === '해독다이어트구독' ? 'orange' : 'pink'}-50 border-${theme === '면역건강구독' ? 'green' : theme === '해독다이어트구독' ? 'orange' : 'pink'}-200`
+                          : `bg-${theme === '면역건강' ? 'green' : theme === '해독다이어트' ? 'orange' : 'pink'}-50 border-${theme === '면역건강' ? 'green' : theme === '해독다이어트' ? 'orange' : 'pink'}-200`
                       }`}>
                         <div className="text-center mb-4">
                           <h5 className={`font-bold text-lg ${
@@ -289,7 +289,7 @@ export default function HealthPackageSection() {
                           <div className={`p-4 rounded-lg font-bold border-3 ${
                             selectedPackage.type === 'premium' 
                               ? 'bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-800 border-amber-400 shadow-lg' 
-                              : `bg-${theme === '면역건강구독' ? 'green' : theme === '해독다이어트구독' ? 'orange' : 'pink'}-100 ${colors.text} border-${theme === '면역건강구독' ? 'green' : theme === '해독다이어트구독' ? 'orange' : 'pink'}-300`
+                              : `bg-${theme === '면역건강' ? 'green' : theme === '해독다이어트' ? 'orange' : 'pink'}-100 ${colors.text} border-${theme === '면역건강' ? 'green' : theme === '해독다이어트' ? 'orange' : 'pink'}-300`
                           }`}>
                             <div className="text-center">
                               <div className="text-lg mb-2">
