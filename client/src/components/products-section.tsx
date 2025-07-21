@@ -95,11 +95,11 @@ export default function ProductsSection() {
                   )}
                 </div>
                 <CardContent className="p-8 flex-1 flex flex-col">
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center justify-center sm:justify-start mb-4">
                     <div className={`${product.iconBg} p-2 rounded-lg mr-3`}>
                       <Icon className="text-white h-5 w-5" />
                     </div>
-                    <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">{product.title}</h3>
+                    <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-center sm:text-left">{product.title}</h3>
                   </div>
                   <p className="text-gray-600 mb-6">{product.description}</p>
                   <ul className="space-y-2 mb-6 flex-1">
