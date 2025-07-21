@@ -14,8 +14,8 @@ export default function ProductsSection() {
       description: "종합비타민 헬스팩 중심으로 혈행·혈압·항산화·면역력·해독·다이어트·수명연장 등 각 장기별 개인맞춤 영양제 조합",
       image: nutritionImage,
       icon: Pill,
-      iconColor: "text-usana-green-500",
-      iconBg: "bg-usana-green-500",
+      iconColor: "text-green-500",
+      iconBg: "bg-green-500",
       buttonColor: "bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200",
       features: [
         "FDA 의약품제조시설 인증, 매년 검증",
