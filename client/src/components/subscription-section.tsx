@@ -224,7 +224,16 @@ export default function SubscriptionSection() {
                       </div>
                       <div>
                         <h4 className="text-xl font-semibold text-gray-900 mb-2">{benefit.title}</h4>
-                        <p className="text-gray-600 whitespace-pre-line">{benefit.description}</p>
+                        <p className="text-gray-600 whitespace-pre-line">
+                          {benefit.title === "지속적 캐쉬백" ? (
+                            <>
+                              하부 조직의 소비 인프라에서 발생하는 지속적인 캐쉬백 수익<br />
+                              (유사나 건강구독 재구매율 <span className="font-bold text-cyan-700">67%</span>, 안정적 매출 발생)
+                            </>
+                          ) : (
+                            benefit.description
+                          )}
+                        </p>
                       </div>
                     </div>
                   );
