@@ -5,18 +5,25 @@
 
 ## 1단계: 새 Replit 프로젝트 생성 방법
 
-### 방법 1: 직접 URL 접근
-브라우저에서 새 탭 열고:
-```
-https://replit.com/new/nodejs
-```
+### 방법 1: GitHub Import (권장)
+브라우저에서:
+1. `https://replit.com/new` 접속
+2. **"Import from GitHub"** 선택
+3. Repository URL: `https://github.com/okaypark/usana`
+4. 프로젝트명: "usana1" 입력
+5. **"Import"** 클릭
 
-### 방법 2: Replit 대시보드
-1. replit.com 접속
-2. 로그인 후 좌상단 "Replit" 로고 클릭
-3. "Create" 또는 "+" 버튼 찾아서 클릭
-4. Node.js 템플릿 선택
-5. 프로젝트명: "usana1" 입력
+### 방법 2: 직접 Node.js 프로젝트 생성 후 수동 복제
+1. `https://replit.com/new/nodejs` 접속
+2. 프로젝트명: "usana1" 입력
+3. 아래 **수동 파일 복사 단계** 진행
+
+### 방법 3: GitHub Import 오류 시 대안
+GitHub Import에서 오류 발생하면:
+1. Node.js 템플릿으로 새 프로젝트 생성
+2. Shell에서 `git clone https://github.com/okaypark/usana.git temp`
+3. `cp -r temp/* .` 로 파일 복사
+4. `rm -rf temp` 로 임시 폴더 삭제
 
 ## 2단계: 필수 파일 복사 목록
 
@@ -40,6 +47,8 @@ https://replit.com/new/nodejs
 4. **attached_assets/** - 모든 이미지 파일들
 
 ## 3단계: 새 프로젝트에서 실행할 명령어
+
+### GitHub Import 성공 시:
 ```bash
 # 패키지 설치
 npm install
@@ -47,10 +56,24 @@ npm install
 # PostgreSQL 데이터베이스 스키마 생성
 npm run db:push
 
-# 관리자 계정 생성
+# 관리자 계정 생성 (okaypark7@gmail.com / usana2024)
 node generate-admin-hash.js
 
 # 개발 서버 실행
+npm run dev
+```
+
+### 수동 복제 시:
+```bash
+# Git 클론 방법
+git clone https://github.com/okaypark/usana.git temp
+cp -r temp/* .
+rm -rf temp
+
+# 패키지 설치 및 실행
+npm install
+npm run db:push
+node generate-admin-hash.js
 npm run dev
 ```
 
