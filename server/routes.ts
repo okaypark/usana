@@ -377,6 +377,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // 로컬 저장소에 저장
       const contact = await storage.createContact(contactData);
       
+      // 알림 이메일 주소 가져오기
+      const notificationEmailSetting = await storage.getSiteSetting('notification_email');
+      const notificationEmail = notificationEmailSetting?.value || 'okaypark7@gmail.com';
+      
+      console.log(`📧 상담 신청 알림을 ${notificationEmail}로 전송해야 합니다:`, {
+        이름: contactData.name,
+        전화번호: contactData.phone,
+        이메일: contactData.email,
+        관심분야: contactData.interest,
+        메시지: contactData.message
+      });
+      
       // Google Sheets에 저장 및 이메일 알림 발송
       try {
         await googleSheetsService.addContactToSheet(contactData);

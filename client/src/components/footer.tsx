@@ -3,10 +3,23 @@ import blogIcon from "@assets/스크린샷 2025-07-20 175217_1753001646225.png";
 import talkIcon from "@assets/스크린샷 2025-07-20 175222_1753001694463.png";
 import instaIcon from "@assets/스크린샷 2025-07-20 175627_1753001814175.png";
 import youtubeIcon from "@assets/스크린샷 2025-07-20 175615_1753001849693.png";
-import { MessageCircle, Phone, Mail } from "lucide-react";
+import { MessageCircle, Phone, Mail, Instagram, Youtube, Globe } from "lucide-react";
 import { openKakaoChat, callPhone } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Footer() {
+  // 사이트 설정 불러오기
+  const { data: siteSettings = [] } = useQuery({
+    queryKey: ['/api/site-settings'],
+    queryFn: async () => {
+      const response = await fetch('/api/site-settings');
+      if (!response.ok) {
+        throw new Error('Failed to fetch site settings');
+      }
+      return response.json();
+    },
+  });
+
   const quickLinks = [
     { label: "제품소개", href: "products" },
     { label: "건강구독", href: "health-packages" },
@@ -55,54 +68,73 @@ export default function Footer() {
               <span className="text-usana-blue-400 font-semibold">박현진</span> 📞 010-4259-5311
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="https://blog.naver.com/holictou00" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
-              >
-                <img 
-                  src={blogIcon} 
-                  alt="Blog" 
-                  className="h-8 w-8 object-contain" 
-                />
-              </a>
-              <a 
-                href="https://open.kakao.com/o/sUZCkqfh" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
-              >
-                <img 
-                  src={talkIcon} 
-                  alt="KakaoTalk" 
-                  className="h-8 w-8 object-contain" 
-                />
-              </a>
-              <a 
-                href="https://www.instagram.com/okaypark7/#" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
-              >
-                <img 
-                  src={instaIcon} 
-                  alt="Instagram" 
-                  className="h-8 w-8 object-contain" 
-                />
-              </a>
-              <a 
-                href="https://www.youtube.com/@TV-ey3gi" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-110 transition-transform"
-              >
-                <img 
-                  src={youtubeIcon} 
-                  alt="Youtube" 
-                  className="h-8 w-8 object-contain" 
-                />
-              </a>
+              {/* 블로그 링크 */}
+              {siteSettings.find(s => s.key === 'show_blog')?.value === 'true' && 
+               siteSettings.find(s => s.key === 'blog_url')?.value && (
+                <a 
+                  href={siteSettings.find(s => s.key === 'blog_url')?.value || '#'}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:scale-110 transition-transform"
+                >
+                  <img 
+                    src={blogIcon} 
+                    alt="Blog" 
+                    className="h-8 w-8 object-contain" 
+                  />
+                </a>
+              )}
+
+              {/* 카카오톡 링크 */}
+              {siteSettings.find(s => s.key === 'show_kakao')?.value === 'true' && 
+               siteSettings.find(s => s.key === 'openchat_url')?.value && (
+                <a 
+                  href={siteSettings.find(s => s.key === 'openchat_url')?.value || '#'}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:scale-110 transition-transform"
+                >
+                  <img 
+                    src={talkIcon} 
+                    alt="KakaoTalk" 
+                    className="h-8 w-8 object-contain" 
+                  />
+                </a>
+              )}
+
+              {/* 인스타그램 링크 */}
+              {siteSettings.find(s => s.key === 'show_instagram')?.value === 'true' && 
+               siteSettings.find(s => s.key === 'instagram_url')?.value && (
+                <a 
+                  href={siteSettings.find(s => s.key === 'instagram_url')?.value || '#'}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:scale-110 transition-transform"
+                >
+                  <img 
+                    src={instaIcon} 
+                    alt="Instagram" 
+                    className="h-8 w-8 object-contain" 
+                  />
+                </a>
+              )}
+
+              {/* 유튜브 링크 */}
+              {siteSettings.find(s => s.key === 'show_youtube')?.value === 'true' && 
+               siteSettings.find(s => s.key === 'youtube_url')?.value && (
+                <a 
+                  href={siteSettings.find(s => s.key === 'youtube_url')?.value || '#'}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:scale-110 transition-transform"
+                >
+                  <img 
+                    src={youtubeIcon} 
+                    alt="Youtube" 
+                    className="h-8 w-8 object-contain" 
+                  />
+                </a>
+              )}
             </div>
           </div>
 

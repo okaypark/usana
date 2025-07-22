@@ -1441,7 +1441,7 @@ export default function AdminPage() {
                   {settingsLoading ? (
                     <div className="text-center py-8">사이트 설정 로딩 중...</div>
                   ) : (
-                    <div className="grid gap-6 md:grid-cols-2">
+                    <div className="grid gap-6 lg:grid-cols-2">
                       {/* 관리자 정보 */}
                       <Card className="border-blue-100">
                         <CardHeader className="pb-3">
@@ -1482,6 +1482,25 @@ export default function AdminPage() {
                               defaultValue={siteSettings.find(s => s.key === 'admin_kakao')?.value || ''}
                               onBlur={(e) => handleUpdateSetting('admin_kakao', e.target.value)}
                               placeholder="카카오톡 아이디"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="notification_email">알림 이메일</Label>
+                            <Input
+                              id="notification_email"
+                              defaultValue={siteSettings.find(s => s.key === 'notification_email')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('notification_email', e.target.value)}
+                              placeholder="상담신청 알림을 받을 이메일"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="admin_intro">자기소개</Label>
+                            <Textarea
+                              id="admin_intro"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_intro')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_intro', e.target.value)}
+                              placeholder="자기소개를 입력하세요"
+                              rows={4}
                             />
                           </div>
                         </CardContent>
@@ -1528,6 +1547,91 @@ export default function AdminPage() {
                               onBlur={(e) => handleUpdateSetting('diet_product_url', e.target.value)}
                               placeholder="https://okay7.usana.com/..."
                             />
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                    
+                    <div className="grid gap-6 lg:grid-cols-2 mt-6">
+                      <Card className="border-purple-100">
+                        <CardHeader className="pb-3">
+                          <h3 className="text-lg font-semibold text-purple-700">소셜 미디어 링크</h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div>
+                            <Label htmlFor="blog_url">블로그 URL</Label>
+                            <Input
+                              id="blog_url"
+                              defaultValue={siteSettings.find(s => s.key === 'blog_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('blog_url', e.target.value)}
+                              placeholder="https://blog.naver.com/..."
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="instagram_url">인스타그램 URL</Label>
+                            <Input
+                              id="instagram_url"
+                              defaultValue={siteSettings.find(s => s.key === 'instagram_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('instagram_url', e.target.value)}
+                              placeholder="https://instagram.com/..."
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="youtube_url">유튜브 URL</Label>
+                            <Input
+                              id="youtube_url"
+                              defaultValue={siteSettings.find(s => s.key === 'youtube_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('youtube_url', e.target.value)}
+                              placeholder="https://youtube.com/..."
+                            />
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card className="border-amber-100">
+                        <CardHeader className="pb-3">
+                          <h3 className="text-lg font-semibold text-amber-700">푸터 표시 설정</h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              id="show_blog"
+                              type="checkbox"
+                              className="w-4 h-4"
+                              defaultChecked={siteSettings.find(s => s.key === 'show_blog')?.value === 'true'}
+                              onChange={(e) => handleUpdateSetting('show_blog', e.target.checked ? 'true' : 'false')}
+                            />
+                            <Label htmlFor="show_blog" className="text-sm">블로그 링크 표시</Label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              id="show_kakao"
+                              type="checkbox"
+                              className="w-4 h-4"
+                              defaultChecked={siteSettings.find(s => s.key === 'show_kakao')?.value === 'true'}
+                              onChange={(e) => handleUpdateSetting('show_kakao', e.target.checked ? 'true' : 'false')}
+                            />
+                            <Label htmlFor="show_kakao" className="text-sm">카카오톡 오픈채팅 표시</Label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              id="show_instagram"
+                              type="checkbox"
+                              className="w-4 h-4"
+                              defaultChecked={siteSettings.find(s => s.key === 'show_instagram')?.value === 'true'}
+                              onChange={(e) => handleUpdateSetting('show_instagram', e.target.checked ? 'true' : 'false')}
+                            />
+                            <Label htmlFor="show_instagram" className="text-sm">인스타그램 링크 표시</Label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              id="show_youtube"
+                              type="checkbox"
+                              className="w-4 h-4"
+                              defaultChecked={siteSettings.find(s => s.key === 'show_youtube')?.value === 'true'}
+                              onChange={(e) => handleUpdateSetting('show_youtube', e.target.checked ? 'true' : 'false')}
+                            />
+                            <Label htmlFor="show_youtube" className="text-sm">유튜브 링크 표시</Label>
                           </div>
                         </CardContent>
                       </Card>

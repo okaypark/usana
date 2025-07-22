@@ -3,14 +3,30 @@ import { Building, CheckCircle, Medal, Microscope, Globe, Users, Phone, Mail, Me
 import profileImage from "@assets/241118g2_9590-1_1750521634701.jpg";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1753166145952.png";
 
+import { useQuery } from "@tanstack/react-query";
+
 export default function AboutSection() {
+  // 사이트 설정에서 자기소개 불러오기
+  const { data: siteSettings = [] } = useQuery({
+    queryKey: ['/api/site-settings'],
+    queryFn: async () => {
+      const response = await fetch('/api/site-settings');
+      if (!response.ok) {
+        throw new Error('Failed to fetch site settings');
+      }
+      return response.json();
+    },
+  });
+
+  const adminIntro = siteSettings.find(s => s.key === 'admin_intro')?.value || 
+    '안녕하세요! 유사나 에메랄드 디렉터 박현진입니다. 건강한 삶과 경제적 자유를 동시에 얻을 수 있는 기회를 제공합니다.';
   const profile = {
-    name: "박현진",
+    name: siteSettings.find(s => s.key === 'admin_name')?.value || "박현진",
     title: "유사나 브랜드 파트너 · 건강 라이프 코치",
-    story: "10년 넘게 서버 프로그래머로 살며 건강을 잃고 삶의 방향도 잃었습니다. 그때 만난 유사나는 단순한 건강기능식품이 아니라 삶을 바꾸는 기회였습니다. 제품을 체험하고, 블로그를 시작으로 사람들과 건강을 나누다 보니 지금은 유사나 에메랄드 디렉터가 되었고, 건강과 시간의 자유, 경제적 여유를 함께 누리고 있습니다. 이제는 저처럼 삶의 전환점을 찾는 분들에게 변화의 계기와 방향을 제안하는 일을 하고 있습니다. 건강, 레버리지, 부업이란 키워드에 관심 있다면 이 길을 함께 걸어볼 수 있습니다.",
-    phone: "010-4259-5311",
-    email: "okaypark7@gmail.com",
-    kakao: "holicotu"
+    story: adminIntro,
+    phone: siteSettings.find(s => s.key === 'admin_phone')?.value || "010-4259-5311",
+    email: siteSettings.find(s => s.key === 'admin_email')?.value || "okaypark7@gmail.com",
+    kakao: siteSettings.find(s => s.key === 'admin_kakao')?.value || "holicotu"
   };
 
   const expertise = [
