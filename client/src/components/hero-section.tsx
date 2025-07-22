@@ -161,13 +161,21 @@ export default function HeroSection() {
               </div>
             )}
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mt-6 sm:mt-4 lg:mt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-2xl mt-6 sm:mt-4 lg:mt-2">
               <Button
                 onClick={() => setIsConsultationPopupOpen(true)}
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-6 py-3 text-lg font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독상담
+              </Button>
+              <Button
+                onClick={() => scrollToSection("subscription")}
+                variant="outline"
+                className="border-2 border-green-400/50 text-white hover:bg-green-400 hover:text-green-900 px-6 py-3 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+              >
+                <Heart className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
+                건강구독이란?
               </Button>
               <Button
                 onClick={() => scrollToSection("products")}

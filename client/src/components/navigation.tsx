@@ -4,7 +4,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 import { scrollToSection } from "@/lib/utils";
-import ConsultationDialog from "@/components/consultation-dialog";
+import ConsultationPopup from "@/components/consultation-popup";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,9 +112,11 @@ export default function Navigation() {
         </div>
       </div>
       
-      <ConsultationDialog 
-        open={consultationOpen} 
-        onOpenChange={setConsultationOpen} 
+      <ConsultationPopup
+        isOpen={consultationOpen}
+        onClose={() => setConsultationOpen(false)}
+        title="건강구독 상담 신청"
+        description="건강한 생활과 수익 창출을 위한 맞춤 상담을 신청하세요."
       />
     </nav>
   );
