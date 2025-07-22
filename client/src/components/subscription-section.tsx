@@ -36,9 +36,8 @@ export default function SubscriptionSection() {
             <span className="text-teal-600 font-semibold text-4xl lg:text-5xl">구독 혁신</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light mb-12">
-            건강을 챙기면서 동시에 <span className="text-blue-600 font-semibold">수익을 창출</span>하는<br />
-            <span className="text-teal-600 font-semibold">혁신적인 건강구독 시스템</span>으로<br />
-            <span className="text-blue-600 font-bold">스마트한 라이프스타일을 시작하세요</span>
+            2명씩 건강구독 소개하면서 건강해지면<br />
+            <span className="text-blue-600 font-bold">큰 수익도 함께 가져갈 수 있습니다.</span>
           </p>
         </div>
 
