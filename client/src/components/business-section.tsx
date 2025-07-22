@@ -6,22 +6,18 @@ export default function BusinessSection() {
   const incomeStructure = [
     { 
       label: "패스트보너스", 
-      amount: "50~100만원",
       description: "직소개자 소비POINT 10% 보너스 지급"
     },
     { 
       label: "마일스톤보너스", 
-      amount: "100~150만원",
       description: "구독자 2~4명소개 후\n13주 동안 최대 90만 캐쉬백"
     },
     { 
       label: "무한단계 포인트 적립", 
-      amount: "50~80만원",
       description: "하부 구독인프라 무한단계 포인트 누적 적립"
     },
     { 
       label: "매칭보너스", 
-      amount: "10%",
       description: "직소개자가 버는 수익의 10% 나에게 지급"
     }
   ];
@@ -105,9 +101,8 @@ export default function BusinessSection() {
                 <div className="space-y-5">
                   {incomeStructure.map((item, index) => (
                     <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
-                      <div className="flex justify-between items-center mb-3">
+                      <div className="mb-3">
                         <span className="text-lg font-medium tracking-wide">{item.label}</span>
-                        <span className="text-xl font-bold text-usana-blue-400">{item.amount}</span>
                       </div>
                       <p className="text-sm text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
