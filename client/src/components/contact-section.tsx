@@ -9,7 +9,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Phone, Mail, MessageCircle, Send, Clock, Users } from "lucide-react";
 import { insertContactSchema, type InsertContact } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
@@ -17,9 +16,11 @@ import { useToast } from "@/hooks/use-toast";
 import { openKakaoChat, callPhone } from "@/lib/utils";
 import kakaoTalkIcon from "@assets/카카오톡문의_1753107407844.png";
 import openChatIcon from "@assets/오픈채팅문의_1753107603498.png";
+import PrivacyPolicyPopup from "./privacy-policy-popup";
 
 export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const queryClient = useQueryClient();
   const { toast } = useToast();
   
@@ -263,80 +264,13 @@ export default function ContactSection() {
                     <Checkbox id="privacy" required />
                     <label htmlFor="privacy" className="text-sm text-gray-600 leading-relaxed">
                       개인정보 수집 및 이용에 동의합니다. 
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <button type="button" className="text-usana-blue-600 hover:underline ml-1">
-                            자세히 보기
-                          </button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-                          <DialogHeader>
-                            <DialogTitle>개인정보 수집 및 이용 동의서</DialogTitle>
-                          </DialogHeader>
-                          <div className="space-y-4 text-sm text-gray-700">
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">1. 개인정보 수집 항목</h4>
-                              <p>- 필수항목: 성명, 휴대폰번호, 이메일주소, 상담내용</p>
-                              <p>- 선택항목: 관심분야</p>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">2. 개인정보 수집 및 이용목적</h4>
-                              <p>- 건강구독 및 제품 상담 서비스 제공</p>
-                              <p>- 사업기회 안내 및 멘토링 서비스 제공</p>
-                              <p>- 고객 문의사항 답변 및 상담</p>
-                              <p>- 맞춤형 건강 솔루션 제공</p>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">3. 개인정보 보유 및 이용기간</h4>
-                              <p>- 상담 완료 후 3년간 보관</p>
-                              <p>- 관련 법령에 따라 보존해야 하는 경우 해당 기간까지 보관</p>
-                              <p>- 정보주체가 삭제를 요청하는 경우 즉시 삭제</p>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">4. 개인정보 제3자 제공</h4>
-                              <p>- 원칙적으로 개인정보를 외부에 제공하지 않습니다</p>
-                              <p>- 법령에 의해 요구되는 경우에만 제공됩니다</p>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">5. 개인정보 처리 위탁</h4>
-                              <p>- 상담 서비스 향상을 위해 일부 업무를 위탁할 수 있습니다</p>
-                              <p>- 위탁업체와 위탁업무는 별도 고지합니다</p>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">6. 정보주체의 권리</h4>
-                              <p>- 개인정보 열람, 정정·삭제, 처리정지 요구권</p>
-                              <p>- 동의 철회권</p>
-                              <p>- 권리행사는 서면, 전화, 이메일 등으로 가능합니다</p>
-                            </div>
-                            
-                            <div>
-                              <h4 className="font-semibold text-gray-900 mb-2">7. 동의 거부권 및 불이익</h4>
-                              <p>- 개인정보 수집·이용 동의를 거부할 권리가 있습니다</p>
-                              <p>- 다만, 필수항목 동의 거부 시 상담 서비스 이용이 제한될 수 있습니다</p>
-                            </div>
-                            
-                            <div className="border-t pt-4">
-                              <h4 className="font-semibold text-gray-900 mb-2">개인정보 보호책임자</h4>
-                              <p>- 성명: {siteSettings.find((s: any) => s.key === 'admin_name')?.value || '박현진'}</p>
-                              <p>- 연락처: {contactInfo.phone}</p>
-                              <p>- 이메일: {contactInfo.email}</p>
-                            </div>
-                            
-                            <div className="bg-usana-blue-50 p-4 rounded-lg">
-                              <p className="text-xs text-gray-600">
-                                본 동의서는 2025년 1월 20일부터 시행됩니다. 
-                                개인정보보호법 등 관련 법령이나 지침의 변경, 내부 정책의 변경 등으로 
-                                본 방침의 내용이 변경될 수 있으며, 변경 시에는 홈페이지를 통해 공지하겠습니다.
-                              </p>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
+                      <button 
+                        type="button" 
+                        className="text-blue-600 hover:underline ml-1"
+                        onClick={() => setShowPrivacyPolicy(true)}
+                      >
+                        자세히 보기
+                      </button>
                     </label>
                   </div>
                   
@@ -460,6 +394,13 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
+      
+      {/* 개인정보 처리방침 팝업 */}
+      <PrivacyPolicyPopup
+        isOpen={showPrivacyPolicy}
+        onClose={() => setShowPrivacyPolicy(false)}
+        showAgreeButton={false}
+      />
     </section>
   );
 }

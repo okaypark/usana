@@ -4,10 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, type Package as PackageType, type PackageProduct } from "@shared/schema";
 import ConsultationPopup from "./consultation-popup";
+import PrivacyPolicyPopup from "./privacy-policy-popup";
 
 export default function HealthPackageSection() {
   const [selectedPackage, setSelectedPackage] = useState<{type: string; theme: string} | null>(null);
   const [isConsultationPopupOpen, setIsConsultationPopupOpen] = useState(false);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
 
   // 패키지 데이터 조회
   const { data: packages = [] } = useQuery<PackageType[]>({
@@ -447,6 +449,13 @@ export default function HealthPackageSection() {
           onClose={() => setIsConsultationPopupOpen(false)}
           title="패키지 문의 및 상담"
           description="전문 상담을 통해 나에게 맞는 건강구독 패키지를 추천받아보세요."
+        />
+
+        {/* 개인정보 처리방침 팝업 */}
+        <PrivacyPolicyPopup
+          isOpen={showPrivacyPolicy}
+          onClose={() => setShowPrivacyPolicy(false)}
+          showAgreeButton={false}
         />
       </div>
     </section>
