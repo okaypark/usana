@@ -254,6 +254,7 @@ export default function AdminPage() {
       productDescription: formData.get('productDescription') as string,
       price: formData.get('price') as string,
       pointValue: parseInt(formData.get('pointValue') as string) || 0,
+      quantity: parseInt(formData.get('quantity') as string) || 1,
       order: parseInt(formData.get('order') as string) || 0,
     };
 
@@ -656,11 +657,11 @@ export default function AdminPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">
-                  {adminListData?.admins ? (
+                  {(adminListData as any)?.admins ? (
                     <div className="space-y-3">
-                      {adminListData.admins.map((admin: any, index: number) => {
+                      {(adminListData as any).admins.map((admin: any, index: number) => {
                         const isMainAdmin = admin.email === 'okaypark7@gmail.com';
-                        const isCurrentUserMainAdmin = currentAdminData?.admin?.email === 'okaypark7@gmail.com';
+                        const isCurrentUserMainAdmin = (currentAdminData as any)?.admin?.email === 'okaypark7@gmail.com';
                         const canDelete = isCurrentUserMainAdmin && !isMainAdmin;
                         
                         return (
@@ -1441,6 +1442,7 @@ export default function AdminPage() {
                   {settingsLoading ? (
                     <div className="text-center py-8">사이트 설정 로딩 중...</div>
                   ) : (
+                    <>
                     <div className="grid gap-6 lg:grid-cols-2">
                       {/* 관리자 정보 */}
                       <Card className="border-blue-100">
@@ -1636,77 +1638,78 @@ export default function AdminPage() {
                         </CardContent>
                       </Card>
                     </div>
+                    </>
                   )}
                 </CardContent>
               </Card>
             </TabsContent>
           </Tabs>
+
+          {/* 유사나 제품 선택기 */}
+          <UsanaProductSelector
+            isOpen={isUsanaProductSelectorOpen}
+            onClose={() => setIsUsanaProductSelectorOpen(false)}
+            onSelect={(product) => {
+              // 이미 제품 추가 중이면 중복 실행 방지
+              if (createProductMutation.isPending) {
+                console.log('제품 추가 중이므로 중복 실행 방지');
+                return;
+              }
+
+              // 선택된 유사나 제품을 구독패키지에 추가
+              if (currentPackage) {
+                console.log('유사나 제품 추가 시도:', {
+                  packageId: currentPackage.id,
+                  productName: product.name,
+                  theme: currentPackage.theme,
+                  type: currentPackage.type
+                });
+                createProductMutation.mutate({
+                  packageId: currentPackage.id,
+                  productName: product.name,
+                  productDescription: `${product.category} - 제품코드: ${product.productCode}`,
+                  price: `${product.price.toLocaleString()}원`,
+                  pointValue: product.points,
+                  quantity: 1, // 기본 수량 1개
+                  order: 0
+                });
+                setIsUsanaProductSelectorOpen(false);
+              } else {
+                console.error('currentPackage가 없습니다:', { selectedTheme, selectedType });
+              }
+            }}
+            onSelectMultiple={(products) => {
+              // 다중 선택된 유사나 제품들을 구독패키지에 추가
+              if (currentPackage && products.length > 0) {
+                console.log('다중 유사나 제품 추가 시도:', {
+                  packageId: currentPackage.id,
+                  productCount: products.length,
+                  theme: currentPackage.theme,
+                  type: currentPackage.type
+                });
+                
+                // 각 제품을 순차적으로 추가
+                products.forEach((product, index) => {
+                  setTimeout(() => {
+                    createProductMutation.mutate({
+                      packageId: currentPackage.id,
+                      productName: product.name,
+                      productDescription: `${product.category} - 제품코드: ${product.productCode}`,
+                      price: `${product.price.toLocaleString()}원`,
+                      pointValue: product.points,
+                      quantity: 1, // 기본 수량 1개
+                      order: index
+                    });
+                  }, index * 100); // 100ms 간격으로 순차 실행
+                });
+                
+                setIsUsanaProductSelectorOpen(false);
+              } else {
+                console.error('currentPackage가 없거나 선택된 제품이 없습니다');
+              }
+            }}
+          />
         </div>
-
-        {/* 유사나 제품 선택기 */}
-        <UsanaProductSelector
-          isOpen={isUsanaProductSelectorOpen}
-          onClose={() => setIsUsanaProductSelectorOpen(false)}
-          onSelect={(product) => {
-            // 이미 제품 추가 중이면 중복 실행 방지
-            if (createProductMutation.isPending) {
-              console.log('제품 추가 중이므로 중복 실행 방지');
-              return;
-            }
-
-            // 선택된 유사나 제품을 구독패키지에 추가
-            if (currentPackage) {
-              console.log('유사나 제품 추가 시도:', {
-                packageId: currentPackage.id,
-                productName: product.name,
-                theme: currentPackage.theme,
-                type: currentPackage.type
-              });
-              createProductMutation.mutate({
-                packageId: currentPackage.id,
-                productName: product.name,
-                productDescription: `${product.category} - 제품코드: ${product.productCode}`,
-                price: `${product.price.toLocaleString()}원`,
-                pointValue: product.points,
-                quantity: 1, // 기본 수량 1개
-                order: 0
-              });
-              setIsUsanaProductSelectorOpen(false);
-            } else {
-              console.error('currentPackage가 없습니다:', { selectedTheme, selectedType });
-            }
-          }}
-          onSelectMultiple={(products) => {
-            // 다중 선택된 유사나 제품들을 구독패키지에 추가
-            if (currentPackage && products.length > 0) {
-              console.log('다중 유사나 제품 추가 시도:', {
-                packageId: currentPackage.id,
-                productCount: products.length,
-                theme: currentPackage.theme,
-                type: currentPackage.type
-              });
-              
-              // 각 제품을 순차적으로 추가
-              products.forEach((product, index) => {
-                setTimeout(() => {
-                  createProductMutation.mutate({
-                    packageId: currentPackage.id,
-                    productName: product.name,
-                    productDescription: `${product.category} - 제품코드: ${product.productCode}`,
-                    price: `${product.price.toLocaleString()}원`,
-                    pointValue: product.points,
-                    quantity: 1, // 기본 수량 1개
-                    order: index
-                  });
-                }, index * 100); // 100ms 간격으로 순차 실행
-              });
-              
-              setIsUsanaProductSelectorOpen(false);
-            } else {
-              console.error('currentPackage가 없거나 선택된 제품이 없습니다');
-            }
-          }}
-        />
       </div>
     </div>
   );
