@@ -1578,6 +1578,25 @@ export default function AdminPage() {
                               defaultValue={siteSettings.find(s => s.key === 'admin_intro')?.value || ''}
                               onBlur={(e) => handleUpdateSetting('admin_intro', e.target.value)}
                               placeholder="자기소개를 입력하세요"
+                              rows={6}
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="admin_expertise">전문 분야</Label>
+                            <Input
+                              id="admin_expertise"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_expertise')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_expertise', e.target.value)}
+                              placeholder="전문 분야를 쉼표로 구분하여 입력하세요"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="admin_achievements">주요 성과</Label>
+                            <Textarea
+                              id="admin_achievements"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_achievements')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_achievements', e.target.value)}
+                              placeholder="주요 성과를 입력하세요"
                               rows={4}
                             />
                           </div>

@@ -20,6 +20,7 @@ export default function AboutSection() {
 
   const adminIntro = siteSettings.find(s => s.key === 'admin_intro')?.value || 
     '안녕하세요! 유사나 에메랄드 디렉터 박현진입니다. 건강한 삶과 경제적 자유를 동시에 얻을 수 있는 기회를 제공합니다.';
+  
   const profile = {
     name: siteSettings.find(s => s.key === 'admin_name')?.value || "박현진",
     title: "유사나 브랜드 파트너 · 건강 라이프 코치",
@@ -29,9 +30,10 @@ export default function AboutSection() {
     kakao: siteSettings.find(s => s.key === 'admin_kakao')?.value || "holicotu"
   };
 
-  const expertise = [
-    "개인맞춤영양 상담", "체중 관리", "무료건강구독 상담", "부업·사업 멘토링"
-  ];
+  // 전문 분야를 동적으로 가져오기
+  const expertiseString = siteSettings.find(s => s.key === 'admin_expertise')?.value || 
+    "개인맞춤영양 상담, 체중 관리, 무료건강구독 상담, 부업·사업 멘토링";
+  const expertise = expertiseString.split(', ').filter(item => item.trim() !== '');
 
   const companyStrengths = [
     {
@@ -120,6 +122,20 @@ export default function AboutSection() {
                     ))}
                   </div>
                 </div>
+
+                {/* 주요 성과 섹션 */}
+                {siteSettings.find(s => s.key === 'admin_achievements')?.value && (
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">주요 성과</h4>
+                    <div className="text-gray-700 leading-relaxed">
+                      {siteSettings.find(s => s.key === 'admin_achievements')?.value.split('\n').map((achievement, index) => (
+                        <div key={index} className="flex items-start mb-1">
+                          <span className="text-sm">{achievement}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900 mb-3">연락처</h4>
