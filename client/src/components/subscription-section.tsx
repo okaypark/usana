@@ -48,10 +48,10 @@ export default function SubscriptionSection() {
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Heart className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">건강 관리</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-4">구독으로 꾸준한 건강관리</h3>
               <p className="text-slate-600 leading-relaxed">
-                프리미엄 영양제로 체계적인 건강 관리를 시작하고, 
-                건강한 라이프스타일을 유지하세요.
+                4주마다 영양제 구독으로 10% 할인을 받고,
+                놓치기 쉬운 건강을 개인맞춤 상담관리 받는 시스템
               </p>
             </CardContent>
           </Card>
@@ -61,10 +61,11 @@ export default function SubscriptionSection() {
               <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Shield className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">안정적 시스템</h3>
+              <h3 className="text-2xl font-bold text-slate-800 mb-4">건강구독 2명 소개</h3>
               <p className="text-slate-600 leading-relaxed">
-                검증된 글로벌 네트워크 마케팅 시스템으로 
-                지속 가능한 수익 구조를 구축하세요.
+                나처럼 할인받으며 건강챙기고자하는 지인 2명 구독 소개하면
+                그들이 구독하는 매출 point 뿐 아니라 그들이 소개한 모든 사람들의 구독Point가 
+                무한누적으로 나에게도 적립되어 돈으로 캐쉬백되는 구독혁신
               </p>
             </CardContent>
           </Card>
@@ -76,8 +77,9 @@ export default function SubscriptionSection() {
               </div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4">스마트 수익</h3>
               <p className="text-slate-600 leading-relaxed">
-                자연스러운 추천 활동을 통해 
-                부담 없이 부수익을 창출하는 혁신적 모델입니다.
+                내가 소개한 2명의 지인도 2명씩 건강구독 소개해서 
+                매월 구독하는 건강구독료 무료로 먹을수있게 안내하면
+                나에게는 월급과같은 안정적이고 권리소득같은 수익이 매주 주급으로 지급됩니다.
               </p>
             </CardContent>
           </Card>
