@@ -57,6 +57,13 @@ npm run dev
 ## 4단계: 데이터베이스 복제
 새 프로젝트에서 다음 SQL을 실행하세요 (Replit Shell에서 `npm run db:push` 실행 후):
 
+### 데이터베이스 구조 및 데이터 복원
+현재 프로젝트의 `database_clone_script.sql` 파일을 새 프로젝트로 복사한 후:
+```bash
+# PostgreSQL 접속하여 데이터 복원
+psql $DATABASE_URL -f database_clone_script.sql
+```
+
 ## 5단계: 환경 확인사항
 - DATABASE_URL이 자동으로 설정되는지 확인
 - PostgreSQL이 정상 작동하는지 확인
