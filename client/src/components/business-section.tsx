@@ -102,7 +102,7 @@ export default function BusinessSection() {
                   {incomeStructure.map((item, index) => (
                     <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
                       <div className="mb-3">
-                        <span className="text-lg font-medium tracking-wide">{item.label}</span>
+                        <span className="text-xl font-medium tracking-wide">{item.label}</span>
                       </div>
                       <p className="text-base text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
