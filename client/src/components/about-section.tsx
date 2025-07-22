@@ -130,11 +130,11 @@ export default function AboutSection() {
           <Card className="bg-white shadow-lg">
             <CardContent className="p-8 lg:p-12">
               <div className="text-center mb-8">
-                <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                <div className="w-36 h-36 mx-auto mb-6 flex items-center justify-center">
                   <img 
                     src={usanaLogo} 
                     alt="USANA Health Sciences Logo" 
-                    className="w-20 h-20 object-contain filter brightness-0 saturate-100" 
+                    className="w-30 h-30 object-contain filter brightness-0 saturate-100" 
                     style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
                   />
                 </div>
