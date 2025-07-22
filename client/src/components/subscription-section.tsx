@@ -83,11 +83,11 @@ export default function SubscriptionSection() {
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-teal-600 font-bold">•</span>
-                  <span>그들이 소개한 모든 사람의 포인트까지 무한 누적</span>
+                  <span>소개한 모든 사람의 포인트까지 무한 누적</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-teal-600 font-bold">•</span>
-                  <span>누적 포인트를 현금으로 캐시백</span>
+                  <span>누적 포인트를 현금으로 매주 캐시백</span>
                 </div>
               </div>
             </CardContent>
@@ -102,7 +102,7 @@ export default function SubscriptionSection() {
               <div className="text-slate-600 leading-relaxed space-y-2">
                 <div className="flex items-start gap-2">
                   <span className="text-indigo-600 font-bold">•</span>
-                  <span>내가 소개한 2명도 각각 2명씩 소개 (2x2 시스템)</span>
+                  <span>내가 소개한 2명도 각각 2명씩 소개<br />(2x2 소개시스템)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-indigo-600 font-bold">•</span>
