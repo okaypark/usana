@@ -102,7 +102,10 @@ export default function SubscriptionSection() {
               <div className="text-slate-600 leading-relaxed space-y-2">
                 <div className="flex items-start gap-2">
                   <span className="text-indigo-600 font-bold">•</span>
-                  <span>내가 소개한 2명도 각각 2명씩 소개<br />(2x2 소개시스템)</span>
+                  <div>
+                    <div>내가 소개한 2명도 각각 2명씩 소개</div>
+                    <div className="ml-0">(2x2 소개시스템)</div>
+                  </div>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-indigo-600 font-bold">•</span>
