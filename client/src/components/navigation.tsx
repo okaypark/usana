@@ -57,7 +57,7 @@ export default function Navigation() {
                   <span className="tracking-tight">유사나 </span>
                   <span className="font-bold tracking-wide marketing-text-vibrant">건강구독마케팅</span>
                 </div>
-                <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-usana-blue-600 font-medium group-hover:text-usana-blue-500 transition-all duration-300 leading-tight mt-0.5">
+                <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-usana-blue-600 font-medium group-hover:text-usana-blue-500 transition-all duration-300 leading-tight mt-0.5 text-center w-full">
                   브랜드파트너 {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}
                 </div>
               </div>
