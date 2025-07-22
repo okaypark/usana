@@ -1,24 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Clock, Home, Users as UsersIcon, TrendingUp, Handshake, Award, Crown, Gem } from "lucide-react";
+import { Star, Clock, Home, Users as UsersIcon, TrendingUp, Handshake, Award, Crown, Gem, Zap, Target, Infinity, HandHeart } from "lucide-react";
 
 export default function BusinessSection() {
   const incomeStructure = [
     { 
       label: "패스트보너스", 
-      description: "직소개자 소비POINT 10% 보너스 지급"
+      description: "직소개자 소비POINT 10% 보너스 지급",
+      icon: Zap
     },
     { 
       label: "마일스톤보너스", 
-      description: "구독자 2~4명소개 후\n13주 동안 최대 90만 캐쉬백"
+      description: "구독자 2~4명소개 후\n13주 동안 최대 90만 캐쉬백",
+      icon: Target
     },
     { 
       label: "무한단계 포인트 적립", 
-      description: "하부 구독인프라 무한단계 포인트 누적 적립"
+      description: "하부 구독인프라 무한단계 포인트 누적 적립",
+      icon: Infinity
     },
     { 
       label: "매칭보너스", 
-      description: "직소개자가 버는 수익의 10% 나에게 지급"
+      description: "직소개자가 버는 수익의 10% 나에게 지급",
+      icon: HandHeart
     }
   ];
 
@@ -99,14 +103,18 @@ export default function BusinessSection() {
                   <h3 className="text-4xl font-bold tracking-tight">건강구독 수익 구조</h3>
                 </div>
                 <div className="space-y-5">
-                  {incomeStructure.map((item, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
-                      <div className="mb-3">
-                        <span className="text-xl font-medium tracking-wide">{item.label}</span>
+                  {incomeStructure.map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
+                        <div className="flex items-center mb-3">
+                          <Icon className="text-usana-blue-400 h-6 w-6 mr-3" />
+                          <span className="text-xl font-bold tracking-wide text-white">{item.label}</span>
+                        </div>
+                        <p className="text-base text-usana-blue-200 leading-relaxed whitespace-pre-line ml-9">{item.description}</p>
                       </div>
-                      <p className="text-base text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 
                 {/* 모바일에서만 표시되는 수익 요약 박스 */}
