@@ -44,22 +44,22 @@ export default function Navigation() {
           <div className="flex items-center">
             <button 
               onClick={handleLogoClick}
-              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-usana-blue-900 flex flex-col items-start hover:text-usana-blue-700 transition-all duration-300 cursor-pointer group"
+              className="flex items-center hover:opacity-90 transition-all duration-300 cursor-pointer group"
             >
-              <div className="flex items-center">
-                <img 
-                  src={usanaLogo} 
-                  alt="USANA Logo" 
-                  className="mr-1 sm:mr-2 md:mr-3 h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 xl:h-14 xl:w-14 object-contain filter brightness-0 saturate-100 group-hover:scale-105 group-hover:rotate-6 transition-all duration-300" 
-                  style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
-                />
-                <span className="tracking-tight group-hover:scale-105 transition-transform duration-300 whitespace-nowrap">유사나</span>
-                <span className="ml-0.5 sm:ml-1 md:ml-2 font-bold tracking-wide marketing-text-vibrant group-hover:scale-110 transition-transform duration-300 whitespace-nowrap">
-                  건강구독마케팅
-                </span>
-              </div>
-              <div className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-usana-blue-600 font-medium mt-0.5 sm:mt-1 ml-8 sm:ml-10 md:ml-12 lg:ml-16 xl:ml-20 group-hover:text-usana-blue-500 transition-all duration-300">
-                브랜드 파트너 {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}
+              <img 
+                src={usanaLogo} 
+                alt="USANA Logo" 
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 xl:h-18 xl:w-18 object-contain filter brightness-0 saturate-100 group-hover:scale-105 group-hover:rotate-6 transition-all duration-300 mr-3 sm:mr-4" 
+                style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
+              />
+              <div className="flex flex-col items-start justify-center">
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-usana-blue-900 group-hover:text-usana-blue-700 transition-all duration-300 leading-tight">
+                  <span className="tracking-tight">유사나 </span>
+                  <span className="font-bold tracking-wide marketing-text-vibrant">건강구독마케팅</span>
+                </div>
+                <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-usana-blue-600 font-medium group-hover:text-usana-blue-500 transition-all duration-300 leading-tight mt-0.5">
+                  브랜드파트너 {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}
+                </div>
               </div>
             </button>
           </div>
