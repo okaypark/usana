@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -22,6 +22,18 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const queryClient = useQueryClient();
   const { toast } = useToast();
+  
+  // 사이트 설정 불러오기
+  const { data: siteSettings = [] } = useQuery({
+    queryKey: ['/api/site-settings'],
+    queryFn: async () => {
+      const response = await fetch('/api/site-settings');
+      if (!response.ok) {
+        throw new Error('Failed to fetch site settings');
+      }
+      return response.json();
+    },
+  });
   
   const form = useForm<InsertContact>({
     resolver: zodResolver(insertContactSchema),
@@ -113,12 +125,15 @@ export default function ContactSection() {
     contactMutation.mutate(data);
   };
 
-  const contactInfo = {
-    phone: "010-4259-5311",
-    email: "okaypark7@gmail.com",
-    kakao: "holicotu",
+  // 동적 연락처 정보 가져오기
+  const getContactInfo = () => ({
+    phone: siteSettings.find(s => s.key === 'admin_phone')?.value || "010-4259-5311",
+    email: siteSettings.find(s => s.key === 'admin_email')?.value || "okaypark7@gmail.com",
+    kakao: siteSettings.find(s => s.key === 'kakao_id')?.value || "holicotu",
     openChat: "유사나 건강구독 오픈채팅"
-  };
+  });
+  
+  const contactInfo = getContactInfo();
 
   const operatingHours = [
     { day: "평일 (월-금)", time: "24시까지 언제든지" },
@@ -287,9 +302,9 @@ export default function ContactSection() {
                             
                             <div className="border-t pt-4">
                               <h4 className="font-semibold text-gray-900 mb-2">개인정보 보호책임자</h4>
-                              <p>- 성명: 박현진</p>
-                              <p>- 연락처: 010-4259-5311</p>
-                              <p>- 이메일: okaypark7@gmail.com</p>
+                              <p>- 성명: {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}</p>
+                              <p>- 연락처: {contactInfo.phone}</p>
+                              <p>- 이메일: {contactInfo.email}</p>
                             </div>
                             
                             <div className="bg-usana-blue-50 p-4 rounded-lg">
