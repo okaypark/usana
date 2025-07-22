@@ -21,6 +21,17 @@ USANA 네트워크 마케팅 웹사이트는 건강 제품 판매와 비즈니�
 - **Notifications**: Gmail API for real-time email alerts
 
 ## Recent Changes (Latest Updates)
+- **2025-01-22**: Revenue structure content updates and visual enhancements
+  - **Text content refinements**: Updated revenue sharing message to emphasize collaboration ("함께 누적 공유되면서 나에게도 큰 수익이 가능해집니다")
+  - **Mobile font size optimization**: Increased font sizes across subscription process and revenue structure sections for better mobile readability
+  - **Revenue structure redesign**: Complete overhaul of bonus system with new structure:
+    - 패스트보너스: 직소개자 소비POINT 10% 보너스 지급 (⚡ Zap icon)
+    - 마일스톤보너스: 구독자 2~4명소개 후 13주 동안 최대 90만 캐쉬백 (🎯 Target icon)
+    - 무한단계 포인트 적립: 하부 구독인프라 무한단계 포인트 누적 적립 (∞ Infinity icon)
+    - 매칭보너스: 직소개자가 버는 수익의 10% 나에게 지급 (💝 HandHeart icon)
+  - **Layout improvements**: Repositioned revenue summary box for better PC/mobile layout balance
+  - **Header optimization**: Made "유사나 건강구독마케팅" text responsive with whitespace-nowrap to prevent line breaks
+  - **Visual enhancements**: Added icons to bonus items with bold text styling and improved spacing
 - **2025-01-21**: Mobile UI/UX comprehensive optimization
   - **Mobile font sizing**: Enhanced all section titles, product names, and theme subtitles for better mobile readability
   - **Hero section mobile improvements**: Center-aligned badges, mobile-only click animations, expandable content center alignment
