@@ -107,21 +107,36 @@ export default function BusinessSection() {
                       <p className="text-base text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
                   ))}
-                  <div className="border-t border-usana-blue-400/30 pt-6 mt-8">
-                    <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
-                      <p className="text-xl font-medium text-usana-blue-200 mb-4 leading-relaxed">
-                        2~4명씩 건강구독 소개하고<br />
-                        3단계 정도 내려가면<br />
-                        월 100만원~ 바로 수익발생
-                      </p>
-                      <p className="text-base text-usana-blue-300 font-light">
-                        *건강구독자 소개 속도에 따라 달라질수 있습니다.
-                      </p>
-                    </div>
+                </div>
+                
+                {/* 모바일에서만 표시되는 수익 요약 박스 */}
+                <div className="lg:hidden border-t border-usana-blue-400/30 pt-6 mt-8">
+                  <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
+                    <p className="text-xl font-medium text-usana-blue-200 mb-4 leading-relaxed">
+                      2~4명씩 건강구독 소개하고<br />
+                      3단계 정도 내려가면<br />
+                      월 100만원~ 바로 수익발생
+                    </p>
+                    <p className="text-base text-usana-blue-300 font-light">
+                      *건강구독자 소개 속도에 따라 달라질수 있습니다.
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="text-center">
+                {/* PC에서만 표시되는 수익 요약 박스 */}
+                <div className="hidden lg:block mb-8">
+                  <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
+                    <p className="text-xl font-medium text-usana-blue-200 mb-4 leading-relaxed">
+                      2~4명씩 건강구독 소개하고<br />
+                      3단계 정도 내려가면<br />
+                      월 100만원~ 바로 수익발생
+                    </p>
+                    <p className="text-base text-usana-blue-300 font-light">
+                      *건강구독자 소개 속도에 따라 달라질수 있습니다.
+                    </p>
+                  </div>
+                </div>
                 <img
                   src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
                   alt="Executive Business Success"
