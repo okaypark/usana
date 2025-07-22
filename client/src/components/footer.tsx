@@ -40,14 +40,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div>
-            <div className="text-2xl font-bold mb-6 flex items-center">
+            <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 flex items-center">
               <img 
                 src={usanaLogo} 
                 alt="USANA Logo" 
-                className="mr-3 h-10 w-10 object-contain filter brightness-0 invert opacity-80" 
+                className="mr-2 sm:mr-3 h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 object-contain filter brightness-0 invert opacity-80" 
               />
-              <span className="tracking-tight text-lg">유사나</span>
-              <span className="text-usana-blue-400 ml-2 font-semibold tracking-wide text-lg whitespace-nowrap">건강구독마케팅</span>
+              <span className="tracking-tight">유사나</span>
+              <span className="text-usana-blue-400 ml-1 sm:ml-2 font-semibold tracking-wide whitespace-nowrap">건강구독마케팅</span>
             </div>
             <p className="text-gray-300 mb-4 leading-relaxed">
               당신의 건강과 경제적 자유를 실현할 수 있도록 성심성의껏 함께 하겠습니다.<br />
