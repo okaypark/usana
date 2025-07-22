@@ -127,7 +127,7 @@ export default function BusinessSection() {
                   alt="Executive Business Success"
                   className="rounded-3xl shadow-2xl mb-8 w-full border border-white/20"
                 />
-                <p className="text-sm font-light text-usana-blue-200 tracking-wide">* 개인별 네트워크와 상황에 따라 무료구독 달성 시점과 수익금액의이 달라질 수 있습니다</p>
+                <p className="text-sm font-light text-usana-blue-200 tracking-wide">* 개인별 네트워크와 상황에 따라 무료구독 달성 시점과<br />수익금액의이 달라질 수 있습니다</p>
               </div>
             </div>
           </CardContent>
