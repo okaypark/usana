@@ -32,6 +32,7 @@ export default function AdminPage() {
   const [isFaqDialogOpen, setIsFaqDialogOpen] = useState(false);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
   const [uploadingImage, setUploadingImage] = useState<string | null>(null);
+  const [isUpdatingSettings, setIsUpdatingSettings] = useState(false);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -524,6 +525,7 @@ export default function AdminPage() {
 
   // 전체 사이트 정보 업데이트 핸들러
   const handleUpdateAllSettings = async () => {
+    setIsUpdatingSettings(true);
     try {
       // 모든 input 필드에서 현재 값을 가져와서 업데이트
       const inputs = document.querySelectorAll('#settings input, #settings textarea');
@@ -586,6 +588,8 @@ export default function AdminPage() {
         description: "전체 사이트 설정 업데이트 중 오류가 발생했습니다.",
         variant: "destructive",
       });
+    } finally {
+      setIsUpdatingSettings(false);
     }
   };
 
@@ -1571,10 +1575,20 @@ export default function AdminPage() {
                     </div>
                     <Button
                       onClick={handleUpdateAllSettings}
-                      className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-200"
+                      disabled={isUpdatingSettings}
+                      className="bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-200"
                     >
-                      <Settings className="w-4 h-4 mr-2" />
-                      정보 업데이트
+                      {isUpdatingSettings ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                          업데이트 중...
+                        </>
+                      ) : (
+                        <>
+                          <Settings className="w-4 h-4 mr-2" />
+                          정보 업데이트
+                        </>
+                      )}
                     </Button>
                   </CardTitle>
                 </CardHeader>
