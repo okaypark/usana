@@ -1650,6 +1650,38 @@ export default function AdminPage() {
                     </div>
                     
                     <div className="grid gap-6 lg:grid-cols-2 mt-6">
+                      {/* 히어로 이미지 업로드 */}
+                      <Card className="border-blue-100">
+                        <CardHeader className="pb-3">
+                          <h3 className="text-lg font-semibold text-blue-700">히어로 섹션 이미지</h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div>
+                            <Label htmlFor="hero_desktop_image">데스크톱 이미지 URL</Label>
+                            <Input
+                              id="hero_desktop_image"
+                              defaultValue={siteSettings.find(s => s.key === 'hero_desktop_image')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('hero_desktop_image', e.target.value)}
+                              placeholder="히어로 섹션 데스크톱 배경 이미지 URL (기본값: 기존 이미지 사용)"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="hero_mobile_image">모바일 이미지 URL</Label>
+                            <Input
+                              id="hero_mobile_image"
+                              defaultValue={siteSettings.find(s => s.key === 'hero_mobile_image')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('hero_mobile_image', e.target.value)}
+                              placeholder="히어로 섹션 모바일 배경 이미지 URL (기본값: 기존 이미지 사용)"
+                            />
+                          </div>
+                          <div className="text-sm text-gray-500">
+                            <p>• 이미지 URL을 입력하지 않으면 기본 이미지가 사용됩니다</p>
+                            <p>• 권장 크기: 데스크톱 1920x1080px, 모바일 768x1024px</p>
+                            <p>• 이미지 호스팅: imgur.com, cloudinary.com 등 추천</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+
                       <Card className="border-purple-100">
                         <CardHeader className="pb-3">
                           <h3 className="text-lg font-semibold text-purple-700">소셜 미디어 링크</h3>

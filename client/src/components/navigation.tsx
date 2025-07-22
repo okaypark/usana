@@ -34,29 +34,29 @@ export default function Navigation() {
           <div className="flex items-center">
             <button 
               onClick={handleLogoClick}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-usana-blue-900 flex items-center hover:text-usana-blue-700 transition-all duration-300 cursor-pointer group"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-usana-blue-900 flex items-center hover:text-usana-blue-700 transition-all duration-300 cursor-pointer group"
             >
               <img 
                 src={usanaLogo} 
                 alt="USANA Logo" 
-                className="mr-2 sm:mr-3 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 object-contain filter brightness-0 saturate-100 group-hover:scale-105 group-hover:rotate-6 transition-all duration-300" 
+                className="mr-1 sm:mr-2 md:mr-3 h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 xl:h-14 xl:w-14 object-contain filter brightness-0 saturate-100 group-hover:scale-105 group-hover:rotate-6 transition-all duration-300" 
                 style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
               />
-              <span className="tracking-tight group-hover:scale-105 transition-transform duration-300">유사나</span>
-              <span className="ml-1 sm:ml-2 font-bold tracking-wide marketing-text-vibrant group-hover:scale-110 transition-transform duration-300">
-                건강구독 마케팅
+              <span className="tracking-tight group-hover:scale-105 transition-transform duration-300 whitespace-nowrap">유사나</span>
+              <span className="ml-0.5 sm:ml-1 md:ml-2 font-bold tracking-wide marketing-text-vibrant group-hover:scale-110 transition-transform duration-300 whitespace-nowrap">
+                건강구독마케팅
               </span>
             </button>
           </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:block">
-            <div className="ml-4 lg:ml-10 flex items-center space-x-3 lg:space-x-8">
+            <div className="ml-2 lg:ml-6 xl:ml-10 flex items-center space-x-1 md:space-x-2 lg:space-x-4 xl:space-x-8">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-usana-blue-700 hover:text-usana-blue-500 px-2 lg:px-4 py-2 text-xs md:text-sm lg:text-base font-semibold tracking-wide uppercase transition-all duration-300 relative group"
+                  className="text-usana-blue-700 hover:text-usana-blue-500 px-1 md:px-2 lg:px-3 xl:px-4 py-1 md:py-2 text-xs md:text-sm lg:text-base xl:text-lg font-semibold tracking-wide uppercase transition-all duration-300 relative group whitespace-nowrap"
                 >
                   {item.label}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-usana-blue-500 group-hover:w-full transition-all duration-300"></span>
@@ -64,9 +64,9 @@ export default function Navigation() {
               ))}
               <Button
                 onClick={() => setConsultationOpen(true)}
-                className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white px-3 lg:px-6 py-2 lg:py-3 rounded-sm text-xs md:text-sm lg:text-base font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-usana-blue-600 hover:bg-usana-blue-700 text-white px-2 md:px-3 lg:px-4 xl:px-6 py-1 md:py-2 lg:py-3 rounded-sm text-xs md:text-sm lg:text-base xl:text-lg font-semibold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all duration-300 whitespace-nowrap"
               >
-                건강구독 상담
+                건강구독상담
               </Button>
               <button
                 onClick={() => window.location.href = '/admin'}

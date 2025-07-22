@@ -4,10 +4,24 @@ import { Play, MessageCircle, Heart, ChevronDown, ChevronUp } from "lucide-react
 import { scrollToSection } from "@/lib/utils";
 import usanaMarketingBg from "@assets/건강구독마케팅-네트워크마케팅 유사나 박현진 pc31_1752997037407.png";
 import usanaMarketingMobileBg from "@assets/스크린샷 2025-07-20 143223_1752989552583.png";
+import { useQuery } from "@tanstack/react-query";
 
 export default function HeroSection() {
   const [showExpandedContent, setShowExpandedContent] = useState(false); // 1초 후에 자동으로 표시
   const [showSuccessContent, setShowSuccessContent] = useState(false);
+
+  // 사이트 설정 불러오기
+  const { data: siteSettings = [] } = useQuery({
+    queryKey: ['/api/site-settings'],
+    queryFn: async () => {
+      const response = await fetch('/api/site-settings');
+      return response.json();
+    },
+  });
+
+  // 히어로 이미지 가져오기 (기본값은 기존 이미지)
+  const heroDesktopImage = siteSettings.find(s => s.key === 'hero_desktop_image')?.value || usanaMarketingBg;
+  const heroMobileImage = siteSettings.find(s => s.key === 'hero_mobile_image')?.value || usanaMarketingMobileBg;
 
   // 페이지 로딩시 프리미엄 배지는 1초 후부터, Success 배지는 2초 후부터 자동 표시
   useEffect(() => {
@@ -56,8 +70,8 @@ export default function HeroSection() {
     <section 
       className="relative text-white bg-cover bg-center bg-no-repeat min-h-screen w-full hero-background"
       style={{ 
-        '--desktop-bg': `url(${usanaMarketingBg})`,
-        '--mobile-bg': `url(${usanaMarketingMobileBg})`,
+        '--desktop-bg': `url(${heroDesktopImage})`,
+        '--mobile-bg': `url(${heroMobileImage})`,
         backgroundImage: `var(--desktop-bg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
