@@ -64,11 +64,11 @@ export default function BusinessSection() {
           <div className="inline-block px-6 py-3 bg-gradient-to-r from-usana-blue-500/20 to-usana-blue-600/15 border-2 border-usana-blue-500/30 rounded-full mb-6 shadow-lg shadow-usana-blue-500/20">
             <span className="text-usana-blue-700 text-lg sm:text-xl md:text-2xl font-bold tracking-wider uppercase">돈버는 영양제구독 수익구조</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-usana-blue-900 mb-6 tracking-tighter">
             <span className="text-usana-blue-600">매월 200~300만원</span><br />
             <span className="font-light">구독소개 수익</span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
             건강구독을 하면서 지인 2명에게 소개하고,<br />
             그들도 각각 2명씩 소개하는 과정이 반복되면<br />
             연결된 모든 구독자들의 포인트가<br />
