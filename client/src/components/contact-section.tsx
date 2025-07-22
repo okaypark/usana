@@ -389,6 +389,20 @@ export default function ContactSection() {
                       <p className="text-sm text-gray-500">24시간 언제든지</p>
                     </div>
                   </div>
+                  
+                  <div 
+                    className="flex items-center space-x-4 cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors"
+                    onClick={() => window.location.href = `mailto:${contactInfo.email}`}
+                  >
+                    <div className="bg-usana-blue-500 p-3 rounded-full">
+                      <Mail className="text-white h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-gray-600">이메일 상담</p>
+                      <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.email}</p>
+                      <p className="text-sm text-gray-500">24시간 언제든지</p>
+                    </div>
+                  </div>
 
                 </div>
               </CardContent>
