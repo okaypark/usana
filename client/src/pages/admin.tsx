@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus, Home, Globe } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus, Globe } from "lucide-react";
 import type { Package, PackageProduct, Faq, SiteSetting } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
@@ -635,14 +635,6 @@ export default function AdminPage() {
                 <p className="text-gray-600">건강구독 마케팅 시스템을 관리할 수 있습니다.</p>
               </div>
               <div className="flex items-center gap-3">
-                <Button
-                  onClick={() => window.open("/", "_blank")}
-                  variant="outline"
-                  className="flex items-center gap-2 bg-green-50 hover:bg-green-100 border-green-200 text-green-700 hover:text-green-800"
-                >
-                  <Home className="w-4 h-4" />
-                  메인 웹사이트
-                </Button>
                 <Button
                   onClick={handleLogout}
                   variant="outline"
