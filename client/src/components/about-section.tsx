@@ -134,7 +134,8 @@ export default function AboutSection() {
                   <img 
                     src={usanaLogo} 
                     alt="USANA Health Sciences Logo" 
-                    className="w-20 h-20 object-contain" 
+                    className="w-20 h-20 object-contain filter brightness-0 saturate-100" 
+                    style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
                   />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">USANA Health Sciences</h3>
