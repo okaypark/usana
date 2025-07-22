@@ -1,8 +1,29 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Heart, Shield, Zap } from "lucide-react";
+import ConsultationPopup from "./consultation-popup";
+
+interface SiteSetting {
+  id: number;
+  key: string;
+  value: string;
+}
 
 export default function SubscriptionSection() {
+  const [isConsultationPopupOpen, setIsConsultationPopupOpen] = useState(false);
+
+  // 사이트 설정 조회
+  const { data: siteSettings = [] } = useQuery<SiteSetting[]>({
+    queryKey: ['/api/site-settings'],
+  });
+
+  const freeConsumerSignupUrl = siteSettings.find(s => s.key === 'free_consumer_signup_url')?.value || 'https://okay7.usana.com/ko/kr/shop/home';
+
+  const handleFreeConsumerSignup = () => {
+    window.open(freeConsumerSignupUrl, '_blank');
+  };
   return (
     <section id="subscription-innovation" className="py-16 sm:py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,13 +84,32 @@ export default function SubscriptionSection() {
         </div>
 
         <div className="text-center">
-          <Button 
-            size="lg"
-            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold px-12 py-4 text-lg shadow-xl"
-          >
-            건강구독 시작하기
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg"
+              onClick={() => setIsConsultationPopupOpen(true)}
+              className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold px-12 py-4 text-lg shadow-xl hover:scale-105 transition-all duration-300"
+            >
+              건강구독 시작하기
+            </Button>
+            <Button 
+              size="lg"
+              onClick={handleFreeConsumerSignup}
+              variant="outline"
+              className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold px-8 py-4 text-lg shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              무료소비자가입 제품구매
+            </Button>
+          </div>
         </div>
+
+        {/* 상담 팝업 */}
+        <ConsultationPopup
+          isOpen={isConsultationPopupOpen}
+          onClose={() => setIsConsultationPopupOpen(false)}
+          title="건강구독 상담 신청"
+          description="건강한 생활과 수익 창출을 위한 맞춤 상담을 신청하세요."
+        />
 
       </div>
     </section>

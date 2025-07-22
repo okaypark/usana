@@ -516,24 +516,10 @@ export default function AdminPage() {
     }
   };
 
-  // 사이트 설정 업데이트 핸들러
-  const handleUpdateSetting = async (key: string, value: string) => {
-    try {
-      const response = await apiRequest(`/api/site-settings/${key}`, 'PUT', { value });
-      if (response.ok) {
-        toast({
-          title: "설정 업데이트 완료",
-          description: "사이트 설정이 성공적으로 업데이트되었습니다.",
-        });
-        queryClient.invalidateQueries({ queryKey: ['/api/site-settings'] });
-      }
-    } catch (error) {
-      toast({
-        title: "설정 업데이트 실패",
-        description: "사이트 설정 업데이트 중 오류가 발생했습니다.",
-        variant: "destructive",
-      });
-    }
+  // 사이트 설정 업데이트 핸들러 (개별 업데이트 제거)
+  const handleUpdateSetting = (key: string, value: string) => {
+    // 자동 업데이트 제거 - 정보 업데이트 버튼을 눌러야만 적용됨
+    console.log(`Setting ${key} to ${value} (will be saved on manual update)`);
   };
 
   // 전체 사이트 정보 업데이트 핸들러
@@ -1609,7 +1595,7 @@ export default function AdminPage() {
                             <Input
                               id="admin_name"
                               defaultValue={siteSettings.find(s => s.key === 'admin_name')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_name', e.target.value)}
+
                               placeholder="관리자 이름"
                             />
                           </div>
@@ -1618,7 +1604,7 @@ export default function AdminPage() {
                             <Input
                               id="admin_phone"
                               defaultValue={siteSettings.find(s => s.key === 'admin_phone')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_phone', e.target.value)}
+
                               placeholder="010-0000-0000"
                             />
                           </div>
@@ -1627,7 +1613,7 @@ export default function AdminPage() {
                             <Input
                               id="admin_email"
                               defaultValue={siteSettings.find(s => s.key === 'admin_email')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_email', e.target.value)}
+
                               placeholder="admin@example.com"
                             />
                           </div>
@@ -1636,7 +1622,7 @@ export default function AdminPage() {
                             <Input
                               id="admin_kakao"
                               defaultValue={siteSettings.find(s => s.key === 'admin_kakao')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_kakao', e.target.value)}
+
                               placeholder="카카오톡 아이디"
                             />
                           </div>
@@ -1645,7 +1631,7 @@ export default function AdminPage() {
                             <Input
                               id="notification_email"
                               defaultValue={siteSettings.find(s => s.key === 'notification_email')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('notification_email', e.target.value)}
+
                               placeholder="상담신청 알림을 받을 이메일"
                             />
                           </div>
@@ -1654,7 +1640,6 @@ export default function AdminPage() {
                             <Textarea
                               id="admin_intro"
                               defaultValue={siteSettings.find(s => s.key === 'admin_intro')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_intro', e.target.value)}
                               placeholder="자기소개를 입력하세요"
                               rows={6}
                             />
@@ -1664,7 +1649,6 @@ export default function AdminPage() {
                             <Input
                               id="admin_expertise"
                               defaultValue={siteSettings.find(s => s.key === 'admin_expertise')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_expertise', e.target.value)}
                               placeholder="전문 분야를 쉼표로 구분하여 입력하세요"
                             />
                           </div>
@@ -1673,7 +1657,6 @@ export default function AdminPage() {
                             <Textarea
                               id="admin_achievements"
                               defaultValue={siteSettings.find(s => s.key === 'admin_achievements')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('admin_achievements', e.target.value)}
                               placeholder="주요 성과를 입력하세요"
                               rows={4}
                             />
@@ -1692,7 +1675,6 @@ export default function AdminPage() {
                             <Input
                               id="openchat_url"
                               defaultValue={siteSettings.find(s => s.key === 'openchat_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('openchat_url', e.target.value)}
                               placeholder="https://open.kakao.com/..."
                             />
                           </div>
@@ -1701,7 +1683,6 @@ export default function AdminPage() {
                             <Input
                               id="nutrition_product_url"
                               defaultValue={siteSettings.find(s => s.key === 'nutrition_product_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('nutrition_product_url', e.target.value)}
                               placeholder="https://okay7.usana.com/..."
                             />
                           </div>
@@ -1710,7 +1691,6 @@ export default function AdminPage() {
                             <Input
                               id="skincare_product_url"
                               defaultValue={siteSettings.find(s => s.key === 'skincare_product_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('skincare_product_url', e.target.value)}
                               placeholder="https://okay7.usana.com/..."
                             />
                           </div>
@@ -1719,8 +1699,15 @@ export default function AdminPage() {
                             <Input
                               id="diet_product_url"
                               defaultValue={siteSettings.find(s => s.key === 'diet_product_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('diet_product_url', e.target.value)}
                               placeholder="https://okay7.usana.com/..."
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="free_consumer_signup_url">무료소비자가입 링크</Label>
+                            <Input
+                              id="free_consumer_signup_url"
+                              defaultValue={siteSettings.find(s => s.key === 'free_consumer_signup_url')?.value || ''}
+                              placeholder="https://okay7.usana.com/ko/kr/shop/home"
                             />
                           </div>
                         </CardContent>
@@ -1740,7 +1727,7 @@ export default function AdminPage() {
                               <Input
                                 id="hero_desktop_image"
                                 defaultValue={siteSettings.find(s => s.key === 'hero_desktop_image')?.value || ''}
-                                onBlur={(e) => handleUpdateSetting('hero_desktop_image', e.target.value)}
+  
                                 placeholder="히어로 섹션 데스크톱 배경 이미지 URL (기본값: 기존 이미지 사용)"
                               />
                               <div className="flex gap-2">
@@ -1769,7 +1756,7 @@ export default function AdminPage() {
                               <Input
                                 id="hero_mobile_image"
                                 defaultValue={siteSettings.find(s => s.key === 'hero_mobile_image')?.value || ''}
-                                onBlur={(e) => handleUpdateSetting('hero_mobile_image', e.target.value)}
+  
                                 placeholder="히어로 섹션 모바일 배경 이미지 URL (기본값: 기존 이미지 사용)"
                               />
                               <div className="flex gap-2">
@@ -1810,7 +1797,7 @@ export default function AdminPage() {
                             <Input
                               id="kakao_openchat_url"
                               defaultValue={siteSettings.find(s => s.key === 'kakao_openchat_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('kakao_openchat_url', e.target.value)}
+
                               placeholder="https://open.kakao.com/..."
                             />
                           </div>
@@ -1819,7 +1806,7 @@ export default function AdminPage() {
                             <Input
                               id="blog_url"
                               defaultValue={siteSettings.find(s => s.key === 'blog_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('blog_url', e.target.value)}
+
                               placeholder="https://blog.naver.com/..."
                             />
                           </div>
@@ -1828,7 +1815,7 @@ export default function AdminPage() {
                             <Input
                               id="instagram_url"
                               defaultValue={siteSettings.find(s => s.key === 'instagram_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('instagram_url', e.target.value)}
+
                               placeholder="https://instagram.com/..."
                             />
                           </div>
@@ -1837,7 +1824,7 @@ export default function AdminPage() {
                             <Input
                               id="youtube_url"
                               defaultValue={siteSettings.find(s => s.key === 'youtube_url')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('youtube_url', e.target.value)}
+
                               placeholder="https://youtube.com/..."
                             />
                           </div>
@@ -1855,7 +1842,7 @@ export default function AdminPage() {
                               type="checkbox"
                               className="w-4 h-4"
                               defaultChecked={siteSettings.find(s => s.key === 'show_blog')?.value === 'true'}
-                              onChange={(e) => handleUpdateSetting('show_blog', e.target.checked ? 'true' : 'false')}
+
                             />
                             <Label htmlFor="show_blog" className="text-sm">블로그 링크 표시</Label>
                           </div>
@@ -1865,7 +1852,7 @@ export default function AdminPage() {
                               type="checkbox"
                               className="w-4 h-4"
                               defaultChecked={siteSettings.find(s => s.key === 'show_kakao')?.value === 'true'}
-                              onChange={(e) => handleUpdateSetting('show_kakao', e.target.checked ? 'true' : 'false')}
+
                             />
                             <Label htmlFor="show_kakao" className="text-sm">카카오톡 오픈채팅 표시</Label>
                           </div>
@@ -1875,7 +1862,7 @@ export default function AdminPage() {
                               type="checkbox"
                               className="w-4 h-4"
                               defaultChecked={siteSettings.find(s => s.key === 'show_instagram')?.value === 'true'}
-                              onChange={(e) => handleUpdateSetting('show_instagram', e.target.checked ? 'true' : 'false')}
+
                             />
                             <Label htmlFor="show_instagram" className="text-sm">인스타그램 링크 표시</Label>
                           </div>
@@ -1885,7 +1872,7 @@ export default function AdminPage() {
                               type="checkbox"
                               className="w-4 h-4"
                               defaultChecked={siteSettings.find(s => s.key === 'show_youtube')?.value === 'true'}
-                              onChange={(e) => handleUpdateSetting('show_youtube', e.target.checked ? 'true' : 'false')}
+
                             />
                             <Label htmlFor="show_youtube" className="text-sm">유튜브 링크 표시</Label>
                           </div>

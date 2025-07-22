@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package, type Package as PackageType, type PackageProduct } from "@shared/schema";
+import ConsultationPopup from "./consultation-popup";
 
 export default function HealthPackageSection() {
   const [selectedPackage, setSelectedPackage] = useState<{type: string; theme: string} | null>(null);
+  const [isConsultationPopupOpen, setIsConsultationPopupOpen] = useState(false);
 
   // 패키지 데이터 조회
   const { data: packages = [] } = useQuery<PackageType[]>({
@@ -428,15 +430,24 @@ export default function HealthPackageSection() {
         {/* 상담 문의 섹션 */}
         <div className="mt-16 text-center">
           <p className="text-lg text-gray-600 mb-6">
-            관리자 페이지에서 각 패키지별 제품을 등록하면 여기에 표시됩니다
+            나에게 맞는 건강구독 패키지를 추천받고, 전문 상담을 통해 건강한 시작을 해보세요
           </p>
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold px-8 py-3 text-lg shadow-xl"
+            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold px-8 py-3 text-lg shadow-xl hover:scale-105 transition-all duration-300"
+            onClick={() => setIsConsultationPopupOpen(true)}
           >
-            맞춤 건강구독 상담받기
+            패키지 문의하기
           </Button>
         </div>
+
+        {/* 상담 팝업 */}
+        <ConsultationPopup
+          isOpen={isConsultationPopupOpen}
+          onClose={() => setIsConsultationPopupOpen(false)}
+          title="패키지 문의 및 상담"
+          description="전문 상담을 통해 나에게 맞는 건강구독 패키지를 추천받아보세요."
+        />
       </div>
     </section>
   );
