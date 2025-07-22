@@ -124,8 +124,8 @@ export default function BusinessSection() {
                 </div>
               </div>
               <div>
-                {/* PC에서만 표시되는 수익 요약 박스 - 패스트보너스와 상단 정렬 */}
-                <div className="hidden lg:block mb-5">
+                {/* PC에서만 표시되는 수익 요약 박스 - 두 폰트 사이즈만큼 아래로 */}
+                <div className="hidden lg:block mb-5 mt-16">
                   <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
                     <p className="text-xl font-medium text-usana-blue-200 mb-4 leading-relaxed">
                       2~4명씩 건강구독 소개하고<br />
@@ -137,7 +137,7 @@ export default function BusinessSection() {
                     </p>
                   </div>
                 </div>
-                <div className="text-center">
+                <div className="text-center mt-16">
                   <img
                   src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
                   alt="Executive Business Success"
