@@ -53,7 +53,7 @@ export default function Navigation() {
                 style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
               />
               <div className="flex flex-col items-start justify-center">
-                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-usana-blue-900 group-hover:text-usana-blue-700 transition-all duration-300 leading-tight">
+                <div className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-usana-blue-900 group-hover:text-usana-blue-700 transition-all duration-300 leading-tight whitespace-nowrap">
                   <span className="tracking-tight">유사나 </span>
                   <span className="font-bold tracking-wide marketing-text-vibrant">건강구독마케팅</span>
                 </div>
