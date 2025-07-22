@@ -170,7 +170,7 @@ export default function HeroSection() {
                 건강구독상담
               </Button>
               <Button
-                onClick={() => scrollToSection("subscription")}
+                onClick={() => scrollToSection("subscription-innovation")}
                 variant="outline"
                 className="border-2 border-green-400/50 text-white hover:bg-green-400 hover:text-green-900 px-6 py-3 text-lg font-semibold h-auto backdrop-blur-sm bg-white/5 hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
