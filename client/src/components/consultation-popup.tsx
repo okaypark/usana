@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Phone, MessageCircle, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
@@ -50,7 +51,7 @@ export default function ConsultationPopup({
         name: formData.get('name') as string,
         phone: formData.get('phone') as string,
         email: formData.get('email') as string,
-        message: formData.get('message') as string,
+        message: `[${formData.get('consultationType') || '일반상담'}] ${formData.get('message') as string}`,
         source: title // 어떤 팝업에서 왔는지 구분
       };
 
@@ -180,6 +181,22 @@ export default function ConsultationPopup({
                   placeholder="example@email.com"
                   className="mt-1"
                 />
+              </div>
+              <div>
+                <Label htmlFor="consultationType">상담 유형</Label>
+                <Select name="consultationType">
+                  <SelectTrigger className="mt-1">
+                    <SelectValue placeholder="상담 유형을 선택하세요" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">일반 건강상담</SelectItem>
+                    <SelectItem value="package">건강구독 패키지 상담</SelectItem>
+                    <SelectItem value="business">비즈니스 파트너십 상담</SelectItem>
+                    <SelectItem value="product">제품 문의</SelectItem>
+                    <SelectItem value="nutrition">영양 상담</SelectItem>
+                    <SelectItem value="skincare">스킨케어 상담</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="message">상담 내용</Label>
