@@ -5,10 +5,12 @@ import { scrollToSection } from "@/lib/utils";
 import usanaMarketingBg from "@assets/건강구독마케팅-네트워크마케팅 유사나 박현진 pc31_1752997037407.png";
 import usanaMarketingMobileBg from "@assets/스크린샷 2025-07-20 143223_1752989552583.png";
 import { useQuery } from "@tanstack/react-query";
+import ConsultationPopup from "@/components/consultation-popup";
 
 export default function HeroSection() {
   const [showExpandedContent, setShowExpandedContent] = useState(false); // 1초 후에 자동으로 표시
   const [showSuccessContent, setShowSuccessContent] = useState(false);
+  const [isConsultationPopupOpen, setIsConsultationPopupOpen] = useState(false);
 
   // 사이트 설정 불러오기
   const { data: siteSettings = [] } = useQuery({
@@ -161,11 +163,11 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-lg mt-6 sm:mt-4 lg:mt-2">
               <Button
-                onClick={() => scrollToSection("business")}
+                onClick={() => setIsConsultationPopupOpen(true)}
                 className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-6 py-3 text-lg font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
-                건강구독 알아보기
+                건강구독상담
               </Button>
               <Button
                 onClick={() => scrollToSection("products")}
@@ -179,6 +181,14 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* 상담 팝업 */}
+      <ConsultationPopup
+        isOpen={isConsultationPopupOpen}
+        onClose={() => setIsConsultationPopupOpen(false)}
+        title="건강구독 상담 신청"
+        description="건강한 생활과 수익 창출을 위한 맞춤 상담을 신청하세요."
+      />
     </section>
   );
 }
