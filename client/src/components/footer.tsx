@@ -34,11 +34,14 @@ export default function Footer() {
     { name: "다이어트·해독", url: "https://okay7.usana.com/s/zY-ze1" }
   ];
 
-  const contactInfo = {
-    phone: "010-4259-5311",
-    email: "okaypark7@gmail.com",
-    kakao: "holicotu"
-  };
+  // 동적 연락처 정보 가져오기
+  const getContactInfo = () => ({
+    phone: siteSettings.find(s => s.key === 'admin_phone')?.value || "010-4259-5311",
+    email: siteSettings.find(s => s.key === 'admin_email')?.value || "okaypark7@gmail.com",
+    kakao: siteSettings.find(s => s.key === 'kakao_id')?.value || "holicotu"
+  });
+  
+  const contactInfo = getContactInfo();
 
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -65,7 +68,9 @@ export default function Footer() {
             <p className="text-gray-300 mb-4 leading-relaxed">
               당신의 건강과 경제적 자유를 실현할 수 있도록 성심성의껏 함께 하겠습니다.<br />
               <span className="text-usana-blue-400 font-semibold">유사나 브랜드 파트너</span><br />
-              <span className="text-usana-blue-400 font-semibold">박현진</span> 📞 010-4259-5311
+              <span className="text-usana-blue-400 font-semibold">
+                {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}
+              </span> 📞 {siteSettings.find(s => s.key === 'admin_phone')?.value || '010-4259-5311'}
             </p>
             <div className="flex space-x-4">
               {/* 블로그 링크 */}
@@ -179,7 +184,7 @@ export default function Footer() {
             <h4 className="text-lg font-semibold mb-4">연락처</h4>
             <div className="space-y-3 text-gray-300">
               <button 
-                onClick={() => callPhone("010-4259-5311")}
+                onClick={() => callPhone(contactInfo.phone)}
                 className="flex items-center hover:text-white transition-colors group"
               >
                 <div className="text-xl mr-3">📞</div>
@@ -219,7 +224,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
             <div className="text-gray-400 text-sm">
-              <p>&copy; 2025 USANA 브랜드 파트너 박현진. All rights reserved.</p>
+              <p>&copy; 2025 USANA 브랜드 파트너 {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}. All rights reserved.</p>
               <p className="mt-1">USANA Health Sciences는 미국 유타주에 본사를 둔 글로벌 건강기능식품 기업입니다.</p>
             </div>
             <div className="text-gray-400 text-sm md:text-right">
