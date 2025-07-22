@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertContactSchema, insertFaqSchema, insertPackageSchema, insertPackageProductSchema, insertAdminSchema } from "@shared/schema";
 import { z } from "zod";
 import { googleSheetsService } from "./google-sheets";
+import { sendEmail, createConsultationEmailHtml } from "./sendgrid";
 import bcrypt from "bcryptjs";
 import session from "express-session";
 import multer from "multer";
@@ -428,10 +429,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
         메시지: contactData.message
       });
       
-      // Google Sheets에 저장 및 이메일 알림 발송
+      // SendGrid를 통한 이메일 전송
+      try {
+        const emailSent = await sendEmail({
+          to: notificationEmail,
+          from: 'okaypark7@gmail.com', // 인증된 발신자 주소 (Gmail)
+          subject: `🏥 유사나 건강구독 상담 신청 - ${contactData.name}님`,
+          html: createConsultationEmailHtml(contactData),
+          text: `상담 신청자: ${contactData.name}\n연락처: ${contactData.phone}\n이메일: ${contactData.email}\n관심분야: ${contactData.interest}\n메시지: ${contactData.message}`
+        });
+        
+        if (emailSent) {
+          console.log('✅ SendGrid를 통한 이메일 알림이 성공적으로 전송되었습니다.');
+        }
+      } catch (emailError) {
+        console.error('⚠️ SendGrid 이메일 전송 실패:', emailError);
+      }
+      
+      // Google Sheets에 저장
       try {
         await googleSheetsService.addContactToSheet(contactData);
-        console.log('✅ 상담신청이 Google Sheets에 저장되고 이메일 알림이 발송되었습니다.');
+        console.log('✅ 상담신청이 Google Sheets에 저장되었습니다.');
       } catch (sheetsError) {
         console.error('⚠️ Google Sheets 연동 실패:', sheetsError);
         // Google Sheets 실패해도 상담신청 자체는 성공으로 처리

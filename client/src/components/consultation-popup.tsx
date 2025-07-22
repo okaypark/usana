@@ -65,7 +65,8 @@ export default function ConsultationPopup({
         name: formData.get('name') as string,
         phone: formData.get('phone') as string,
         email: formData.get('email') as string,
-        message: `[${formData.get('consultationType') || '일반상담'}] ${formData.get('message') as string}`,
+        interest: formData.get('consultationType') as string || '일반상담',
+        message: formData.get('message') as string,
         source: title // 어떤 팝업에서 왔는지 구분
       };
 
