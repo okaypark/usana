@@ -49,10 +49,20 @@ export default function SubscriptionSection() {
                 <Heart className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4">구독으로 꾸준한 건강관리</h3>
-              <p className="text-slate-600 leading-relaxed">
-                4주마다 영양제 구독으로 10% 할인 혜택을 받으며,
-                놓치기 쉬운 건강관리를 개인맞춤 상담으로 체계적으로 관리받는 시스템
-              </p>
+              <div className="text-slate-600 leading-relaxed space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">•</span>
+                  <span>4주마다 영양제 구독으로 10% 할인 혜택</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">•</span>
+                  <span>개인맞춤 상담으로 체계적인 건강관리</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-600 font-bold">•</span>
+                  <span>놓치기 쉬운 건강 체크를 전문가가 관리</span>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
@@ -62,11 +72,24 @@ export default function SubscriptionSection() {
                 <Shield className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4">건강구독 2명 소개</h3>
-              <p className="text-slate-600 leading-relaxed">
-                나처럼 할인받으며 건강을 챙기고자 하는 지인 2명에게 구독을 소개하면,
-                그들의 구독 매출 포인트뿐만 아니라 그들이 소개한 모든 사람들의 구독 포인트까지
-                무한 누적으로 나에게 적립되어 현금으로 캐시백되는 혁신적인 구독 시스템
-              </p>
+              <div className="text-slate-600 leading-relaxed space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-teal-600 font-bold">•</span>
+                  <span>지인 2명에게 건강구독 소개</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-teal-600 font-bold">•</span>
+                  <span>그들의 구독 매출 포인트 적립</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-teal-600 font-bold">•</span>
+                  <span>그들이 소개한 모든 사람의 포인트까지 무한 누적</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-teal-600 font-bold">•</span>
+                  <span>누적 포인트를 현금으로 캐시백</span>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
@@ -76,11 +99,24 @@ export default function SubscriptionSection() {
                 <Zap className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4">스마트 수익</h3>
-              <p className="text-slate-600 leading-relaxed">
-                내가 소개한 2명의 지인도 각각 2명씩 건강구독을 소개하여
-                매월 구독료를 무료로 이용할 수 있게 안내하면,
-                나에게는 월급과 같은 안정적인 권리소득이 매주 주급 형태로 지급됩니다.
-              </p>
+              <div className="text-slate-600 leading-relaxed space-y-2">
+                <div className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span>내가 소개한 2명도 각각 2명씩 소개 (2x2 시스템)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span>매월 구독료를 무료로 이용 가능</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span>월급과 같은 안정적인 권리소득 창출</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <span className="text-indigo-600 font-bold">•</span>
+                  <span>매주 주급 형태로 정기 지급</span>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
