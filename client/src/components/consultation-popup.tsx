@@ -108,10 +108,11 @@ export default function ConsultationPopup({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-[500px] max-h-[85vh] overflow-y-auto"
+        aria-describedby="consultation-description">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-navy-800">{title}</DialogTitle>
-          <DialogDescription className="text-gray-600">
+          <DialogDescription id="consultation-description" className="text-gray-600">
             {description}
           </DialogDescription>
         </DialogHeader>
@@ -231,7 +232,7 @@ export default function ConsultationPopup({
               <Button
                 type="submit"
                 disabled={isSubmitting || !privacyChecked}
-                className="w-full bg-navy-700 hover:bg-navy-800 text-white font-semibold py-3 disabled:opacity-50"
+                className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold py-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {isSubmitting ? '신청 중...' : '상담 신청하기'}
               </Button>
