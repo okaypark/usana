@@ -123,9 +123,9 @@ export default function BusinessSection() {
                   </div>
                 </div>
               </div>
-              <div className="text-center">
-                {/* PC에서만 표시되는 수익 요약 박스 */}
-                <div className="hidden lg:block mb-8">
+              <div>
+                {/* PC에서만 표시되는 수익 요약 박스 - 패스트보너스와 상단 정렬 */}
+                <div className="hidden lg:block mb-5">
                   <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
                     <p className="text-xl font-medium text-usana-blue-200 mb-4 leading-relaxed">
                       2~4명씩 건강구독 소개하고<br />
@@ -137,12 +137,14 @@ export default function BusinessSection() {
                     </p>
                   </div>
                 </div>
-                <img
+                <div className="text-center">
+                  <img
                   src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
                   alt="Executive Business Success"
                   className="rounded-3xl shadow-2xl mb-8 w-full border border-white/20"
                 />
-                <p className="text-sm font-light text-usana-blue-200 tracking-wide">* 개인별 네트워크와 상황에 따라 무료구독 달성 시점과<br />수익금액의이 달라질 수 있습니다</p>
+                  <p className="text-sm font-light text-usana-blue-200 tracking-wide">* 개인별 네트워크와 상황에 따라 무료구독 달성 시점과<br />수익금액의이 달라질 수 있습니다</p>
+                </div>
               </div>
             </div>
           </CardContent>
