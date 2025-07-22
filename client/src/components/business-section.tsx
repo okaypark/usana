@@ -4,9 +4,26 @@ import { Star, Clock, Home, Users as UsersIcon, TrendingUp, Handshake, Award, Cr
 
 export default function BusinessSection() {
   const incomeStructure = [
-    { label: "직접 판매 수수료", amount: "50~100만원" },
-    { label: "팀 건설 보너스", amount: "100~150만원" },
-    { label: "리더십 보너스", amount: "50~80만원" }
+    { 
+      label: "패스트보너스", 
+      amount: "50~100만원",
+      description: "직소개자 소비POINT 10% 보너스 지급"
+    },
+    { 
+      label: "마일스톤보너스", 
+      amount: "100~150만원",
+      description: "구독자 2~4명소개 후\n13주 동안 최대 90만 캐쉬백"
+    },
+    { 
+      label: "무한단계 포인트 적립", 
+      amount: "50~80만원",
+      description: "하부 구독인프라 무한단계 포인트 누적 적립"
+    },
+    { 
+      label: "매칭보너스", 
+      amount: "10%",
+      description: "직소개자가 버는 수익의 10% 나에게 지급"
+    }
   ];
 
   const benefits = [
@@ -87,15 +104,24 @@ export default function BusinessSection() {
                 </div>
                 <div className="space-y-5">
                   {incomeStructure.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
-                      <span className="text-lg font-medium tracking-wide">{item.label}</span>
-                      <span className="text-xl font-bold text-usana-blue-400">{item.amount}</span>
+                    <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-lg font-medium tracking-wide">{item.label}</span>
+                        <span className="text-xl font-bold text-usana-blue-400">{item.amount}</span>
+                      </div>
+                      <p className="text-sm text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
                   ))}
                   <div className="border-t border-usana-blue-400/30 pt-6 mt-8">
-                    <div className="flex justify-between items-center bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6">
-                      <span className="text-xl font-bold tracking-wide">월 총 구독소개수익</span>
-                      <span className="text-4xl font-bold text-usana-blue-400">200~300만원</span>
+                    <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
+                      <p className="text-lg font-medium text-usana-blue-200 mb-4 leading-relaxed">
+                        2~4명씩 건강구독 소개하고<br />
+                        3단계 정도 내려가면<br />
+                        월 100만원~ 바로 수익발생
+                      </p>
+                      <p className="text-sm text-usana-blue-300 font-light">
+                        *건강구독자 소개 속도에 따라 달라질수 있습니다.
+                      </p>
                     </div>
                   </div>
                 </div>
