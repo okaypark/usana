@@ -164,21 +164,24 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-2xl mt-6 sm:mt-4 lg:mt-2">
               <Button
                 onClick={() => setIsConsultationPopupOpen(true)}
-                className="bg-usana-blue-500 hover:bg-usana-blue-600 text-white px-6 py-3 text-lg font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                variant="outline"
+                className="bg-transparent hover:bg-white/10 border-2 border-cyan-400/80 text-cyan-300 hover:text-cyan-200 hover:border-cyan-300 px-6 py-3 text-lg font-semibold h-auto backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <MessageCircle className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독상담
               </Button>
               <Button
                 onClick={() => scrollToSection("subscription-innovation")}
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 text-lg font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                variant="outline"
+                className="bg-transparent hover:bg-white/10 border-2 border-emerald-400/80 text-emerald-300 hover:text-emerald-200 hover:border-emerald-300 px-6 py-3 text-lg font-semibold h-auto backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <Heart className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독이란?
               </Button>
               <Button
                 onClick={() => scrollToSection("products")}
-                className="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 text-lg font-semibold h-auto shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
+                variant="outline"
+                className="bg-transparent hover:bg-white/10 border-2 border-rose-400/80 text-rose-300 hover:text-rose-200 hover:border-rose-300 px-6 py-3 text-lg font-semibold h-auto backdrop-blur-sm shadow-lg hover:shadow-xl hover:scale-105 hover:-translate-y-1 transition-all duration-300 tracking-wide group"
               >
                 <Play className="mr-2 h-4 w-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300" />
                 건강구독 제품보기
