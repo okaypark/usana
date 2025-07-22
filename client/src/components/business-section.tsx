@@ -104,17 +104,17 @@ export default function BusinessSection() {
                       <div className="mb-3">
                         <span className="text-lg font-medium tracking-wide">{item.label}</span>
                       </div>
-                      <p className="text-sm text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
+                      <p className="text-base text-usana-blue-200 leading-relaxed whitespace-pre-line">{item.description}</p>
                     </div>
                   ))}
                   <div className="border-t border-usana-blue-400/30 pt-6 mt-8">
                     <div className="bg-usana-blue-400/20 border border-usana-blue-400/30 rounded-xl p-6 text-center">
-                      <p className="text-lg font-medium text-usana-blue-200 mb-4 leading-relaxed">
+                      <p className="text-xl font-medium text-usana-blue-200 mb-4 leading-relaxed">
                         2~4명씩 건강구독 소개하고<br />
                         3단계 정도 내려가면<br />
                         월 100만원~ 바로 수익발생
                       </p>
-                      <p className="text-sm text-usana-blue-300 font-light">
+                      <p className="text-base text-usana-blue-300 font-light">
                         *건강구독자 소개 속도에 따라 달라질수 있습니다.
                       </p>
                     </div>
