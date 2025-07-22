@@ -137,9 +137,9 @@ export default function ContactSection() {
   const contactInfo = getContactInfo();
 
   const operatingHours = [
-    { day: "평일 (월-금)", time: "24시까지 언제든지" },
-    { day: "토요일", time: "24시까지 언제든지" },
-    { day: "일요일/공휴일", time: "24시까지 언제든지" }
+    { day: "평일 (월-금)", time: "🕐 밤 12시까지 언제든지" },
+    { day: "토요일", time: "🕐 밤 12시까지 언제든지" },
+    { day: "일요일/공휴일", time: "🕐 밤 12시까지 언제든지" }
   ];
 
   return (
@@ -304,7 +304,7 @@ export default function ContactSection() {
                     <div>
                       <p className="text-gray-600">전화 상담</p>
                       <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.phone}</p>
-                      <p className="text-sm text-gray-500">24시까지 언제든지</p>
+                      <p className="text-sm text-gray-500">🕐 밤 12시까지 언제든지</p>
                     </div>
                   </div>
                   
@@ -322,7 +322,7 @@ export default function ContactSection() {
                     <div>
                       <p className="text-gray-600">카카오톡 상담</p>
                       <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.kakao}</p>
-                      <p className="text-sm text-gray-500">24시간 언제든지</p>
+                      <p className="text-sm text-gray-500">🕐 밤 12시까지 언제든지</p>
                     </div>
                   </div>
                   
@@ -340,7 +340,7 @@ export default function ContactSection() {
                     <div>
                       <p className="text-gray-600">오픈채팅 문의</p>
                       <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.openChat}</p>
-                      <p className="text-sm text-gray-500">24시간 언제든지</p>
+                      <p className="text-sm text-gray-500">🕐 밤 12시까지 언제든지</p>
                     </div>
                   </div>
                   
@@ -354,7 +354,7 @@ export default function ContactSection() {
                     <div>
                       <p className="text-gray-600">이메일 상담</p>
                       <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">{contactInfo.email}</p>
-                      <p className="text-sm text-gray-500">24시간 언제든지</p>
+                      <p className="text-sm text-gray-500">🕐 밤 12시까지 언제든지</p>
                     </div>
                   </div>
 
