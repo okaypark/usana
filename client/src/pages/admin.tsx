@@ -31,6 +31,7 @@ export default function AdminPage() {
   const [editingFaq, setEditingFaq] = useState<Faq | null>(null);
   const [isFaqDialogOpen, setIsFaqDialogOpen] = useState(false);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
+  const [uploadingImage, setUploadingImage] = useState<string | null>(null);
   
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -101,6 +102,83 @@ export default function AdminPage() {
     queryKey: ["/api/admin/current"],
     enabled: isAuthenticated === true
   });
+
+  // 이미지 업로드 핸들러
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>, imageType: 'desktop' | 'mobile') => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // 파일 타입 검증
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "오류",
+        description: "이미지 파일만 업로드할 수 있습니다.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // 파일 크기 검증 (10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      toast({
+        title: "오류",
+        description: "파일 크기는 10MB 이하여야 합니다.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUploadingImage(imageType);
+
+    try {
+      const formData = new FormData();
+      formData.append('heroImage', file);
+      formData.append('imageType', imageType);
+
+      const response = await fetch('/api/admin/upload-hero-image', {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "업로드 성공",
+          description: result.message,
+        });
+
+        // 사이트 설정을 다시 불러와서 업데이트된 이미지 URL 반영
+        queryClient.invalidateQueries({ queryKey: ['/api/site-settings'] });
+
+        // 입력 필드도 업데이트
+        const inputField = document.getElementById(
+          imageType === 'desktop' ? 'hero_desktop_image' : 'hero_mobile_image'
+        ) as HTMLInputElement;
+        if (inputField) {
+          inputField.value = result.imageUrl;
+        }
+      } else {
+        toast({
+          title: "업로드 실패",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('이미지 업로드 오류:', error);
+      toast({
+        title: "업로드 오류",
+        description: "이미지 업로드 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingImage(null);
+      // 파일 입력 초기화
+      event.target.value = '';
+    }
+  };
 
   // FAQ 목록 조회
   const { data: faqs = [], isLoading: faqsLoading } = useQuery<Faq[]>({
@@ -1657,27 +1735,67 @@ export default function AdminPage() {
                         </CardHeader>
                         <CardContent className="space-y-4">
                           <div>
-                            <Label htmlFor="hero_desktop_image">데스크톱 이미지 URL</Label>
-                            <Input
-                              id="hero_desktop_image"
-                              defaultValue={siteSettings.find(s => s.key === 'hero_desktop_image')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('hero_desktop_image', e.target.value)}
-                              placeholder="히어로 섹션 데스크톱 배경 이미지 URL (기본값: 기존 이미지 사용)"
-                            />
+                            <Label htmlFor="hero_desktop_image">데스크톱 이미지</Label>
+                            <div className="space-y-2">
+                              <Input
+                                id="hero_desktop_image"
+                                defaultValue={siteSettings.find(s => s.key === 'hero_desktop_image')?.value || ''}
+                                onBlur={(e) => handleUpdateSetting('hero_desktop_image', e.target.value)}
+                                placeholder="히어로 섹션 데스크톱 배경 이미지 URL (기본값: 기존 이미지 사용)"
+                              />
+                              <div className="flex gap-2">
+                                <input
+                                  type="file"
+                                  id="desktop_image_file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleImageUpload(e, 'desktop')}
+                                />
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => document.getElementById('desktop_image_file')?.click()}
+                                  disabled={uploadingImage === 'desktop'}
+                                >
+                                  {uploadingImage === 'desktop' ? '업로드 중...' : '파일 업로드'}
+                                </Button>
+                              </div>
+                            </div>
                           </div>
                           <div>
-                            <Label htmlFor="hero_mobile_image">모바일 이미지 URL</Label>
-                            <Input
-                              id="hero_mobile_image"
-                              defaultValue={siteSettings.find(s => s.key === 'hero_mobile_image')?.value || ''}
-                              onBlur={(e) => handleUpdateSetting('hero_mobile_image', e.target.value)}
-                              placeholder="히어로 섹션 모바일 배경 이미지 URL (기본값: 기존 이미지 사용)"
-                            />
+                            <Label htmlFor="hero_mobile_image">모바일 이미지</Label>
+                            <div className="space-y-2">
+                              <Input
+                                id="hero_mobile_image"
+                                defaultValue={siteSettings.find(s => s.key === 'hero_mobile_image')?.value || ''}
+                                onBlur={(e) => handleUpdateSetting('hero_mobile_image', e.target.value)}
+                                placeholder="히어로 섹션 모바일 배경 이미지 URL (기본값: 기존 이미지 사용)"
+                              />
+                              <div className="flex gap-2">
+                                <input
+                                  type="file"
+                                  id="mobile_image_file"
+                                  accept="image/*"
+                                  className="hidden"
+                                  onChange={(e) => handleImageUpload(e, 'mobile')}
+                                />
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => document.getElementById('mobile_image_file')?.click()}
+                                  disabled={uploadingImage === 'mobile'}
+                                >
+                                  {uploadingImage === 'mobile' ? '업로드 중...' : '파일 업로드'}
+                                </Button>
+                              </div>
+                            </div>
                           </div>
                           <div className="text-sm text-gray-500">
-                            <p>• 이미지 URL을 입력하지 않으면 기본 이미지가 사용됩니다</p>
+                            <p>• URL 입력 또는 파일 업로드 중 선택하여 사용</p>
                             <p>• 권장 크기: 데스크톱 1920x1080px, 모바일 768x1024px</p>
-                            <p>• 이미지 호스팅: imgur.com, cloudinary.com 등 추천</p>
+                            <p>• 파일 형식: JPG, PNG, WebP (최대 10MB)</p>
                           </div>
                         </CardContent>
                       </Card>

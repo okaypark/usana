@@ -6,6 +6,10 @@ import { z } from "zod";
 import { googleSheetsService } from "./google-sheets";
 import bcrypt from "bcryptjs";
 import session from "express-session";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+import express from "express";
 
 // 관리자 인증 미들웨어
 const requireAdminAuth = (req: any, res: any, next: any) => {
@@ -16,6 +20,41 @@ const requireAdminAuth = (req: any, res: any, next: any) => {
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // 업로드 디렉토리 생성
+  const uploadDir = path.join(process.cwd(), 'uploads');
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+
+  // Multer 설정
+  const storage_multer = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, uploadDir);
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, 'hero-' + uniqueSuffix + path.extname(file.originalname));
+    }
+  });
+
+  const upload = multer({ 
+    storage: storage_multer,
+    fileFilter: (req, file, cb) => {
+      // 이미지 파일만 허용
+      if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+      } else {
+        cb(new Error('이미지 파일만 업로드 가능합니다.'));
+      }
+    },
+    limits: {
+      fileSize: 10 * 1024 * 1024, // 10MB 제한
+    }
+  });
+
+  // 업로드된 파일에 정적 접근 허용
+  app.use('/uploads', express.static(uploadDir));
+
   // 세션 설정
   app.use(session({
     secret: process.env.SESSION_SECRET || 'usana-admin-secret-key-2025',
@@ -897,6 +936,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({
         success: false,
         message: "일괄 사이트 설정 업데이트 중 오류가 발생했습니다."
+      });
+    }
+  });
+
+  // 히어로 이미지 업로드 API
+  app.post("/api/admin/upload-hero-image", requireAdminAuth, upload.single('heroImage'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: "이미지 파일을 선택해주세요."
+        });
+      }
+
+      const { imageType } = req.body; // 'desktop' 또는 'mobile'
+      
+      if (!imageType || !['desktop', 'mobile'].includes(imageType)) {
+        return res.status(400).json({
+          success: false,
+          message: "올바른 이미지 타입을 지정해주세요. (desktop 또는 mobile)"
+        });
+      }
+
+      // 업로드된 파일의 URL 생성
+      const fileUrl = `/uploads/${req.file.filename}`;
+      const fullUrl = `${req.protocol}://${req.get('host')}${fileUrl}`;
+      
+      // 사이트 설정에 저장
+      const settingKey = imageType === 'desktop' ? 'hero_desktop_image' : 'hero_mobile_image';
+      const updatedSetting = await storage.updateSiteSetting(settingKey, fullUrl);
+
+      res.json({
+        success: true,
+        message: `${imageType === 'desktop' ? '데스크톱' : '모바일'} 히어로 이미지가 성공적으로 업로드되었습니다.`,
+        imageUrl: fullUrl,
+        setting: updatedSetting
+      });
+    } catch (error) {
+      console.error('히어로 이미지 업로드 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "이미지 업로드 중 오류가 발생했습니다."
       });
     }
   });
