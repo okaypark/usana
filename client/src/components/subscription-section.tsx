@@ -131,7 +131,7 @@ export default function SubscriptionSection() {
               onClick={() => setIsConsultationPopupOpen(true)}
               className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-semibold px-12 py-4 text-lg shadow-xl hover:scale-105 transition-all duration-300"
             >
-              건강구독 시작하기
+              건강구독 마케팅 문의
             </Button>
             <Button 
               size="lg"
@@ -139,7 +139,7 @@ export default function SubscriptionSection() {
               variant="outline"
               className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold px-8 py-4 text-lg shadow-lg hover:scale-105 transition-all duration-300"
             >
-              무료소비자가입 제품구매
+              직접 소비자가입 제품구매
             </Button>
           </div>
         </div>
