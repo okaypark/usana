@@ -458,6 +458,73 @@ export default function AdminPage() {
     }
   };
 
+  // 전체 사이트 정보 업데이트 핸들러
+  const handleUpdateAllSettings = async () => {
+    try {
+      // 모든 input 필드에서 현재 값을 가져와서 업데이트
+      const inputs = document.querySelectorAll('#settings input, #settings textarea');
+      const updates: Array<{ key: string, value: string }> = [];
+      
+      inputs.forEach((input: any) => {
+        if (input.id && input.value !== undefined) {
+          updates.push({ key: input.id, value: input.value || '' });
+        }
+      });
+
+      // 체크박스 처리
+      const checkboxes = document.querySelectorAll('#settings input[type="checkbox"]');
+      checkboxes.forEach((checkbox: any) => {
+        if (checkbox.id) {
+          updates.push({ key: checkbox.id, value: checkbox.checked ? 'true' : 'false' });
+        }
+      });
+
+      if (updates.length === 0) {
+        toast({
+          title: "업데이트할 정보 없음",
+          description: "변경된 정보가 없습니다.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // 일괄 업데이트 API 사용
+      const response = await apiRequest('/api/site-settings/bulk-update', 'POST', { settings: updates });
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "전체 정보 업데이트 완료",
+          description: `${result.updatedCount}개의 설정이 성공적으로 업데이트되었습니다.`,
+        });
+        
+        // 캐시 무효화하여 최신 데이터 로드
+        queryClient.invalidateQueries({ queryKey: ['/api/site-settings'] });
+        queryClient.invalidateQueries({ queryKey: ['/api/public/packages'] });
+        queryClient.invalidateQueries({ queryKey: ['/api/faqs'] });
+        
+        // 메인 웹사이트도 새로고침하도록 알림
+        toast({
+          title: "웹사이트 적용 완료",
+          description: "변경사항이 메인 웹사이트에 즉시 반영되었습니다.",
+        });
+      } else {
+        toast({
+          title: "업데이트 실패",
+          description: result.message || "설정 업데이트 중 오류가 발생했습니다.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('전체 사이트 설정 업데이트 오류:', error);
+      toast({
+        title: "전체 업데이트 실패",
+        description: "전체 사이트 설정 업데이트 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
   // 인증 상태 로딩 중
   if (isAuthenticated === null) {
     return (
@@ -1430,12 +1497,21 @@ export default function AdminPage() {
             </TabsContent>
 
             {/* 사이트 설정 탭 */}
-            <TabsContent value="settings" className="p-6 space-y-6">
+            <TabsContent value="settings" className="p-6 space-y-6" id="settings">
               <Card className="border-orange-200 shadow-md">
                 <CardHeader className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-t-lg">
-                  <CardTitle className="flex items-center gap-2 text-orange-700">
-                    <Globe className="w-5 h-5" />
-                    사이트 설정 관리
+                  <CardTitle className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-orange-700">
+                      <Globe className="w-5 h-5" />
+                      사이트 설정 관리
+                    </div>
+                    <Button
+                      onClick={handleUpdateAllSettings}
+                      className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-200"
+                    >
+                      <Settings className="w-4 h-4 mr-2" />
+                      정보 업데이트
+                    </Button>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-6">

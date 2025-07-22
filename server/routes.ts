@@ -857,6 +857,50 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 전체 사이트 설정 일괄 업데이트 API
+  app.post("/api/site-settings/bulk-update", requireAdminAuth, async (req, res) => {
+    try {
+      const { settings } = req.body;
+      
+      if (!settings || !Array.isArray(settings)) {
+        return res.status(400).json({
+          success: false,
+          message: "올바른 설정 데이터를 제공해주세요."
+        });
+      }
+
+      let successCount = 0;
+      const results = [];
+
+      for (const setting of settings) {
+        try {
+          if (setting.key && setting.value !== undefined) {
+            const updatedSetting = await storage.updateSiteSetting(setting.key, setting.value);
+            results.push({ key: setting.key, success: true, data: updatedSetting });
+            successCount++;
+          }
+        } catch (error) {
+          console.error(`설정 ${setting.key} 업데이트 실패:`, error);
+          results.push({ key: setting.key, success: false, error: error instanceof Error ? error.message : 'Unknown error' });
+        }
+      }
+
+      res.json({
+        success: true,
+        message: `${successCount}개의 설정이 성공적으로 업데이트되었습니다.`,
+        updatedCount: successCount,
+        totalCount: settings.length,
+        results: results
+      });
+    } catch (error) {
+      console.error('일괄 사이트 설정 업데이트 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "일괄 사이트 설정 업데이트 중 오류가 발생했습니다."
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
