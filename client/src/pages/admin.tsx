@@ -1637,6 +1637,15 @@ export default function AdminPage() {
                         </CardHeader>
                         <CardContent className="space-y-4">
                           <div>
+                            <Label htmlFor="kakao_openchat_url">카카오톡 오픈채팅 URL</Label>
+                            <Input
+                              id="kakao_openchat_url"
+                              defaultValue={siteSettings.find(s => s.key === 'kakao_openchat_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('kakao_openchat_url', e.target.value)}
+                              placeholder="https://open.kakao.com/..."
+                            />
+                          </div>
+                          <div>
                             <Label htmlFor="blog_url">블로그 URL</Label>
                             <Input
                               id="blog_url"
