@@ -72,7 +72,7 @@ export default function BusinessSection() {
             건강구독을 하면서 지인 2명에게 소개하고,<br />
             그들도 각각 2명씩 소개하는 과정이 반복되면<br />
             연결된 모든 구독자들의 포인트가<br />
-            <span className="text-usana-blue-600 font-semibold">함께 누적 공유되면서 나에게도 큰 수익이 가능해집니다.</span>
+            <span className="text-usana-blue-600 font-semibold">함께 누적 공유되면서<br />나에게도 큰 수익이 가능해집니다.</span>
           </p>
         </div>
 
