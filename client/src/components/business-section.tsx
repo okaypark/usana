@@ -69,12 +69,10 @@ export default function BusinessSection() {
             <span className="font-light">구독소개 수익</span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-usana-blue-700 max-w-4xl mx-auto leading-relaxed font-light">
-            건강을 위해 영양제를 건강구독하면서<br />
-            지인 2명에게 소개하고 그들도 2명을 소개해서<br />
-            함께 건강해지는 2인소개 건강구독 과정이 반복되면<br />
-            나의 하부에 연결된 구독자들의 자연스러운 건강구독 소비 POINT가<br />
-            무한 누적되어 함께 누적 공유 받게 되면서<br />
-            <span className="text-usana-blue-600 font-semibold">큰 수익이 가능해집니다.</span>
+            건강구독을 하면서 지인 2명에게 소개하고,<br />
+            그들도 각각 2명씩 소개하는 과정이 반복되면<br />
+            연결된 모든 구독자들의 포인트가<br />
+            <span className="text-usana-blue-600 font-semibold">나에게 누적되어 큰 수익이 가능합니다.</span>
           </p>
         </div>
 
