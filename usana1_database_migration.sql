@@ -10,6 +10,8 @@ TRUNCATE TABLE faqs CASCADE;
 TRUNCATE TABLE contacts CASCADE;
 TRUNCATE TABLE admins CASCADE;
 TRUNCATE TABLE approved_admins CASCADE;
+TRUNCATE TABLE users CASCADE;
+TRUNCATE TABLE usana_products CASCADE;
 
 -- 2. 패키지 데이터 삽입
 INSERT INTO packages (id, theme, type, name, description, total_price, total_points, created_at, updated_at) VALUES
@@ -87,19 +89,41 @@ INSERT INTO faqs (id, question, answer, category, "order") VALUES
 (19, '정말 주급으로 받을 수 있나요?', '네, USANA의 독특한 보상 시스템으로 매주 주급을 받으실 수 있습니다. 일반적인 월급 개념이 아니라 활동에 따른 수수료와 보너스가 주 단위로 정산되어 지급됩니다. 안정적인 팀이 구축되면 지속적인 주급 수입이 가능하며, 노력에 따라 금액이 증가합니다.', '주급시스템', 11),
 (20, '건강 상담은 어떤 식으로 진행되나요?', '개인의 건강 상태, 생활 패턴, 식습관, 운동량, 스트레스 정도 등을 종합적으로 파악한 후 가장 적합한 제품 조합을 추천해드립니다. 혈액검사 결과가 있다면 더욱 정확한 상담이 가능하며, 복용 후 주기적인 상담을 통해 제품 구성을 최적화해나갑니다.', '건강상담', 12);
 
--- 5. 시퀀스 재설정 (PostgreSQL)
+-- 5. 관리자 데이터 삽입 (주 관리자 + 추가 관리자)
+INSERT INTO admins (id, email, name, password_hash, created_at, updated_at) VALUES
+(1, 'okaypark7@gmail.com', '박현진', '$2b$10$VWZKV7ck9oAKSU8ZmL9ogeujJegNchdJEWmBuZbf9w99ztTqB71Qi', '2025-07-21 10:35:50.427776', '2025-07-21 11:41:42.485'),
+(4, 'holictou00@gmail.com', '상옥', '$2b$10$Dks/npl4b4jqEVFORz6HeOCUFXfKKCsqmHftqELSY.2INAnX8CWO6', '2025-07-21 11:09:53.307766', '2025-07-21 11:22:15.248');
+
+-- 6. 연락처 데이터 삽입
+INSERT INTO contacts (id, name, phone, email, interest, message, created_at, is_contacted) VALUES
+(1, '박현진', '01042595311', 'okaypark7@gmail.com', 'subscription', '', '2025-07-21 14:14:56.635409', false),
+(2, '박현진', '01042595311', 'holictou00@gamil.com', 'brochure', '', '2025-07-21 14:22:45.951473', false),
+(3, '박현진', '01042595311', 'yjoo@allyworks.co.kr', 'business', '', '2025-07-21 16:02:21.652423', false);
+
+-- 7. 시퀀스 재설정 (PostgreSQL)
 SELECT setval('packages_id_seq', (SELECT MAX(id) FROM packages));
 SELECT setval('package_products_id_seq', (SELECT MAX(id) FROM package_products));
 SELECT setval('faqs_id_seq', (SELECT MAX(id) FROM faqs));
+SELECT setval('admins_id_seq', (SELECT MAX(id) FROM admins));
+SELECT setval('contacts_id_seq', (SELECT MAX(id) FROM contacts));
 
--- 6. 데이터 확인
+-- 8. 데이터 확인
 SELECT 'packages' as table_name, COUNT(*) as record_count FROM packages
 UNION ALL
 SELECT 'package_products', COUNT(*) FROM package_products
 UNION ALL  
-SELECT 'faqs', COUNT(*) FROM faqs;
+SELECT 'faqs', COUNT(*) FROM faqs
+UNION ALL
+SELECT 'admins', COUNT(*) FROM admins
+UNION ALL
+SELECT 'contacts', COUNT(*) FROM contacts;
 
 -- ========================================
 -- 마이그레이션 완료
--- 총 6개 패키지, 28개 패키지 제품, 12개 FAQ 이전 완료
+-- 총 8개 테이블 완전 이전:
+-- - 6개 패키지 (면역건강, 해독다이어트, 피부건강)
+-- - 28개 패키지 제품 조합
+-- - 12개 FAQ (제품안전성, 구독시스템, 사업방식 등)
+-- - 2개 관리자 계정 (okaypark7@gmail.com, holictou00@gmail.com)
+-- - 3개 연락처 데이터
 -- ========================================
