@@ -95,6 +95,14 @@ export const admins = pgTable("admins", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
+// 사이트 설정 테이블
+export const siteSettings = pgTable("site_settings", {
+  id: serial("id").primaryKey(),
+  key: text("key").notNull().unique(),
+  value: text("value").notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const insertFaqSchema = createInsertSchema(faqs).omit({
   id: true,
 });
@@ -120,6 +128,14 @@ export const insertAdminSchema = createInsertSchema(admins).omit({
   password: z.string().min(8, "비밀번호는 최소 8자 이상이어야 합니다"),
 });
 
+export const insertSiteSettingsSchema = createInsertSchema(siteSettings).omit({
+  id: true,
+  updatedAt: true,
+}).extend({
+  key: z.string().min(1, "키를 입력해주세요"),
+  value: z.string().min(1, "값을 입력해주세요"),
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -134,3 +150,5 @@ export type InsertAdmin = z.infer<typeof insertAdminSchema>;
 export type Admin = typeof admins.$inferSelect;
 export type UsanaProduct = typeof usanaProducts.$inferSelect;
 export type InsertUsanaProduct = typeof usanaProducts.$inferInsert;
+export type SiteSetting = typeof siteSettings.$inferSelect;
+export type InsertSiteSetting = z.infer<typeof insertSiteSettingsSchema>;

@@ -784,6 +784,67 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 사이트 설정 관리 API
+  app.get("/api/site-settings", async (req, res) => {
+    try {
+      const settings = await storage.getSiteSettings();
+      res.json(settings);
+    } catch (error) {
+      console.error('사이트 설정 조회 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "사이트 설정을 가져오는 중 오류가 발생했습니다."
+      });
+    }
+  });
+
+  app.get("/api/site-settings/:key", async (req, res) => {
+    try {
+      const { key } = req.params;
+      const setting = await storage.getSiteSetting(key);
+      if (setting) {
+        res.json(setting);
+      } else {
+        res.status(404).json({
+          success: false,
+          message: "설정을 찾을 수 없습니다."
+        });
+      }
+    } catch (error) {
+      console.error('사이트 설정 조회 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "사이트 설정을 가져오는 중 오류가 발생했습니다."
+      });
+    }
+  });
+
+  app.put("/api/site-settings/:key", requireAdminAuth, async (req, res) => {
+    try {
+      const { key } = req.params;
+      const { value } = req.body;
+      
+      if (!value) {
+        return res.status(400).json({
+          success: false,
+          message: "값을 입력해주세요."
+        });
+      }
+
+      const updatedSetting = await storage.updateSiteSetting(key, value);
+      res.json({
+        success: true,
+        data: updatedSetting
+      });
+    } catch (error) {
+      console.error('사이트 설정 업데이트 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "사이트 설정 업데이트 중 오류가 발생했습니다."
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

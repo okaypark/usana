@@ -10,8 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus, Home } from "lucide-react";
-import type { Package, PackageProduct, Faq } from "@shared/schema";
+import { Plus, Edit, Trash2, LogOut, Settings, Users, Package2, UserPlus, Crown, UserMinus, Home, Globe } from "lucide-react";
+import type { Package, PackageProduct, Faq, SiteSetting } from "@shared/schema";
 import AdminLogin from "./admin-login";
 import PasswordChangeDialog from "@/components/password-change-dialog";
 import UsanaProductSelector from "@/components/usana-product-selector";
@@ -105,6 +105,12 @@ export default function AdminPage() {
   // FAQ 목록 조회
   const { data: faqs = [], isLoading: faqsLoading } = useQuery<Faq[]>({
     queryKey: ['/api/faqs'],
+    enabled: isAuthenticated === true,
+  });
+
+  // 사이트 설정 조회
+  const { data: siteSettings = [], isLoading: settingsLoading } = useQuery<SiteSetting[]>({
+    queryKey: ['/api/site-settings'],
     enabled: isAuthenticated === true,
   });
 
@@ -431,6 +437,26 @@ export default function AdminPage() {
     }
   };
 
+  // 사이트 설정 업데이트 핸들러
+  const handleUpdateSetting = async (key: string, value: string) => {
+    try {
+      const response = await apiRequest(`/api/site-settings/${key}`, 'PUT', { value });
+      if (response.ok) {
+        toast({
+          title: "설정 업데이트 완료",
+          description: "사이트 설정이 성공적으로 업데이트되었습니다.",
+        });
+        queryClient.invalidateQueries({ queryKey: ['/api/site-settings'] });
+      }
+    } catch (error) {
+      toast({
+        title: "설정 업데이트 실패",
+        description: "사이트 설정 업데이트 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    }
+  };
+
   // 인증 상태 로딩 중
   if (isAuthenticated === null) {
     return (
@@ -497,27 +523,34 @@ export default function AdminPage() {
         {/* 탭 컨테이너 */}
         <div className="bg-white rounded-xl shadow-lg border border-gray-200">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-gray-100 rounded-t-xl p-2 gap-1">
+            <TabsList className="grid w-full grid-cols-4 bg-gray-100 rounded-t-xl p-2 gap-1">
               <TabsTrigger 
                 value="admin" 
-                className="flex items-center gap-2 rounded-lg py-3 px-4 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 text-gray-600 data-[state=active]:scale-105"
+                className="flex items-center gap-2 rounded-lg py-3 px-2 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-500 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-blue-50 text-gray-600 data-[state=active]:scale-105"
               >
                 <Users className="w-4 h-4" />
                 관리자
               </TabsTrigger>
               <TabsTrigger 
                 value="packages" 
-                className="flex items-center gap-2 rounded-lg py-3 px-4 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 text-gray-600 data-[state=active]:scale-105"
+                className="flex items-center gap-2 rounded-lg py-3 px-2 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-green-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-green-50 text-gray-600 data-[state=active]:scale-105"
               >
                 <Package2 className="w-4 h-4" />
                 구독패키지
               </TabsTrigger>
               <TabsTrigger 
                 value="faqs" 
-                className="flex items-center gap-2 rounded-lg py-3 px-4 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 text-gray-600 data-[state=active]:scale-105"
+                className="flex items-center gap-2 rounded-lg py-3 px-2 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500 data-[state=active]:to-purple-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-purple-50 text-gray-600 data-[state=active]:scale-105"
               >
                 <Settings className="w-4 h-4" />
                 FAQ 관리
+              </TabsTrigger>
+              <TabsTrigger 
+                value="settings" 
+                className="flex items-center gap-2 rounded-lg py-3 px-2 font-semibold transition-all duration-200 data-[state=active]:bg-gradient-to-r data-[state=active]:from-orange-500 data-[state=active]:to-orange-600 data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-orange-50 text-gray-600 data-[state=active]:scale-105"
+              >
+                <Globe className="w-4 h-4" />
+                사이트설정
               </TabsTrigger>
             </TabsList>
 
@@ -1389,6 +1422,115 @@ export default function AdminPage() {
                           </div>
                         </div>
                       ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* 사이트 설정 탭 */}
+            <TabsContent value="settings" className="p-6 space-y-6">
+              <Card className="border-orange-200 shadow-md">
+                <CardHeader className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-t-lg">
+                  <CardTitle className="flex items-center gap-2 text-orange-700">
+                    <Globe className="w-5 h-5" />
+                    사이트 설정 관리
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="p-6">
+                  {settingsLoading ? (
+                    <div className="text-center py-8">사이트 설정 로딩 중...</div>
+                  ) : (
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {/* 관리자 정보 */}
+                      <Card className="border-blue-100">
+                        <CardHeader className="pb-3">
+                          <h3 className="text-lg font-semibold text-blue-700">관리자 정보</h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div>
+                            <Label htmlFor="admin_name">이름</Label>
+                            <Input
+                              id="admin_name"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_name')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_name', e.target.value)}
+                              placeholder="관리자 이름"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="admin_phone">전화번호</Label>
+                            <Input
+                              id="admin_phone"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_phone')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_phone', e.target.value)}
+                              placeholder="010-0000-0000"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="admin_email">이메일</Label>
+                            <Input
+                              id="admin_email"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_email')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_email', e.target.value)}
+                              placeholder="admin@example.com"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="admin_kakao">카카오톡 ID</Label>
+                            <Input
+                              id="admin_kakao"
+                              defaultValue={siteSettings.find(s => s.key === 'admin_kakao')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('admin_kakao', e.target.value)}
+                              placeholder="카카오톡 아이디"
+                            />
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      {/* URL 설정 */}
+                      <Card className="border-green-100">
+                        <CardHeader className="pb-3">
+                          <h3 className="text-lg font-semibold text-green-700">URL 설정</h3>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div>
+                            <Label htmlFor="openchat_url">오픈채팅 URL</Label>
+                            <Input
+                              id="openchat_url"
+                              defaultValue={siteSettings.find(s => s.key === 'openchat_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('openchat_url', e.target.value)}
+                              placeholder="https://open.kakao.com/..."
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="nutrition_product_url">뉴트리션 제품 URL</Label>
+                            <Input
+                              id="nutrition_product_url"
+                              defaultValue={siteSettings.find(s => s.key === 'nutrition_product_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('nutrition_product_url', e.target.value)}
+                              placeholder="https://okay7.usana.com/..."
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="skincare_product_url">셀라비브 스킨케어 URL</Label>
+                            <Input
+                              id="skincare_product_url"
+                              defaultValue={siteSettings.find(s => s.key === 'skincare_product_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('skincare_product_url', e.target.value)}
+                              placeholder="https://okay7.usana.com/..."
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="diet_product_url">다이어트&해독 URL</Label>
+                            <Input
+                              id="diet_product_url"
+                              defaultValue={siteSettings.find(s => s.key === 'diet_product_url')?.value || ''}
+                              onBlur={(e) => handleUpdateSetting('diet_product_url', e.target.value)}
+                              placeholder="https://okay7.usana.com/..."
+                            />
+                          </div>
+                        </CardContent>
+                      </Card>
                     </div>
                   )}
                 </CardContent>

@@ -5,6 +5,7 @@ import {
   packages,
   packageProducts,
   admins,
+  siteSettings,
   type User,
   type InsertUser,
   type Contact,
@@ -17,6 +18,8 @@ import {
   type InsertPackageProduct,
   type Admin,
   type InsertAdmin,
+  type SiteSetting,
+  type InsertSiteSetting,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, asc } from "drizzle-orm";
@@ -57,6 +60,12 @@ export interface IStorage {
   createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin>;
   deleteAdmin(id: number): Promise<boolean>;
   updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean>;
+  
+  // 사이트 설정 관리
+  getSiteSettings(): Promise<SiteSetting[]>;
+  getSiteSetting(key: string): Promise<SiteSetting | undefined>;
+  updateSiteSetting(key: string, value: string): Promise<SiteSetting>;
+  createSiteSetting(setting: InsertSiteSetting): Promise<SiteSetting>;
 }
 
 export class MemStorage {
@@ -286,7 +295,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteFaq(id: number): Promise<boolean> {
     const result = await db.delete(faqs).where(eq(faqs.id, id));
-    return result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 
   // 패키지 관리
@@ -402,6 +411,43 @@ export class DatabaseStorage implements IStorage {
       console.error('Error updating admin password:', error);
       return false;
     }
+  }
+
+  // 사이트 설정 관리
+  async getSiteSettings(): Promise<SiteSetting[]> {
+    return await db.select().from(siteSettings).orderBy(asc(siteSettings.key));
+  }
+
+  async getSiteSetting(key: string): Promise<SiteSetting | undefined> {
+    const [setting] = await db.select().from(siteSettings).where(eq(siteSettings.key, key));
+    return setting || undefined;
+  }
+
+  async updateSiteSetting(key: string, value: string): Promise<SiteSetting> {
+    const [updatedSetting] = await db
+      .update(siteSettings)
+      .set({ 
+        value,
+        updatedAt: new Date()
+      })
+      .where(eq(siteSettings.key, key))
+      .returning();
+    
+    if (updatedSetting) {
+      return updatedSetting;
+    }
+    
+    // 설정이 없으면 새로 생성
+    const [newSetting] = await db
+      .insert(siteSettings)
+      .values({ key, value })
+      .returning();
+    return newSetting;
+  }
+
+  async createSiteSetting(setting: InsertSiteSetting): Promise<SiteSetting> {
+    const [newSetting] = await db.insert(siteSettings).values(setting).returning();
+    return newSetting;
   }
 }
 
