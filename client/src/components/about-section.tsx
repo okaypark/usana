@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Building, CheckCircle, Medal, Microscope, Globe, Users, Phone, Mail, MessageSquare } from "lucide-react";
 import profileImage from "@assets/241118g2_9590-1_1750521634701.jpg";
+import usanaLogo from "@assets/KakaoTalk_20230825_111922478_1752985727668.png";
 
 export default function AboutSection() {
   const profile = {
@@ -129,8 +130,13 @@ export default function AboutSection() {
           <Card className="bg-white shadow-lg">
             <CardContent className="p-8 lg:p-12">
               <div className="text-center mb-8">
-                <div className="bg-usana-blue-500 text-white rounded-full w-20 h-20 mx-auto mb-6 flex items-center justify-center">
-                  <Building className="h-10 w-10" />
+                <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center">
+                  <img 
+                    src={usanaLogo} 
+                    alt="USANA Health Sciences Logo" 
+                    className="w-20 h-20 object-contain filter brightness-0 saturate-100" 
+                    style={{filter: 'brightness(0) saturate(100%) invert(19%) sepia(85%) saturate(1600%) hue-rotate(206deg) brightness(98%) contrast(94%)'}}
+                  />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">USANA Health Sciences</h3>
                 <p className="text-usana-blue-600 font-semibold">글로벌 1위 건강기능식품 기업</p>
