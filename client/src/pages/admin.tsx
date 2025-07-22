@@ -104,6 +104,76 @@ export default function AdminPage() {
     enabled: isAuthenticated === true
   });
 
+  // 프로필 사진 업로드 핸들러
+  const handleProfileImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // 파일 타입 검증
+    if (!file.type.startsWith('image/')) {
+      toast({
+        title: "오류",
+        description: "이미지 파일만 업로드할 수 있습니다.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // 파일 크기 검증 (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        title: "오류",
+        description: "파일 크기는 5MB 이하여야 합니다.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setUploadingImage('profile');
+
+    try {
+      const formData = new FormData();
+      formData.append('profileImage', file);
+
+      const response = await fetch('/api/admin/profile-image', {
+        method: 'POST',
+        credentials: 'include',
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "프로필 사진 업로드 완료",
+          description: result.message,
+        });
+
+        // 관리자 정보 및 사이트 설정 다시 불러오기
+        queryClient.invalidateQueries({ queryKey: ["/api/admin/current"] });
+        queryClient.invalidateQueries({ queryKey: ["/api/admin/list"] });
+        queryClient.invalidateQueries({ queryKey: ["/api/site-settings"] });
+      } else {
+        toast({
+          title: "업로드 실패",
+          description: result.message,
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error('프로필 사진 업로드 오류:', error);
+      toast({
+        title: "업로드 오류",
+        description: "프로필 사진 업로드 중 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+    } finally {
+      setUploadingImage(null);
+      // 파일 입력 초기화
+      event.target.value = '';
+    }
+  };
+
   // 이미지 업로드 핸들러
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>, imageType: 'desktop' | 'mobile') => {
     const file = event.target.files?.[0];
@@ -684,7 +754,67 @@ export default function AdminPage() {
 
             {/* 관리자 탭 */}
             <TabsContent value="admin" className="p-6 space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-3">
+                {/* 프로필 사진 관리 카드 */}
+                <Card className="border-purple-200 shadow-md">
+                  <CardHeader className="bg-gradient-to-r from-purple-50 to-violet-50 rounded-t-lg">
+                    <CardTitle className="flex items-center gap-2 text-purple-700">
+                      <Users className="w-5 h-5" />
+                      프로필 사진 관리
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-6">
+                    <div className="flex flex-col items-center space-y-4">
+                      {/* 현재 프로필 사진 */}
+                      <div className="w-24 h-24 rounded-full bg-gray-200 overflow-hidden border-4 border-purple-200">
+                        {currentAdminData?.admin?.profileImageUrl ? (
+                          <img 
+                            src={currentAdminData.admin.profileImageUrl} 
+                            alt="프로필 사진"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-gray-400">
+                            <Users className="w-8 h-8" />
+                          </div>
+                        )}
+                      </div>
+                      
+                      {/* 업로드 버튼 */}
+                      <div className="w-full">
+                        <input
+                          type="file"
+                          id="profileImageUpload"
+                          accept="image/*"
+                          onChange={handleProfileImageUpload}
+                          className="hidden"
+                        />
+                        <Button
+                          onClick={() => document.getElementById('profileImageUpload')?.click()}
+                          disabled={uploadingImage === 'profile'}
+                          className="w-full bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700"
+                        >
+                          {uploadingImage === 'profile' ? (
+                            <span className="flex items-center gap-2">
+                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                              업로드 중...
+                            </span>
+                          ) : (
+                            <>
+                              <Users className="w-4 h-4 mr-2" />
+                              프로필 사진 업로드
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                      
+                      <p className="text-xs text-gray-500 text-center">
+                        JPG, PNG 파일 (최대 5MB)
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
                 {/* 비밀번호 변경 카드 */}
                 <Card className="border-blue-200 shadow-md">
                   <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-t-lg">

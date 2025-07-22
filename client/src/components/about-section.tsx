@@ -18,6 +18,9 @@ export default function AboutSection() {
     },
   });
 
+  // 프로필 이미지는 사이트 설정에서 가져오기
+  const adminProfileImage = siteSettings.find(s => s.key === 'admin_profile_image')?.value;
+
   const adminIntro = siteSettings.find(s => s.key === 'admin_intro')?.value || 
     '안녕하세요! 유사나 에메랄드 디렉터 박현진입니다. 건강한 삶과 경제적 자유를 동시에 얻을 수 있는 기회를 제공합니다.';
   
@@ -97,7 +100,7 @@ export default function AboutSection() {
             <CardContent className="p-8 lg:p-12">
               <div className="text-center mb-8">
                 <img
-                  src={profileImage}
+                  src={adminProfileImage || profileImage}
                   alt="박현진 대표 프로필"
                   className="w-48 h-48 rounded-full mx-auto mb-6 shadow-lg object-cover object-top"
                 />

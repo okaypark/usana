@@ -312,6 +312,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // 프로필 사진 업로드 API
+  app.post("/api/admin/profile-image", requireAdminAuth, upload.single('profileImage'), async (req, res) => {
+    try {
+      const adminEmail = (req.session as any).adminEmail;
+      
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: "프로필 사진을 선택해주세요."
+        });
+      }
+
+      const imageUrl = `/uploads/${req.file.filename}`;
+      
+      // 관리자 프로필 사진 업데이트
+      const updated = await storage.updateAdminProfileImage(adminEmail, imageUrl);
+      
+      if (!updated) {
+        return res.status(500).json({
+          success: false,
+          message: "프로필 사진 업데이트에 실패했습니다."
+        });
+      }
+
+      // 사이트 설정에도 프로필 이미지 URL 저장 (공개 접근용)
+      await storage.updateSiteSetting('admin_profile_image', imageUrl);
+
+      res.json({
+        success: true,
+        message: "프로필 사진이 성공적으로 업데이트되었습니다.",
+        imageUrl: imageUrl
+      });
+    } catch (error) {
+      console.error('프로필 사진 업로드 오류:', error);
+      res.status(500).json({
+        success: false,
+        message: "프로필 사진 업로드 중 오류가 발생했습니다."
+      });
+    }
+  });
+
   // 관리자 목록 조회 API
   app.get("/api/admin/list", requireAdminAuth, async (req, res) => {
     try {
@@ -322,6 +363,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           id: admin.id,
           email: admin.email,
           name: admin.name,
+          profileImageUrl: admin.profileImageUrl,
           createdAt: admin.createdAt
         }))
       });

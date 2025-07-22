@@ -60,6 +60,7 @@ export interface IStorage {
   createAdmin(adminData: { email: string; name: string; passwordHash: string }): Promise<Admin>;
   deleteAdmin(id: number): Promise<boolean>;
   updateAdminPassword(email: string, newPasswordHash: string): Promise<boolean>;
+  updateAdminProfileImage(email: string, imageUrl: string): Promise<boolean>;
   
   // 사이트 설정 관리
   getSiteSettings(): Promise<SiteSetting[]>;
@@ -409,6 +410,23 @@ export class DatabaseStorage implements IStorage {
       return !!updatedAdmin;
     } catch (error) {
       console.error('Error updating admin password:', error);
+      return false;
+    }
+  }
+
+  async updateAdminProfileImage(email: string, imageUrl: string): Promise<boolean> {
+    try {
+      const [updatedAdmin] = await db
+        .update(admins)
+        .set({ 
+          profileImageUrl: imageUrl,
+          updatedAt: new Date()
+        })
+        .where(eq(admins.email, email))
+        .returning();
+      return !!updatedAdmin;
+    } catch (error) {
+      console.error('Error updating admin profile image:', error);
       return false;
     }
   }
