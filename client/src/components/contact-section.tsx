@@ -127,9 +127,9 @@ export default function ContactSection() {
 
   // 동적 연락처 정보 가져오기
   const getContactInfo = () => ({
-    phone: siteSettings.find(s => s.key === 'admin_phone')?.value || "010-4259-5311",
-    email: siteSettings.find(s => s.key === 'admin_email')?.value || "okaypark7@gmail.com",
-    kakao: siteSettings.find(s => s.key === 'kakao_id')?.value || "holicotu",
+    phone: siteSettings.find((s: any) => s.key === 'admin_phone')?.value || "010-4259-5311",
+    email: siteSettings.find((s: any) => s.key === 'admin_email')?.value || "okaypark7@gmail.com",
+    kakao: siteSettings.find((s: any) => s.key === 'admin_kakao')?.value || "holicotu",
     openChat: "유사나 건강구독 오픈채팅"
   });
   
@@ -150,7 +150,27 @@ export default function ContactSection() {
           {/* Contact Form */}
           <Card className="bg-white shadow-lg">
             <CardContent className="p-8 lg:p-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">무료 상담 신청하기</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">무료 상담 신청하기</h3>
+              
+              {/* 직접 연락 버튼들 */}
+              <div className="grid grid-cols-2 gap-3 mb-8">
+                <Button
+                  onClick={() => window.open(`tel:${contactInfo.phone}`)}
+                  className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
+                  size="sm"
+                >
+                  <Phone className="w-4 h-4" />
+                  전화상담
+                </Button>
+                <Button
+                  onClick={() => window.open(`https://open.kakao.com/me/${contactInfo.kakao}`)}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white flex items-center gap-2"
+                  size="sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  카톡문의
+                </Button>
+              </div>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <FormField
@@ -302,7 +322,7 @@ export default function ContactSection() {
                             
                             <div className="border-t pt-4">
                               <h4 className="font-semibold text-gray-900 mb-2">개인정보 보호책임자</h4>
-                              <p>- 성명: {siteSettings.find(s => s.key === 'admin_name')?.value || '박현진'}</p>
+                              <p>- 성명: {siteSettings.find((s: any) => s.key === 'admin_name')?.value || '박현진'}</p>
                               <p>- 연락처: {contactInfo.phone}</p>
                               <p>- 이메일: {contactInfo.email}</p>
                             </div>

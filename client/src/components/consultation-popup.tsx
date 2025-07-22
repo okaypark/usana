@@ -5,7 +5,8 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Phone, MessageCircle, X } from "lucide-react";
+import { Checkbox } from "./ui/checkbox";
+import { Phone, MessageCircle, X, ExternalLink } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
@@ -30,6 +31,7 @@ export default function ConsultationPopup({
   description = "건강한 생활과 수익 창출을 위한 맞춤 상담을 신청하세요."
 }: ConsultationPopupProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [privacyChecked, setPrivacyChecked] = useState(false);
   const { toast } = useToast();
 
   // 사이트 설정 조회
@@ -43,6 +45,16 @@ export default function ConsultationPopup({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!privacyChecked) {
+      toast({
+        title: "개인정보 수집 동의 필요",
+        description: "개인정보 수집 및 이용에 동의해주세요.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     try {
@@ -98,17 +110,7 @@ export default function ConsultationPopup({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-xl font-bold text-navy-800">{title}</DialogTitle>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={onClose}
-              className="h-6 w-6 p-0 hover:bg-gray-100"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <DialogTitle className="text-xl font-bold text-navy-800">{title}</DialogTitle>
           <DialogDescription className="text-gray-600">
             {description}
           </DialogDescription>
@@ -116,7 +118,7 @@ export default function ConsultationPopup({
 
         <div className="space-y-6">
           {/* 직접 연락 버튼들 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             <Button
               onClick={() => handleDirectContact('phone')}
               className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2"
@@ -133,16 +135,6 @@ export default function ConsultationPopup({
               >
                 <MessageCircle className="w-4 h-4" />
                 카카오톡
-              </Button>
-            )}
-            {openchatUrl && (
-              <Button
-                onClick={() => handleDirectContact('openchat')}
-                className="bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
-                size="sm"
-              >
-                <MessageCircle className="w-4 h-4" />
-                오픈채팅
               </Button>
             )}
           </div>
@@ -208,10 +200,38 @@ export default function ConsultationPopup({
                   className="mt-1"
                 />
               </div>
+              
+              {/* 개인정보 동의 체크박스 */}
+              <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg border">
+                <Checkbox
+                  id="privacy"
+                  checked={privacyChecked}
+                  onCheckedChange={(checked) => setPrivacyChecked(checked as boolean)}
+                  className="mt-1"
+                />
+                <div className="text-sm">
+                  <Label htmlFor="privacy" className="text-gray-700 cursor-pointer">
+                    개인정보 수집 및 이용에 동의합니다.
+                  </Label>
+                  <Button
+                    type="button"
+                    variant="link"
+                    className="h-auto p-0 ml-2 text-blue-600 underline text-sm"
+                    onClick={() => window.open('/privacy-policy', '_blank')}
+                  >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    자세히 보기
+                  </Button>
+                  <p className="text-xs text-gray-500 mt-1">
+                    상담 목적으로 개인정보를 수집하며, 상담 완료 후 파기됩니다.
+                  </p>
+                </div>
+              </div>
+              
               <Button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-navy-700 hover:bg-navy-800 text-white font-semibold py-3"
+                disabled={isSubmitting || !privacyChecked}
+                className="w-full bg-navy-700 hover:bg-navy-800 text-white font-semibold py-3 disabled:opacity-50"
               >
                 {isSubmitting ? '신청 중...' : '상담 신청하기'}
               </Button>
